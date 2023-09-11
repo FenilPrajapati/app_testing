@@ -7,7 +7,7 @@
     'depends': ['base', 'web', 'crm', 'sale', 'sale_crm', 'sale_management', 'purchase',
                 'account', 'website', 'mail', 'stock','portal', 'maintenance','hr'],
     'website': 'https://www.powerpbox.org/',
-    'version': '1.0',
+    'version': '16.0',
     'license': 'OPL-1',
     'images': [
         
