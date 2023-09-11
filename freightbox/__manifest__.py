@@ -173,6 +173,8 @@
     },
     'post_init_hook': 'create_api_integration',
     'uninstall_hook': 'uninstall_hook',
-    'price': 2999.00,
+    "installable": True,
+    "auto_install": False,
+    "application": True,
     'currency': 'USD',
 }
