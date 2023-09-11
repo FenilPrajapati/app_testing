@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record forcecreate="True" id="freight_decimal_payment" model="decimal.precision">
+            <field name="name">Freight</field>
+            <field name="digits">2</field>
+        </record>
+    </data>
+</odoo>

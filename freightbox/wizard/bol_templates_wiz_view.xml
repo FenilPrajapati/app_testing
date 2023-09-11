@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- ***************** Bol Template form view - wizard -->
+        <record id="bol_template_form_view_wiz" model="ir.ui.view">
+            <field name="name">BOL Templates</field>
+            <field name="model">bol.templates.wiz</field>
+            <field name="arch" type="xml">
+                <form string="Bol Template">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="bol_id" invisible="1"/>
+                            <field name="created_from_bol" invisible="1"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_create_bol_template" string="Create BOL Template"
+                                type="object" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

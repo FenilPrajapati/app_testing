@@ -1,0 +1,58 @@
+<!-- ***************** Correct Reason -->
+<odoo>
+    <data>
+        <record id="view_sq_correct_wiz" model="ir.ui.view">
+            <field name="name">sq.correct.reason.form</field>
+            <field name="model">sq.correct.reason</field>
+            <field name="arch" type="xml">
+                <form string="Correct Reason" version="7.0">
+                    <group cols="2" colspan="2">
+                        <field name="correct_reason" required="1"/>
+                    </group>
+                    <footer>
+                        <button name="action_submit" string="Submit" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="act_sq_correct_wiz" model="ir.actions.act_window">
+            <field name="name">Correct Reason</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sq.correct.reason</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_sq_correct_wiz"/>
+        </record>
+
+
+        <record id="view_so_correct_wiz" model="ir.ui.view">
+            <field name="name">so.correct.reason.form</field>
+            <field name="model">so.correct.reason</field>
+            <field name="arch" type="xml">
+                <form string="Correct Reason" version="7.0">
+                    <group cols="2" colspan="2">
+                        <field name="correct_reason" required="1"/>
+                    </group>
+                    <footer>
+                        <button name="action_submit" string="Submit" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="act_so_correct_wiz" model="ir.actions.act_window">
+            <field name="name">Correct Reason</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">so.correct.reason</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_so_correct_wiz"/>
+        </record>
+
+    </data>
+</odoo>

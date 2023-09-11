@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_shipping_instruction" model="ir.actions.report">
+            <field name="name">Shipping Instruction Report</field>
+            <field name="model">shipping.instruction</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">freightbox.report_shipping_instruction</field>
+            <field name="report_file">freightbox.report_shipping_instruction</field>
+            <field name="binding_model_id" ref="model_shipping_instruction"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_report_prepare_bill_of_lading_document" model="ir.actions.report">
+            <field name="name">Bill of Lading Report</field>
+            <field name="model">bill.of.lading</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">freightbox.report_prepare_bill_of_lading</field>
+            <field name="report_file">freightbox.report_prepare_bill_of_lading</field>
+            <field name="binding_model_id" ref="model_bill_of_lading"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_report_prepare_bill_of_lading_document1" model="ir.actions.report">
+            <field name="name">Bill of Lading Report-MSC</field>
+            <field name="model">bill.of.lading</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">freightbox.report_prepare_bill_of_lading1</field>
+            <field name="report_file">freightbox.report_prepare_bill_of_lading1</field>
+            <field name="binding_model_id" ref="model_bill_of_lading"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="freightbox.paper_format_bol_from" />
+        </record>
+
+    </data>
+</odoo>

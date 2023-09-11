@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record forcecreate="True" model="charges.templates" id="charges_template_1">
+            <field name="name">Charges-Template1</field>
+            <field name="incoterm_id" ref="account.incoterm_FOB"/>
+        </record>
+
+        <record id="charges_line_template1" model="charges.line">
+            <field name="charges_template_id" ref="fb_base.charges_template_1"/>
+            <field name="charges_id" ref="fb_base.charge_1"/>
+            <field name="prepaid" eval="True"/>
+            <field name="collect" eval="False"/>           
+        </record>
+
+        <record id="charges_line_template2" model="charges.line">
+            <field name="charges_template_id" ref="fb_base.charges_template_1"/>
+            <field name="charges_id" ref="fb_base.charge_2"/>
+            <field name="prepaid" eval="True"/>
+            <field name="collect" eval="False"/>           
+        </record>
+
+        <record id="charges_line_template3" model="charges.line">
+            <field name="charges_template_id" ref="fb_base.charges_template_1"/>
+            <field name="charges_id" ref="fb_base.charge_3"/>
+            <field name="prepaid" eval="True"/>
+            <field name="collect" eval="False"/>           
+        </record>
+
+        <record id="charges_line_template4" model="charges.line">
+            <field name="charges_template_id" ref="fb_base.charges_template_1"/>
+            <field name="charges_id" ref="fb_base.charge_4"/>
+            <field name="prepaid" eval="True"/>
+            <field name="collect" eval="False"/>           
+        </record>
+
+        <record id="charges_line_template5" model="charges.line">
+            <field name="charges_template_id" ref="fb_base.charges_template_1"/>
+            <field name="charges_id" ref="fb_base.charge_5"/>
+            <field name="prepaid" eval="True"/>
+            <field name="collect" eval="False"/>           
+        </record>
+
+        <record id="charges_line_template6" model="charges.line">
+            <field name="charges_template_id" ref="fb_base.charges_template_1"/>
+            <field name="charges_id" ref="fb_base.charge_6"/>
+            <field name="prepaid" eval="True"/>
+            <field name="collect" eval="False"/>           
+        </record>
+
+        <record id="charges_line_template7" model="charges.line">
+            <field name="charges_template_id" ref="fb_base.charges_template_1"/>
+            <field name="charges_id" ref="fb_base.charge_39"/>
+            <field name="prepaid" eval="True"/>
+            <field name="collect" eval="False"/>           
+        </record>
+
+        <record id="charges_line_template8" model="charges.line">
+            <field name="charges_template_id" ref="fb_base.charges_template_1"/>
+            <field name="charges_id" ref="fb_base.charge_40"/>
+            <field name="prepaid" eval="True"/>
+            <field name="collect" eval="False"/>           
+        </record>
+
+        <record id="charges_line_template9" model="charges.line">
+            <field name="charges_template_id" ref="fb_base.charges_template_1"/>
+            <field name="charges_id" ref="fb_base.charge_41"/>
+            <field name="prepaid" eval="True"/>
+            <field name="collect" eval="False"/>           
+        </record>
+
+        <record id="charges_line_template10" model="charges.line">
+            <field name="charges_template_id" ref="fb_base.charges_template_1"/>
+            <field name="charges_id" ref="fb_base.charge_63"/>
+            <field name="prepaid" eval="False"/>
+            <field name="collect" eval="True"/>           
+        </record>
+
+        <record id="charges_line_template11" model="charges.line">
+            <field name="charges_template_id" ref="fb_base.charges_template_1"/>
+            <field name="charges_id" ref="fb_base.charge_65"/>
+            <field name="prepaid" eval="False"/>
+            <field name="collect" eval="True"/>           
+        </record>
+
+        <record id="charges_line_template12" model="charges.line">
+            <field name="charges_template_id" ref="fb_base.charges_template_1"/>
+            <field name="charges_id" ref="fb_base.charge_67"/>
+            <field name="prepaid" eval="False"/>
+            <field name="collect" eval="True"/>             
+        </record>
+
+    </data>
+</odoo> 

@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+        <record id="view_incoterms_tree_freight" model="ir.ui.view">
+            <field name="name">account.incoterms.tree</field>
+            <field name="model">account.incoterms</field>
+            <field name="arch" type="xml">
+                <tree string="Incoterms">
+                    <field name="active" invisible="1"/>
+                    <field name="code"/>
+                    <field colspan="4" name="name"/>
+                    <field name="charges_template_ids"/>
+                    <field name="description"/>
+                    <field name="prepaid"/>
+                    <field name="collect"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="account_incoterms_form_freight" model="ir.ui.view">
+            <field name="name">account.incoterms.form</field>
+            <field name="model">account.incoterms</field>
+            <field name="inherit_id" ref="account.account_incoterms_form"/>
+            <field name="arch" type="xml">
+                <field name="code" position="after">
+                    <field name="description"/>
+                    <field name="charges_template_ids" widget="many2many_tags"/>
+                    <field name="prepaid"/>
+                    <field name="collect"/>
+                </field>
+            </field>
+        </record>
+
+
+        <record id="account.action_incoterms_tree" model="ir.actions.act_window">
+            <field name="name">Incoterms</field>
+            <field name="res_model">account.incoterms</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_incoterms_tree_freight"></field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new incoterm
+                </p>
+                <p>
+                    Incoterms are used to divide transaction costs and responsibilities between buyer and seller.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

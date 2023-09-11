@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record model="facility.type.code" id="facility_type_code_1">
+            <field name="facility_type_code">BOCR</field>
+            <field name="facility_type_name">Border crossing</field>
+            <field name="description">Border crossing is the point at a border between two countries where people,
+                transports or goods can cross. This may or may not include a customs checkpoint.
+            </field>
+        </record>
+        <record model="facility.type.code" id="facility_type_code_2">
+            <field name="facility_type_code">CLOC</field>
+            <field name="facility_type_name">Customer location</field>
+            <field name="description">Customer location is the premise of the customer, who can be either the shipper or
+                the consignee.
+            </field>
+        </record>
+        <record model="facility.type.code" id="facility_type_code_3">
+            <field name="facility_type_code">COFS</field>
+            <field name="facility_type_name">Container freight station</field>
+            <field name="description">Container freight station is a facility where LCL (Less Than Container Load)
+                shipments are consolidated or dispersed, cargo is stuffed into containers prior to shipment, or cargo is
+                stripped from containers prior to release to the consignee.
+            </field>
+        </record>
+        <record model="facility.type.code" id="facility_type_code_4">
+            <field name="facility_type_code">COYA</field>
+            <field name="facility_type_name">Container yard</field>
+            <field name="description">A place where containers are stored on the terminal or dry port (rail ramp) before
+                they are loaded or offloaded from a ship. Containers are either stored for loading to be transported
+                elsewhere or offloaded as they arrive into the port, terminal or rail ramp.
+            </field>
+        </record>
+        <record model="facility.type.code" id="facility_type_code_5">
+            <field name="facility_type_code">OFFD</field>
+            <field name="facility_type_name">Off dock storage</field>
+            <field name="description">An interim storage facility where empty or full containers are stored in
+                transit.
+            </field>
+        </record>
+        <record model="facility.type.code" id="facility_type_code_6">
+            <field name="facility_type_code">DEPO</field>
+            <field name="facility_type_name">Depot</field>
+            <field name="description">Depot is a designated area where empty equipment is stored between use.</field>
+        </record>
+        <record model="facility.type.code" id="facility_type_code_7">
+            <field name="facility_type_code">INTE</field>
+            <field name="facility_type_name">Inland terminal</field>
+            <field name="description">Inland terminal is a facility where containers are loaded, moved,or discharged.
+                The inland terminal can be serviced by trucks, rail,and barges (at river terminals).
+            </field>
+        </record>
+        <record model="facility.type.code" id="facility_type_code_8">
+            <field name="facility_type_code">POTE</field>
+            <field name="facility_type_name">Port terminal</field>
+            <field name="description">Port terminal is a facility located adjacent to a waterway where containers are
+                loaded, moved,or discharged onto/from sea-goingvessels and barges.
+            </field>
+        </record>
+        <record model="facility.type.code" id="facility_type_code_9">
+            <field name="facility_type_code">PBPL</field>
+            <field name="facility_type_name">Pilot boarding place</field>
+            <field name="description">The place where a pilot boards the vessel upon arrival at the port boundaries.
+            </field>
+        </record>
+        <record model="facility.type.code" id="facility_type_code_10">
+            <field name="facility_type_code">BRTH</field>
+            <field name="facility_type_name">Berth</field>
+            <field name="description">The place where a vessel is moored in a port terminal</field>
+        </record>
+
+        <record model="facility.type.code" id="facility_type_code_11">
+            <field name="facility_type_code">RAMP</field>
+            <field name="facility_type_name">Ramp</field>
+            <field name="description">An inland container terminal (storing both full and empty containers) connected
+                directly to a rail ramp where containers are loaded/discharged to/from a train
+            </field>
+        </record>
+
+    </data>
+</odoo>

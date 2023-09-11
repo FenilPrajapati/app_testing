@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <!-- ************************ Transport Template************************** -->
+        <!-- ********** Transport Template tree view ********** -->
+        <record id="transport_template_tree_view" model="ir.ui.view">
+            <field name="name">Transport Template</field>
+            <field name="model">transport.template</field>
+            <field name="arch" type="xml">
+                <tree string="Transport Template">
+                    <field name="name"/>
+                    <field name="carrier_booking"/>
+                    <field name="workorder"/>
+                    <field name="cont_type"/>
+                    <field name="cont_id"/>
+                    <field name="planned_date"/>
+                    <!--					<field name="remarks" />-->
+                    <field name="carrier_handover"/>
+                    <field name="vessel_name"/>
+                    <field name="imo_no"/>
+                    <field name="voyage"/>
+                    <field name="rotation"/>
+                    <field name="gate_cutoff"/>
+                    <!--					<field name="facility" />-->
+
+
+                </tree>
+            </field>
+        </record>
+        <!-- ********** Transport form view ********** -->
+        <record id="transport_template_form_view" model="ir.ui.view">
+            <field name="name">Transport Template</field>
+            <field name="model">transport.template</field>
+            <field name="arch" type="xml">
+                <form string="Transport Template">
+                    <sheet>
+                        <group>
+                            <field name="carrier_booking" required="1"/>
+                            <field name="workorder" required="0"/>
+                            <field name="transport_reference" required="1"/>
+                        </group>
+
+                        <separator string="Container details"/>
+                        <group>
+                            <group>
+                                <field name="cont_id" required="1"/>
+                                <field name="cont_type"/>
+                                <field name="temparature" attrs="{'invisible': [('special_type', '!=', 'reefer_active')], 'readonly': [('special_type', '!=', 'reefer_active')], 'required': [('special_type', '=', 'reefer_active')]}"/>
+                            </group>
+                            <group>
+                                <field name="humidity" attrs="{'invisible': [('special_type', '!=', 'reefer_active')], 'readonly': [('special_type', '!=', 'reefer_active')], 'required': [('special_type', '=', 'reefer_active')]}"/>
+                                <field name="ventilation" attrs="{'invisible': [('special_type', '!=', 'reefer_active')], 'readonly': [('special_type', '!=', 'reefer_active')], 'required': [('special_type', '=', 'reefer_active')]}"/>
+                            </group>
+                        </group>
+
+                        <separator string="Transport Leg details"/>
+                        <group>
+                            <group>
+                                <field name="is_multi_modal"/>
+                                <field name="vessel_name" required="1"/>
+                                <field name="imo_no"/>
+                            </group>
+                            <group>
+                                <field name="voyage"/>
+                                <field name="rotation"/>
+                            </group>
+                        </group>
+
+                        <separator string="Second Vessel Details" attrs="{'invisible': [('is_multi_modal', '=', False)]}"/>
+                        <group>
+                            <!--<field name="state" readonly="0"/>-->
+                            <group>
+                                <field name="vessel_name1" attrs="{'invisible': [('is_multi_modal', '=', False)]}"/>
+                                <field name="voyage1" attrs="{'invisible': [('is_multi_modal', '=', False)]}"/>
+                                <field name="rotation1" attrs="{'invisible': [('is_multi_modal', '=', False)]}"/>
+                            </group>
+                            <group>
+                                <field name="imo_no1" attrs="{'invisible': [('is_multi_modal', '=', False)]}"/>
+                                <field name="intermediate_pol_id" attrs="{'invisible': [('is_multi_modal', '=', False)]}"/>
+                            </group>
+                        </group>
+                        <separator string="Pick up and Drop-off details"/>
+                        <group >
+                            <group>
+                                <field name="pickup_loc_id" required="1"/>
+                                <field name="pickup_loc_facility_id" domain="[('unloc_code', '=', pickup_loc_id)]"/>
+                                <field name="dropoff_loc_id"/>
+                            </group>
+                            <group>
+                                <field name="dropoff_loc_facility_id" domain="[('unloc_code', '=', dropoff_loc_id)]"/>
+                                <field name="pickup_mode"/>
+                                <field name="dropoff_mode"/>
+                            </group>
+                        </group>
+                        <separator string="Point of stuffing and destuffing details"/>
+                        <group >
+                            <group>
+                                <field name="point_of_stuffing"/>
+                                <field name="point_of_destuffing"/>
+                            </group>
+                            <group>
+                                <field name="stuffing_mode"/>
+                                <field name="destuffing_mode"/>
+                            </group>
+                        </group>
+
+                        <!-- <field name="facility" /> -->
+                        <separator string="Port of Origin and Destination details"/>
+                        <group>
+                            <group>
+                                <field name="port_of_origin_id" required="1"/>
+                                <field name="port_of_origin_facility_id" domain="[('unloc_code', '=', port_of_origin_id)]"/>
+                                <field name="fpod_id" required="1"/>
+                            </group>
+                            <group>
+                                <field name="fpod_facility_id" domain="[('unloc_code', '=', fpod_id)]"/>
+                                <field name="vessel_mode"/>
+                            </group>
+                        </group>
+                        <separator/>
+                        <group >
+                            <group>
+                                <field name="planned_date" required="1"/>
+                                <field name="carrier_handover"/>
+                                <field name="proforma_schedule" filename="proforma_schedule_fname"/>
+                            </group>
+                            <group>
+                                <field name="gate_cutoff"/>
+                                <field name="is_data_template" readonly="1"/>
+                            </group>
+                        </group>
+                        <!-- <field name="shipping_instruction_id" /> -->
+                        <separator/>
+                        <group>
+                            <field name="remarks" colspan="4"/>    
+                        </group>
+                        <group>
+                            <field name="special_type" invisible="1"/>
+                        </group>
+                        <notebook>
+                            <page name="container_journey" string="Container Journey">
+                                <field name="container_route_line"  string="Container Route">
+                                    <tree string="Route" editable="bottom">
+                                        <field name="transport_mode"/>
+                                        <field name="start_point"/>
+                                        <field name="end_point"/>
+                                        <field name="planned_departure_time"/>
+                                        <field name="planned_arrival_time"/>
+                                        <field name="estimated_departure_time"/>
+                                        <field name="estimated_arrival_time"/>
+                                        <field name="actual_departure_time"/>
+                                        <field name="actual_arrival_time"/>
+                                        <field name="delay_reason"/>
+                                        <field name="gate_in_wait_time"/>
+                                        <field name="gate_out_wait_time"/>
+                                        <field name="travel_time"/>
+                                        <field name="buffer_time"/>
+                                        <field name="yard_time"/>
+                                        <field name="distance"/>
+                                        <field name="speed"/>
+                                        <field name="fuel"/>
+                                        <field name="fuel_consumption"/>
+                                        <field name="co2_emmision"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="equipment_journey" string="Equipment Journey">
+                                <field name="equipment_route_line"  string="Equipment Route">
+                                    <tree string="Route">
+                                        <field name="equip_event_id"/>
+                                        <field name="estimated_event_time"/>
+                                        <field name="event_classifier_code"/>
+                                        <field name="equip_event_type_code"/>
+                                        <field name="equip_reference"/>
+                                        <field name="iso_equip_code"/>
+                                        <field name="empty_indicator_code"/>
+                                        <field name="transport_call"/>
+                                        <field name="event_location"/>
+                                    </tree>
+                                </field>
+                            </page>
+                           <!-- <page name='route' string="Routes">
+                                <group>
+                                    <group>
+                                        <field name="route_template_id" domain="[('route_template_line','!=',False)]"/>
+                                    </group>
+                                </group>
+                                <header>
+                                    <button name="action_load_route_template" type="object" string="Load Route Template"
+                                            class="btn-primary" help="loads the Route template selected"/>
+                                    <button name="action_delete_route_template" string="Delete Route Template"
+                                            type="object" class="btn-primary"
+                                            confirm="This will delete all the routes,do you wish to proceed?"
+                                            help="deletes the route template selected"/>
+                                    <button name="action_create_route_template" type="object"
+                                            string="Create Route Template" class="btn-primary"
+                                            help="Creates a Route template with routes added below"/>
+                                </header>
+                                <separator/>
+                                <field name="transport_template_route_line" string="Routes">
+                                    <tree string="Route">
+                                        <field name="port_of_origin"/>
+                                        <field name="mode_id"/>
+                                        <field name="fpod"/>
+                                        <field name="planned_departure_time"/>
+                                        <field name="planned_arrival_time"/>
+                                        <field name="estimated_departure_time"/>
+                                        <field name="estimated_arrival_time"/>
+                                        <field name="actual_departure_time"/>
+                                        <field name="actual_arrival_time"/>
+                                        <field name="delay_reason"/>
+                                    </tree>
+                                    <form string="Route Template">
+                                        <group>
+                                            <group>
+                                                <field name="mode_id" required="1"/>
+                                            </group>
+                                        </group>
+                                        <group>
+                                            <group colspan="4" col="4">
+                                                <field name="port_of_origin_id"/>
+                                                <field name="fpod_id"/>
+                                                <field name="planned_departure_time"/>
+                                                <field name="planned_arrival_time"/>
+                                                <field name="estimated_departure_time"/>
+                                                <field name="estimated_arrival_time"/>
+                                                <field name="actual_departure_time"/>
+                                                <field name="actual_arrival_time"/>
+                                            </group>
+                                        </group>
+
+                                        <group>
+                                            <field name="delay_reason"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>-->
+
+                           <!-- <page name='cargo' string="Cargo">
+                                <group colspan="4" col="4">
+                                    <field name="temparature"/>
+                                    <field name="humidity"/>
+                                    <field name="ventilation"/>
+                                </group>
+                            </page>-->
+
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- ********** Action Transport ********** -->
+
+        <record id="action_transport_template" model="ir.actions.act_window">
+            <field name="name">Transport Template</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">transport.template</field>
+            <field name="view_id" ref="transport_template_tree_view"></field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

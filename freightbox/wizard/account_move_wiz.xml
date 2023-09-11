@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_api_rate_wiz_form" model="ir.ui.view">
+            <field name="name">apirate.wizard.form</field>
+            <field name="model">apirate.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Api Rate Template">
+                    <separator string="Today's Exchange Difference"/>
+                    <group>
+                        <group name="group1">
+                            <label for="api_company_currency_rate"/>
+                            <div name="amount_div" class="o_row">
+                                <field name="api_company_currency_rate" readonly="1"/>
+                                <field name="currency_id"
+                                       options="{'no_create': True, 'no_open': True}"
+                                       groups="base.group_multi_currency"/>
+                            </div>
+                        </group>
+                        <group name="group2">
+                            <label for="api_billing_currency_rate"/>
+                            <div name="amount_div" class="o_row">
+                                <field name="api_billing_currency_rate"
+                                       attrs="{'readonly': [('edit_exchange_rate','=',False)]}"/>
+                                <field name="billing_currency_id"
+                                       options="{'no_create': True, 'no_open': True}"
+                                       groups="base.group_multi_currency"/>
+                                <field name="edit_exchange_rate"/>
+                                <!--<button name="update_exchange_rate" icon="fa-arrow-right"
+                                    type="object" string="Update Rate" class="btn-link"/>-->
+                            </div>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="update_exchange_rate"
+                                type="object" string="Update Rate" class="oe_highlight"/>
+                        <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_api_rate_wiz" model="ir.actions.act_window">
+            <field name="name">Api Rate</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">apirate.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_api_rate_wiz_form"/>
+        </record>
+    </data>
+</odoo>

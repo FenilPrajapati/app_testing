@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <menuitem id="main_menu_fb_base" name="Freightbox Base" sequence="305"/>
+        <menuitem id="menu_ports" name="Ports" sequence="1" parent="main_menu_fb_base"/>
+        <menuitem id="menu_configuration" name="Configuration" sequence="2" parent="main_menu_fb_base"/>
+        <menuitem id="sub_menu_ports" name="Ports" sequence="1"
+                  action="fb_base.action_ports" parent="menu_ports"/>
+        <menuitem id="sub_menu_facility_code" name="Facility code" sequence="5"
+                  action="action_facility_type_code" parent="menu_configuration"/>
+        <menuitem id="sub_menu_charges" name="Charges" sequence="2"
+                  action="action_charges" parent="menu_configuration"/>
+        <menuitem id="sub_menu_charges_tempalte" name="Charges Template" sequence="3"
+                  action="action_charges_template_id" parent="menu_configuration"/>
+        <menuitem id="sub_menu_contianer_iso_code" name="Container ISO code" sequence="4"
+                  action="action_container_iso_code" parent="menu_configuration"/>
+        <menuitem id="sub_menu_shipping_containers" name="Shipping Containers" sequence="6"
+                  action="action_freight_shipping_containers" parent="menu_configuration"/>
+        <menuitem id="sub_menu_repair_type" name="Repair Type" sequence="7"
+                  action="action_repair_type" parent="menu_configuration"/>
+         <menuitem id="sub_menu_service_for_sl" name="Vessel for shipping line" sequence="8"
+                  action="action_service_for_Shipping_line" parent="menu_configuration"/>
+        <menuitem id="sub_menu_minimum_rates" name="Minimun rates" sequence="9"
+                  action="action_minimum_rate" parent="menu_configuration"/>
+          <menuitem id="sub_menu_mrg" name="MRG" sequence="10"
+                  action="action_mrg_charges" parent="menu_configuration"/>
+         <menuitem id="sub_menu_hs_codes" name="HS codes" sequence="11"
+                  action="action_hs_code" parent="menu_configuration"/>
+        <menuitem id="sub_menu_detention_charges" name="Detention charges" sequence="12"
+                  action="action_detention_charges" parent="menu_configuration"/>
+
+        
+                  
+        <!-- <menuitem id="sub_menu_charges_template" name="Charges Template" sequence="15"
+                  action="freightbox_contracts.action_charges_template" parent="menu_configuration"/>
+        <menuitem id="sub_menu_detention_charges" name="Detention Charges" sequence="16"
+                  action="freightbox_contracts.action_detention_charges" parent="menu_configuration"/>
+        <menuitem id="sub_menu_detention_charges_template" name="Detention Charges Template" sequence="15"
+                  action="freightbox_contracts.action_detention_charges_template" parent="menu_configuration"/>
+        <menuitem id="sub_menu_ports" name="Ports" sequence="16"
+                  action="freightbox_contracts.action_port" parent="menu_configuration"/>
+        <menuitem id="sub_menu_sub_template" name="Ports Template" sequence="17"
+                  action="freightbox_contracts.action_port_template" parent="menu_configuration"/> -->
+    </data>
+
+</odoo>

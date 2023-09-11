@@ -1,0 +1,1061 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <!-- Mail template are declared in a NOUPDATE block
+         so users can freely customize/delete them -->
+    <data noupdate="1">
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval="[('name', '=', 'email_template_edi_invoice'), ('module', '=', 'account')]"/>
+            </function>
+            <value eval="{'noupdate': False}"/>
+        </function>
+        <!--Email template -->
+        <record id="account.email_template_edi_invoice" model="mail.template">
+            <field name="name">Invoice: Send by email</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <!--<field name="inherit_id" ref="account.email_template_edi_invoice"/>-->
+            <field name="email_from">{{(object.invoice_user_id.email_formatted or user.email_formatted) |safe}}</field>
+            <field name="partner_to">{{object.partner_id.id}}</field>
+            <field name="subject">{{object.company_id.name}} Invoice (Ref {{object.name or 'n/a'}})</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear
+                        % if object.partner_id.parent_id:
+                        <strong t-out="object.partner_id.name"/> (<strong t-out="object.partner_id.parent_id.name"/>),
+                        % else:
+                        <strong t-out="object.partner_id.name"/>
+                        % endif
+                        <br/>
+                        <br/>
+                        Here is your
+                        % if object.name:
+                        invoice
+                        <t t-out="object.name"/>
+                        % else:
+                        invoice
+                        %endif
+                        % if object.invoice_origin:
+                        (with reference: <t t-out="object.invoice_origin"/>)
+                        % endif
+                        amounting in
+                        <strong t-out="format_amount(object.billing_currency_tot, object.billing_currency_id)"></strong>
+                        from <strong t-out="object.company_id.name"/>.
+                        % if object.payment_state in ('paid', 'in_payment'):
+                        This invoice is already paid.
+                        % else:
+                        Please remit payment at your earliest convenience.
+                        % if object.payment_reference:
+                        <br/>
+                        <br/>
+                        Please use the following communication for your payment: <t t-out="object.payment_reference"/>.
+                        % endif
+                        % endif
+                        <br/>
+                        <br/>
+                        Do not hesitate to contact us if you have any questions.
+                        % if object.invoice_user_id.signature:
+                        <br/>
+                        <t t-out="object.invoice_user_id.signature | safe"/>
+                        <!--${object.invoice_user_id.signature | safe}-->
+                        % endif
+                    </p>
+                </div>
+            </field>
+            <field name="report_template" ref="account.account_invoices"/>
+            <field name="report_name">
+                Invoice_${{(object.name or '').replace('/','_')}}${{object.state == 'draft' and '_draft' or ''}}
+            </field>
+            <field name="lang">${{object.partner_id.lang}}</field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+    </data>
+    <data noupdate="0">
+
+        <function name = "write" model = "ir.model.data">
+            <function name = "search" model = "ir.model.data">
+                <value eval = "[('name', '=', 'mail_template_sale_confirmation'),('module','=','sale')] "/>
+            </function>
+            <value eval =" {'noupdate': False} "/>
+         </function>
+        <record id="mail_template_sale_confirmation" model="mail.template">
+            <field name="name">Sales Order: Confirmation Email</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="subject">{{ object.company_id.name }} {{ (object.get_portal_last_transaction().state == 'pending') and 'Pending Order' or 'Order' }} (Ref {{ object.name or 'n/a' }})</field>
+            <field name="email_from">{{ (object.user_id.email_formatted or user.email_formatted) }}</field>
+            <field name="partner_to">{{ object.partner_id.id }}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Greetings <strong t-out="object.partner_id.name"/>,
+                        <br/><br/>
+                        <t t-set="transaction" t-value="object.get_portal_last_transaction()"/>
+                        Your order <strong t-out="object.name or ''">S00049</strong> amounting in <strong t-out="format_amount(object.amount_total, object.currency_id) or ''">$ 10.00</strong>
+                        <t t-if="object.state == 'sale' or (transaction and transaction.state in ('done', 'authorized'))">
+                            has been confirmed.<br/>
+                            Thank you for your trust!
+                        </t>
+                        <t t-elif="transaction and transaction.state == 'pending'">
+                            is pending. It will be confirmed when the payment is received.
+                            <t t-if="object.reference">
+                                Your payment reference is <strong t-out="object.reference or ''"></strong>.
+                            </t>
+                        </t>
+                        <br/><br/>
+                        Do not hesitate to contact us if you have any questions.
+                        <br/><br/>
+                        With Warm Regards,
+                        <br/>
+                        Sales Team: sales@powerpbox.org,
+                        <br/>
+                        <t t-out="object.so_inquiry_id.mobile"/>
+                        <br/>
+                        <t t-out="object.so_inquiry_id.website"/>
+                        <br/>
+                    </p>
+                <t t-if="hasattr(object, 'website_id') and object.website_id">
+                    <div style="margin: 0px; padding: 0px;">
+                        <table width="100%" style="color: #454748; font-size: 12px; border-collapse: collapse;">
+                            <tr style="border-bottom: 2px solid #dee2e6;">
+                                <td style="width: 150px;"><strong>Products</strong></td>
+                                <td></td>
+                                <td width="15%" align="center"><strong>Quantity</strong></td>
+                                <td width="20%" align="right"><strong>
+                                <t t-if="object.user_id.has_group('account.group_show_line_subtotals_tax_excluded')">
+                                    VAT Excl.
+                                </t>
+                                <t t-else="">
+                                    VAT Incl.
+                                </t>
+                                </strong></td>
+                            </tr>
+                        </table>
+                        <t t-foreach="object.order_line" t-as="line">
+                            <t t-if="(not hasattr(line, 'is_delivery') or not line.is_delivery) and line.display_type in ['line_section', 'line_note']">
+                                <table width="100%" style="color: #454748; font-size: 12px; border-collapse: collapse;">
+                                    <t t-set="loop_cycle_number" t-value="0" />
+                                    <tr t-att-style="'background-color: #f2f2f2' if loop_cycle_number % 2 == 0 else 'background-color: #ffffff'">
+                                        <t t-set="loop_cycle_number" t-value="loop_cycle_number + 1" />
+                                        <td colspan="4">
+                                            <t t-if="line.display_type == 'line_section'">
+                                                <strong t-out="line.name or ''">Taking care of Trees Course</strong>
+                                            </t>
+                                            <t t-elif="line.display_type == 'line_note'">
+                                                <i t-out="line.name or ''">Taking care of Trees Course</i>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </t>
+                            <t t-elif="(not hasattr(line, 'is_delivery') or not line.is_delivery)">
+                                <table width="100%" style="color: #454748; font-size: 12px; border-collapse: collapse;">
+                                    <t t-set="loop_cycle_number" t-value="0" />
+                                    <tr t-att-style="'background-color: #f2f2f2' if loop_cycle_number % 2 == 0 else 'background-color: #ffffff'">
+                                        <t t-set="loop_cycle_number" t-value="loop_cycle_number + 1" />
+                                        <td style="width: 150px;">
+                                            <img t-attf-src="/web/image/product.product/{{ line.product_id.id }}/image_128" style="width: 64px; height: 64px; object-fit: contain;" alt="Product image"></img>
+                                        </td>
+                                        <td align="left" t-out="line.product_id.name or ''">	Taking care of Trees Course</td>
+                                        <td width="15%" align="center" t-out="line.product_uom_qty or ''">1</td>
+                                        <td width="20%" align="right"><strong>
+                                        <t t-if="object.user_id.has_group('account.group_show_line_subtotals_tax_excluded')">
+                                            <t t-out="format_amount(line.price_reduce_taxexcl, object.currency_id) or ''">$ 10.00</t>
+                                        </t>
+                                        <t t-else="">
+                                            <t t-out="format_amount(line.price_reduce_taxinc, object.currency_id) or ''">$ 10.00</t>
+                                        </t>
+                                        </strong></td>
+                                    </tr>
+                                </table>
+                            </t>
+                        </t>
+                    </div>
+                    <div style="margin: 0px; padding: 0px;" t-if="hasattr(object, 'carrier_id') and object.carrier_id">
+                        <table width="100%" style="color: #454748; font-size: 12px; border-spacing: 0px 4px;" align="right">
+                            <tr>
+                                <td style="width: 60%"/>
+                                <td style="width: 30%; border-top: 1px solid #dee2e6;" align="right"><strong>Delivery:</strong></td>
+                                <td style="width: 10%; border-top: 1px solid #dee2e6;" align="right" t-out="format_amount(object.amount_delivery, object.currency_id) or ''">$ 0.00</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 60%"/>
+                                <td style="width: 30%;" align="right"><strong>SubTotal:</strong></td>
+                                <td style="width: 10%;" align="right" t-out="format_amount(object.amount_untaxed, object.currency_id) or ''">$ 10.00</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin: 0px; padding: 0px;" t-else="">
+                        <table width="100%" style="color: #454748; font-size: 12px; border-spacing: 0px 4px;" align="right">
+                            <tr>
+                                <td style="width: 60%"/>
+                                <td style="width: 30%; border-top: 1px solid #dee2e6;" align="right"><strong>SubTotal:</strong></td>
+                                <td style="width: 10%; border-top: 1px solid #dee2e6;" align="right" t-out="format_amount(object.amount_untaxed, object.currency_id) or ''">$ 10.00</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="margin: 0px; padding: 0px;">
+                        <table width="100%" style="color: #454748; font-size: 12px; border-spacing: 0px 4px;" align="right">
+                            <tr>
+                                <td style="width: 60%"/>
+                                <td style="width: 30%;" align="right"><strong>Taxes:</strong></td>
+                                <td style="width: 10%;" align="right" t-out="format_amount(object.amount_tax, object.currency_id) or ''">$ 0.00</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 60%"/>
+                                <td style="width: 30%; border-top: 1px solid #dee2e6;" align="right"><strong>Total:</strong></td>
+                                <td style="width: 10%; border-top: 1px solid #dee2e6;" align="right" t-out="format_amount(object.amount_total, object.currency_id) or ''">$ 10.00</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div t-if="object.partner_invoice_id" style="margin: 0px; padding: 0px;">
+                        <table width="100%" style="color: #454748; font-size: 12px;">
+                            <tr>
+                                <td style="padding-top: 10px;">
+                                    <strong>Bill to:</strong>
+                                    <t t-out="object.partner_invoice_id.street or ''">1201 S Figueroa St</t>
+                                    <t t-out="object.partner_invoice_id.city or ''">Los Angeles</t>
+                                    <t t-out="object.partner_invoice_id.state_id.name or ''">California</t>
+                                    <t t-out="object.partner_invoice_id.zip or ''">90015</t>
+                                    <t t-out="object.partner_invoice_id.country_id.name or ''">United States</t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Payment Method:</strong>
+                                    <t t-if="transaction.token_id">
+                                        <t t-out="transaction.token_id.name or ''"></t>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-out="transaction.acquirer_id.sudo().name or ''"></t>
+                                    </t>
+                                    (<t t-out="format_amount(transaction.amount, object.currency_id) or ''">$ 10.00</t>)
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div t-if="object.partner_shipping_id and not object.only_services" style="margin: 0px; padding: 0px;">
+                        <table width="100%" style="color: #454748; font-size: 12px;">
+                            <tr>
+                                <td>
+                                    <br/>
+                                    <strong>Ship to:</strong>
+                                    <t t-out="object.partner_shipping_id.street or ''">1201 S Figueroa St</t>
+                                    <t t-out="object.partner_shipping_id.city or ''">Los Angeles</t>
+                                    <t t-out="object.partner_shipping_id.state_id.name or ''">California</t>
+                                    <t t-out="object.partner_shipping_id.zip or ''">90015</t>
+                                    <t t-out="object.partner_shipping_id.country_id.name or ''">United States</t>
+                                </td>
+                            </tr>
+                        </table>
+                        <table t-if="hasattr(object, 'carrier_id') and object.carrier_id" width="100%" style="color: #454748; font-size: 12px;">
+                            <tr>
+                                <td>
+                                    <strong>Shipping Method:</strong>
+                                    <t t-out="object.carrier_id.name or ''"></t>
+                                    <t t-if="object.carrier_id.fixed_price == 0.0">
+                                        (Free)
+                                    </t>
+                                    <t t-else="">
+                                        (<t t-out="format_amount(object.carrier_id.fixed_price, object.currency_id) or ''">$ 10.00</t>)
+                                    </t>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </div>
+        </field>
+        </record>
+        <function name = "write" model = "ir.model.data">
+            <function name = "search" model = "ir.model.data">
+                <value eval = "[('name', '=', 'mail_template_sale_confirmation'), ('module','=','sale')] "/>
+            </function>
+            <value eval ="{'noupdate': True}"/>
+        </function>
+    </data>
+    <!-- <function name = "write" model = "ir.model.data">
+        <function name = "search" model = "ir.model.data">
+            <value eval = "[('name', '=', 'mail_template_sale_confirmation'), ('module','=','sale')] "/>
+        </function>
+        <value eval ="{'noupdate': True} "/>
+    </function>  -->
+        <!--<record id="sale.mail_template_sale_confirmation" model="mail.template">
+            <field name="name">Sales Order: Confirmation Email</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="subject">{{object.company_id.name}}
+                {{(object.get_portal_last_transaction().state == 'pending') and 'Pending Order' or 'Order'}} (Ref
+                {{object.name or 'n/a' }})
+            </field>
+            <field name="email_from">{{(object.user_id.email_formatted or user.email_formatted) | safe}}</field>
+            <field name="partner_to">{{object.partner_id.id}}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Greetings <strong t-out="object.partner_id.name"/>,
+                        <br/>
+                        <br/>
+                        % set transaction = object.get_portal_last_transaction()
+                        Your order <strong t-out="object.name"/> amounting in
+                        <strong t-out="format_amount(object.amount_total, object.currency_id)"></strong>
+                        % if object.state == 'sale' or (transaction and transaction.state in ('done', 'authorized')) :
+                        has been confirmed.
+                        <br/>
+                        Thank you for your trust!
+                        % elif transaction and transaction.state == 'pending' :
+                        is pending. It will be confirmed when the payment is received.
+                        % if object.reference:
+                        Your payment reference is <strong t-out="object.reference"/>.
+                        % endif
+                        % endif
+                        <br/>
+                        <br/>
+                        Do not hesitate to contact us if you have any questions.
+                        <br/>
+                        <br/>
+                        With Warm Regards,
+                        <br/>
+                        Sales Team: sales@powerpbox.org,
+                        <br/>
+                        <t t-out="object.so_inquiry_id.mobile"/>
+                        <br/>
+                        <t t-out="object.so_inquiry_id.website"/>
+                        <br/>
+                    </p>
+                    % if object.website_id:
+                    <div style="margin: 0px; padding: 0px;">
+                        <table width="100%" style="color: #454748; font-size: 12px; border-collapse: collapse;">
+                            <tr style="border-bottom: 2px solid #dee2e6;">
+                                <td style="width: 150px;">
+                                    <strong>Products</strong>
+                                </td>
+                                <td></td>
+                                <td width="15%" align="center">
+                                    <strong>Quantity</strong>
+                                </td>
+                                <td width="20%" align="right">
+                                    <strong>
+                                        % if object.user_id.has_group('account.group_show_line_subtotals_tax_excluded'):
+                                        VAT Excl.
+                                        % else
+                                        VAT Incl.
+                                        % endif
+                                    </strong>
+                                </td>
+                            </tr>
+                        </table>
+                        % for line in object.order_line:
+                        % if not line.is_delivery and line.display_type in ['line_section', 'line_note']:
+                        <table width="100%" style="color: #454748; font-size: 12px; border-collapse: collapse;">
+                            <tr style="${loop.cycle('background-color: #f2f2f2', 'background-color: #ffffff')}">
+                                <td colspan="4">
+                                    % if line.display_type == 'line_section':
+                                    <strong t-out="line.name"/>
+                                    % elif line.display_type == 'line_note':
+                                    <strong t-out="line.name"/>
+                                    % endif
+                                </td>
+                            </tr>
+                        </table>
+                        % elif not line.is_delivery
+                        <table width="100%" style="color: #454748; font-size: 12px; border-collapse: collapse;">
+                            <tr style="${loop.cycle('background-color: #f2f2f2', 'background-color: #ffffff')}">
+                                <td style="width: 150px;">
+                                    <img src="/web/image/product.product/${line.product_id.id}/image_128"
+                                         style="width: 64px; height: 64px; object-fit: contain;"
+                                         alt="Product image"></img>
+                                </td>
+                                <td align="left"><t t-out="line.product_id.name"/></td>
+                                <td width="15%" align="center"><t t-out="line.product_uom_qty"/></td>
+                                <td width="20%" align="right">
+                                    <strong>
+                                        % if object.user_id.has_group('account.group_show_line_subtotals_tax_excluded'):
+                                        <strong t-out="format_amount(line.price_reduce_taxexcl, object.currency_id)"/>
+                                        % else
+                                        <strong t-out="format_amount(line.price_reduce_taxinc, object.currency_id)"/>
+                                        % endif
+                                    </strong>
+                                </td>
+                            </tr>
+                        </table>
+                        % endif
+                        % endfor
+                    </div>
+                    % if object.carrier_id:
+                    <div style="margin: 0px; padding: 0px;">
+                        <table width="100%" style="color: #454748; font-size: 12px; border-spacing: 0px 4px;"
+                               align="right">
+                            <tr>
+                                <td style="width: 60%"/>
+                                <td style="width: 30%; border-top: 1px solid #dee2e6;" align="right">
+                                    <strong>Delivery:</strong>
+                                </td>
+                                <td style="width: 10%; border-top: 1px solid #dee2e6;" align="right">
+                                    <strong t-out="format_amount(object.amount_delivery, object.currency_id)"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 60%"/>
+                                <td style="width: 30%;" align="right">
+                                    <strong>SubTotal:</strong>
+                                </td>
+                                <td style="width: 10%;" align="right">
+                                    <strong t-out="format_amount(object.amount_untaxed, object.currency_id)"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    % else:
+                    <div style="margin: 0px; padding: 0px;">
+                        <table width="100%" style="color: #454748; font-size: 12px; border-spacing: 0px 4px;"
+                               align="right">
+                            <tr>
+                                <td style="width: 60%"/>
+                                <td style="width: 30%; border-top: 1px solid #dee2e6;" align="right">
+                                    <strong>SubTotal:</strong>
+                                </td>
+                                <td style="width: 10%; border-top: 1px solid #dee2e6;" align="right">
+                                    <strong t-out="format_amount(object.amount_untaxed, object.currency_id)"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    % endif
+                    <div style="margin: 0px; padding: 0px;">
+                        <table width="100%" style="color: #454748; font-size: 12px; border-spacing: 0px 4px;"
+                               align="right">
+                            <tr>
+                                <td style="width: 60%"/>
+                                <td style="width: 30%;" align="right">
+                                    <strong>Taxes:</strong>
+                                </td>
+                                <td style="width: 10%;" align="right">
+                                    <strong t-out="format_amount(object.amount_tax, object.currency_id)"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 60%"/>
+                                <td style="width: 30%; border-top: 1px solid #dee2e6;" align="right">
+                                    <strong>Total:</strong>
+                                </td>
+                                <td style="width: 10%; border-top: 1px solid #dee2e6;" align="right">
+                                    <strong t-out="format_amount(object.amount_total, object.currency_id)"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    % if object.partner_invoice_id:
+                    <div style="margin: 0px; padding: 0px;">
+                        <table width="100%" style="color: #454748; font-size: 12px;">
+                            <tr>
+                                <td style="padding-top: 10px;">
+                                    <strong>Bill to:</strong>
+                                    <t t-out="object.partner_invoice_id.street or ''"/>
+                                    <t t-out="object.partner_invoice_id.city or ''"/>
+                                    <t t-out="object.partner_invoice_id.state_id.name or ''"/>
+                                    <t t-out="object.partner_invoice_id.zip or ''"/>
+                                    <t t-out="object.partner_invoice_id.country_id.name or ''"/>
+                                    <t t-out="object.partner_invoice_id.website"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Payment Method:</strong>
+                                    % if transaction.payment_token_id:
+                                    <t t-out="transaction.payment_token_id.name"/>
+                                    % else:
+                                    <t t-out="transaction.acquirer_id.name"/>
+                                    % endif
+                                    <strong t-out="format_amount(transaction.amount, object.currency_id)"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    % endif
+                    % if object.partner_shipping_id and not object.only_services:
+                    <div style="margin: 0px; padding: 0px;">
+                        <table width="100%" style="color: #454748; font-size: 12px;">
+                            <tr>
+                                <td>
+                                    <br/>
+                                    <strong>Ship to:</strong>
+                                    <t t-out="object.partner_shipping_id.street or ''"/>
+                                    <t t-out="object.partner_shipping_id.city or ''"/>
+                                    <t t-out="object.partner_shipping_id.state_id.name or ''"/>
+                                    <t t-out="object.partner_shipping_id.zip or ''"/>
+                                    <t t-out="object.partner_shipping_id.country_id.name or ''"/>
+                                </td>
+                            </tr>
+                        </table>
+                        % if object.carrier_id:
+                        <table width="100%" style="color: #454748; font-size: 12px;">
+                            <tr>
+                                <td>
+                                    <strong>Shipping Method:</strong>
+                                    <t t-out="object.carrier_id.name"/>
+                                    % if object.carrier_id.fixed_price == 0.0:
+                                    (Free)
+                                    % else:
+                                    <strong t-out="format_amount(object.carrier_id.fixed_price, object.currency_id)"/>
+                                    % endif
+                                </td>
+                            </tr>
+                        </table>
+                        % endif
+                    </div>
+                    % endif
+                    % endif
+                </div>
+            </field>
+        </record>-->
+        <!-- <function name = "write" model = "ir.model.data">
+            <function name = "search" model = "ir.model.data">
+                <value eval = "[('name', '=', ' mail_template_sale_confirmation '), (' module ',' = ',' sale ')] "/>
+            </function>
+            <value eval =" {' noupdate ': True} "/>
+        </function>      -->
+    <!-- </data> -->
+    <data noupdate="0">
+
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval=" [('name', '=', 'email_template_edi_purchase_done'), ('module', '=', 'purchase')] "/>
+            </function>
+            <value eval="{'noupdate': False}"/>
+        </function>
+        <record id="purchase.email_template_edi_purchase_done" model="mail.template">
+            <field name="name">Purchase Order: Send PO</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="subject">{{object.company_id.name}} Order (Ref {{object.name or 'n/a' }})</field>
+            <field name="partner_to">{{object.partner_id.id}}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Greetings <t t-out="object.partner_id.name"/>,
+                        % if object.partner_id.parent_id:
+                        (<t t-out="object.partner_id.parent_id.name"/>)
+                        % endif
+                        <br/>
+                        <br/>
+                        Here is an attachment of purchase order
+                        <strong t-out="object.name"/>
+                        % if object.partner_ref:
+                        with reference: <t t-out="object.partner_ref"/>
+                        % endif
+                        amounting in amounting in <strong t-out="format_amount(object.amount_total, object.currency_id) or ''">$ 10.00</strong>
+                        from <t t-out="object.company_id.name"/>.
+                        <br/>
+                        <br/>
+                        % if object.date_planned:
+                        The receipt is expected for <strong t-out="format_date(object.date_planned)"></strong>.
+                        <br/>
+                        <br/>
+                        Could you please acknowledge the receipt of this order?
+                        % endif
+                        <br/>
+                        <br/>
+                        Do not hesitate to contact us if you have any questions.
+                        <br/>
+                        <br/>
+                        With Warm Regards,
+                        <br/>
+                        Sales Team: sales@powerpbox.org,
+                        <br/>
+                        <t t-out="object.rfq_id.booking_id.mobile"/>,
+                        <br/>
+                        <t t-out="object.rfq_id.booking_id.website"/>,
+                        <br/>
+                    </p>
+                </div>
+            </field>
+            <!-- <field name="report_template" ref="action_report_purchase_order"/>
+            <field name="report_name">PO_${(object.name or '').replace('/','_')}</field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="auto_delete" eval="True"/> -->
+        </record>
+    </data>
+
+    <!-- <data noupdate="0">
+
+        <function name="write" model="ir.model.data">
+            <function name="search" model="ir.model.data">
+                <value eval=" [('name', '=', 'action_send_password_reset_instructions'), ('module', '=', 'auth_signup')] "/>
+            </function>
+            <value eval="{'noupdate': False}"/>
+        </function>
+        <record id="auth_signup.action_send_password_reset_instructions" model="mail.template">
+            <field name="name">Job: Email</field>
+            <field name="model_id" ref="base.model_res_users"/>
+            <field name="email_from">${object.so_id.so_inquiry_id.user_id.email}</field>
+            <field name="partner_to">${object.shipper_id.id}</field>
+            <field name="subject">For : ${object.shipper_id.name},Job is created</field>
+            <field name="partner_to">jdunagan@leclub.example.com</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Greetings ${object.shipper_id.name}, from ${object.so_id.so_inquiry_id.partner_name}
+                        <br/>
+                        <br/>
+                        Your job is created and you are now a registered USER with us
+                        <br/>
+                        please find below,your credentials to login
+                        <br/>
+                        Username: ${object.user_id.login}
+                        <br/>
+                        Password: ${object.action_send_password_reset_instructions}
+                        <br/>
+                        Do not hesitate to contact us if you have any questions.
+                        <br/>
+                        <br/>
+                        With Warm Regards,
+                        <br/>
+                        Sales Team: ${object.so_id.so_inquiry_id.company_id.sale_email},
+                        <br/>
+                        ${object.so_id.so_inquiry_id.mobile}
+                        <br/>
+                        ${object.so_id.so_inquiry_id.website},
+                        <br/>
+                    </p>
+                </div>
+            </field> -->
+            <!-- <field name="report_template" ref="action_report_bill_of_lading"/> -->
+            <!-- <field name="report_name">${(object.name or '').replace('/ref','job_id.carrier_booking')}</field>
+            <field name="lang">${object.job_id.booking_id.partner_id.lang}</field> -->
+            <!-- <field name="auto_delete" eval="True"/>
+        </record>
+     </data> -->
+
+    <record id="mail_template_job" model="mail.template">
+        <field name="name">Job: Email</field>
+        <field name="model_id" ref="freightbox.model_job"/>
+        <field name="email_from">{{object.booking_id.partner_id.email}}</field>
+        <field name="partner_to">{{object.shipper_id.id}}</field>
+        <field name="subject">For : {{object.shipper_id.name}},Job is created </field>
+        <!-- <field name="partner_to">jdunagan@leclub.example.com</field> -->
+        <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Greetings <strong t-out="object.shipper_id.name"/>,
+                        <br/>
+                        <br/>
+                        Your Carrier Booking Reference <t t-out="object.carrier_booking"/> has been generated from <t t-out="object.po_id.partner_id.name"/>
+                        <br/>
+                        Also find Vessel details for this booking.
+                        <br/>
+                        Vessel name: <t t-out="object.vessel_name"/>
+                        <br/>
+                        Voyage: <t t-out="object.voyage"/>
+                        <br/>
+                        Rotation: <t t-out="object.rotation"/>
+                        <br/>
+                        IMO NO: <t t-out="object.imo_no"/>
+                        <br/>
+                        Do not hesitate to contact us if you have any questions.
+                        <br/>
+                        <br/>
+                        With Warm Regards,
+                        <br/>
+                        Sales Team: <t t-out="object.so_id.so_inquiry_id.company_id.sale_email"/>,
+                        <br/>
+                        <t t-out="object.so_id.so_inquiry_id.mobile"/>,
+                        <br/>
+                        <t t-out="object.so_id.so_inquiry_id.website"/>,
+                        <br/>
+                    </p>
+                </div>
+            </field>
+        <!--  <field name="report_template" ref="action_report_bill_of_lading"/>  -->
+        <!--  <field name="report_name">${(object.name or '').replace('/ref','job_id.carrier_booking')}</field>
+                    <field name="lang">${object.job_id.booking_id.partner_id.lang}</field>  -->
+        <field name="auto_delete" eval="True"/>
+    </record>
+
+    <data>
+        <record id="mail_template_freight_transport" model="mail.template">
+            <field name="name">Transportation: Confirmation Email</field>
+            <field name="model_id" ref="freightbox.model_transport"/>
+            <field name="email_from">{{object.job_id.so_id.so_inquiry_id.user_id.email_formatted}}</field>
+            <field name="partner_to">{{object.job_id.shipper_id.id}}</field>
+            <field name="subject">For Carrier Booking Reference: {{object.carrier_booking}}, Transport is confirmed
+            </field>
+            <!--<field name="partner_to">jdunagan@leclub.example.com</field>-->
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Greetings <strong t-out="object.inquiry_id.partner_name"/>, from
+                        <strong t-out="object.inquiry_id.partner_id.name"/>
+                        <br/>
+                        <br/>
+                        Your Transport for Container ID- <t t-out="object.cont_id"/> has been confirmed.
+                        <br/>
+                        Do not hesitate to contact us if you have any questions.
+                        <br/>
+                        <br/>
+                        With Warm Regards,
+                        <br/>
+                        Sales Team: <t t-out="object.job_id.so_id.so_inquiry_id.company_id.sale_email"/>,
+                        <br/>
+                        <t t-out="object.job_id.so_id.so_inquiry_id.mobile"/>
+                        <br/>
+                        <t t-out="object.job_id.so_id.so_inquiry_id.website"/>,
+                        <br/>
+                    </p>
+                </div>
+            </field>
+            <!--<field name="report_template" ref="action_report_saleorder"/>-->
+            <!--<field name="report_name">${(object.name or '').replace('/','_')}</field>-->
+            <!--<field name="lang">${object.partner_id.lang}</field>-->
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="mail_template_si" model="mail.template">
+            <field name="name">Shipping Instruction: Confirmation Email</field>
+            <field name="model_id" ref="freightbox.model_shipping_instruction"/>
+            <field name="email_from">{{object.job_id.so_id.so_inquiry_id.user_id.email_formatted}}</field>
+            <field name="partner_to">{{object.si_inquiry_no.shipping_line_id.id}}</field>
+            <field name="subject">For Carrier Booking Reference: {{object.job_id.carrier_booking}}, Shipping Instruction is created
+            </field>
+            <!--<field name="partner_to">jdunagan@leclub.example.com</field>-->
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Greetings <t t-out="object.si_inquiry_no.shipping_line_id.name"/>,
+                        <br/>
+                        <br/>
+                        Please find attached,Shipping Instruction for Container ID-<t t-out="object.transport_id.cont_id"/>
+                        <br/>
+                        Do not hesitate to contact us if you have any questions.
+                        <br/>
+                        <br/>
+                        With Warm Regards,
+                        <br/>
+                        Sales Team: <t t-out="object.job_id.so_id.so_inquiry_id.company_id.sale_email"/>,
+                        <br/>
+                        <t t-out="object.si_inquiry_no.mobile"/>,
+                        <br/>
+                        <t t-out="object.si_inquiry_no.website"/>,
+                        <br/>
+                    </p>
+                </div>
+            </field>
+            <field name="report_template" ref="freightbox.action_report_shipping_instruction"/>
+            <!-- <field name="report_name">${(object.name or '').replace('/ref','job_id.carrier_booking')}</field>
+            <field name="lang">${object.job_id.booking_id.partner_id.lang}</field> -->
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="mail_template_bol" model="mail.template">
+            <field name="name">Bill of Lading: Email</field>
+            <field name="model_id" ref="freightbox.model_bill_of_lading"/>
+            <field name="email_from">{{object.job_id.so_id.so_inquiry_id.user_id.email}}</field>
+            <field name="partner_to">{{object.job_id.shipper_id.id}}</field>
+            <field name="subject">For : {{object.job_id.carrier_booking}}, Bill of Lading is attached</field>
+            <!--<field name="partner_to">jdunagan@leclub.example.com</field>-->
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Greetings <strong t-out="object.job_id.shipper_id.name"/>, from
+                        <strong t-out="object.job_id.so_id.so_inquiry_id.partner_name"/>
+                        <br/>
+                        <br/>
+                        Please find attached,Bill of Lading for Carrier booking
+                        reference-<strong t-out="object.carrier_booking_reference"/>
+                        <br/>
+                        Do not hesitate to contact us if you have any questions.
+                        <br/>
+                        <br/>
+                        With Warm Regards,
+                        <br/>
+                        Sales Team:<t t-out="object.job_id.so_id.so_inquiry_id.company_id.sale_email"/>,
+                        <br/>
+                        <t t-out="object.job_id.so_id.so_inquiry_id.mobile"/>,
+                        <br/>
+                        <t t-out="object.job_id.so_id.so_inquiry_id.website"/>,
+                        <br/>
+                    </p>
+                </div>
+            </field>
+            <field name="report_template" ref="freightbox.action_report_prepare_bill_of_lading_document"/>
+            <!-- <field name="report_name">${(object.name or '').replace('/ref','job_id.carrier_booking')}</field>
+            <field name="lang">${object.job_id.booking_id.partner_id.lang}</field> -->
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="mail_template_crm" model="mail.template">
+            <field name="name">Inquiry: Email</field>
+            <field name="model_id" ref="freightbox.model_crm_lead"/>
+            <field name="email_from">{{object.user_id.email}}</field>
+            <field name="partner_to">{{object.partner_id.id}}</field>
+            <field name="subject">For : {{object.partner_id.name}},your booking is in process</field>
+            <!--<field name="partner_to">jdunagan@leclub.example.com</field>-->
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Greetings <strong t-out="object.partner_name or ''"/>, from <strong t-out="object.partner_id.name"/>
+                        <br/>
+                        <br/>
+                        Your booking is now in process and we are acquiring best rates from multiple Shipping lines,
+                        <br/>
+                        Do not hesitate to contact us if you have any questions.
+                        <br/>
+                        <br/>
+                        <br/>
+                        With Warm Regards,
+                        <br/>
+                        Sales Team: <t t-out="object.company_id.sale_email"/>
+                        <br/>
+                        <t t-out="object.company_id.phone"/>
+                        <br/>
+                        <t t-out="object.company_id.website"/>
+                        <br/>
+                    </p>
+                </div>
+            </field>
+            <!-- <field name="report_template" ref="action_report_bill_of_lading"/> -->
+            <!-- <field name="report_name">${(object.name or '').replace('/ref','job_id.carrier_booking')}</field>
+            <field name="lang">${object.job_id.booking_id.partner_id.lang}</field> -->
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="mail_template_crm_sl" model="mail.template">
+            <field name="name">Inquiry: Email to SL</field>
+            <field name="model_id" ref="freightbox.model_crm_lead"/>
+            <field name="email_from">{{object.user_id.email or user_id.email}}</field>
+            <field name="partner_to">{{object.shipping_line_id.id}}</field>
+            <field name="subject">For : {{object.shipping_line_id.name}},Request for quote</field>
+            <!--<field name="partner_to">jdunagan@leclub.example.com</field>-->
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Dear <strong t-out="object.shipping_line_id.name"/>,
+                        <br/>
+                        <br/>
+                        Please Quote the rate for the following route, find enclosed the details of the cargo
+                        <br/>
+                        <table class="table table-bordered" width="100%" style="border: 3px solid black;">
+                            <header colspan="12" style="text-align: center">Cargo Details</header>
+
+                            <tr>
+                                <td colspan="3" style="border: 1px solid black;">Cargo Description:</td>
+                                <td colspan="3" style="border: 1px solid black;"><t t-out="object.cargo_name"/></td>
+                                <td colspan="2" style="border: 1px solid black;">Quantity:</td>
+                                <td colspan="4" style="border: 1px solid black;"><t t-out="object.quantity"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: 1px solid black;">weight:</td>
+                                <td colspan="3" style="border: 1px solid black;"><t t-out="object.weight"/>
+                                    <t t-out="object.weight_uom.name"/>
+                                </td>
+                                <td colspan="2" style="border: 1px solid black;">Volume:</td>
+                                <td colspan="4" style="border: 1px solid black;"><t t-out="object.volume"/>
+                                    <t t-out="object.volume_uom.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: 1px solid black;">Movetype:</td>
+                                <td colspan="3" style="border: 1px solid black;"><t t-out="object.move_type.name"/></td>
+                                <td colspan="2" style="border: 1px solid black;">Incoterms:</td>
+                                <td colspan="4" style="border: 1px solid black;"><t t-out="object.incoterm_id.name"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: 1px solid black;">Point of Origin:</td>
+                                <td colspan="3" style="border: 1px solid black;"><t t-out="object.place_of_origin"/></td>
+                                <td colspan="2" style="border: 1px solid black;">Point of Destination:</td>
+                                <td colspan="4" style="border: 1px solid black;"><t t-out="object.final_port_of_destination"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: 1px solid black;">Point of Stuffing:</td>
+                                <td colspan="3" style="border: 1px solid black;"><t t-out="object.point_of_stuffing"/></td>
+                                <td colspan="2" style="border: 1px solid black;">Point of destuffing:</td>
+                                <td colspan="4" style="border: 1px solid black;"><t t-out="object.point_of_destuffing"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: 1px solid black;">No of expected containers:</td>
+                                <td colspan="3" style="border: 1px solid black;"><t t-out="object.no_of_expected_container"/></td>
+                                <td colspan="2" style="border: 1px solid black;">Container type:</td>
+                                <td colspan="4" style="border: 1px solid black;"><t t-out="object.container_type.name"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" style="border: 1px solid black;">Expected date of shipment:</td>
+                                <td colspan="3" style="border: 1px solid black;"><t t-out="object.expected_date_of_shipment"/>
+                                </td>
+                                <td colspan="2" style="border: 1px solid black;">Shipment terms:</td>
+                                <td colspan="4" style="border: 1px solid black;"><t t-out="object.shipment_terms"/></td>
+                            </tr>
+
+                        </table>
+
+                        <!-- Cargo Description:${object.cargo_name}<br/>                                         Quantity:${object.quantity}<br/>
+                        weight:${object.weight}  ${object.weight_uom.name}<br/>                                      Volume:${object.volume}  ${object.volume_uom.name}<br/>
+                        Movetype:${object.move_type.name}<br/>                                                      Incoterms:${object.incoterm_id.name}<br/>
+                        point of Origin:${object.place_of_origin}<br/>                                         Point of Destination:${object.final_port_of_destination}<br/>
+                        Point of Stuffing:${object.point_of_stuffing}<br/>                                    Point of destuffing:${object.point_of_destuffing}<br/>
+                        No of expected containers:${object.no_of_expected_container}<br/>                   Container type:${object.container_type.name}<br/>
+                        Expected date of shipment:${object.expected_date_of_shipment}<br/>                     Shipment terms:${object.shipment_terms}<br/> -->
+
+
+                        Do not hesitate to contact us if you have any questions.
+                        <br/>
+                        <br/>
+                        With Warm Regards,
+                        <br/>
+                        Sales Team: <t t-out="object.company_id.quote_email"/>,
+                        <br/>
+                        <t t-out="object.company_id.phone"/>,
+                        <br/>
+                        <t t-out="object.company_id.website"/>
+                        <br/>
+                        <br/>
+                    </p>
+                </div>
+            </field>
+            <!-- <field name="report_template" ref="action_report_bill_of_lading"/> -->
+            <!-- <field name="report_name">${(object.name or '').replace('/ref','job_id.carrier_booking')}</field>
+            <field name="lang">${object.job_id.booking_id.partner_id.lang}</field> -->
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="mail_template_sq" model="mail.template">
+            <field name="name">Shipment Quote: Email</field>
+            <field name="model_id" ref="freightbox.model_shipment_quote"/>
+            <field name="email_from">{{object.po_id.rfq_id.booking_id.user_id.email}}</field>
+            <field name="partner_to">{{object.partner_id.id}}</field>
+            <field name="subject">For : {{object.po_id.rfq_id.booking_id.name}},Shipping Quote</field>
+            <!--<field name="partner_to">jdunagan@leclub.example.com</field>-->
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Greetings <strong t-out="object.partner_id.name"/>, from <strong t-out="object.po_id.rfq_id.booking_id.partner_name"/>
+                        <br/>
+                        <br/>
+                        Please find the shipment Quote for your booking no <t t-out="object.booking_id"/> and send your approval
+                        <br/>
+                        Do not hesitate to contact us if you have any questions.
+                        <br/>
+                        <br/>
+                        <br/>
+                        With Warm Regards,
+                        <br/>
+                        Sales Team: <t t-out="object.po_id.rfq_id.booking_id.company_id.sale_email"/>,
+                        <br/>
+                        <t t-out="object.po_id.rfq_id.booking_id.mobile"/>,
+                        <br/>
+                        <t t-out="object.po_id.rfq_id.booking_id.website"/>,
+                        <br/>
+                    </p>
+                </div>
+            </field>
+            <field name="report_template" ref="freightbox.action_report_shipment_quote"/>
+            <!-- <field name="report_name">${(object.name or '').replace('/ref','job_id.carrier_booking')}</field>
+            <field name="lang">${object.job_id.booking_id.partner_id.lang}</field> -->
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+
+        <!-- <record id="mail_template_rfq" model="mail.template">
+            <field name="name">Send for Approval: Email</field>
+            <field name="model_id" ref="freightbox.model_request_for_quote"/>
+            <field name="email_from">${object.booking_id.user_id.id}</field>
+         	<field name="partner_to">${object.booking_id.partner_id.id}</field>
+            <field name="subject">Rate comparision </field>
+            <field name="partner_to">jdunagan@leclub.example.com</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Hello,
+                        <br/><br/>
+                        Please find the charges from ${object.shipping_name_id.name} and send a confirmation for approval<br/>
+                        Do not hesitate to contact us if you have any questions.<br/>
+
+                    </p>
+                </div>
+            </field>
+            <field name="report_template" ref="action_report_bill_of_lading"/>
+            <field name="report_name">${(object.name or '').replace('/ref','job_id.carrier_booking')}</field>
+            <field name="lang">${object.job_id.booking_id.partner_id.lang}</field>
+            <field name="auto_delete" eval="True"/>
+        </record> -->
+
+        <record id="mail_template_job_auto_send" model="mail.template">
+            <field name="name">Job: Email (Draft MBol)</field>
+            <field name="model_id" ref="freightbox.model_job"/>
+            <field name="email_from">{{object.inquiry_id.user_id.email}}</field>
+            <field name="partner_to">{{object.shipper_id.id}}</field>
+            <field name="subject">For : {{object.inquiry_id.name}}</field>
+            <!--<field name="partner_to">jdunagan@leclub.example.com</field>-->
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Greetings <strong t-out="object.shipper_id.name"/>, from <strong t-out="object.inquiry_id.partner_name"/>
+                        <br/>
+                        <br/>
+                        Vessel Name : <strong t-out="object.vessel_name"/>
+                        <br/>
+                        Rotation : <strong t-out="object.rotation"/>
+                        <br/>
+                        Voyage : <strong t-out="object.voyage"/>
+                        <br/>
+                        IMO No : <strong t-out="object.imo_no"/>
+                        <br/>
+                        <br/>
+                        With Warm Regards,
+                        <br/>
+                        Thank You,
+                        <br/>
+                        <t t-out="object.inquiry_id.company_id.sale_email"/>,
+                        <br/>
+                        <t t-out="object.inquiry_id.mobile"/>,
+                        <br/>
+                        <t t-out="object.inquiry_id.website"/>,
+                        <br/>
+                    </p>
+                </div>
+            </field>
+            <!-- <field name="report_template" ref="freightbox.action_report_shipment_quote"/> -->
+            <!-- <field name="report_name">${(object.name or '').replace('/ref','job_id.carrier_booking')}</field>
+            <field name="lang">${object.job_id.booking_id.partner_id.lang}</field> -->
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <record id="mail_template_job_cargo_released" model="mail.template">
+            <field name="name">Job: Email (Cargo Released)</field>
+            <field name="model_id" ref="freightbox.model_job"/>
+            <field name="email_from">{{object.inquiry_id.user_id.email}}</field>
+            <field name="partner_to">{{object.shipper_id.id}}</field>
+            <field name="subject">For : {{object.inquiry_id.name}}</field>
+            <!--<field name="partner_to">jdunagan@leclub.example.com</field>-->
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 12px;">
+                        Greetings <strong t-out="object.shipper_id.name"/>, from <strong t-out="object.inquiry_id.partner_name"/>
+                        <br/>
+                        <br/>
+                        Cargo Gross Weight : <strong t-out="object.cargo_gross_weight"/>
+                        <br/>
+                        Gross Unit : <strong t-out="object.cargo_uom_id.name"/>
+                        <br/>
+                        Commodity Description : <strong t-out="object.commodity_description"/>
+                        <br/>
+                        <br/>
+                        With Warm Regards,
+                        <br/>
+                        Thank You,
+                        <br/>
+                        <t t-out="object.inquiry_id.company_id.sale_email"/>,
+                        <br/>
+                        <t t-out="object.inquiry_id.mobile"/>,
+                        <br/>
+                        <t t-out="object.inquiry_id.website"/>,
+                        <br/>
+                    </p>
+                </div>
+            </field>
+            <!-- <field name="report_template" ref="freightbox.action_report_shipment_quote"/> -->
+            <!-- <field name="report_name">${(object.name or '').replace('/ref','job_id.carrier_booking')}</field>
+            <field name="lang">${object.job_id.booking_id.partner_id.lang}</field> -->
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

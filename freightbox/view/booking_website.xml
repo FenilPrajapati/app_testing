@@ -1,0 +1,1933 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="menu_booking_form" model="website.menu">
+        <field name="name">Start Booking</field>
+        <field name="url">/start_booking</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">55</field>
+    </record>
+
+    <record id="menu_customer_portal1_form" model="website.menu">
+        <field name="name">Customer Portal</field>
+        <field name="url">/customer_portal</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">56</field>
+    </record>
+
+    <!--<template id="assets_frontend" inherit_id="website.assets_frontend" name="Start Booking">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/freightbox/static/src/js/website_booking.js"></script>
+            &lt;!&ndash;<script type="text/javascript" src="/freightbox/static/src/js/inquiry.js"></script>&ndash;&gt;
+            <script type="text/javascript" src="/freightbox/static/src/js/shipping_instruction.js"></script>
+            <script type="text/javascript" src="/freightbox/static/src/js/shipping_instruction_update.js"></script>
+            <script type="text/javascript" src="/freightbox/static/src/js/track_trace.js"></script>
+            <script type="text/javascript" src="/freightbox/static/src/js/vessel_tracking.js"></script>
+            <script type="text/javascript" src="/freightbox/static/src/js/track_trace_portal.js"></script>
+        </xpath>
+    </template>-->
+
+   <!-- <template id="inquiry_customer_form" name="Inquiry">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure"/>
+                <div class="container">
+                    <form action="/create/partner_for_inquiry/" method="post" enctype="multipart/form-data"
+                          id="start_booking_inquiry_form"
+                          class="start_booking_inquiry_form checkout_autoformat">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <div class="modal-body col-xl-10">
+                            <div t-attf-class="col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="company">
+                                        Company Name *
+                                    </label>
+                                <t t-if="partner_id">
+                                    <input type="text" id="inquiry_company_name" name="company" required="required" readonly="readonly"
+                                          t-att-value="partner_id.name" autofocus="autofocus" t-attf-class="form-control" t-att-title="company"
+                                           placeholder="e.g Powerpbox Pvt Ltd"/>
+                                </t>
+                                <t t-if="not partner_id">
+                                    <input type="text" id="inquiry_company_name" name="company" required="required"
+                                           autofocus="autofocus" t-attf-class="form-control" t-att-title="company"
+                                           placeholder="e.g Powerpbox Pvt Ltd"/>
+                                </t>
+                                    <div id="sb_company_name_div"/>
+                                </div>
+                                <div t-attf-class="form-group col-6" id="div_email">
+                                    <label class="col-form-label" for="email">Email *</label>
+                                    <t t-if="partner_id">
+                                        <input type="email" readonly="readonly" id="inquiry_company_email" name="email" t-attf-class="form-control"
+                                           t-att-value="partner_id.email" required="required" placeholder="e.g info@powerpbox.org"/>
+                                    </t>
+                                    <t t-if="not partner_id">
+                                        <input type="email" id="inquiry_company_email" name="email" t-attf-class="form-control"
+                                           required="required" placeholder="e.g info@powerpbox.org"/>
+                                    </t>
+
+                                    <div id="sb_email_div"/>
+                                </div>
+                                <div class="w-100"/>
+                        </div>
+                        <div class="clearfix oe_login_buttons text-center mb-1 pt-3">
+                            <button type="button" id="submit_inquiry_form" class="btn btn-primary submit_inquiry_form col-6">Click here to enter cargo details</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>-->
+
+    <template id="start_booking_form" name="Start Booking">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure"/>
+                <div class="container">
+                    <form action="/booking_confirmation" method="post" enctype="multipart/form-data"
+                          id="start_booking_inquiry_form"
+                          class="start_booking_inquiry_form checkout_autoformat">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="modal-body col-xl-10">
+                            <div class="row">
+                                <style>
+                                input:required {
+                                background-color: #ADD8E6;
+                                }
+                                select:required {
+                                background-color: #ADD8E6;
+                                }
+                                </style>
+
+                                <!--<t t-if="user_template_recs">-->
+                                <div t-attf-class="form-row col-6">
+                                    <label class="col-form-label font-weight-normal label-optional"
+                                           for="user_template">User Template
+                                    </label>
+                                    <select id="user_template" name="user_template" t-attf-class="form-control">
+                                        <option value="">User Template..</option>
+                                        <t t-foreach="user_template_recs" t-as="u">
+                                            <option t-att-value="u.id">
+                                                <t t-esc="u.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div t-attf-class="col-form-label col-6" style="padding-top: 4.5%">
+
+                                    <label class="col-form-label font-weight-normal label-optional"
+                                           for="get_user_template_values"></label>
+                                    <button type="button" id="get_user_template_values"
+                                            class="btn btn-primary get_user_template_values">Apply
+                                    </button>
+                                </div>
+                                <!--</t>-->
+                                <div class="w-100"/>
+                                <t t-if="user.has_group('base.group_system')">
+                                    <div t-attf-class="col-6">
+                                    <br></br>
+                                    <input type="checkbox" name="book_for_another_company" class="book_for_another_company"
+                                           id="book_for_another_company"/>
+                                    <label for="book_for_another_company">Want to Book for another company?
+                                    </label>
+                                    <div id="book_for_another_company_div"/>
+                                </div>
+                                </t>
+
+
+                                <div class="w-100"/>
+                                <div t-attf-class="col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="company">
+                                        Company Name *
+                                    </label>
+                                    <input type="text" id="sb_company_name" name="company" required="required"
+                                           t-att-value="user.partner_id.parent_id.name"
+                                           autofocus="autofocus" t-attf-class="form-control" t-att-title="company"
+                                           placeholder="e.g Powerpbox Pvt Ltd"/>
+                                    <div id="sb_company_name_div"/>
+                                </div>
+                                <div t-attf-class="form-group col-6" id="div_email">
+                                    <label class="col-form-label" for="email">Email *</label>
+                                    <input type="email" id="sb_email" name="email" t-attf-class="form-control"
+                                           readonly="readonly"
+                                        t-att-value="user.login" required="required" placeholder="e.g info@powerpbox.org"/>
+                                    <div id="sb_email_div"/>
+                                </div>
+                                <div class="w-100"/>
+                                <div t-attf-class="form-group col-6 div_vat">
+                                    <label class="col-form-label font-weight-normal label-optional" for="name">Contact Name *
+                                    </label>
+                                    <input type="text" name="name" id="sb_name" required="required"
+                                           t-att-value="partner.name"
+                                           autofocus="autofocus" t-attf-class="form-control" t-att-title="name"
+                                           placeholder="e.g John Due"/>
+                                    <div id="sb_name_div"/>
+                                </div>
+
+
+                                <div t-attf-class="form-group col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="phone">Phone*
+                                    </label>
+                                    <input type="tel" id="sb_phone" name="phone" autofocus="autofocus"
+                                           required="required" t-attf-class="form-control" t-att-title="phone"
+                                           placeholder="e.g 9876543210"/>
+                                    <div id="sb_phone_div"/>
+                                </div>
+                                <div class="w-100"/>
+
+                                <label class="col-form-label font-weight-normal label-optional">Address*</label>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-6">
+                                    <input type="text" id="sb_street1" name="street1" autofocus="autofocus"
+                                           required="required" t-attf-class="form-control" t-att-title="street1"
+                                           placeholder="e.g 216 , Bestech Chambers"/>
+                                </div>
+                                <div t-attf-class="col-6">
+                                    <input type="text" name="street2" id="sb_street2" t-attf-class="form-control"
+                                           required="required" t-att-title="street2"
+                                           placeholder="e.g Sushant Lok Phase I"/>
+                                </div>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form-label col-6 div_country booking_country_list">
+                                    <select id="country_id" name="country_id" required="required"
+                                            t-attf-class="form-control">
+                                        <option value="">Country...</option>
+                                        <t t-foreach="country_details" t-as="c">
+                                            <option t-att-value="c.id"
+                                                    t-att-selected="c.id == (country and country.id or -1)">
+                                                <t t-esc="c.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                    <div id="country_id_div"/>
+                                </div>
+                                <div t-attf-class="col-form-label col-6 div_state">
+                                    <select name="state_id" id="sb_state_id" t-attf-class="form-control" data-init="1">
+                                        <option value="">State...</option>
+                                        <t t-foreach="state_details" t-as="s">
+                                            <option t-att-value="s.id"  t-att-selected="s.id == (state and state.id or -1)"
+                                                    t-att-data-country_id="s.country_id.id">
+                                                <t t-esc="s.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                    <div id="sb_state_id_div"/>
+                                </div>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form col-6">
+                                    <input type="text" name="zip" id="sb_zip" placeholder="e.g 122002"
+                                           required="required" autofocus="autofocus" t-attf-class="form-control"
+                                           t-att-title="pincode"/>
+                                    <div id="sb_zip_div"/>
+                                </div>
+                                <div class="w-100"/>
+
+                                <div>
+                                    <h5 class="o_page_header mt8">Cargo</h5>
+                                </div>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional"
+                                           for="no_of_expected_container">No. of Expected Container *
+                                    </label>
+                                    <input type="number" name="no_of_expected_container"
+                                           onkeypress="return event.charCode >= 48" min="0"
+                                           id="sb_no_of_expected_container" required="required" autofocus="autofocus"
+                                           t-attf-class="form-control" t-att-title="no_of_expected_container"
+                                           placeholder="e.g 5"/>
+                                    <div id="sb_no_of_expected_container_div"/>
+                                </div>
+                                <div t-attf-class="col-form-label col-6">
+                                    <label class="col-form-label font-weight-normal label-optional"
+                                           for="container_type">Container Type *
+                                    </label>
+                                    <select id="container_type" name="container_type" required="required"
+                                            t-attf-class="form-control">
+                                        <option value="">Container Type..</option>
+                                        <t t-foreach="container_type_ids" t-as="container">
+                                            <option t-att-value="container.id">
+                                                <t t-esc="container.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="cargo">Cargo
+                                        Description *
+                                    </label>
+                                    <input type="text" id="sb_cargo_name" name="cargo_name" autofocus="autofocus"
+                                           required="required" t-attf-class="form-control" t-att-title="cargo_name"
+                                           placeholder="e.g Cotton Shirts"/>
+                                    <div id="sb_cargo_name_div"/>
+                                </div>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="quantity">
+                                        Quantity *
+                                    </label>
+                                    <input type="float" id="sb_quantity" name="quantity" autofocus="autofocus"
+                                           required="required" t-attf-class="form-control" t-att-title="quantity"
+                                           placeholder="e.g 100000"/>
+                                    <div id="sb_quantity_div"/>
+                                </div>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="weight">
+                                        Weight
+                                    </label>
+                                    <input type="float" name="weight" id="sb_weight" autofocus="autofocus"
+                                           min="0"
+                                           t-attf-class="form-control" t-att-title="weight"/>
+                                    <div id="sb_weight_div"/>
+                                </div>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="volume">
+                                        Volume
+                                    </label>
+                                    <input type="float" name="volume" id="sb_volume" autofocus="autofocus"
+                                           t-attf-class="form-control" t-att-title="volume"/>
+                                    <div id="sb_volume_div"/>
+                                </div>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form-label col-6">
+                                    <select Name="weight_id" name="weight_id" id="weight_id" placeholder="Units"
+                                            autofocus="autofocus" t-attf-class="form-control">
+                                        <option value="">Units...</option>
+                                        <t t-foreach="units_details" t-as="wt">
+                                            <option t-att-value="wt.id">
+                                                <!-- t-att-selected="wt.id == (wt and wt.id or 1)" -->
+                                                <t t-esc="wt.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+
+                                <div t-attf-class="col-form-label col-6">
+                                    <select Name="volume_id" name="volume_id" id="volume_id" placeholder="Units"
+                                            autofocus="autofocus" t-attf-class="form-control">
+                                        <option value="">Units...</option>
+                                        <t t-foreach="units_details" t-as="ve">
+                                            <option t-att-value="ve.id">
+                                                <!-- t-att-selected="ve.id == (ve and ve.id or 1)" -->
+                                                <t t-esc="ve.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                                <!--<div t-attf-class="col-form-label col-6">
+                                  <input type="text" name="weight_uom" placeholder="Units" autofocus="autofocus" t-attf-class="form-control"/>
+                                </div>
+                                <div t-attf-class="col-form-label col-6">
+                                  <input type="text" name="volume_uom" placeholder="Units" autofocus="autofocus" t-attf-class="form-control"/>
+                                </div>-->
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form-label col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="move_type_id">
+                                        Move Type
+                                    </label>
+                                    <select id="move_type_id" name="move_type_id" t-attf-class="form-control">
+                                        <t t-foreach="move_type_ids" t-as="mt">
+                                            <option t-att-value="mt.id" t-att-selected="mt.id == (mt and mt.id or -1)">
+                                                <t t-esc="mt.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                    <!--<select t-attf-class="form-control" name="move_type_id"
+                                            id="move_type_id">
+                                        <option value="door_to_door">Door To Door</option>
+                                        <option value="door_to_port">Door To Port</option>
+                                        <option value="port_to_port">Port To Port</option>
+                                        <option value="port_to_door">Port To Door</option>
+                                    </select>-->
+                                </div>
+                                <div t-attf-class="col-form-label col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="incoterm_id">
+                                        Incoterm
+                                    </label>
+                                    <select id="incoterm_id" name="incoterm_id" t-attf-class="form-control">
+                                        <option value="">Incoterms..</option>
+                                        <t t-foreach="incoterm_details" t-as="incoterm">
+                                            <option t-att-value="incoterm.id"
+                                                    t-att-selected="incoterm.id == (incoterm and incoterm.id or -1)">
+                                                <t t-esc="incoterm.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional"
+                                           for="place_of_origin">Port of Origin *
+                                    </label>
+                                    <!--<select id="sb_place_of_origin" name="place_of_origin"
+                                            required="required"  t-attf-class="form-control">
+                                        <option value="">e.g Gurugram</option>
+                                        <t t-foreach="city_details" t-as="c">
+                                            <option t-att-value="c.id" t-att-selected="c.id == (c and c.id or -1)">
+                                                <t t-esc="c.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                    <div id="sb_place_of_origin_div"/>-->
+                                    <input type="text" name="place_of_origin" id="sb_place_of_origin" min="0"
+                                           required="required" autofocus="autofocus" t-attf-class="form-control"
+                                           t-att-title="place_of_origin" placeholder="e.g Gurugram"/>
+                                    <div id="sb_place_of_origin_div"/>
+                                </div>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="destination">
+                                        Port of Destination *
+                                    </label>
+                                    <!--<select id="sb_final_port_of_destination" name="final_port_of_destination"
+                                            required="required"  t-attf-class="form-control">
+                                        <option value="">e.g London</option>
+                                        <t t-foreach="city_details" t-as="c">
+                                            <option t-att-value="c.id" t-att-selected="c.id == (c and c.id or -1)">
+                                                <t t-esc="c.name"/>
+                                            </option>
+                                        </t>
+                                    </select>-->
+
+                                    <input type="text" name="final_port_of_destination"
+                                           id="sb_final_port_of_destination" required="required" autofocus="autofocus"
+                                           t-attf-class="form-control" t-att-title="final_port_of_destination"
+                                           placeholder="e.g London"/>
+                                    <div id="sb_final_port_of_destination_div"/>
+                                </div>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional"
+                                           for="point_of_stuffing">Point of Stuffing *
+                                    </label>
+                                    <!--<select id="sb_point_of_stuffing" name="point_of_stuffing"
+                                            required="required"  t-attf-class="form-control">
+                                        <option value="">e.g Gurugram</option>
+                                        <t t-foreach="city_details" t-as="c">
+                                            <option t-att-value="c.id" t-att-selected="c.id == (c and c.id or -1)">
+                                                <t t-esc="c.name"/>
+                                            </option>
+                                        </t>
+                                    </select>-->
+
+                                    <input type="text" name="point_of_stuffing" id="sb_point_of_stuffing"
+                                           required="required" autofocus="autofocus" t-attf-class="form-control"
+                                           t-att-title="point_of_stuffing" placeholder="e.g Gurugram"/>
+                                    <div id="sb_point_of_stuffing_div"/>
+                                </div>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional"
+                                           for="point_of_destuffing">Point of Destuffing *
+                                    </label>
+                                    <!--<select id="sb_point_of_destuffing" name="point_of_destuffing"
+                                            required="required"  t-attf-class="form-control">
+                                        <option value="">e.g London</option>
+                                        <t t-foreach="city_details" t-as="c">
+                                            <option t-att-value="c.id" t-att-selected="c.id == (c and c.id or -1)">
+                                                <t t-esc="c.name"/>
+                                            </option>
+                                        </t>
+                                    </select>-->
+
+                                    <input type="text" name="point_of_destuffing" id="sb_point_of_destuffing"
+                                           required="required" autofocus="autofocus" t-attf-class="form-control"
+                                           t-att-title="point_of_destuffing" placeholder="e.g London"/>
+                                    <div id="sb_point_of_destuffing_div"/>
+                                </div>
+                                <div class="w-100"/>
+<!--                                <div t-attf-class="col-form col-6">-->
+<!--                                    <label class="col-form-label font-weight-normal label-optional"-->
+<!--                                           for="no_of_expected_container">No. of Expected Container *-->
+<!--                                    </label>-->
+<!--                                    <input type="number" name="no_of_expected_container"-->
+<!--                                           onkeypress="return event.charCode >= 48" min="0"-->
+<!--                                           id="sb_no_of_expected_container" required="required" autofocus="autofocus"-->
+<!--                                           t-attf-class="form-control" t-att-title="no_of_expected_container"-->
+<!--                                           placeholder="e.g 5"/>-->
+<!--                                    <div id="sb_no_of_expected_container_div"/>-->
+<!--                                </div>-->
+<!--                                <div t-attf-class="col-form-label col-6">-->
+<!--                                    <label class="col-form-label font-weight-normal label-optional"-->
+<!--                                           for="container_type">Container Type *-->
+<!--                                    </label>-->
+<!--                                    <select id="container_type" name="container_type" required="required"-->
+<!--                                            t-attf-class="form-control">-->
+<!--                                        <option value="">Container Type..</option>-->
+<!--                                        <t t-foreach="container_type_ids" t-as="container">-->
+<!--                                            <option t-att-value="container.id">-->
+<!--                                                <t t-esc="container.name"/>-->
+<!--                                            </option>-->
+<!--                                        </t>-->
+<!--                                    </select>-->
+<!--                                </div>-->
+                                <!--<div t-attf-class="col-form col-6">
+                                   <label class="col-form-label font-weight-normal label-optional" for="destination">Container Type</label>
+                                   <input type="text" name="container_type" autofocus="autofocus" t-attf-class="form-control" t-att-title= "container_type" />
+                                </div>-->
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional"
+                                           for="expected_date_of_shipment">Expected Date of Shipment *
+                                    </label>
+                                    <input type="date" name="expected_date_of_shipment"
+                                           id="sb_expected_date_of_shipment" required="required" autofocus="autofocus"
+                                           t-attf-class="form-control" t-att-title="expected_date_of_shipment"/>
+                                    <div id="sb_expected_date_of_shipment_div"/>
+                                </div>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="lcl_fcl">
+                                        LCL/FCL/BB *
+                                    </label>
+                                    <select id="lcl_fcl_id" name="lcl_fcl_id" required="required" t-attf-class="form-control">
+                                        <option value="lcl">LCL</option>
+                                        <option value="fcl">FCL</option>
+                                        <option value="both">LCL and FCL</option>
+                                        <option value="bb">BB</option>
+                                    </select>
+                                </div>
+                                <h5 class="o_page_header mt8">Additional Cargo Details</h5>
+                                <div class="w-100"/>
+                                <div class="row" id="lines-container">
+                                </div>
+                                <input type="number" id="line_count" name="line_count" style="display: none;"/>
+                                <div>
+                                    <button id="add-container-line" class="btn btn-primary" style="width: 50px;" title="Add New Line"><i class="fa fa-plus"/></button>
+                                </div>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="contract_ref">
+                                        Contract Reference
+                                    </label>
+                                    <input type="text" name="contract_ref" id="contract_ref" autofocus="autofocus"
+                                           t-attf-class="form-control" t-att-title="contract_ref"
+                                           placeholder="e.g This is just an example of a Contract reference"/>
+                                </div>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form col-12">
+                                    <label class="col-form-label font-weight-normal label-optional" for="remarks">
+                                        Remarks
+                                    </label>
+                                    <input type="text" name="remarks" id="sb_remarks" autofocus="autofocus"
+                                           t-attf-class="form-control" t-att-title="remarks"
+                                           placeholder="e.g This is just an example of remarks"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="create_user_template" class="create_user_template"
+                                   id="create_user_template"/>
+                            <label for="create_user_template">This checkbox helps you to create
+                                your own user template,which can be used in future bookings.
+                            </label>
+                        </div>
+                        <div class="clearfix oe_login_buttons text-center mb-1 pt-3">
+                            <button type="submit" class="btn btn-primary submit_start_booking col-2">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+    <template id="quote_form" name="Quote charges">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure"/>
+                <div class="container">
+                    <ol class="o_portal_submenu breadcrumb mb-0 py-2 flex-grow-1 row">
+                        <li class="breadcrumb-item ml-1">
+                            <a href="/my/home" aria-label="Home" title="Home">
+                                <i class="fa fa-home"/>
+                            </a>
+                        </li>
+                        <!-- <li class="breadcrumb-item active ">
+                            <a href="/shipment_information" aria-label="Shipment Information"
+                               title="Shipment Information">Shipment Information
+                            </a>
+                        </li> -->
+                        <li class="breadcrumb-item active ">
+
+
+                                <span>Quote Charges</span>
+
+                        </li>
+                        <!-- <li class="breadcrumb-item active ">
+                            <a href="/shipment_information" aria-label="Shipping Instruction"
+                               title="Shipping Instruction">Bill of Lading
+                            </a>
+                        </li> -->
+                    </ol>
+                    <t t-if="not contract_rec">
+                        <span>No Contract found</span>
+                    </t>
+                    <t t-if="contract_rec">
+                        <!-- <t t-if="request.env.user.has_group('base.group_system')">
+                            <t t-set="o_portal_fullwidth_alert">
+                                <t t-call="portal.portal_back_in_edit_mode">
+                                    <t t-set="backend_url" t-value="'/web#model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (contract_rec._name, contract_rec.id, action.id)"/>
+                                </t>
+                            </t>
+                        </t> -->
+                        <!--<span>Shipment Quote State: </span><t t-esc="sq_rec.state"/>-->
+                    <div class="s_website_form modal-body checkout_autoformat">
+                        
+                        <div class="row">
+                            <div class="w-100"/>
+                            <!-- <div t-attf-class="col-form col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="po_id">Purchase Order*
+                                </label>
+                                <select id="po_id" name="po_id"
+                                        readonly="readonly" t-attf-class="form-control">
+                                    <option t-att-value="sq_rec.po_id">
+                                        <t t-esc="sq_rec.po_id"/>
+                                    </option>
+                                </select>
+                            </div> -->
+
+                            
+                <h3>FREIGHT CHARGES</h3>
+                <table class="table table-sm">
+                  <thead class="bg-100">
+                    <tr>
+                      <!-- <th>Charges</th> -->
+                      <th class="text-right d-none d-sm-table-cell">Container Type</th>
+                      <th class="text-right">ISO Code</th>
+                      
+                      <!-- <th class="text-right">quantity.</th> -->
+                      <th class="text-right">Port of Origin.</th>
+                      <th class="text-right">Final port of destination</th>
+                      <th class="text-right">Charges</th>
+                      <th class="text-right">currency_id</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <t t-foreach="mrg_line" t-as="mr">
+                      <tr t-att-class="'bg-200 font-weight-bold o_line_section'">
+                          <td class="text-right">
+                              <span t-esc="mr['port_of_origin_id']" />
+                          </td>
+                           <td class="text-right">
+                              <span t-esc="mr['final_port_of_destination_id']" />
+                            </td>
+                          <td>
+                            <span t-esc="mr['container_type']"/>
+                          </td>
+                          <td class="text-right d-none d-sm-table-cell">
+                            <span t-esc="mr['iso_code_id']"/>
+                          </td>
+                          
+                          
+                          <td class="text-right">
+                              <span t-esc="mr['mrg_charges']" />
+                          </td>
+                           <td class="text-right">
+                              <span t-esc="mr['currency_id']" />
+                          </td>
+                          
+                      </tr>
+                      <!-- </t> -->
+                    </t>
+                  </tbody>
+                </table>
+                <!-- <tbody>
+                    <t t-foreach="contract_rec.contracts_line" t-as="ch">
+                      <tr t-att-class="'bg-200 font-weight-bold o_line_section'">
+                          <td>
+                            <span t-esc="ch.container_type.name"/>
+                          </td>
+                          <td class="text-right d-none d-sm-table-cell">
+                            <span t-field="ch.iso_code_id.code"/>
+                          </td>
+                         
+                          
+                          <td class="text-right">
+                              <span t-field="ch.place_of_origin"/>
+                          </td>
+                          <td class="text-right">
+                              <span t-field="ch.final_port_of_destination"/>
+                          </td>
+                          <td class="text-right">
+                              <span t-field="ch.rate_per_cont" t-options='{"widget": "monetary", "display_currency": ch.currency_id}'/>
+                          </td>
+                      </tr>
+                    </t>
+                  </tbody>
+                </table> -->
+                <h3>ORIGIN N DESTINATION CHARGES</h3>
+
+                <table class="table table-sm">
+                  <thead class="bg-100">
+                    <tr>
+                      <!-- <th>Charges</th> -->
+                      <th class="text-right d-none d-sm-table-cell">Container Type</th>
+                      <th class="text-right">ISO Code</th>
+                      
+                      <th class="text-right">Charges</th>
+                      <th class="text-right">Charge type.</th>
+                      <th class="text-right">Prepaid</th>
+                      <th class="text-right">Collect</th>
+                      <th class="text-right">Price</th>
+                      <th class="text-right">currency id</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                     
+                    <t t-foreach="charges_line" t-as="ch">
+                     <tr t-att-class="'bg-200 font-weight-bold o_line_section'">
+                          <td class="text-right">
+                            <span t-esc="ch['container_type']"/>
+                          </td>
+                          <td cclass="text-right">
+                            <span t-esc="ch['iso_code_id']"/>
+                          </td>
+                          <!-- <td class="text-right">
+                              <span t-field="ch.from_date"/>
+                          </td>
+                          <td class="text-right">
+                              <span t-field="ch.to_date"/>
+                          </td>
+                          -->
+                          <td class="text-right">
+                              <span t-esc="ch['charges_id']" />
+                          </td>
+                           <td class="text-right">
+                              <span t-esc="ch['charges_type']" />
+                          </td>
+                          <td class="text-right">
+                              <span t-esc="ch['prepaid']" />
+                          </td>
+                           <td class="text-right">
+                              <span t-esc="ch['collect']" />
+                          </td>
+                          <td class="text-right">
+                              <span t-esc="ch['unit_price']" />
+                          </td>
+                           <td class="text-right">
+                              <span t-esc="ch['currency_id']" />
+                          </td>
+                          
+                      </tr>
+                    </t>
+                  </tbody>
+                </table>
+               <!-- <div id="total" class="row" name="total" style="page-break-inside: avoid;">
+            <div>-->
+              <!-- <table class="table table-sm">
+                <tbody>
+                    <tr class="is-subtotal text-right" >
+                                        <td colspan="99" style="border-top: 0;">
+                                            <strong class="mr16">Prepaid Amount</strong>
+                                            <span
+                                                t-esc="sq_rec.total_prepaid_charges"
+                                                t-options='{"widget": "monetary", "display_currency": sq_rec.currency_id}'
+                                            />
+                                        </td>
+                                    </tr>
+                    <tr class="is-subtotal text-right" style="border-top: 0;">
+                                        <td colspan="99" style="border-top: 0;">
+                                            <strong class="mr16">Collect Amount</strong>
+                                            <span
+                                                t-esc="sq_rec.total_collect_charges"
+                                                t-options='{"widget": "monetary", "display_currency": sq_rec.currency_id}'
+                                            />
+                                        </td>
+                                    </tr>
+                    
+                    <tr class="is-subtotal text-right">
+                                        <td colspan="99" style="border-top: 0;">
+                                            <strong class="mr16">Total Charges</strong>
+                                            <span
+                                                t-esc="sq_rec.total_charge"
+                                                t-options='{"widget": "monetary", "display_currency": sq_rec.currency_id}'
+                                            />
+                                        </td>
+                                    </tr>
+                               </tbody>
+
+              </table> -->
+            
+                        </div>
+
+                       
+
+                                        <div class="clearfix oe_login_buttons text-center mb-1 pt-3" >
+
+
+                                             <a t-attf-href="/thank-accept-contract/#{contract_rec.id}?{{ keep_query() }}">
+                                                        <button type="submit" class="btn btn-primary contract_accepted col-2"
+                                                         >
+                                                        <span>
+                                                            Accept
+                                                        </span>
+                                                        </button>
+                                                    </a>
+
+                                                     <a t-attf-href="/thank-reject-contract/#{contract_rec.id}?{{ keep_query() }}">
+                                                        <button type="submit" class="btn btn-primary mrg_accepted col-2"
+                                                         >
+                                                        <span>
+                                                            Reject
+                                                        </span>
+                                                        </button>
+                                                    </a>
+                                               
+
+                                                   <!-- <a t-attf-href="/thank-accept/#{contract_rec.id}?{{ keep_query() }}">
+                                                        <button type="submit" class="btn btn-primary accept_sq col-2"
+                                                         >
+                                                        <span>
+                                                            Accept
+                                                        </span>
+                                                        </button>
+                                                    </a>
+
+                                                         
+                                                        <div class="clearfix oe_login_buttons text-left mb-1 pt-3">
+
+                                                      <form action="/thank-reject" method="post" enctype="multipart/form-data"
+                                                          id="thank-reject_form"
+                                                          class="thank-reject checkout_autoformat">
+                                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                                          <div class="form-row">
+                                                          
+                                                            <div t-attf-class="col-6" style="padding-top: 3.5%">
+                                                                <input type="hidden" name="sq_id"
+                                                               readonly="readonly" t-attf-class="form-control"
+                                                               t-att-value="contract_rec.id"/>
+                                                              <button class="btn btn-primary reject_sq col-2"  >
+                                                                <span>
+                                                                    Reject
+                                                                </span>
+                                                                </button>
+                                                        </div>
+                                                          </div>
+
+                                                      </form>
+                                                      </div> -->
+                                                   
+                                            
+
+
+
+                                        </div>
+
+                                        
+                    </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+
+    <template id="mrg_form" name="MRG charges">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure"/>
+                <div class="container">
+                    <ol class="o_portal_submenu breadcrumb mb-0 py-2 flex-grow-1 row">
+                        <li class="breadcrumb-item ml-1">
+                            <a href="/my/home" aria-label="Home" title="Home">
+                                <i class="fa fa-home"/>
+                            </a>
+                        </li>
+                        <!-- <li class="breadcrumb-item active ">
+                            <a href="/shipment_information" aria-label="Shipment Information"
+                               title="Shipment Information">Shipment Information
+                            </a>
+                        </li> -->
+                        <li class="breadcrumb-item active ">
+                                <span>MRG Charges</span>
+                        </li>
+                        <!-- <li class="breadcrumb-item active ">
+                            <a href="/shipment_information" aria-label="Shipping Instruction"
+                               title="Shipping Instruction">Bill of Lading
+                            </a>
+                        </li> -->
+                    </ol>
+                    <div class="custom-div" id="vs_schedule_warning">
+                    </div>
+                    <t t-if="not mrg_rec">
+                        <span>No MRG charges found</span>
+                    </t>
+                    <t t-if="mrg_rec">
+                        <!-- <t t-if="request.env.user.has_group('base.group_system')">
+                            <t t-set="o_portal_fullwidth_alert">
+                                <t t-call="portal.portal_back_in_edit_mode">
+                                    <t t-set="backend_url" t-value="'/web#model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (mrg_rec._name, mrg_rec.id, action.id)"/>
+                                </t>
+                            </t>
+                        </t> -->
+                        <!--<span>Shipment Quote State: </span><t t-esc="sq_rec.state"/>-->
+                    <div class="s_website_form modal-body checkout_autoformat">
+                        
+                        <div class="row">
+                            <div class="w-100"/>
+                            <!-- <div t-attf-class="col-form col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="po_id">Purchase Order*
+                                </label>
+                                <select id="po_id" name="po_id"
+                                        readonly="readonly" t-attf-class="form-control">
+                                    <option t-att-value="sq_rec.po_id">
+                                        <t t-esc="sq_rec.po_id"/>
+                                    </option>
+                                </select>
+                            </div> -->
+
+                     <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="port_of_origin_id">Port of Origin
+                                </label>
+                                <input type="text" name="port_of_origin_id"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="mrg_rec.port_of_origin_id.name"/>
+                            </div>
+
+                    <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="final_port_of_destination_id">Final Port of Destination
+                                </label>
+                                <input type="text" name="final_port_of_destination_id"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="mrg_rec.final_port_of_destination_id.name"/>
+                            </div>
+
+                <h3>FREIGHT CHARGES</h3>
+                <table class="table table-sm">
+                  <thead class="bg-100">
+                    <tr>
+                      <!-- <th>Charges</th> -->
+                      
+                      
+                      <!-- <th class="text-right">quantity.</th> -->
+                      <!-- <th class="text-right">Port of Origin.</th>
+                      <th class="text-right">Final port of destination</th> -->
+                      <th class="text-right d-none d-sm-table-cell">Container Type</th>
+                      <th class="text-right">ISO Code</th>
+                      <th class="text-right">Charge Type</th>
+                      <th class="text-right">Prepaid</th>
+                      <th class="text-right">Collect</th>
+                      <th class="text-right">Charges</th>
+                      <th class="text-right">currency_id</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <t t-foreach="mrg_line" t-as="mr">
+                      <tr t-att-class="'bg-200 font-weight-bold o_line_section'">
+                          <!-- <td class="text-right">
+                              <span t-esc="mr['port_of_origin_id']" />
+                          </td>
+                           <td class="text-right">
+                              <span t-esc="mr['final_port_of_destination_id']" />
+                            </td> -->
+                          <td>
+                            <span t-esc="mr['container_type']"/>
+                          </td>
+                          <td class="text-right d-none d-sm-table-cell">
+                            <span t-esc="mr['iso_code_id']"/>
+                          </td>
+                           <td class="text-right">
+                              <span t-esc="mr['charges_id']" />
+                          </td>
+                           <!-- <td class="text-right">
+                              <span t-esc="ch['charges_type']" />
+                          </td> -->
+                          <td class="text-right">
+                              <span t-esc="mr['prepaid']" />
+                          </td>
+                           <td class="text-right">
+                              <span t-esc="mr['collect']" />
+                          </td>
+                          
+                          <td class="text-right">
+                              <span t-esc="mr['mrg_charges']" />
+                          </td>
+                           <td class="text-right">
+                              <span t-esc="mr['currency_id']" />
+                          </td>
+                          
+                      </tr>
+                      <!-- </t> -->
+                    </t>
+                  </tbody>
+                </table>
+
+                <h3>ORIGIN N DESTINATION CHARGES</h3>
+
+                <table class="table table-sm">
+                  <thead class="bg-100">
+                    <tr>
+                      <!-- <th>Charges</th> -->
+                      <th class="text-right d-none d-sm-table-cell">Container Type</th>
+                      <th class="text-right">ISO Code</th>
+                      
+                      <th class="text-right">Charges</th>
+                      <!-- <th class="text-right">Charge type.</th> -->
+                      <th class="text-right">Prepaid</th>
+                      <th class="text-right">Collect</th>
+                      <th class="text-right">Price</th>
+                      <th class="text-right">currency id</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                     
+                    <t t-foreach="charges_line" t-as="ch">
+                     <tr t-att-class="'bg-200 font-weight-bold o_line_section'">
+                          <td class="text-right">
+                            <span t-esc="ch['container_type']"/>
+                          </td>
+                          <td cclass="text-right">
+                            <span t-esc="ch['iso_code_id']"/>
+                          </td>
+                          <!-- <td class="text-right">
+                              <span t-field="ch.from_date"/>
+                          </td>
+                          <td class="text-right">
+                              <span t-field="ch.to_date"/>
+                          </td>
+                          -->
+                          <td class="text-right">
+                              <span t-esc="ch['charges_id']" />
+                          </td>
+                           <!-- <td class="text-right">
+                              <span t-esc="ch['charges_type']" />
+                          </td> -->
+                          <td class="text-right">
+                              <span t-esc="ch['prepaid']" />
+                          </td>
+                           <td class="text-right">
+                              <span t-esc="ch['collect']" />
+                          </td>
+                          <td class="text-right">
+                              <span t-esc="ch['unit_price']" />
+                          </td>
+                           <td class="text-right">
+                              <span t-esc="ch['currency_id']" />
+                          </td>
+                          
+                      </tr>
+                    </t>
+                  </tbody>
+                </table>
+
+                            
+
+                <!-- <table class="table table-sm">
+                  <thead class="bg-100">
+                    <tr>
+                      
+                      <th class="text-right d-none d-sm-table-cell">Container type</th>
+                      <th class="text-right">ISO code Code</th>
+                      
+                      <th class="text-right">Charges</th>
+                      <th class="text-right">Currency</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <t t-foreach="mrg_line" t-as="ch">
+                   
+                      <tr t-att-class="'bg-200 font-weight-bold o_line_section'">
+                          <td>
+                            <span t-esc="ch['container_type']"/>
+                          </td>
+                          <td class="text-right d-none d-sm-table-cell">
+                            <span t-esc="ch['iso_code_id']"/>
+                          
+                          <td class="text-right">
+                              <span t-esc="ch['mrg_charges']" />
+                          </td>
+                           <td class="text-right">
+                              <span t-esc="ch['currency_id']" />
+                          </td>
+                          
+                      </tr>
+                      
+                    </t>
+                  </tbody>
+                </table> -->
+               <!-- <div id="total" class="row" name="total" style="page-break-inside: avoid;">
+            <div>-->
+              <!-- <table class="table table-sm">
+                <tbody>
+                    <tr class="is-subtotal text-right" >
+                                        <td colspan="99" style="border-top: 0;">
+                                            <strong class="mr16">Prepaid Amount</strong>
+                                            <span
+                                                t-esc="sq_rec.total_prepaid_charges"
+                                                t-options='{"widget": "monetary", "display_currency": sq_rec.currency_id}'
+                                            />
+                                        </td>
+                                    </tr>
+                    <tr class="is-subtotal text-right" style="border-top: 0;">
+                                        <td colspan="99" style="border-top: 0;">
+                                            <strong class="mr16">Collect Amount</strong>
+                                            <span
+                                                t-esc="sq_rec.total_collect_charges"
+                                                t-options='{"widget": "monetary", "display_currency": sq_rec.currency_id}'
+                                            />
+                                        </td>
+                                    </tr>
+                    
+                    <tr class="is-subtotal text-right">
+                                        <td colspan="99" style="border-top: 0;">
+                                            <strong class="mr16">Total Charges</strong>
+                                            <span
+                                                t-esc="sq_rec.total_charge"
+                                                t-options='{"widget": "monetary", "display_currency": sq_rec.currency_id}'
+                                            />
+                                        </td>
+                                    </tr>
+                               </tbody>
+
+              </table> -->
+            
+                        </div>
+
+                       
+
+                                        <div class="clearfix oe_login_buttons text-center mb-1 pt-3" >
+
+
+                                           
+                                               
+
+                                                   <a t-attf-href="/thank-accept-mrg/#{rec_id.id}?{{ keep_query() }}">
+                                                        <button type="submit" class="btn btn-primary mrg_accepted col-2"
+                                                         >
+                                                        <span>
+                                                            Accept
+                                                        </span>
+                                                        </button>
+                                                    </a>
+
+                                                     <a t-attf-href="/thank-reject-mrg/#{rec_id.id}?{{ keep_query() }}">
+                                                        <button type="submit" class="btn btn-primary mrg_rejected col-2"
+                                                         >
+                                                        <span>
+                                                            Reject
+                                                        </span>
+                                                        </button>
+                                                    </a>
+
+                                                    
+
+                                                         
+                                                        <!-- <div class="clearfix oe_login_buttons text-left mb-1 pt-3">
+
+                                                      <form action="/thank-reject" method="post" enctype="multipart/form-data"
+                                                          id="thank-reject_form"
+                                                          class="thank-reject checkout_autoformat">
+                                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                                          <div class="form-row">
+                                                          
+                                                            <div t-attf-class="col-6" style="padding-top: 3.5%">
+                                                                <input type="hidden" name="sq_id"
+                                                               readonly="readonly" t-attf-class="form-control"
+                                                               t-att-value="mrg_rec.id"/>
+                                                              <button class="btn btn-primary reject_sq col-2"  >
+                                                                <span>
+                                                                    Reject
+                                                                </span>
+                                                                </button>
+                                                        </div>
+                                                          </div>
+
+                                                      </form>
+                                                      </div> -->
+                                                   
+                                            
+
+
+
+                                        </div>
+
+                                        
+                    </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="mrg_contract_form" name="MRG n contract charges">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure"/>
+                <div class="container">
+                    <ol class="o_portal_submenu breadcrumb mb-0 py-2 flex-grow-1 row">
+                        <li class="breadcrumb-item ml-1">
+                            <a href="/my/home" aria-label="Home" title="Home">
+                                <i class="fa fa-home"/>
+                            </a>
+                        </li>
+                        
+                        <li class="breadcrumb-item active ">
+
+
+                                <span>MRG Charges</span>
+
+                        </li>
+                        
+                    </ol>
+                    <t t-if="not mrg_rec">
+                        <span>No MRG charges found</span>
+                    </t>
+                    <t t-if="mrg_rec">
+                       
+                    <div class="s_website_form modal-body checkout_autoformat">
+                        
+                        <div class="row">
+                            <div class="w-100"/>
+                            
+
+                     <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="port_of_origin_id">Port of Origin
+                                </label>
+                                <input type="text" name="port_of_origin_id"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="mrg_rec.port_of_origin_id.name"/>
+                            </div>
+
+                    <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="final_port_of_destination_id">Final Port of Destination
+                                </label>
+                                <input type="text" name="final_port_of_destination_id"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="mrg_rec.final_port_of_destination_id.name"/>
+                            </div>
+
+                            
+
+                <table class="table table-sm">
+                  <thead class="bg-100">
+                    <tr>
+                      
+                      <th class="text-right d-none d-sm-table-cell">Container type</th>
+                      <th class="text-right">ISO code Code</th>
+                      
+                      <th class="text-right">Charges</th>
+                      <!-- <th class="text-right">Currency</th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <t t-foreach="mrg_line" t-as="ch">
+                   
+                      <tr t-att-class="'bg-200 font-weight-bold o_line_section'">
+                          <td>
+                            <span t-esc="ch['container_type']"/>
+                          </td>
+                          <td class="text-right d-none d-sm-table-cell">
+                            <span t-esc="ch['iso_code_id']"/>
+                          </td>
+                          
+                          <td class="text-right">
+                              <span t-esc="ch['mrg_charges']" t-options="{'widget': 'monetary', 'display_currency': ch['currency_id']}"/>
+                          </td>
+                           <!-- <td class="text-right">
+                              <span t-esc="ch['currency_id']" />
+                          </td> -->
+                          
+                      </tr>
+                      <!-- </t> -->
+                    </t>
+                  </tbody>
+                </table>
+              
+            
+                        </div>
+                    <ol class="o_portal_submenu breadcrumb mb-0 py-2 flex-grow-1 row">
+
+                        <li class="breadcrumb-item active ">
+
+
+                                <span>Contract Charges</span>
+
+                        </li>
+                        
+                    </ol>
+                    <t t-if="not contract_rec">
+                        <span>No Contract found</span>
+                    </t>
+                    <t t-if="contract_rec">
+                 
+
+                <table class="table table-sm">
+                  <thead class="bg-100">
+                    <tr>
+                      <!-- <th>Charges</th> -->
+                      <th class="text-right d-none d-sm-table-cell">Container Type</th>
+                      <th class="text-right">ISO Code</th>
+                      
+                      <!-- <th class="text-right">quantity.</th> -->
+                      <th class="text-right">Port of Origin.</th>
+                      <th class="text-right">Final port of destination</th>
+                      <th class="text-right">Charges</th>
+                      <!-- <th class="text-right">currency_id</th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <t t-foreach="contract_rec.contracts_line" t-as="ch">
+                      <tr t-att-class="'bg-200 font-weight-bold o_line_section'">
+                          <td>
+                            <span t-esc="ch.container_type.name"/>
+                          </td>
+                          <td class="text-right d-none d-sm-table-cell">
+                            <span t-field="ch.iso_code_id.code"/>
+                          </td>
+                         
+                          
+                          <td class="text-right">
+                              <span t-field="ch.place_of_origin"/>
+                          </td>
+                          <td class="text-right">
+                              <span t-field="ch.final_port_of_destination"/>
+                          </td>
+                          <td class="text-right">
+                              <span t-field="ch.rate_per_cont" t-options='{"widget": "monetary", "display_currency": ch.currency_id}'/>
+                          </td>
+                      </tr>
+                    </t>
+                  </tbody>
+                </table>
+            </t>
+
+                       
+
+                                        <div class="clearfix oe_login_buttons text-center mb-1 pt-3" >
+
+
+                                           
+                                               
+
+                                                   <a t-attf-href="/thank-accept-mrg/#{mrg_rec.id}?{{ keep_query() }}">
+                                                        <button type="submit" class="btn btn-primary mrg_accepted col-2"
+                                                         >
+                                                        <span>
+                                                            Accept
+                                                        </span>
+                                                        </button>
+                                                    </a>
+
+                                                     <a t-attf-href="/thank-reject-mrg/#{mrg_rec.id}?{{ keep_query() }}">
+                                                        <button type="submit" class="btn btn-primary mrg_accepted col-2"
+                                                         >
+                                                        <span>
+                                                            Reject
+                                                        </span>
+                                                        </button>
+                                                    </a>
+
+                                                    
+
+
+
+                                        </div>
+
+                                        
+                    </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <record model="website.page" id="mrg_accepted">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/mrg_accepted</field>
+        <field name="website_published">True</field>
+        <field name="key">freightbox.mrg_accepted</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="freightbox.mrg_accepted">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="d-flex justify-content-center flex-column align-items-center">
+                            <h1 class="my-3">Thank You for accepting the charges</h1>
+                            <div class="row mb-3">
+                                <div class="col-lg-13">
+                                    <div class="alert alert-success" role="status">
+                                        You will receive the Sale Order soon
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+
+    <record model="website.page" id="contract_accepted">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/contract_accepted</field>
+        <field name="website_published">True</field>
+        <field name="key">freightbox.contract_accepted</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="freightbox.contract_accepted">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="d-flex justify-content-center flex-column align-items-center">
+                            <h1 class="my-3">Thank You for accepting the charges</h1>
+                            <div class="row mb-3">
+                                <div class="col-lg-13">
+                                    <div class="alert alert-success" role="status">
+                                        You will receive the Sale Order soon
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+
+    <record model="website.page" id="mrg_rejected">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/mrg_rejected</field>
+        <field name="website_published">True</field>
+        <field name="key">freightbox.mrg_rejected</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="freightbox.mrg_rejected">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="d-flex justify-content-center flex-column align-items-center">
+                            <h1 class="my-3">You have rejected this charges</h1>
+                            <div class="row mb-3">
+                                <div class="col-lg-13">
+                                    <div class="alert alert-success" role="status">
+                                        Can you please provide the reason for rejection,so that we can work on it and get back to you with a posiible solution
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+
+    <record model="website.page" id="no_mrg_charges">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/no_mrg_charges</field>
+        <field name="website_published">True</field>
+        <field name="key">freightbox.no_mrg_charges</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="freightbox.no_mrg_charges">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div style="display: flex; justify-content: center; align-items: center; height: 50vh;">
+                        <div style="text-align: center;">
+                            <h3>Minimum rate guidelines are not available for given origin n destination and the required container type</h3>
+                            <div class="row mb-3">
+                                <div class="col-lg-15">
+                                    <div class="alert alert-success" role="status">
+                                       but we will get back to you with best rates for this combination as soon as possible
+                                    </div>
+                                </div>
+                            </div>
+                            <h3>Vessel Schedule</h3>
+                            <div class="alert alert-success" role="status">
+                                No Vessel schedule exists on this route ,We will recheck and update schedule and revert - Your booking will be responded soon
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+
+    <!--<template id="start_booking" name="Start Booking">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure"/>
+                <div class="container">
+                    <form action="/create/webbooking/" method="post" enctype="multipart/form-data"
+                          id="start_booking_website_form"
+                          class="start_booking_website_form checkout_autoformat">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <div class="modal-body col-xl-10">
+                            <div class="form-row">
+                                <style>
+                                input:required {
+                                background-color: #ADD8E6;
+                                }
+                                select:required {
+                                background-color: #ADD8E6;
+                                }
+                            </style>
+
+                                <t t-if="user_template_recs">
+                                    <div t-attf-class="form-row col-10">
+                                        <label class="col-form-label font-weight-normal label-optional"
+                                               for="user_template">User Template
+                                        </label>
+                                        <select id="user_template" name="user_template" t-attf-class="form-control">
+                                            <option value="">User Template..</option>
+                                            <t t-foreach="user_template_recs" t-as="u">
+                                                <option t-att-value="u.id">
+                                                    <t t-esc="u.name"/>
+                                                </option>
+                                            </t>
+                                        </select>
+
+                                    </div>
+
+
+
+                                    <div t-attf-class="col-form-label col-6">
+                                        <label class="col-form-label font-weight-normal label-optional"
+                                               for="get_user_template_values"></label>
+                                        <button type="button" id="get_user_template_values"
+                                                class="btn btn-primary get_user_template_values">Apply
+                                        </button>
+                                    </div>
+                                </t>
+
+                                <div class="w-100"/>
+                        &lt;!&ndash;<t t-if="is_user_registered == True">
+                            <div>
+                                <input type="checkbox" name="is_user_registered" class="is_user_registered"
+                                    checked="checked"   id="is_user_registered"/>
+                                <label for="create_user_template">Userrrrrrrrrr.
+                                </label>
+                            </div>
+                        </t>
+                        <t t-if="is_user_registered == False">
+                            <div>
+                                <input type="checkbox" name="is_user_registered" class="is_user_registered"
+                                       id="is_user_registered"/>
+                                <label for="create_user_template">UUUUUUUUUUUUU.
+                                </label>
+                            </div>
+                        </t>&ndash;&gt;
+
+                                <div class="w-100"/>
+                                <div t-attf-class="col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="company">
+                                        Company Name *
+                                    </label>
+                                    <input type="text" id="sb_company_name" name="company" required="required"
+                                           t-att-value="partner_company_name" readonly="readonly"
+                                           autofocus="autofocus" t-attf-class="form-control" t-att-title="company"
+                                           placeholder="e.g Powerpbox Pvt Ltd"/>
+                                    <div id="sb_company_name_div"/>
+                                </div>
+                                <div t-attf-class="form-group col-6" id="div_email">
+                                    <label class="col-form-label" for="email">Email *</label>
+                                    <input type="email" id="sb_email" name="email" t-attf-class="form-control"
+                                         readonly="readonly" t-att-value="partner_email" required="required" placeholder="e.g info@powerpbox.org"/>
+                                    <div id="sb_email_div"/>
+                                </div>
+                                &lt;!&ndash;div class="w-100"/>
+                                <div class="clearfix oe_login_buttons text-center mb-1 pt-3">
+                                    <button type="submit" class="btn btn-primary submit_start_booking col-6">Click here to enter cargo details</button>
+                                </div>&ndash;&gt;
+
+
+
+
+
+                                <div class="w-100"/>
+                                <label class="col-form-label font-weight-normal label-optional">Address*</label>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-6">
+                                    <input type="text" id="sb_street1" name="street1" autofocus="autofocus"
+                                           required="required" t-attf-class="form-control" t-att-title="street1"
+                                           placeholder="e.g 216 , Bestech Chambers"/>
+                                </div>
+                                <div t-attf-class="col-6">
+                                    <input type="text" name="street2" id="sb_street2" t-attf-class="form-control"
+                                           required="required" t-att-title="street2"
+                                           placeholder="e.g Sushant Lok Phase I"/>
+                                </div>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form-label col-6 div_country booking_country_list">
+                                    <select id="country_id" name="country_id" required="required"
+                                            t-attf-class="form-control">
+                                        <option value="">Country...</option>
+                                        <t t-foreach="country_details" t-as="c">
+                                            <option t-att-value="c.id"
+                                                    t-att-selected="c.id == (country and country.id or -1)">
+                                                <t t-esc="c.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                    <div id="country_id_div"/>
+                                </div>
+                                <div t-attf-class="col-form-label col-6 div_state">
+                                    <select name="state_id" id="sb_state_id"  t-attf-class="form-control" data-init="1">
+                                        <option value="">State...</option>
+                                        <t t-foreach="state_details" t-as="s">
+                                            <option t-att-value="s.id"  t-att-selected="s.id == (state and state.id or -1)"
+                                                    t-att-data-country_id="s.country_id.id">
+                                                <t t-esc="s.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                    <div id="sb_state_id_div"/>
+                                </div>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form col-6">
+                                    <input type="text" name="zip" id="sb_zip" placeholder="e.g 122002"
+                                           required="required" autofocus="autofocus" t-attf-class="form-control"
+                                           t-att-title="pincode"/>
+                                    <div id="sb_zip_div"/>
+                                </div>
+                                <div class="w-100"/>
+                                 <div t-attf-class="form-group col-6 div_vat">
+                                    <label class="col-form-label font-weight-normal label-optional" for="name">Name *
+                                    </label>
+                                    <input type="text" name="name" id="sb_name" required="required"
+                                           autofocus="autofocus" t-attf-class="form-control" t-att-title="name"
+                                           placeholder="e.g John Due"/>
+                                    <div id="sb_name_div"/>
+                                </div>
+
+
+                                <div t-attf-class="form-group col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="phone">Phone*
+                                    </label>
+                                    <input type="tel" id="sb_phone" name="phone" autofocus="autofocus"
+                                           required="required" t-attf-class="form-control" t-att-title="phone"
+                                           placeholder="e.g 9876543210"/>
+                                    <div id="sb_phone_div"/>
+                                </div>
+                                <div class="w-100"/>
+                                <div>
+                                    <h5 class="o_page_header mt8">Cargo</h5>
+                                </div>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="cargo">Cargo
+                                        Description *
+                                    </label>
+                                    <input type="text" id="sb_cargo_name" name="cargo_name" autofocus="autofocus"
+                                           required="required" t-attf-class="form-control" t-att-title="cargo_name"
+                                           placeholder="e.g Cotton Shirts"/>
+                                    <div id="sb_cargo_name_div"/>
+                                </div>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="quantity">
+                                        Quantity *
+                                    </label>
+                                    <input type="float" id="sb_quantity" name="quantity" autofocus="autofocus"
+                                           required="required" t-attf-class="form-control" t-att-title="quantity"
+                                           placeholder="e.g 100000"/>
+                                    <div id="sb_quantity_div"/>
+                                </div>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="weight">
+                                        Weight
+                                    </label>
+                                    <input type="float" name="weight" id="sb_weight" autofocus="autofocus"
+                                           min="0"
+                                           t-attf-class="form-control" t-att-title="weight"/>
+                                    <div id="sb_weight_div"/>
+                                </div>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="volume">
+                                        Volume
+                                    </label>
+                                    <input type="float" name="volume" id="sb_volume" autofocus="autofocus"
+                                           t-attf-class="form-control" t-att-title="volume"/>
+                                    <div id="sb_volume_div"/>
+                                </div>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form-label col-6">
+                                    <select Name="weight_id" name="weight_id" id="weight_id" placeholder="Units"
+                                            autofocus="autofocus" t-attf-class="form-control">
+                                        <option value="">Units...</option>
+                                        <t t-foreach="units_details" t-as="wt">
+                                            <option t-att-value="wt.id">
+                                                &lt;!&ndash; t-att-selected="wt.id == (wt and wt.id or 1)" &ndash;&gt;
+                                                <t t-esc="wt.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+
+                                <div t-attf-class="col-form-label col-6">
+                                    <select Name="volume_id" name="volume_id" id="volume_id" placeholder="Units"
+                                            autofocus="autofocus" t-attf-class="form-control">
+                                        <option value="">Units...</option>
+                                        <t t-foreach="units_details" t-as="ve">
+                                            <option t-att-value="ve.id">
+                                                &lt;!&ndash; t-att-selected="ve.id == (ve and ve.id or 1)" &ndash;&gt;
+                                                <t t-esc="ve.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                                &lt;!&ndash;<div t-attf-class="col-form-label col-6">
+                                  <input type="text" name="weight_uom" placeholder="Units" autofocus="autofocus" t-attf-class="form-control"/>
+                                </div>
+                                <div t-attf-class="col-form-label col-6">
+                                  <input type="text" name="volume_uom" placeholder="Units" autofocus="autofocus" t-attf-class="form-control"/>
+                                </div>&ndash;&gt;
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form-label col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="move_type_id">
+                                        Move Type
+                                    </label>
+                                    <select id="move_type_id" name="move_type_id" t-attf-class="form-control">
+                                        <t t-foreach="move_type_ids" t-as="mt">
+                                            <option t-att-value="mt.id" t-att-selected="mt.id == (mt and mt.id or -1)">
+                                                <t t-esc="mt.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div t-attf-class="col-form-label col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="incoterm_id">
+                                        Incoterm
+                                    </label>
+                                    <select id="incoterm_id" name="incoterm_id" t-attf-class="form-control">
+                                        <option value="">Incoterms..</option>
+                                        <t t-foreach="incoterm_details" t-as="incoterm">
+                                            <option t-att-value="incoterm.id"
+                                                    t-att-selected="incoterm.id == (incoterm and incoterm.id or -1)">
+                                                <t t-esc="incoterm.name"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional"
+                                           for="place_of_origin">Point of Origin *
+                                    </label>
+                                    <input type="text" name="place_of_origin" id="sb_place_of_origin" min="0"
+                                           required="required" autofocus="autofocus" t-attf-class="form-control"
+                                           t-att-title="place_of_origin" placeholder="e.g Gurugram"/>
+                                    <div id="sb_place_of_origin_div"/>
+                                </div>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="destination">
+                                        Point of Destination *
+                                    </label>
+                                    <input type="text" name="final_port_of_destination"
+                                           id="sb_final_port_of_destination" required="required" autofocus="autofocus"
+                                           t-attf-class="form-control" t-att-title="final_port_of_destination"
+                                           placeholder="e.g London"/>
+                                    <div id="sb_final_port_of_destination_div"/>
+                                </div>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional"
+                                           for="point_of_stuffing">Point of Stuffing *
+                                    </label>
+                                    <input type="text" name="point_of_stuffing" id="sb_point_of_stuffing"
+                                           required="required" autofocus="autofocus" t-attf-class="form-control"
+                                           t-att-title="point_of_stuffing" placeholder="e.g Gurugram"/>
+                                    <div id="sb_point_of_stuffing_div"/>
+                                </div>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional"
+                                           for="point_of_destuffing">Point of Destuffing *
+                                    </label>
+                                    <input type="text" name="point_of_destuffing" id="sb_point_of_destuffing"
+                                           required="required" autofocus="autofocus" t-attf-class="form-control"
+                                           t-att-title="point_of_destuffing" placeholder="e.g London"/>
+                                    <div id="sb_point_of_destuffing_div"/>
+                                </div>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional"
+                                           for="no_of_expected_container">No. of Expected Container *
+                                    </label>
+                                    <input type="number" name="no_of_expected_container"
+                                           onkeypress="return event.charCode >= 48" min="0"
+                                           id="sb_no_of_expected_container" required="required" autofocus="autofocus"
+                                           t-attf-class="form-control" t-att-title="no_of_expected_container"
+                                           placeholder="e.g 5"/>
+                                    <div id="sb_no_of_expected_container_div"/>
+                                </div>
+                                <div t-attf-class="col-form-label col-6">
+                                    <label class="col-form-label font-weight-normal label-optional"
+                                           for="container_type">Container Type *
+                                    </label>
+                                    <select id="container_type" name="container_type" required="required"
+                                            t-attf-class="form-control">
+                                        <option value="">Container Type..</option>
+                                        <t t-foreach="container_type_ids" t-as="container">
+                                            <option t-att-value="container.id">
+                                                <t t-esc="container.code"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                                &lt;!&ndash;<div t-attf-class="col-form col-6">
+                                   <label class="col-form-label font-weight-normal label-optional" for="destination">Container Type</label>
+                                   <input type="text" name="container_type" autofocus="autofocus" t-attf-class="form-control" t-att-title= "container_type" />
+                                </div>&ndash;&gt;
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional"
+                                           for="expected_date_of_shipment">Expected Date of Shipment *
+                                    </label>
+                                    <input type="date" name="expected_date_of_shipment"
+                                           id="sb_expected_date_of_shipment" required="required" autofocus="autofocus"
+                                           t-attf-class="form-control" t-att-title="expected_date_of_shipment"/>
+                                    <div id="sb_expected_date_of_shipment_div"/>
+                                </div>
+                                <div t-attf-class="col-form col-6">
+                                    <label class="col-form-label font-weight-normal label-optional" for="lcl_fcl">
+                                        LCL/FCL/BB *
+                                    </label>
+                                    <select id="lcl_fcl_id" name="lcl_fcl_id" required="required" t-attf-class="form-control">
+                                        <option value="lcl">LCL</option>
+                                        <option value="fcl">FCL</option>
+                                        <option value="both">LCL and FCL</option>
+                                        <option value="bb">BB</option>
+                                    </select>
+                                </div>
+                                <div class="w-100"/>
+                                <div t-attf-class="col-form col-12">
+                                    <label class="col-form-label font-weight-normal label-optional" for="remarks">
+                                        Remarks
+                                    </label>
+                                    <input type="text" name="remarks" id="sb_remarks" autofocus="autofocus"
+                                           t-attf-class="form-control" t-att-title="remarks"
+                                           placeholder="e.g This is just an example of remarks"/>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        &lt;!&ndash;<div class="clearfix oe_login_buttons text-center mb-1 pt-3 ">
+                                    <button type="button" class="btn btn-primary user_template_create">Create User Template</button>
+                                </div>&ndash;&gt;
+
+                        <t t-if="not user_template_recs">
+                            <div style="display: none">
+                                <input type="checkbox" name="create_user_template" class="create_user_template"
+                                      checked="checked" id="create_user_template"/>
+                                <label for="create_user_template">This checkbox helps you to create
+                                    your own user template,which can be used in future bookings.
+                                </label>
+                            </div>
+                        </t>
+                        <t t-if="user_template_recs">
+                            <div>
+                                <input type="checkbox" name="create_user_template" class="create_user_template"
+                                       id="create_user_template"/>
+                                <label for="create_user_template">This checkbox helps you to create
+                                    your own user template,which can be used in future bookings.
+                                </label>
+                            </div>
+                        </t>
+
+
+                        <div class="clearfix oe_login_buttons text-center mb-1 pt-3">
+                            <button type="submit" class="btn btn-primary submit_start_booking col-2">Submit</button>
+                        </div>
+                    </form>
+
+                </div>
+                &lt;!&ndash;</div>&ndash;&gt;
+
+            </div>
+        </t>
+    </template>-->
+    <template id="thankyou_page_for_customer" name="Customer ThankYou">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure"/>
+                <div class="container">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <t t-if="rec_id">
+                            <div class="d-flex justify-content-center">
+                                <div class="w-50 clearfix oe_login_buttons text-center mb-1 pt-3">
+                                    <div class="alert alert-success" role="status">
+                                        Thank You
+                                        <strong>
+                                            <span t-esc="rec_id.partner_id.name"/>
+                                        </strong>
+                                        <!-- from -->
+                                        <!--<strong>
+                                            <span t-esc="rec_id.name"/>
+                                        </strong>-->
+                                        for this opportunity.
+                                        <br></br>
+                                        Your Inquiry No.
+                                        <strong>
+                                            <span t-esc="rec_id.booking_id"/>
+                                        </strong>
+                                        will be responded soon.
+                                    </div>
+                                    <div t-if="rec_id.partner_id.user_subscribed == False">
+                                        <div class="clearfix oe_login_buttons text-center mb-1 pt-3">
+                                            <div class="alert alert-success" role="status">
+                                                <h5>Please click here to subscribe to our newsletter</h5>
+                                                   <a t-attf-href="/thank-subscribe/#{rec_id.id}/#{rec_id.partner_id.id}?{{ keep_query() }}">
+                                                        <button class="btn btn-primary subscribe_user col-5">
+                                                        <span>
+                                                            Subscribe
+                                                        </span>
+                                                        </button>
+                                                    </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <record model="website.page" id="customer_thanks22">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/customer-thank-you</field>
+        <field name="website_published">True</field>
+        <field name="key">freightbox.customer_thanks</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="freightbox.customer_thanks">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="container" />
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+
+    <record model="website.page" id="subsciption_accepted">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/subsciption_accepted</field>
+        <field name="website_published">True</field>
+        <field name="key">freightbox.subsciption_accepted</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="freightbox.subsciption_accepted">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="d-flex justify-content-center flex-column align-items-center">
+                            <h1 class="my-3">Thank You</h1>
+                            <div class="row mb-3">
+                                <div class="col-lg-13">
+                                    <div class="alert alert-success" role="status">
+                                        You have successfully subscribed to our newsletter
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+
+
+</odoo>

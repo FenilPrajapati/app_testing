@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+
+         <record id="port_line_template1" model="ports.line">
+            
+            <field name="port_id" ref='odoo_v14_frieght.port' />
+           
+        </record>
+        
+        
+        <record forcecreate="True" model="ports.templates" id="Ports-Template1">
+            <field name="name">Ports-Template1</field>
+            
+            
+            <field name="ports_template_line" ref='port_line_template1' />
+
+           
+        </record>
+        
+    </data>
+</odoo> 

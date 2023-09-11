@@ -1,0 +1,225 @@
+<odoo>
+    <data>
+        <!-- Show company name on tree. If contact, show contact name. if company, show company name - by default it shows both -->
+        <record model="ir.ui.view" id="view_partner_tree_for_enquiry">
+            <field name="name">res.partner.tree.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="js_class">partner_event_dashboard</attribute>
+                    <!-- <attribute name="decoration-success">is_cust_active == True</attribute>
+                    <attribute name="decoration-danger">is_cust_active == False</attribute>
+                    <attribute name="decoration-warning">is_approach_inactive == True</attribute> -->
+                </xpath>
+                <xpath expr="/tree/field[@name='company_id']" position="replace">
+                    <field name="company_id" optional="hide" readonly="1"/>
+                    <!-- <field name="is_cust_active" invisible="1"/>
+                    <field name="is_approach_inactive" invisible="1"/> -->
+                </xpath>
+                <xpath expr="/tree/field[@name='email']" position="after">
+                    <field name="customer_contact_name" string="Company Name"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_partner_form_enquiry">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="before">
+                    <header>
+
+                    </header>
+                </xpath>
+                <!-- <xpath expr="//field[@name='image_1920']" position='before'>
+                    <widget name="web_ribbon" title="In-Active" bg_color="bg-info" attrs="{'invisible': [('is_cust_active', '=', True)]}"/>
+                    <widget name="web_ribbon" title="BlackList" bg_color="bg-danger" attrs="{'invisible': [('is_blacklist', '=', False)]}"/>
+                </xpath> -->
+                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                            <button name="action_get_contract"
+                            type="object" class="oe_stat_button" attrs="{'invisible': [('contract_count','&lt;', '1')]}"
+                            icon="fa-pencil-square-o">
+                            <field name="contract_count" widget="statinfo" string="Contract"/>
+                            </button>
+
+                </xpath>
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="customer_contact_name" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="reference_code"/>
+                    <field name="user_subscribed"/>
+                    <!-- <field name="last_transaction_date"/> -->
+                   
+                </xpath>
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="contact_type" />
+                    <field name="company_cust_type"/>
+                    <field name="agent_type" attrs="{'invisible': [('contact_type', '!=', 'agent')]}" />
+                    <!-- <field name="agent_type" attrs="{'invisible': [('contact_type', '!=', 'agent')]}" />
+                     <field name="type_of_agent" attrs="{'invisible': ['|', ('contact_type', '!=', 'agent'), ('agent_type', '!=', 'other')]}"/> -->
+                    
+                    <!-- <field name="is_cust_active" invisible="1"/> -->
+                    <!-- <field name="is_approach_inactive" invisible="1"/> -->
+                    <!-- <field name="is_blacklist" invisible="1"/> -->
+                </xpath> 
+                <xpath expr="//notebook/page[@name='internal_notes']" position="before">
+                    <!-- <page name="balcklist" string="Blacklist">
+                        <field name="blacklist_ids" readonly="1">
+                            <tree string="Blacklist" editable="bottom">
+                                <field name="create_date" width="10" string="Blacklist on"/>
+                                <field name="block_by_id" width="10"/>
+                                <field name="unblock_date" width="10" />
+                                <field name="unblock_by_id" width="10" />
+                                <field name="name" width="70"/>    
+                                <field name="doc_attachment" width="70" widget="many2many_binary"/>                            
+                            </tree>
+                        </field>
+                    </page>
+                    <page name="company_kyc_detail" string="KYC Detail" attrs="{'invisible': [('company_type', '=', 'person')]}"> -->
+                        <!-- <group>
+                            <field name="doc_attachment" widget="many2many_binary" string="Documents"/>
+                        </group> -->
+                        <!-- <group>
+                            <div> -->
+                                <!-- <field name="company_kyc_line">
+                                    <tree editable="bottom" create="0" delete="0">
+                                        <field name="sole_selection" attrs="{'column_invisible' : [('parent.company_cust_type','!=','sole_proprietorship')], 'readonly': [('parent.company_cust_type','!=','sole_proprietorship')]}"/>
+                                        <field name="partnership_selection" attrs="{'column_invisible' : [('parent.company_cust_type','!=','partnership')], 'readonly': [('parent.company_cust_type','!=','partnership')]}"/>
+                                        <field name="llp_selection"  attrs="{'column_invisible' : [('parent.company_cust_type','!=','limited_liability_partnership')], 'readonly': [('parent.company_cust_type','!=','limited_liability_partnership')]}"/>
+                                        <field name="plc_selection"  attrs="{'column_invisible' : [('parent.company_cust_type','!=','private_or_public_limited_company')], 'readonly': [('parent.company_cust_type','!=','private_or_public_limited_company')]}"/>
+                                        <field name="doc_attachment" widget="many2many_binary" />
+                                    </tree>
+                                </field> -->
+                            <!-- </div>
+                        </group> -->
+                        <!-- <separator string="Declaration"/>
+                        <div class="oe_title" style="max-width: fit-content;display: flex;">
+                            <field name="declaration"/>
+                            <label for="declaration"/>
+                        </div>
+                    </page> -->
+                    <!-- <page name="kyc_detail" string="KYC Detail" attrs="{'invisible': [('company_type', '=', 'company')]}"> -->
+                        <!-- <group string="Identity Details">
+                            <group>
+                                <field name="pan_no"/>
+                            </group>
+                            <group>
+                                <field name="pan_atta" />
+                            </group>
+                        </group>
+                        <group string="Proof of Address">
+                            <group>
+                                <field name="add_passport"/>
+                                <field name="add_dl"/>
+                                <field name="add_sa"/>
+                                <field name="add_tele_bill"/>
+                                <field name="add_gas_bill"/>
+                            </group>
+                            <group>
+                                <field name="add_ration_card"/>
+                                <field name="add_voter_id_card"/>
+                                <field name="add_bank_detail"/>
+                                <field name="add_electricity_bill"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="add_attachment" widget="many2many_binary"/>
+                        </group> -->
+                        <!-- <group>
+                            <div> -->
+
+                                <!-- <field name="person_kyc_line" >
+                                    <tree editable="bottom" create="0" delete="0">
+                                        <field name="doc_selection" required="1"/>
+                                        <field name="doc_attachment" widget="many2many_binary"/>
+                                    </tree>
+                                </field> -->
+
+                            <!-- </div>
+                        </group> -->
+                        <!-- <separator string="Declaration"/>
+                        <div class="oe_title" style="max-width: fit-content;display: flex;">
+                            <field name="declaration"/>
+                            <label for="declaration"/>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="f_name"/>
+                                <field name="app_sign" widget="image"/>
+                            </group>
+                            <group>
+                                <field name="l_name"/>
+                            </group>
+                        </group>
+                    </page> -->
+                    <page string="Credit Control">
+                        <group string="Credit Control">
+                            <group>
+                                <field name="is_due_days_limit"/>
+                                <field name="due_limit_days" attrs="{'invisible': [('is_due_days_limit', '!=', True)]}"/>
+                                <field name="due_days_tolerance" attrs="{'invisible': [('is_due_days_limit', '!=', True)]}"/>
+                            </group>
+                            <group>
+                                <field name="is_due_amount_limit"/>
+                                <field name="due_limit_amount" attrs="{'invisible': [('is_due_amount_limit', '!=', True)]}"/>
+                                <field name="due_amount_tolerance_percentage" attrs="{'invisible': [('is_due_amount_limit', '!=', True)]}"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="search_inherit_res_partner" model="ir.ui.view">
+            <field name="name">res.partner.view.search.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='inactive']" position="before">
+                    <filter string="Shippers" name="filter_shippers" domain="[('contact_type', '=', 'shippers')]"/>
+                    <filter string="Consignees" name="filter_consignees" domain="[('contact_type', '=', 'consignees')]"/>
+                    <filter string="Freight Forwarders" name="filter_freightforwarders" domain="[('contact_type', '=', 'freightforwarders')]"/>
+                    <filter string="NVOCC" name="filter_NVOCC" domain="[('contact_type', '=', 'NVOCC')]"/>
+                    <filter string="Vendors Shipping Lines" name="filter_vendors_shipping" domain="[('contact_type', '=', 'vendors_shipping_lines')]"/>
+                    <filter string="agent" name="filter_agent" domain="[('contact_type', '=', 'agent')]"/>
+                    <separator/>
+                    <!-- <filter string="BlackList" name="filter_blacklist" domain="[('is_blacklist', '=', True)]"/>
+                    <filter string="Active" name="filter_active" domain="[('is_cust_active', '=', True)]"/>
+                    <filter string="In Active" name="filter_in_active" domain="[('is_cust_active', '!=', True)]"/> -->
+
+                </xpath>
+            </field>
+        </record>
+
+        <!-- <record id="inherit_res_partner_kanban" model="ir.ui.view">
+            <field name="name">res.partner.view.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban" position="attributes">
+                    <attribute name="js_class">partner_event_dashboard</attribute>
+                </xpath>
+            </field>
+        </record> -->
+
+        <record id="action_contacts_tree" model="ir.actions.act_window">
+            <field name="name">Contacts</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,kanban,form,activity</field>
+            <field name="search_view_id" ref="base.view_res_partner_filter"/>
+            <field name="context">{'default_is_company': True}</field>
+            <field name="target">main</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a contact in your address book
+              </p><p>
+                Odoo helps you to easily track all activities related to a customer.
+              </p>
+            </field>
+        </record>
+    </data>
+</odoo>

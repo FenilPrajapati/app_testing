@@ -1,0 +1,713 @@
+<odoo>
+    <data noupdate="0">
+        <!--  ********** Charges **********  -->
+        <record model="charges" id="charge_1">
+            <field name="code">FFC/REB</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Freight Forwarder Commission/Brokerage - Origin</field>
+            <field name="description">Compensation to be paid to an Ocean Freight Forwarder and/or Customs House Broker
+                for the provision of forwarding services at origin.
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_2">
+            <field name="code">IHE</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">INLAND HAULAGE EXPORT</field>
+            <field name="description">Charges associated with arranging intermodal
+                transportation for exports.
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_3">
+            <field name="code">ODF</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Documentation Fee-Origin</field>
+            <field name="description">The charge associated with documentation processing at
+                origin.
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_4">
+            <field name="code">PAE</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Port Additionals/PortDues Export</field>
+            <field name="description">Charges assessed for port additionals or when Carrier is
+                collecting port dues from the customer on behalf of the port.
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_5">
+            <field name="code">PSE</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Port Security Charge Export</field>
+            <field name="description">Fee associated with port security costs. This charge will
+                not apply on transhipment cargo.
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_6">
+            <field name="code">CAP ORIGIN</field>
+            <field name="name">Capatazia</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="description">The charge associated with specific costs at discharge or
+                origin terminals in Brazil.
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_7">
+            <field name="code">EMF</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Equipment Management Fee</field>
+            <field name="description">The Equipment Management Fee is applicable for all full
+                export containers, and covers the following services:
+                - Cost for the High Security Bolt Seal issued to all export
+                shippers, including Procurement, storage and handling of
+                them
+                - Issuing Transport Set to approved truckers for empty
+                container pickup (also known as Equipment Interchange
+                Report or EIR).
+                - Costs for checking seal status and condition
+                (damaged/undamaged) on all full containers, when
+                loading and discharging from vessel.
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_8">
+            <field name="code">HBL ORIGIN</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">House Transport Document</field>
+            <field name="description">Fee applies when administration at origin or destination is
+                required due to the use of House Transport Document.
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_9">
+            <field name="code">IHT ORIGIN</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Inland Haulage Road Tax</field>
+            <field name="description">Tax which related to the use of highways. Tax is charged
+                depending on rules set per country and can be a fixed amount for purchasing a vignette or an amount
+                which is
+                based on driven kilometres.
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_10">
+            <field name="code">SPO</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Shanghai Port Surcharge</field>
+            <field name="description">Charge assessed for shipment receive at port of Shanghai,
+                PRC going to North America or Mexico.
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_11">
+            <field name="code">CON ORIGIN</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Congestion Surcharge</field>
+            <field name="description">Charge assessed for port congestion</field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_12">
+            <field name="code">FUS ORIGIN</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Intermodal Fuel Surcharge</field>
+            <field name="description">A charge associated with intermodal fuel cost</field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_13">
+            <field name="code">TCF ORIGIN</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">TCFB Charge</field>
+            <field name="description">Government imposed handling charge in Tanzania</field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_14">
+            <field name="code">CAM/AMF/SIA</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Cargo Declaration Amendment Fee</field>
+            <field name="description">Fee assessed for amendment of cargo declarations electronically.</field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_15">
+            <field name="code">TAX ORIGIN</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Government and Port Taxes</field>
+            <field name="description">Applies when carrier is collecting tax from the customer on
+                behalf of the port or government
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_16">
+            <field name="code">CER ORIGIN</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Government Agency Certification</field>
+            <field name="description">The service associated with arranging government agency
+                certification on behalf of the customer
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_17">
+            <field name="code">CSH ORIGIN</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Container Shifting Charge</field>
+            <field name="description">Charge associated with shifting of container within terminal.</field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_18">
+            <field name="code">TCE</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Temporary Customs Export</field>
+            <field name="description">Charge related to the handling of temporary customs clearance of the container
+                (not cargo) on export shipments.
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_19">
+            <field name="code">PTI</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Pre-Trip Inspection</field>
+            <field name="description">The service associated with pre-trip inspection and preparation of containers.
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_20">
+            <field name="code">PIO ORIGIN</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Pick-Up/Drop-Off</field>
+            <field name="description">The service of picking up or dropping off container at customer's nominated
+                location.
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_21">
+            <field name="code">FRI</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Free In</field>
+            <field name="description">The charges associated with loading, stowage and lashing.</field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_22">
+            <field name="code">FUM</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Fumigation</field>
+            <field name="description">Where fumigation is requested by shipper or required by
+                governmental authorities, carrier shall arrange for cargo
+                fumigation. All expenses incurred related to the
+                fumigation, including drayage to/from the facility, shall be
+                for the account of the cargo
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_23">
+            <field name="code">CCH ORIGIN</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Chassis Usage</field>
+            <field name="description">Usage of carrier supplied chassis.</field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_24">
+            <field name="code">SCU ORIGIN</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Cargo Protection Fee</field>
+            <field name="description">The charge applied based on shipper's or consignees'
+                request for additional security.
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_25">
+            <field name="code">PHI ORIGIN</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Government Agency Inspection</field>
+            <field name="description">The service associated with arranging government agency
+                inspections on behalf of the customer.
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_26">
+            <field name="code">HDL ORIGIN</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Lift On Lift Off</field>
+            <field name="description">Charges associated with lifting containers on or off the
+                chassis
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_27">
+            <field name="code">RPS ORIGIN</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">River Toll Charge</field>
+            <field name="description">Carrier's pass-through charges associated with river
+                tolls.(Argentina and Uruguay).
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_28">
+            <field name="code">OHC</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Handling Charge-Origin</field>
+            <field name="description">The charge associated with specific costs at origin
+                terminals.
+            </field>
+            <field name="type_of_charges">origin</field>
+        </record>
+        <record model="charges" id="charge_29">
+            <field name="code">BAS</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Basis ocean freight</field>
+            <field name="description">Freight associated with the ocean transport</field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_30">
+            <field name="code">BAF/CAF</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Bunker Adjustment Factor</field>
+            <field name="description">The charge associated with vessel fuel cost.</field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_31">
+            <field name="code">ERS</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Emergency Risk Surcharge</field>
+            <field name="description">Charge associated with carrier's risk in handling cargo.</field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_32">
+            <field name="code">IMO</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Dangerous Cargo Surcharge</field>
+            <field name="description">Fee assessed on Cargo of a hazardous nature as classified under IMO regulations.
+            </field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_33">
+            <field name="code">SEP</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Special Equipment Surcharge</field>
+            <field name="description">Charge associated with providing and/or handling of special equipment.</field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_34">
+            <field name="code">SER</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Carrier Security Charge</field>
+            <field name="description">Charge associated with the Carrier compliance to the ISPS
+                code on vessel and container security measures.
+                Applicable on all cargo on a container basis to be paid by
+                the payer of freight.
+            </field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_35">
+            <field name="code">PCC</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Panama Canal Surcharge</field>
+            <field name="description">The charge associated with costs to transit the Panama Canal.</field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_36">
+            <field name="code">DPA</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Transport Arbitrary-Destination</field>
+            <field name="description">A defined transportation additional rate factor which is
+                assessed over an ocean port to or from a port or a point.(Destination)
+            </field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_37">
+            <field name="code">ACC</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Alameda Corridor Rail Surcharge</field>
+            <field name="description">To be assessed on all cargo moving via the Alameda Corridor on rail.</field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_38">
+            <field name="code">EBS</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Emergency Bunker Surcharge</field>
+            <field name="description">The charge associated with extraordinary vessel fuel cost.</field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_39">
+            <field name="code">FTS</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Freight Tax Surcharge</field>
+            <field name="description">Surcharge recovery of Government imposed freight taxes,paid on behalf of shipper
+                or consignee by the carrier.
+            </field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_40">
+            <field name="code">PRM</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Primage Surcharge</field>
+            <field name="description">Primage is applicable as per law no 5590 and is a
+                compulsory charge to apply on all Turkish export freights,
+                as per no 5 of agency tariff valid in Turkey. This is a
+                premium payable in addition to outward freight and covers
+                care and attention given during loading at the port of
+                origin. This premium is paid at the port of loading or
+                discharging in favor of the Agent in Turkey by the party
+                paying the freight. Primage is not part of the freight and
+                must be collected from the party that pays the freight
+            </field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_41">
+            <field name="code">PSS</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Peak Season Surcharge</field>
+            <field name="description">The charge associated with incremental operational costs
+                incurred during the peak season.
+            </field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_42">
+            <field name="code">OPA</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Transport Arbitrary-Origin</field>
+            <field name="description">A defined transportation additional rate factor which is
+                assessed over an ocean port to or from a port or a point.
+                (Origin)
+            </field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_43">
+            <field name="code">SPF</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Singapore Platts Formula</field>
+            <field name="description">Adjustment to market BAF as calculated per the Singapore
+                Platts Index.
+            </field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_44">
+            <field name="code">WSC</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Winter Surcharge</field>
+            <field name="description">Surcharge associated with Carrier's extra transport cost of
+                cargo during winter seasonal conditions.
+            </field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_45">
+            <field name="code">CTS</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Cold Treatment Charge</field>
+            <field name="description">Charge associated with providing special refrigerated
+                containers with probes and special daily
+                monitoring/reporting throughout an ocean
+                transportation/intermodal journey.
+            </field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_46">
+            <field name="code">POS</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Equipment Positioning Surcharge</field>
+            <field name="description">Charges associated with positioning a container to
+                accommodate export.
+            </field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_47">
+            <field name="code">IEC</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Inspection Empty Containers</field>
+            <field name="description">Charges associated with the inspection of empty
+                containers on the request by shipper.
+            </field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_48">
+            <field name="code">EXP</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Export Service Charge</field>
+            <field name="description">The charges associated with the administration of
+                providing export services such as equipment release,
+                arranging pick-up/drop-off, handling or notifications,
+                where these are not charged separately, including but not
+                limited to the service associated with couriering transport
+                documents by request of the shipper, consignee, or their
+                agent.
+            </field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_49">
+            <field name="code">DRD</field>
+            <field name="prepaid" eval="'boolean'"/>
+            <field name="name">Dry Reefer Discount</field>
+            <field name="description">Discount allowance per container when shipper uses reefer
+                equipment for dry cargo shipments.
+            </field>
+            <field name="type_of_charges">freight</field>
+        </record>
+        <record model="charges" id="charge_50">
+            <field name="code">DHC</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Handling Charge-Destination</field>
+            <field name="description">The charge associated with specific costs at discharge terminals.</field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_51">
+            <field name="code">DDF</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Documentation Fee-Destination</field>
+            <field name="description">The charge associated with documentation processing at destination.</field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_52">
+            <field name="code">PAI</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Port Additionals/Port Dues Import</field>
+            <field name="description">Charges assessed for port additionals or when Carrier is
+                collecting port dues from the customer on behalf of the port.
+            </field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_53">
+            <field name="code">DCF</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Dangerous Cargo Documentation Fee</field>
+            <field name="description">The charge associated with documentation processing for dangerous cargo.</field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_54">
+            <field name="code">RFM</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Reefer Monitoring/Plug-in Fee</field>
+            <field name="description">The service associated with monitoring reefer containers
+                or carrier's use of electricity to operate refrigerated equipment.
+            </field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_55">
+            <field name="code">CSH DESTINATION</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Container Shifting Charge</field>
+            <field name="description">Charge associated with shifting of container within terminal.</field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_56">
+            <field name="code">CUS</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Customs Clearance</field>
+            <field name="description">The service/assessment applied, for the carrier arranging
+                and performing customs clearance, on behalf of the
+                customer.
+            </field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_57">
+            <field name="code">FRO</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Free In</field>
+            <field name="description">The charges associated with loading, stowage and lashing</field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_58">
+            <field name="code">HBL DESTINATION</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">House Transport Document</field>
+            <field name="description">Fee applies when administration at origin or destination is
+                required due to the use of House Transport Document.
+            </field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_59">
+            <field name="code">CON DESTINATION</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Congestion Surcharge</field>
+            <field name="description">Charge assessed for port congestion.</field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_60">
+            <field name="code">IHI</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">INLAND HAULAGE IMPORT</field>
+            <field name="description">Charges associated with arranging intermodal transportation for imports.</field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_61">
+            <field name="code">WFC</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Wharfage</field>
+            <field name="description">Wharfage is a pass-through charge associated with port
+                assessment fees against carrier's vessel.
+            </field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_62">
+            <field name="code">FUS DESTINATION</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Intermodal Fuel Surcharge</field>
+            <field name="description">A charge associated with intermodal fuel cost</field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_63">
+            <field name="code">PSI</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Port Security Charge Import</field>
+            <field name="description">Fee associated with port security costs. This charge will
+                not apply on transhipment cargo.
+            </field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_64">
+            <field name="code">CAP DESTINATION</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Capatazia</field>
+            <field name="description">The charge associated with specific costs at discharge or
+                origin terminals in Brazil.
+            </field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_65">
+            <field name="code">TCF DESTINATION</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">TCFB Charge</field>
+            <field name="description">Government imposed handling charge in Tanzania.</field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_66">
+            <field name="code">DCI</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Dangerous cargo surcharge (inland haulage)</field>
+            <field name="description">Fee assessed for the inland haulage of cargo of a
+                hazardous nature as classified under imo
+                regulations
+            </field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_67">
+            <field name="code">IHT DESTINATION</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Inland Haulage Road Tax</field>
+            <field name="description">Tax which related to the use of highways. Tax is charged
+                depending on rules set per country and can be a fixed
+                amount for purchasing a vignette or an amount which is
+                based on driven kilometres.
+            </field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_68">
+            <field name="code">TAX DESTINATION</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Government and Port Taxes</field>
+            <field name="description">Applies when carrier is collecting tax from the customer on
+                behalf of the port or government.
+            </field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_69">
+            <field name="code">ULF</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Logistics Fee</field>
+            <field name="description">Fee associated with agency work within the port facility,
+                including but not limited to, vessel clearance, filings with
+                Customs, and work with other authorities.
+            </field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_70">
+            <field name="code">CCL</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Container Cleaning</field>
+            <field name="description">The service associated with cleaning the container by
+                request of the shipper, consignee or their agent.
+            </field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_71">
+            <field name="code">CLF</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Freight Collection Fee</field>
+            <field name="description">Fee associated with the collection of freight.</field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_72">
+            <field name="code">TCI</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Temporary Customs Import</field>
+            <field name="description">Charge related to the handling of temporary customs
+                clearance of the container (not cargo) on import
+                shipments.
+            </field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_73">
+            <field name="code">SCU DESTINATION</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Cargo Protection Fee</field>
+            <field name="description">The charge applied based on shipper's or consignees'request for additional
+                security.
+            </field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_74">
+            <field name="code">RPS DESTINATION</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">River Toll Charge</field>
+            <field name="description">Carrier's pass-through charges associated with river tolls.(Argentina and
+                Uruguay)
+            </field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_75">
+            <field name="code">IMP</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Import Service Charge</field>
+            <field name="description">The charges associated with the administration of
+                providing import services such as equipment release,
+                arranging pick-up/drop-off, handling or notifications,
+                where these are not charged separately, including but not
+                limited to the service associated with couriering transport
+                documents by request of the shipper, consignee, or their
+                agent.
+            </field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_76">
+            <field name="code">PHI DESTINATION</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Government Agency Inspection</field>
+            <field name="description">The service associated with arranging government agency inspections on behalf of
+                the customer.
+            </field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_77">
+            <field name="code">PIO DESTINATION</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Pick-Up/Drop-Off</field>
+            <field name="description">The service of picking up or dropping off container at customer's nominated
+                location.
+            </field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_78">
+            <field name="code">HDL DESTINATION</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Lift On Lift Off</field>
+            <field name="description">Charges associated with lifting containers on or off the chassis.</field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_79">
+            <field name="code">CER DESTINATION</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Government Agency Certification</field>
+            <field name="description">The service associated with arranging government agency certification on behalf of
+                the customer.
+            </field>
+            <field name="type_of_charges">destination</field>
+        </record>
+        <record model="charges" id="charge_80">
+            <field name="code">CCH DESTINATION</field>
+            <field name="collect" eval="'boolean'"/>
+            <field name="name">Chassis Usage</field>
+            <field name="description">Usage of carrier supplied chassis.</field>
+            <field name="type_of_charges">destination</field>
+        </record>
+    </data>
+</odoo>

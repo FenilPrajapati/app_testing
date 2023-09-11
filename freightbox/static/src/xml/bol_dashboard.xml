@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+
+    <t t-name="freightbox.BOLDashboard">
+        <div class="o_bol_dashboard container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <table class="table table-sm">
+                        <tbody>
+                            <tr>
+                                <td class="o_text">
+                                    <div>All Events</div>
+                                </td>
+                                <td class="o_main o_bol_dashboard_action" title="Master B/L" name="freightbox.action_master_bill_of_lading" context='{"search_default_filter_master_bl": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['master_bl']"/><br/>Master B/L</a>
+                                </td>
+                                <td class="o_main o_bol_dashboard_action" title="House B/L" name="freightbox.action_master_bill_of_lading" context='{"search_default_filter_house_bl": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['house_bl']"/><br/>House B/L</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </t>
+        
+</template>

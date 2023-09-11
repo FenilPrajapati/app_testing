@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="vessel_location_track_search_view" model="ir.ui.view">
+            <field name="name">vessel.location.track.search.view</field>
+            <field name="model">vessel.location.track</field>
+            <field name="arch" type="xml">
+                <search string="Search Vessel Track">
+                    <field name="job_id" string="Job" filter_domain="[('job_id', 'ilike', self)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="vessel_location_track_tree_view" model="ir.ui.view">
+            <field name="name">vessel.location.track.tree.view</field>
+            <field name="model">vessel.location.track</field>
+            <field name="arch" type="xml">
+                <tree string="Track Trace Event" editable="top">
+                    <field name="job_id" readonly="1" force_save="1"/>
+                    <field name="latitude"/>
+                    <field name="longitude"/>
+                    <field name="timestamp"/>
+                    <field name="draft"/>
+                    <field name="cog"/>
+                    <field name="heading"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="vessel_location_track_form_view" model="ir.ui.view">
+            <field name="name">vessel.location.track.form.view</field>
+            <field name="model">vessel.location.track</field>
+            <field name="arch" type="xml">
+                <form string="Track Trace Event">
+                    <sheet>
+                        <group>
+                            <field name="job_id"/>
+                            <field name="latitude"/>
+                            <field name="longitude"/>
+                            <field name="timestamp"/>
+                            <field name="draft"/>
+                            <field name="cog"/>
+                            <field name="heading"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="vessel_location_track_action" model="ir.actions.act_window">
+            <field name="name">Vessel Tracking</field>
+            <field name="res_model">vessel.location.track</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="context">{'group_by' : ['job_id']}</field>
+            <field name="search_view_id" ref="vessel_location_track_search_view"/>
+            <field name="view_id" ref="vessel_location_track_tree_view"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

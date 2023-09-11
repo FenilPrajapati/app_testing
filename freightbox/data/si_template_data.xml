@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+         <record forcecreate="True" model="si.templates" id="si_template_1">
+            <field name="name">Sample SI-Template1</field>
+            <field name="transport_document_type_code">bol</field>
+            <field name="is_shipped_onboard_type" eval="False"/>
+            
+            <field name="number_of_originals">3</field>
+            <field name="is_data_template" eval="True"/>
+            <field name="number_of_copies">5</field>
+            <field name="pre_carriage_under_shippers_responsibility">truck</field>
+            <field name="is_electronic" eval="'boolean'"/>
+            <field name="carrier_booking_reference">MSC6789545</field>
+            <field name="is_charges_displayed" eval="'boolean'"/>
+            <field name="location_name">Panipat</field>
+            <field name="un_location_code">UNPNP</field>
+            <field name="city_name">Panipat</field>
+            <field name="state_region">Haryana</field>
+            <field name="country">India</field>
+            <!-- <field name="si_template_cargo_items_line" ref='cargo_items_line_template1' />
+            <field name="si_template_transport_equipment_line" ref='transport_equipment_template1' />
+            <field name="si_template_document_parties_line" ref='document_parties_template1' />
+            <field name="si_template_shipment_location_line" ref='shipment_location_template1' />
+            <field name="si_template_references_line" ref='shipping_references_template1' />
+             -->
+           
+        </record>
+
+        <record id="cargo_items_line_template1" model="cargo.line.items">
+            <field name="si_template_cargo_line_id" ref="freightbox.si_template_1"/>
+            <field name="cargo_line_items_id">1</field>
+            <field name="shipping_marks">Rice in Bags</field>
+            <field name="carrier_booking_reference">MSCU00003</field>
+            <field name="description_of_goods">INDIAN 1121 STEAM BASMATI RICE PACKED IN4290 LAMINATED BAGS OF 50 KG EACH LOADEDON 33 PALLETS ; IN 4290 ; LOADED ON</field>
+            <field name="hs_code">10063020</field>
+            <field name="number_of_packages">400</field>
+            <field name="weight">20.00</field>
+            <field name="volume">0.00</field>
+            <field name="weight_unit">t</field>
+            <field name="volume_unit"/>
+            <field name="package_code">271</field>
+            <field name="equipment_reference">MSCU5647382</field>
+            <field name="cargo_array_created_by"/>
+
+        
+            
+
+           
+        </record>
+
+        <record id="transport_equipment_template1" model="transport.equipment">
+            <field name="si_template_transport_equipment_line_id" ref="freightbox.si_template_1"/>
+            <field name="transport_equipment_row_id">1</field>
+            <field name="equipment_reference_id">MSCU5647382</field>
+            <field name="weight_unit">ton</field>
+            <field name="cargo_gross_weight">23.50</field>
+            <field name="container_tare_weight">3.50</field>
+            <field name="iso_equipment_code">20GP</field>
+            <field name="is_shipper_owned" eval="True"/>
+            <field name="temperature_min">0.00</field>
+            <field name="temperature_max">0.00</field>
+            <field name="temperature_unit">CEL</field>
+            <field name="humidity_min">0.00</field>
+            <field name="humidity_max">0.00</field>
+            <field name="ventilation_min">0.00</field>
+            <field name="ventilation_max">0.00</field>
+            <field name="seal_number">Seal12345</field>
+            <field name="seal_source">SLINE</field>
+            <field name="seal_type">Wire</field>
+            <field name="transport_equipment_array_created_by"/>
+            
+
+        
+            
+
+           
+        </record>
+
+        <record id="document_parties_template1" model="document.parties">
+            <field name="si_template_document_parties_line_id" ref="freightbox.si_template_1"/>
+            <field name="document_parties_row_id">1</field>
+            <field name="party_name_id">Maharaja Exports Pvt Ltd</field>
+            <field name="tax_reference_1">BE122334455</field>
+            <field name="public_key">Public key used for digital signature SSH Maybe</field>
+            <field name="street">Hamburg Hauptbahnof</field>
+            <field name="street_number">215 EBJ</field>
+            <!--  <field name="is_to_be_notified" eval="False"/>  -->
+            <field name="floor">12</field>
+            <field name="post_code">20099</field>
+            <field name="city">Hamburg</field>
+            <field name="state_region">Hamburg Germany</field>
+            <field name="country">Germany</field>
+            <field name="tax_reference_2">OS CN COW NP COW COX</field>
+            <field name="nmfta_code">7454</field>
+            <field name="party_function">CN</field>
+            <field name="address_line">216 Bestech chambers , Sushant Lok 1 , Gurgaon 122018</field>
+            <field name="name">Capt Sanja Tyagi counterpart</field>
+            <field name="email">info@v2maritime.com</field>
+            <!--  <field name="ventilation_max">Bhargavi</field>  -->
+            <field name="phone">00917436520000</field>
+            <field name="is_to_be_notified" eval="True"/>
+            <field name="document_parties_array_created_by"/>
+            
+
+        
+            
+
+           
+        </record>
+
+        <record id="shipment_location_template1" model="shipment.location">
+            <field name="si_template_shipment_location_line_id" ref="freightbox.si_template_1"/>
+            <field name="shipment_location_row_id">1</field>
+            <field name="location_type" ref="freightbox.locationtype_1"/>
+            <field name="location_name">Panipat</field>
+            <field name="latitude">00956E</field>
+            <field name="longitude">5331N</field>
+            <field name="un_location_code">INPNP</field>
+            <field name="street_name">Sanjay Rice mill , Panipat</field>
+            <field name="street_number">Village Panipat Dehat</field>
+            <field name="floor">11</field>
+            <field name="post_code">132103</field>
+            <field name="city_name">Panipat</field>
+            <field name="state_region">Haryana</field>
+            <field name="country">India</field>
+            <field name="shipment_location_array_created_by"/>
+        </record>
+
+        <record id="shipment_location_template2" model="shipment.location">
+            <field name="si_template_shipment_location_line_id" ref="freightbox.si_template_1"/>
+            <field name="shipment_location_row_id">2</field>
+            <field name="location_type" ref="freightbox.locationtype_6"/>
+            <field name="location_name">Mundra</field>
+            <field name="latitude">00956E</field>
+            <field name="longitude">5331N</field>
+            <field name="un_location_code">INMUN</field>
+            <field name="street_name">shantivan</field>
+            <field name="street_number">shantivan society , Adani township</field>
+            <!--  <field name="is_to_be_notified" eval="False"/>  -->
+            <field name="floor">C4</field>
+            <field name="post_code">370405</field>
+            <field name="city_name">Mundra</field>
+            <field name="state_region">Gujrat</field>
+            <field name="country">India</field>
+            <!--  <field name="displayed_name">Adani Ports</field>  -->
+            <field name="shipment_location_array_created_by"/>
+        </record>
+
+        <record id="shipment_location_template3" model="shipment.location">
+            <field name="si_template_shipment_location_line_id" ref="freightbox.si_template_1"/>
+            <field name="shipment_location_row_id">3</field>
+            <field name="location_type" ref="freightbox.locationtype_7"/>
+            <field name="location_name">Hamburg</field>
+            <field name="latitude">53°33′10″N</field>
+            <field name="longitude">10°00′23″E</field>
+            <field name="un_location_code">DEHAM</field>
+            <!--  <field name="is_to_be_notified" eval="False"/>  -->
+            <field name="street_name">HauptbahnOf</field>
+            <field name="street_number">1234</field>
+            <!--  <field name="is_to_be_notified" eval="False"/>  -->
+            <field name="floor">4</field>
+            <field name="post_code">20099</field>
+            <field name="city_name">Hamburg</field>
+            <field name="state_region">Hamburg,Germany</field>
+            <field name="country">Germany</field>
+            <!--  <field name="displayed_name">Consignee Name or Notifying Party</field>  -->
+            <field name="shipment_location_array_created_by"/>
+        </record>
+
+        <record id="shipping_references_template1" model="shipping.references">
+            <field name="si_template_references_line_id" ref="freightbox.si_template_1"/>
+            <field name="shipping_references_row_id">1</field>
+            <field name="reference_type">FF</field>
+            <field name="reference_value">FF, SI, PO, CR, AAO https://unece.org/fileadmin/DAM/trade/edifact/code/1153cl.htm</field>
+            <field name="references_array_created_by"/>
+        </record>
+
+        <record id="shipping_references_template2" model="shipping.references">
+            <field name="si_template_references_line_id" ref="freightbox.si_template_1"/>
+            <field name="shipping_references_row_id">2</field>
+            <field name="reference_type">FF</field>
+            <field name="reference_value">FF</field>
+        </record>
+        
+    </data>
+</odoo> 

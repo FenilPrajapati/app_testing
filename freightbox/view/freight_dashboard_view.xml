@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <record id="action_freight_box_dashboard" model="ir.actions.client">
+            <field name="name">Freight Dashboard</field>
+            <field name="tag">freight_box_dashboard</field>
+        </record>
+    </data>
+</odoo>

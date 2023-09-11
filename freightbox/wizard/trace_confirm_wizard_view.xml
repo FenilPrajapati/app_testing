@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="trace_confirm_wizard_form" model="ir.ui.view">
+            <field name="name">Trace Confirmation</field>
+            <field name="model">trace.confirm.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Confirmation">
+                    <sheet>
+                        <div>
+                            <H2>Confirmation</H2>
+                            <field name="message" readonly="1" force_save="1"/>
+                            <field name="transport_id" invisible="1"/>
+                            <field name="is_track_used_up" invisible="1"/>
+                        </div>
+                    </sheet>
+                    <footer>
+                        <button name="call_trace_api" string="Confirm"
+                                type="object" class="btn-primary"
+                                attrs="{'invisible': [('is_track_used_up', '=', True)]}"/>
+                        <button string="Cancel" special="cancel" class="btn-secondary"
+                                attrs="{'invisible': [('is_track_used_up', '=', True)]}"/>
+                        <button string="Okay" special="cancel" class="btn-primary"
+                                attrs="{'invisible': [('is_track_used_up', '!=', True)]}"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

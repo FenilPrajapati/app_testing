@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+    <!-- This template is for a table at the top of purchase views that shows some KPIs. -->
+    <t t-name="freightbox.TnTEventDashboard">
+        <div class="o_track_trace_event_dashboard container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-sm">
+                        <!-- thead needed to avoid list view rendering error for some reason -->
+                        <tbody>
+                            <tr>
+                            <!-- can't use th tag due to list rendering error when no values in list... -->
+                                <td class="o_text">
+                                    <div>All Events</div>
+                                </td>
+                                <!-- <td class="o_main o_dashboard_action" title="Planned" name="freightbox.tnt_event_dashboard" context='{"search_default_planned_events": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['planned']"/><br/>Planned</a>
+                                </td>
+                                <td class="o_main o_dashboard_action" title="Estimated" name="freightbox.tnt_event_dashboard" context='{"search_default_estimated_events": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['estimated']"/><br/>Estimated</a>
+                                </td>
+                                <td class="o_main o_dashboard_action" title="Actual" name="freightbox.tnt_event_dashboard" context='{"search_default_actual_events": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['actual']"/><br/>Actual</a>
+                                </td> -->
+                                <td class="o_main o_dashboard_action" title="at_origin" name="freightbox.tnt_event_dashboard" context='{"search_default_at_origin_events": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['at_origin']"/><br/>At Origin</a>
+                                </td>
+                               
+                                <td class="o_main o_dashboard_action" title="in_transit" name="freightbox.tnt_event_dashboard" context='{"search_default_in_transit": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['in_transit']"/><br/>In Transit</a>
+                                </td>
+                                <td class="o_main o_dashboard_action" title="at_ts_port" name="freightbox.tnt_event_dashboard" context='{"search_default_at_ts_port": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['at_ts_port']"/><br/>At Tansshipment port</a>
+                                </td>
+                                 <td class="o_main o_dashboard_action" title="at_destination" name="freightbox.tnt_event_dashboard" context='{"search_default_at_destination": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['at_destination']"/><br/>At Destination</a>
+                                </td>
+                                <td class="o_main o_dashboard_action" title="Delayed" name="freightbox.tnt_event_dashboard" context='{"search_default_delayed_events": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['delayed']"/><br/>Delayed</a>
+                                </td>
+                                <td class="o_main o_dashboard_action" title="under_detention" name="freightbox.tnt_event_dashboard" context='{"search_default_under_detention": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['under_detention']"/><br/>under detention</a>
+                                </td>
+                                <td class="o_main o_dashboard_action" title="under_demurrage" name="freightbox.tnt_event_dashboard" context='{"search_default_under_demurrage": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['under_demurrage']"/><br/>under Demurrage</a>
+                                </td>
+                                <td class="o_main o_dashboard_action" title="gt_tracked" name="freightbox.tnt_event_dashboard" context='{"search_default_gt_tracked": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['gt_tracked']"/><br/>Tracked by Gatehouse</a>
+                                </td>
+                            </tr>
+                        </tbody>
+<!--                        <tbody>-->
+<!--                            <tr>-->
+<!--                                <td class="o_text">-->
+<!--                                    <div>My RFQs</div>-->
+<!--                                </td>-->
+<!--                                <td class="o_main o_dashboard_action" title="My Draft RFQs" name="purchase.purchase_action_dashboard" context='{"search_default_draft_rfqs": true, "search_default_my_purchases": true}'>-->
+<!--                                    <a href="#"><t t-esc="values['my_to_send']"/></a>-->
+<!--                                </td>-->
+<!--                                <td class="o_main o_dashboard_action" title="My Waiting RFQs" name="purchase.purchase_action_dashboard" context='{"search_default_waiting_rfqs": true, "search_default_my_purchases": true}'>-->
+<!--                                    <a href="#"><t t-esc="values['my_waiting']"/></a>-->
+<!--                                </td>-->
+<!--                                <td class="o_main o_dashboard_action" title="My Late RFQs" name="purchase.purchase_action_dashboard" context='{"search_default_late_rfqs": true, "search_default_my_purchases": true}'>-->
+<!--                                    <a href="#"><t t-esc="values['my_late']"/></a>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                        </tbody>-->
+                    </table>
+                </div>
+            </div>
+        </div>
+    </t>
+</template>

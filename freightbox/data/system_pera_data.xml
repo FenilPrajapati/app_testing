@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.config_parameter" id="inquiry_tutorial_video">
+        <field name="key">freightbox.inquiry_tutorial_video</field>
+        <field name="value">https://mother.powerpbox.org/powerpbox_mother/static/src/video/inquiry_tutorial_video.html</field>
+    </record>
+    <record model="ir.config_parameter" id="rfq_tutorial_video">
+        <field name="key">freightbox.rfq_tutorial_video</field>
+        <field name="value">https://mother.powerpbox.org/powerpbox_mother/static/src/video/rfq_tutorial_video.html</field>
+    </record>
+    <record model="ir.config_parameter" id="po_tutorial_video">
+        <field name="key">freightbox.po_tutorial_video</field>
+        <field name="value">https://mother.powerpbox.org/powerpbox_mother/static/src/video/po_tutorial_video.html</field>
+    </record>
+    <record model="ir.config_parameter" id="shipment_quote_tutorial_video">
+        <field name="key">freightbox.shipment_quote_tutorial_video</field>
+        <field name="value">https://mother.powerpbox.org/powerpbox_mother/static/src/video/shipment_quote_tutorial_video.html</field>
+    </record>
+    <record model="ir.config_parameter" id="so_tutorial_video">
+        <field name="key">freightbox.so_tutorial_video</field>
+        <field name="value">https://mother.powerpbox.org/powerpbox_mother/static/src/video/so_tutorial_video.html</field>
+    </record>
+    <record model="ir.config_parameter" id="job_tutorial_video">
+        <field name="key">freightbox.job_tutorial_video</field>
+        <field name="value">https://mother.powerpbox.org/powerpbox_mother/static/src/video/job_tutorial_video.html</field>
+    </record>
+    <record model="ir.config_parameter" id="transport_tutorial_video">
+        <field name="key">freightbox.transport_tutorial_video</field>
+        <field name="value">https://mother.powerpbox.org/powerpbox_mother/static/src/video/transport_tutorial_video.html</field>
+    </record>
+    <record model="ir.config_parameter" id="si_tutorial_video">
+        <field name="key">freightbox.si_tutorial_video</field>
+        <field name="value">https://mother.powerpbox.org/powerpbox_mother/static/src/video/si_tutorial_video.html</field>
+    </record>
+    <record model="ir.config_parameter" id="bol_tutorial_video">
+        <field name="key">freightbox.bol_tutorial_video</field>
+        <field name="value">https://mother.powerpbox.org/powerpbox_mother/static/src/video/bol_tutorial_video.html</field>
+    </record>
+    <record model="ir.config_parameter" id="complete_tutorial_video_start_to_end">
+        <field name="key">freightbox.complete_tutorial_video_start_to_end</field>
+        <field name="value">https://mother.powerpbox.org/powerpbox_mother/static/src/video/complete_tutorial_video_start_to_end.html</field>
+    </record>
+</odoo>

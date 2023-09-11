@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <!-- ************************ Facility Type Code ************************** -->
+        <!-- ********** Facility Type Code tree view ********** -->
+        <record id="facility_type_code_tree_view" model="ir.ui.view">
+            <field name="name">Facility Type Code</field>
+            <field name="model">facility.type.code</field>
+            <field name="arch" type="xml">
+                <tree string="Facility Type Code">
+                    <field name="facility_type_code"/>
+                    <field name="facility_type_name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+        <!-- ********** Facility Type Code form view ********** -->
+        <record id="facility_type_code_form_view" model="ir.ui.view">
+            <field name="name">Facility Type Code</field>
+            <field name="model">facility.type.code</field>
+            <field name="arch" type="xml">
+                <form string="Facility Type Code">
+                    <sheet>
+                        <group colspan="4" col="4">
+                            <field name="facility_type_code"/>
+                            <field name="facility_type_name"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- ********** Action Facility Type Code ********** -->
+
+        <record id="action_facility_type_code" model="ir.actions.act_window">
+            <field name="name">Facility Type Code</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">facility.type.code</field>
+            <field name="view_id" ref="facility_type_code_tree_view"></field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record id="tree_service_for_Shipping_line" model="ir.ui.view">
+            <field name="name">Vessels for Shipping line</field>
+            <field name="model">service.for.sl</field>
+            <field name="arch" type="xml">
+                <tree string="Vessels for Shipping line">
+                    <field name="name"/>
+                    
+                </tree>
+            </field>
+        </record>
+
+
+        
+        <!-- ********** Service for Shippinh line form view ********** -->
+
+
+        <record id="form_service_for_Shipping_line" model="ir.ui.view">
+            <field name="name">Vessels for Shipping line</field>
+            <field name="model">service.for.sl</field>
+            <field name="arch" type="xml">
+                <form string="Vessels for Shipping line">
+                    <sheet>
+                        <group colspan="4" col="4">
+                            <field name="name"/>
+                            
+                        </group>
+                    </sheet>
+                    <!-- <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div> -->
+                </form>
+            </field>
+        </record>
+
+
+        <!-- ********** Action Service for Shippinh line ********** -->
+
+        <record id="action_service_for_Shipping_line" model="ir.actions.act_window">
+            <field name="name">Vessels for Shipping line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">service.for.sl</field>
+            <field name="view_id" ref="tree_service_for_Shipping_line"></field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- ********** Repair type tree view ********** -->
+
+        <record id="tree_repair_type" model="ir.ui.view">
+            <field name="name">Repair type</field>
+            <field name="model">repair.type</field>
+            <field name="arch" type="xml">
+                <tree string="Repair type">
+                    <field name="name"/>
+                    
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- ********** Repair type form view ********** -->
+
+        <record id="form_repair_type" model="ir.ui.view">
+            <field name="name">Repair type</field>
+            <field name="model">repair.type</field>
+            <field name="arch" type="xml">
+                <form string="Repair type">
+                    <sheet>
+                        <group colspan="4" col="4">
+                            <field name="name"/>
+                            
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- ********** Action Repair type ********** -->
+
+        <record id="action_repair_type" model="ir.actions.act_window">
+            <field name="name">Repair type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">repair.type</field>
+            <field name="view_id" ref="tree_repair_type"></field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+
+    </data>
+</odoo>

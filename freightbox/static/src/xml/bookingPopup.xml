@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <!-- user_template_create_popup -->
+    <div t-name="freightbox.user_template_create_popup">
+        <div class="form-row">
+                <div t-attf-class="form-group col-4">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="user_template_create_name">Name*</label>
+                    <input type="text" data-target="#user_template_create_name"
+                           name="user_template_create_name" id="user_template_create_name" required="required"
+                           autofocus="autofocus"
+                           t-attf-class="form-control" t-att-title="user_template_create_name"/>
+                    <div id="user_template_create_name_div"/>
+                    <br></br>
+              </div>
+            </div>
+     </div>
+</templates>

@@ -1,0 +1,127 @@
+<odoo>
+    <data noupdate="1">
+        <!--  ********** APIs **********  -->
+        <record model="api.integration" id="api_currency_rate">
+            <field name="url">https://currency-exchange.p.rapidapi.com/exchange</field>
+            <field name="host">currency-exchange.p.rapidapi.com</field>
+            <field name="key">5495d0e38amsh96232c947415667p1efaa8jsn7d2a41cacfa0</field>
+            <field name="description">Automatic Currency Rate</field>
+            <field name="model_id" ref="model_request_for_quote"/>
+        </record>
+        <record model="api.integration" id="api_vessel_current_location">
+            <field name="url">https://api.searoutes.com/vessel/v2/%s/position</field>
+            <field name="name">vessel_location_track</field>
+            <field name="key">CZuWwcPVFjDvqNVEEfJ41AyNCxNtqF9n9uRbUVX6</field>
+            <field name="description">API to get vessel's current location</field>
+        </record>
+        <record model="api.integration" id="api_track_trace_ref">
+            <field name="url">https://mother.powerpbox.org/mother_odoo14/get_track_trace_events_gh</field>
+            <field name="name">track_trace_ref</field>
+            <field name="username">indra</field>
+            <field name="password">indra</field>
+            <field name="token">447b2d295a113f7c784bf1e7528a76123ab1a6d0</field>
+            <field name="description">API To get Tracking details.</field>
+        </record>
+        <record model="api.integration" id="api_get_routes_by_loccode">
+            <field name="url">https://mother.powerpbox.org/mother_odoo14/get_routes_by_loccode</field>
+            <field name="name">get_routes_by_loccode</field>
+            <field name="description">API to get routes using port unloc code.</field>
+        </record>
+        <record model="api.integration" id="get_routes_by_geocode">
+            <field name="url">https://mother.powerpbox.org/mother_odoo14/get_routes_by_geocode</field>
+            <field name="name">get_routes_by_geocode</field>
+            <field name="description">API to get routes using port's geo location (Lat - Long).</field>
+        </record>
+        <record model="api.integration" id="get_allowed_gh_api_calls">
+            <field name="url">https://mother.powerpbox.org/mother_odoo14/get_allowed_gh_api_calls</field>
+            <field name="name">get_allowed_gh_api_calls</field>
+            <field name="description">API to get No. of allowed API calls for current user.</field>
+        </record>
+        <record model="api.integration" id="get_distance_time_from_geo_location">
+            <field name="url">https://mother.powerpbox.org/mother_odoo14/get_distance_time_from_geo_location</field>
+            <field name="name">get_distance_time_from_geo_location</field>
+            <field name="description">API to get Distance and Time using geolocation of 2 ports.</field>
+        </record>
+        <record model="api.integration" id="get_distance_time">
+            <field name="url">https://mother.powerpbox.org/mother_odoo14/get_distance_time</field>
+            <field name="name">get_distance_time</field>
+            <field name="description">API to get Distance and Time of 2 ports (using name and country).</field>
+        </record>
+        <record model="api.integration" id="get_port_details_from_locode">
+            <field name="url">https://mother.powerpbox.org/mother_odoo14/get_port_details_from_locode</field>
+            <field name="name">get_port_details_from_locode</field>
+            <field name="description">API to get port details from unloc code.</field>
+        </record>
+        <record model="api.integration" id="add_allowed_api_calls">
+            <field name="url">https://mother.powerpbox.org/mother_odoo14/add_allowed_api_calls</field>
+            <field name="name">add_allowed_api_calls</field>
+            <field name="description">API to add allowed API calls to freight user.</field>
+        </record>
+        <record model="api.integration" id="freightbox_installed_user">
+            <field name="url">https://mother.powerpbox.org/mother_odoo14/freightbox_installed_user</field>
+            <field name="name">freightbox_installed_user</field>
+            <field name="description">API to manage Freight User on Install / Uninstall App.</field>
+        </record>
+        <record model="api.integration" id="post_inquiry_from_freightbox">
+            <field name="url">https://mother.powerpbox.org/mother_odoo14/post_inquiry_from_freightbox</field>
+            <field name="name">post_inquiry_from_freightbox</field>
+            <field name="description">API to POST Inquiry from Freightbox to Mother Server.</field>
+        </record>
+        <record model="api.integration" id="post_job_from_freightbox">
+            <field name="url">https://mother.powerpbox.org/mother_odoo14/post_job_from_freightbox</field>
+            <field name="name">post_job_from_freightbox</field>
+            <field name="description">API to POST Job from Freightbox to Mother Server.</field>
+        </record>
+        <record model="api.integration" id="post_si_from_freightbox">
+            <field name="url">https://mother.powerpbox.org/mother_odoo14/post_si_from_freightbox</field>
+            <field name="name">post_si_from_freightbox</field>
+            <field name="description">API to POST SI from Freightbox to Mother Server.</field>
+        </record>
+        <record model="api.integration" id="update_si_from_freightbox">
+            <field name="url">https://mother.powerpbox.org/mother_odoo14/update_si_from_freightbox</field>
+            <field name="name">update_si_from_freightbox</field>
+            <field name="description">API to Update SI from Freightbox to Mother Server.</field>
+        </record>
+        <record model="api.integration" id="post_bol_from_freightbox">
+            <field name="url">https://mother.powerpbox.org/mother_odoo14/post_bol_from_freightbox</field>
+            <field name="name">post_bol_from_freightbox</field>
+            <field name="description">API to POST BOL from Freightbox to Mother Server.</field>
+        </record>
+        <record model="api.integration" id="post_transport_from_freightbox">
+            <field name="url">https://mother.powerpbox.org/mother_odoo14/post_transport_from_freightbox</field>
+            <field name="name">post_transport_from_freightbox</field>
+            <field name="description">API to POST transport from Freightbox to Mother Server.</field>
+        </record>
+        <record model="api.integration" id="get_facility_code">
+            <field name="url">https://api.bic-code.org/v1</field>
+            <field name="name">get_facility_code</field>
+            <field name="key">dBy9AYCJjm1Gv2tdqO98B6SoMNPUpR6t6Hixw9UO</field>
+            <field name="description">API to get facility details from facility code.</field>
+        </record>
+        <record model="api.integration" id="forward_reverse_geo_coding">
+            <field name="url">https://forward-reverse-geocoding.p.rapidapi.com/v1</field>
+            <field name="name">forward_reverse_geo_coding</field>
+            <field name="key">bf6da40350msh8328c98e9927978p17e8b8jsn1a66b4c0ed12</field>
+            <field name="host">forward-reverse-geocoding.p.rapidapi.com</field>
+            <field name="description">API to get location details from geo code or location name.</field>
+        </record>
+        <record model="api.integration" id="get_unloc_code_details">
+            <field name="url">https://unlocode-timezone.p.rapidapi.com/default/unlocode_timezone.json</field>
+            <field name="name">get_unloc_code_details</field>
+            <field name="key">dBy9AYCJjm1Gv2tdqO98B6SoMNPUpR6t6Hixw9UO</field>
+            <field name="host">unlocode-timezone.p.rapidapi.com</field>
+            <field name="description">API to get port details from port unloc codes.</field>
+        </record>
+        <record model="api.integration" id="get_road_routes">
+            <field name="url">https://mother.powerpbox.org/mother_odoo14/get_road_routes</field>
+            <field name="name">get_road_routes</field>
+            <field name="description">API to get road routes from mother server.</field>
+        </record>
+
+        <!--<record model="api.integration" id="api_bol_data">
+            <field name="url">http://mother.powerpbox.org:8069/api/api_all_bol_datas/</field>
+            <field name="description">Master BOL</field>
+            <field name="model_id" ref="model_bill_of_lading"/>
+        </record>-->
+    </data>
+</odoo>

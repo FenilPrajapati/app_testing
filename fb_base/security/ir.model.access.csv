@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_port_user,port,model_port,base.group_user,1,1,1,1
+access_ports_templates,ports.templates,model_ports_templates,base.group_user,1,1,1,1
+access_ports_line,ports.line,model_ports_line,base.group_user,1,1,1,1
+access_sub_port,sub.port,model_sub_port,base.group_user,1,1,1,1
+access_facility_type_code,facility.type.code,model_facility_type_code,base.group_user,1,1,1,1
+access_charges,charges,model_charges,base.group_user,1,1,1,1
+access_charges_line,charges.line,model_charges_line,base.group_user,1,1,1,1
+access_charges_templates,charges.templates,model_charges_templates,base.group_user,1,1,1,1
+access_container_iso_code_user,container.iso.code,model_container_iso_code,base.group_user,1,1,1,1
+access_shipping_container,shipping.container,model_shipping_container,base.group_user,1,1,1,1
+access_repair_type,repair.type,model_repair_type,base.group_user,1,1,1,1
+access_service_for_sl,service.for.sl,model_service_for_sl,base.group_user,1,1,1,1
+access_mrg_charges,mrg.charges,model_mrg_charges,base.group_user,1,1,1,1
+access_minimum_rate,minimum.rate,model_minimum_rate,base.group_user,1,1,1,1
+access_hs_code,hs.code,model_hs_code,base.group_user,1,1,1,1
+access_detention_charges,detention.charges,model_detention_charges,base.group_user,1,1,1,1

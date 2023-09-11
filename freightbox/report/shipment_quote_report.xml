@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_shipment_quote" model="ir.actions.report">
+            <field name="name">Shipment Quote Report</field>
+            <field name="model">shipment.quote</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">freightbox.report_shipment_quote</field>
+            <field name="report_file">freightbox.report_shipment_quote</field>
+            <field name="binding_model_id" ref="model_shipment_quote"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

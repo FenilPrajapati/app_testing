@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- ***************** Service - Create Invoice Action -->
+        <record id="transport_template_form_view_wiz" model="ir.ui.view">
+            <field name="name">Transport Template</field>
+            <field name="model">transport.template.wiz</field>
+            <field name="arch" type="xml">
+                <form string="Transport Template">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="transport_id" invisible="1"/>
+                            <field name="is_created_from_transport" invisible="1"/>
+                        </group>
+                        <group attrs="{'invisible': [('is_created_from_transport','=',False)]}">
+                            <p style="color:#bd1f69">You have already created one Transport Template. If you want to
+                                update please click on Update button
+                            </p>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="update_transport_template" string="Update Transport Template"
+                                attrs="{'invisible': [('is_created_from_transport','=',False)]}"
+                                type="object" class="oe_highlight"/>
+                        <button name="create_transport_template" string="Create Transport Template"
+                                attrs="{'invisible': [('is_created_from_transport','=',True)]}"
+                                type="object" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="transport_message_wizard_form" model="ir.ui.view">
+            <field name="name">transport.message.wizard.form</field>
+            <field name="model">transport.message.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Transport Template Success">
+                    <p class="o_view_nocontent_smiling_face">
+                        Successfully created Transport Template
+                    </p>
+                    <footer>
+                        <button name="action_close" string="Ok" type="object" default_focus="1" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="transport_message_wizard_form_for_update_msg" model="ir.ui.view">
+            <field name="name">transport.message.wizard.form</field>
+            <field name="model">transport.message.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Transport Template Updated">
+                    <p class="o_view_nocontent_smiling_face">
+                        Successfully updated Transport Template
+                    </p>
+                    <footer>
+                        <button name="action_close" string="Ok" type="object" default_focus="1" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Track data control wizard -->
+        <record id="transport_tracking_template_form_view_wiz" model="ir.ui.view">
+            <field name="name">Transport Tracking</field>
+            <field name="model">transport.track.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Track">
+                    <sheet>
+                        <templates>
+                             <p style="color:#bd1f69"> You have tracked</p>
+                        </templates>
+                        <!--<group>
+                            <field name="name"/>
+                            <field name="rfq_id" invisible="1"/>
+                            <field name="is_created_from_rc" invisible="1"/>
+                        </group>-->
+                       <!-- <group>-->
+                            <p style="color:#bd1f69"> You have tracked</p>
+                            <field name="track_user_count"/>
+                            <p>data</p>
+                        <!--</group>-->
+                    </sheet>
+                    <footer>
+                        <button name="action_proceed_tracking" string="Proceed"
+                                type="object" class="oe_highlight"/>
+                        <button name="action_cancel_tracking" string="Cancel"
+                                type="object" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+
+    </data>
+</odoo>

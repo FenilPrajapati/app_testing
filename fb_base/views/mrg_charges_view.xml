@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <!-- ************************ mrg ************************** -->
+        <!-- ********** mrg tree view ********** -->
+        <record id="mrg_charges_tree_view" model="ir.ui.view">
+            <field name="name">Minimum rate guidelines</field>
+            <field name="model">mrg.charges</field>
+            <field name="arch" type="xml">
+                <tree string="Minimum rate guidelines">
+                    <field name="name"/>
+                    <field name="port_of_origin_id"/>
+                    <field name="final_port_of_destination_id"/>
+                    <!-- <field name="from_date"/>
+                    <field name="to_date"/>
+                    <field name="container_type"/>
+                    <field name="iso_code_id"/>
+                    <field name="commodity"/>
+                    <field name="mrg_charges"/>
+                    <field name="currency_id"/> -->
+                </tree>
+            </field>
+        </record>
+        <!-- ********** mrg form view ********** -->
+        <record id="mrg_charges_form_view" model="ir.ui.view">
+            <field name="name">Minimum rate guidelines</field>
+            <field name="model">mrg.charges</field>
+            <field name="arch" type="xml">
+                <form string="Minimum rate guidelines">
+                    <sheet>
+                        <group colspan="4" col="4">
+                            <field name="name" readonly="1"/>
+                            <field name="port_of_origin_id"/>
+                            <field name="final_port_of_destination_id"/>
+                            
+                        </group>
+                        <notebook>
+                             <page string="Minimum Rates" name="minimum_rates" >
+                                <field name="min_rates_line" >
+                                   <tree string="Minimum Rates" editable="bottom">
+                                        <field name="port_of_origin_id"/>
+                                        <field name="final_port_of_destination_id"/>
+                                        <field name="container_type"/>
+                                        <field name="iso_code_id"/>
+                                        <field name="charges_id" domain="[('type_of_charges', '=', 'freight')]"/>
+                                        <field name="charge_type"/>
+                                        <field name="hs_code_id"/>
+                                        <field name="commodity"/>
+                                        <field name="from_date"/>
+                                        <field name="to_date"/>
+                                         <field name="service_id"/>
+                                        <field name="mrg_charges"/>
+                                        <field name="currency_id"/>
+                                         <field name="prepaid"/>
+                                        <field name="collect"/>
+                                        <field name="party_id"/>
+                                        <button name="button_create_copy" type="object" icon="fa-plus" title="Plus"
+                                                class="oe_stat_button" help="copies this line into the next line"/>
+                                    </tree>
+                                </field>
+                                </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- ********** Action mrg ********** -->
+
+        <record id="action_mrg_charges" model="ir.actions.act_window">
+            <field name="name">Minimum rate guidelines</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrg.charges</field>
+            <field name="view_id" ref="mrg_charges_tree_view"></field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    
+
+    <!-- ************************ minimum rates ************************** -->
+        <!-- ********** minimum rates tree view ********** -->
+        <record id="minimum_rate_tree_view" model="ir.ui.view">
+            <field name="name">Minimum rates</field>
+            <field name="model">minimum.rate</field>
+            <field name="arch" type="xml">
+                <tree string="Minimum rates">
+                    <field name="port_of_origin_id"/>
+                            <field name="final_port_of_destination_id"/>
+                    <field name="container_type"/>
+                                        <field name="iso_code_id"/>
+                                        <field name="charges_id"/>
+                                        <field name="charge_type"/>
+                                        <field name="hs_code_id"/>
+                                        <field name="commodity"/>
+                                        <field name="from_date"/>
+                                        <field name="to_date"/>
+                                         <field name="service_id"/>
+                                        <field name="mrg_charges"/>
+                                        <field name="currency_id"/>
+                                         <field name="prepaid"/>
+                                        <field name="collect"/>
+                                        <field name="party_id"/>
+                </tree>
+            </field>
+        </record>
+        <!-- ********** minimum rates form view ********** -->
+        <record id="minimum_rate_form_view" model="ir.ui.view">
+            <field name="name">Minimum rates</field>
+            <field name="model">minimum.rate</field>
+            <field name="arch" type="xml">
+                <form string="Minimum rates">
+                    <sheet>
+                        <group colspan="4" col="4">
+                            <field name="port_of_origin_id"/>
+                            <field name="final_port_of_destination_id"/>
+                            <field name="container_type"/>
+                                        <field name="iso_code_id"/>
+                                        <field name="charges_id"/>
+                                        <field name="charge_type"/>
+                                        <field name="hs_code_id"/>
+                                        <field name="commodity"/>
+                                        <field name="from_date"/>
+                                        <field name="to_date"/>
+                                         <field name="service_id"/>
+                                        <field name="mrg_charges"/>
+                                        <field name="currency_id"/>
+                                         <field name="prepaid"/>
+                                        <field name="collect"/>
+                                        <field name="party_id"/>
+                                        <!-- <field name="contract_id"/> -->
+                            
+                        </group>
+                       
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- ********** Action minimum rates ********** -->
+
+        <record id="action_minimum_rate" model="ir.actions.act_window">
+            <field name="name">Minimum rates</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">minimum.rate</field>
+            <field name="view_id" ref="minimum_rate_tree_view"></field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- ********** HS Code tree view ********** -->
+        <record id="hs_code_tree_view" model="ir.ui.view">
+            <field name="name">HS Code</field>
+            <field name="model">hs.code</field>
+            <field name="arch" type="xml">
+                <tree string="HS Code">
+                    <field name="hs_code_classification"/>
+                    <field name="code"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- ********** HS Code form view ********** -->
+        <record id="hs_code_form_view" model="ir.ui.view">
+            <field name="name">HS Code</field>
+            <field name="model">hs.code</field>
+            <field name="arch" type="xml">
+                <form string="HS Code">
+                    <sheet>
+                        <group colspan="4" col="4">
+                            <field name="hs_code_classification"/>
+                            <field name="code"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- ********** Action HS Code ********** -->
+        <record id="action_hs_code" model="ir.actions.act_window">
+            <field name="name">HS Code</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hs.code</field>
+            <field name="view_id" ref="hs_code_tree_view"></field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- ************************ Detention Charges ************************** -->
+        <!-- ********** Detention Charges tree view ********** -->
+        <record id="detention_charges_tree_view" model="ir.ui.view">
+            <field name="name">Detention Charges</field>
+            <field name="model">detention.charges</field>
+            <field name="arch" type="xml">
+                <tree string="Detention Charges">
+                    <!-- <field name="port_of_origin_id"/>
+                            <field name="final_port_of_destination_id"/> -->
+                    <field name="container_type"/>
+                                        <field name="iso_code_id"/>
+                                        <field name="detention_at"/>
+                                        <field name="from_days"/>
+                                        <field name="to_days"/>
+                                        <field name="quantity"/>
+                                        <field name="total_days"/>
+                                        <field name="charges"/>
+                                        <field name="currency_id"/>
+                                        <field name="total_charge"/>
+                                        <field name="total_currency_id"/>
+                                        
+                </tree>
+            </field>
+        </record>
+        <!-- ********** Detention Charges form view ********** -->
+        <record id="detention_charges_form_view" model="ir.ui.view">
+            <field name="name">Detention Charges</field>
+            <field name="model">detention.charges</field>
+            <field name="arch" type="xml">
+                <form string="Detention Charges">
+                    <sheet>
+                        <group colspan="4" col="4">
+                            <!-- <field name="port_of_origin_id"/>
+                            <field name="final_port_of_destination_id"/> -->
+                            <field name="container_type"/>
+                                        <field name="iso_code_id"/>
+                                        <field name="detention_at"/>
+                                        <field name="from_days"/>
+                                        <field name="to_days"/>
+                                        <field name="quantity"/>
+                                        <field name="total_days"/>
+                                        <field name="charges"/>
+                                        <field name="currency_id"/>
+                                        <field name="total_charge"/>
+                                        <field name="total_currency_id"/>
+                            
+                        </group>
+                       
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- ********** Action Detention Charges ********** -->
+
+        <record id="action_detention_charges" model="ir.actions.act_window">
+            <field name="name">Detention Charges</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">detention.charges</field>
+            <field name="view_id" ref="detention_charges_tree_view"></field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

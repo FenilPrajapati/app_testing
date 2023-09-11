@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document_freight" inherit_id="account.report_invoice_document">
+        <!--<xpath expr="//tr[hasclass('o_total')]" position="replace">
+            <tr class="border-black o_total">
+                <td>
+                    <strong>Total</strong>
+                </td>
+                <td class="text-right">
+                    <t t-if="o.sale_order_id != False">
+                        <span class="text-nowrap" t-field="o.billing_currency_tot"/>
+                        <span class="text-nowrap" t-field="o.billing_currency_id"/>
+                    </t>
+                    <t t-if="o.sale_order_id == False">
+                        <span class="text-nowrap" t-field="o.amount_total"/>
+                        <span class="text-nowrap" t-field="o.currency_id"/>
+                    </t>
+                </td>
+            </tr>
+        </xpath>-->
+        <!--<xpath expr="//span[@t-field='o.amount_total']" position="after">
+            <tr class="border-black o_total">
+                <td>
+                    <strong>Total in</strong>
+                    <span class="text-nowrap" t-field="o.billing_currency_id"/>
+                </td>
+                <td class="text-right">
+                    <span class="text-nowrap" t-field="o.billing_currency_tot"/>
+                </td>
+            </tr>
+        </xpath>-->
+
+        <xpath expr="//div[@id='total']" position="after">
+            <t t-if="o.charges_line">
+                <table class="table table-sm o_main_table" name="invoice_line_table">
+                    <thead style="display: table-row-group">
+                        <tr>
+                            <th name="th_charges_id">
+                                <strong>Charges</strong>
+                            </th>
+                            <th name="th_charges_type">
+                                <strong>Charges Type</strong>
+                            </th>
+                            <th name="th_container_type">
+                                <strong>Container Type</strong>
+                            </th>
+                            <th name="th_units" class="text-left">
+                                <strong>Units</strong>
+                            </th>
+                            <th name="th_unit_price" class="text-center">
+                                <strong>Cost Price</strong>
+                            </th>
+                            <th name="th_taxes_id" class="text-center">
+                                <strong>Taxes</strong>
+                            </th>
+                            <th name="th_final_amount" class="text-center">
+                                <strong>Final Amount</strong>
+                            </th>
+                            <th name="th_to_currency_id" class="text-left">
+                                <strong>Currency ID</strong>
+                            </th>
+                            <th name="th_prepaid">
+                                <strong>Prepaid</strong>
+                            </th>
+                            <th name="th_collect">
+                                <strong>Collect</strong>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="invoice_tbody">
+                        <t t-foreach="o.charges_line" t-as="rate">
+                            <tr t-att-class="'bg-200 font-weight o_line_section'">
+                                <td id="charges">
+                                    <span t-field="rate.charges_id"/>
+                                </td>
+                                <td name="td_charges_type">
+                                    <span t-field="rate.charges_type"/>
+                                </td>
+                                <td name="td_container_type">
+                                    <span t-field="rate.container_type"/>
+                                </td>
+                                <td class="text-left">
+                                    <span t-field="rate.units"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="rate.new_unit_price"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="rate.taxes_id"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="rate.sale_final_amount"/>
+                                </td>
+                                <td class="text-left">
+                                    <span t-field="rate.to_currency_id"/>
+                                </td>
+                                <td name="td_prepaid">
+                                    <span t-field="rate.prepaid"/>
+                                </td>
+                                <td name="td_collect">
+                                    <span t-field="rate.collect"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </t>
+            <t t-if="o.job_charge_line">
+                <table class="table table-sm o_main_table">
+                    <thead style="display: table-row-group">
+                        <tr>
+                            <th name="th_charge_type">
+                                <strong>Charge Type</strong>
+                            </th>
+                            <th name="th_currency_amount">
+                                <strong>Currency Amount</strong>
+                            </th>
+                            <th name="th_currency_code">
+                                <strong>Currency Code</strong>
+                            </th>
+                            <th name="th_payment_term" class="text-left">
+                                <strong>Payment Term</strong>
+                            </th>
+                            <th name="th_calculation_basis" class="text-center">
+                                <strong>Calculation Basis</strong>
+                            </th>
+                            <th name="th_unit_price" class="text-center">
+                                <strong>Unit Price</strong>
+                            </th>
+                            <th name="th_quantity" class="text-center">
+                                <strong>Quantity</strong>
+                            </th>
+                            <th name="th_final_amount" class="text-right">
+                                <strong>Final Amount</strong>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="invoice_tbody">
+                        <t t-foreach="o.job_charge_line" t-as="rate">
+                            <tr t-att-class="'bg-200 font-weight o_line_section'">
+                                <td name="td_charge_type">
+                                    <span t-field="rate.charge_type"/>
+                                </td>
+                                <td name="td_currency_amount">
+                                    <span t-field="rate.currency_amount"/>
+                                </td>
+                                <td name="td_currency_code">
+                                    <span t-field="rate.currency_code"/>
+                                </td>
+                                <td class="text-left">
+                                    <span t-field="rate.payment_term"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="rate.calculation_basis"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="rate.unit_price"/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="rate.quantity"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="rate.final_amount"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </t>
+            <div id="total" class="row justify-content-end">
+                <div class="col-4">
+                    <table class="table table-sm" style="page-break-inside: avoid;">
+                        <tr class="border-black o_total">
+                            <td>
+                                <strong>Total</strong>
+                            </td>
+                            <td class="text-right">
+                                <span class="text-nowrap" t-field="o.amount_total"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </xpath>
+
+    </template>
+</odoo>

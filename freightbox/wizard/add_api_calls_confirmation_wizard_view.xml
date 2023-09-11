@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="add_api_calls_confirmation_wizard_form" model="ir.ui.view">
+        <field name="name">add.api.calls.confirmation.wizard.form</field>
+        <field name="model">add.api.calls.confirmation.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Add API Calls Confirmation">
+                <sheet>
+                    <group>
+                        <p>You have used all available tracking api calls. would you like to add 10 more API Calls to your User ? </p>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_add_api_calls" string="Add API Calls" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="add_api_calls_notification_wizard_form" model="ir.ui.view">
+        <field name="name">add.api.calls.notification.wizard.form</field>
+        <field name="model">add.api.calls.confirmation.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Success">
+                <sheet>
+                    <group>
+                        <p>10 API Calls added to your freight user successfully.</p>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_okay" string="Okay" type="object" class="oe_highlight"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

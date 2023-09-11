@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <!-- create_si_save_popup -->
+    <div t-name="freightbox.create_si_save_popup">
+            <div class="form-row">
+                <div t-attf-class="form-group col-4">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="create_si_save_form_name">SI Name*</label>
+                    <input type="text" data-target="#create_si_save_form"
+                           name="create_si_save_form_name" id="create_si_save_form_name" required="required"
+                           autofocus="autofocus"
+                           t-attf-class="form-control" t-att-title="create_si_save_form_name"/>
+                    <div id="create_si_save_form_div"/>
+                    <br></br>
+              </div>
+            </div>
+     </div>
+
+    <!-- si_template_create_popup -->
+    <div t-name="freightbox.si_template_create_popup">
+          <!--<form id="formsitemplate" method="post" acion="">-->
+        <div class="form-row">
+                <div t-attf-class="form-group col-4">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="si_template_create_name">Name*</label>
+                    <input type="text" data-target="#si_template_create_name"
+                           name="si_template_create_name" id="si_template_create_name" required="required"
+                           autofocus="autofocus"
+                           t-attf-class="form-control" t-att-title="si_template_create_name"/>
+                    <div id="si_template_create_name_div"/>
+                    <br></br>
+              </div>
+            </div>
+        <!-- </form>-->
+     </div>
+
+    <!-- References -->
+    <div t-name="freightbox.add_references_values_popup">
+         <form id="formrc" method="post" acion="">
+       <div class="form-row">
+            <!-- <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="row_count_rc">Row ID</label>
+                <input type="text" name="row_count_rc" id="row_count_rc_form" required="required" autofocus="autofocus"
+                       t-attf-class="form-control" t-att-title="row_count_rc"/>
+            </div> -->
+           <div class="w-100"/>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="reference_type_rc">Reference Type*</label>
+               <input type="text" data-target="#reference_type_rc_data"
+                      name="reference_type_rc" id="reference_type_rc_form" required="required"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 3" maxlength="3"
+                      t-attf-class="form-control" t-att-title="reference_type_rc"/>
+               <div id="ref_type_div"/>
+               <br></br>
+              </div>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="reference_value_rc">Reference Value*</label>
+               <input type="text" data-target="#reference_value_rc_data"
+                      name="reference_value_rc" id="reference_value_rc_form" required="required"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 100" maxlength="100"
+                      t-attf-class="form-control" t-att-title="reference_value_rc"/>
+               <div id="ref_value_div"/>
+               <br></br>
+              </div>
+           <div class="w-100"/>
+           <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="ref_array_created_by">Created By *</label>
+               <input type="text" name="ref_array_created_by" id="ref_array_created_by_form"
+                      autofocus="autofocus" required="required" readonly="readonly"
+                      t-attf-class="form-control" t-att-title="ref_array_created_by"/>
+               <div id="ref_array_created_div"/>
+               <br></br>
+                </div>
+       </div>
+         </form>
+    </div>
+
+    <!-- Shipment Locations Popup-->
+    <div t-name="freightbox.add_shipment_locations_values_popup">
+        <form id="formsl" method="post" acion="">
+       <div id="add_sl_form" class="form-row">
+            <!-- <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="row_count_sl">Row ID</label>
+                <input type="text" name="row_count_sl" id="row_count_sl_form" required="required" autofocus="autofocus"
+                       t-attf-class="form-control" t-att-title="row_count_sl"/>
+            </div> -->
+           <div class="w-100"/>
+
+           <div class="w-100"/>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="location_type_sl">Location Type*</label>
+               <select name="location_type_sl" required="required"
+                       t-attf-class="form-control location_type_form" t-att-title="location_type_sl"
+                       id="location_type_form">
+                              <option value="PRE">Place of Receipt (PRE)</option>
+                   <option value="POL">Port of Loading (POL) </option>
+                   <option value="POD">Port of Discharge (POD)</option>
+                   <option value="PDE">Place of Delivery (PDE)</option>
+                   <option value="PCF">Pre-carriage from (PCF)</option>
+                   <option value="OIR">Onward Inland Routing (OIR)</option>
+                   <option value="PSR">Pre-carriage under shipper’s responsibility (PSR) </option>
+                          </select>
+               <!--<input type="text" data-target="#location_type_data"
+                      name="location_type_sl" list='location-type-list' id="location_type_form" required="required"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 3" maxlength="3"
+                      t-attf-class="form-control location_type_form"  t-att-title= "location_type_sl"/>
+                    <datalist id="location-type-list" style="display:none;">
+                        <option>Place of Receipt (PRE)</option>
+                        <option>Port of Loading (POL) </option>
+                        <option>Port of Discharge (POD)</option>
+                        <option>Place of Delivery (PDE)</option>
+                        <option>Pre-carriage from (PCF)</option>
+                        <option>Onward Inland Routing (OIR)</option>
+                        <option>Pre-carriage under shipper’s responsibility (PSR) </option>
+                    </datalist>-->
+               <div id="loc_type_div"/>
+               <br></br>
+              </div>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="location_name_sl">Location Name*</label>
+               <input type="text" data-target="#location_name_data"
+                      name="location_name_sl" id="location_name_form"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 100" maxlength="100"
+                      t-attf-class="form-control" t-att-title="location_name_sl"/>
+               <div id="loc_div"/>
+               <br></br>
+              </div>
+           <div class="w-100"/>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="latitude_sl">Latitude*</label>
+               <input type="text" data-target="#latitude_data"
+                      name="latitude_sl" id="latitude_form"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 10" maxlength="10"
+                      t-attf-class="form-control" t-att-title="latitude_sl"/>
+               <div id="lat_div"/>
+               <br></br>
+              </div>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="longitude_sl">Longitude*</label>
+               <input type="text" data-target="#longitude_data"
+                      name="longitude_sl" id="longitude_form"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 11" maxlength="11"
+                      t-attf-class="form-control" t-att-title="longitude_sl"/>
+               <div id="long_div"/>
+               <br></br>
+              </div>
+           <div class="w-100"/>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="un_location_code_sl">UN Location Code*</label>
+               <input type="text" data-target="#un_location_code_data"
+                      name="un_location_code_sl" id="un_location_code_form"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 5" maxlength="5"
+                      t-attf-class="form-control" t-att-title="un_location_code_sl"/>
+               <div id="un_loc_code_div"/>
+               <br></br>
+              </div>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="street_name_sl">Street Name*</label>
+               <input type="text" data-target="#street_name_data"
+                      name="street_name_sl" id="street_name_form"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 100" maxlength="100"
+                      t-attf-class="form-control" t-att-title="street_name_sl"/>
+               <div id="st_name_div"/>
+               <br></br>
+              </div>
+           <div class="w-100"/>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="street_number_sl">Street Number *</label>
+               <input type="text" data-target="#street_number_data"
+                      name="street_number_sl" id="street_number_form"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 50" maxlength="50"
+                      t-attf-class="form-control" t-att-title="street_number_sl"/>
+               <div id="st_no_div"/>
+               <br></br>
+              </div>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="floor_sl">Floor*</label>
+               <input type="text" data-target="#floor_data"
+                      name="floor_sl" id="floor_form"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 50" maxlength="50"
+                      t-attf-class="form-control" t-att-title="floor_sl"/>
+               <div id="floor_div"/>
+               <br></br>
+              </div>
+           <div class="w-100"/>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="post_code_sl">Post Code*</label>
+               <input type="text" data-target="#post_code_data"
+                      name="post_code_sl" id="post_code_form"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 10" maxlength="10"
+                      t-attf-class="form-control" t-att-title="post_code_sl"/>
+               <div id="post_code_div"/>
+               <br></br>
+              </div>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="city_name_sl">City Name*</label>
+               <input type="text" data-target="#city_name_data"
+                      name="city_name_sl" id="city_name_form"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 65" maxlength="65"
+                      t-attf-class="form-control" t-att-title="city_name_sl"/>
+               <div id="city_div"/>
+               <br></br>
+              </div>
+           <div class="w-100"/>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="state_region_sl">State Region*</label>
+               <input type="text" data-target="#state_region_data"
+                      name="state_region_sl" id="state_region_form"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 75" maxlength="75"
+                      t-attf-class="form-control" t-att-title="state_region_sl"/>
+               <div id="st_reg_div"/>
+               <br></br>
+              </div>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="country_sl">Country*</label>
+               <input type="text" data-target="#country_data"
+                      name="country_sl" id="country_form"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 75" maxlength="75"
+                      t-attf-class="form-control" t-att-title="country_sl"/>
+               <div id="country_div"/>
+               <br></br>
+              </div>
+           <div class="w-100"/>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="displayed_name_sl">Displayed Name</label>
+               <input type="text" data-target="#display_name_data"
+                      name="displayed_name_sl" id="displayed_name_form"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 250" maxlength="250"
+                      t-attf-class="form-control" t-att-title="displayed_name_sl"/>
+              </div>
+
+           <div class="w-100"/>
+           <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="sl_array_created_by">Created By *</label>
+               <input type="text" name="sl_array_created_by" id="sl_array_created_by_form"
+                      autofocus="autofocus" required="required" readonly="readonly"
+                      t-attf-class="form-control" t-att-title="sl_array_created_by"/>
+               <div id="sl_array_created_by"/>
+               <br></br>
+                </div>
+
+       </div>
+        </form>
+    </div>
+
+
+    <!-- Document_parties_popup -->
+    <div t-name="freightbox.add_document_parties_values_popup">
+       <form id="formdp" method="post" acion="">
+       <div class="form-row">
+            <!-- <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="row_count_dp">Row ID</label>
+                <input type="text" name="row_count_dp" id="row_count_dp_form" required="required" autofocus="autofocus"
+                       t-attf-class="form-control" t-att-title="row_count_dp"/>
+            </div> -->
+           <div class="w-100"/>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="party_name_dp">Party Name*</label>
+               <input type="text" data-target="#party_name_dp_data"
+                      name="party_name_dp" id="party_name_dp_form" required="required"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 100" maxlength="100"
+                      t-attf-class="form-control" t-att-title="party_name_dp"/>
+               <div id="party_name_div"/>
+               <br></br>
+              </div>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="tax_reference_1_dp">Tax Reference 1*</label>
+               <input type="text" data-target="#tax_reference_1_dp_data"
+                      name="party_name_dp" id="tax_reference_1_dp_form" required="required"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 20" maxlength="20"
+                      t-attf-class="form-control" t-att-title="tax_reference_1_dp"/>
+               <div id="tax_reference_1_div"/>
+               <br></br>
+              </div>
+           <div class="w-100"/>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="public_key_dp">Public Key*</label>
+               <input type="text" data-target="#public_key_data"
+                      name="public_key_dp" id="public_key_form" required="required"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 500" maxlength="500"
+                      t-attf-class="form-control" t-att-title="public_key_dp"/>
+               <div id="public_key_div"/>
+               <br></br>
+              </div>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="street_dp">Street*</label>
+               <input type="text" data-target="#street_data"
+                      name="street_dp" id="street_form" required="required"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 100" maxlength="100"
+                      t-attf-class="form-control" t-att-title="street_dp"/>
+               <div id="street_div"/>
+               <br></br>
+              </div>
+           <div class="w-100"/>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="street_number_dp">Street Number*</label>
+               <input type="text" data-target="#street_number_data"
+                      name="street_number_dp" id="street_number_form" required="required"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 50" maxlength="50"
+                      t-attf-class="form-control" t-att-title="street_number_dp"/>
+               <div id="street_no_div"/>
+               <br></br>
+              </div>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="floor_dp">Floor *</label>
+               <input type="text" data-target="#floor_data"
+                      name="floor_dp" id="floor_form" required="required"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 50" maxlength="50"
+                      t-attf-class="form-control" t-att-title="floor_dp"/>
+               <div id="floor_div"/>
+               <br></br>
+              </div>
+           <div class="w-100"/>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="post_code_dp">Post Code *</label>
+               <input type="text" data-target="#post_code_data"
+                      name="post_code_dp" id="post_code_form" required="required"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 10" maxlength="10"
+                      t-attf-class="form-control" t-att-title="post_code_dp"/>
+               <div id="post_code_div"/>
+               <br></br>
+              </div>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="city_dp">City *</label>
+               <input type="text" data-target="#city_data"
+                      name="city_dp" id="city_form" required="required"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 65" maxlength="65"
+                      t-attf-class="form-control" t-att-title="city_dp"/>
+               <div id="city_div"/>
+               <br></br>
+              </div>
+           <div class="w-100"/>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="state_region_dp">State Region *</label>
+               <input type="text" data-target="#state_region_data"
+                      name="state_region_dp" id="state_region_form" required="required"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 65" maxlength="65"
+                      t-attf-class="form-control" t-att-title="state_region_dp"/>
+               <div id="state_region_div"/>
+               <br></br>
+              </div>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="country_dp">Country *</label>
+               <input type="text" data-target="#country_data"
+                      name="country_dp" id="country_form" required="required"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 75" maxlength="75"
+                      t-attf-class="form-control" t-att-title="country_dp"/>
+               <div id="country_div"/>
+               <br></br>
+              </div>
+           <div class="w-100"/>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="tax_reference_2_dp">Tax Reference 2 *</label>
+               <input type="text" data-target="#tax_reference_2_data"
+                      name="tax_reference_2_dp" id="tax_reference_2_form" required="required"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 20" maxlength="20"
+                      t-attf-class="form-control" t-att-title="tax_reference_2_dp"/>
+               <div id="tax_ref_2_div"/>
+               <br></br>
+              </div>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="nmfta_code_dp">NMFTA Code *</label>
+               <input type="text" data-target="#nmfta_code_data"
+                      name="nmfta_code_dp" id="nmfta_code_form" required="required"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 4" maxlength="4"
+                      t-attf-class="form-control" t-att-title="nmfta_code_dp"/>
+               <div id="nmfta_code_div"/>
+               <br></br>
+              </div>
+           <div class="w-100"/>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="party_function_dp">Party Function*</label>
+               <input type="text" data-target="#party_function_data"
+                      name="party_function_dp" id="party_function_form" required="required"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 3" maxlength="3"
+                      t-attf-class="form-control" t-att-title="party_function_dp"/>
+               <div id="party_fn_div"/>
+               <br></br>
+              </div>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="address_line_dp">Address line </label>
+               <input type="text" data-target="#address_line_data"
+                      name="address_line_dp" id="address_line_form"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 250" maxlength="250"
+                      t-attf-class="form-control" t-att-title="address_line_dp"/>
+              </div>
+           <div class="w-100"/>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="name_dp">Name*</label>
+               <input type="text" data-target="#name_data"
+                      name="name_dp" id="name_form" required="required"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 100" maxlength="100"
+                      t-attf-class="form-control" t-att-title="name_dp"/>
+               <div id="name_div"/>
+               <br></br>
+              </div>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="phone_dp">Phone*</label>
+               <input type="text" data-target="#phone_data"
+                      name="phone_dp" id="phone_form" required="required"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 30" maxlength="30"
+                      t-attf-class="form-control" t-att-title="phone_dp"/>
+               <div id="phone_div"/>
+               <br></br>
+              </div>
+           <div class="w-100"/>
+           <div t-attf-class="form-group col-6">
+                     <label class="col-form-label font-weight-normal label-optional"
+                            for="email_dp">Email*</label>
+               <input type="text" data-target="#email_data"
+                      name="email_dp" id="email_form" required="required"
+                      autofocus="autofocus" placeholder="Maximum allowed characters 100" maxlength="100"
+                      t-attf-class="form-control" t-att-title="email_dp"/>
+               <div id="email_div"/>
+               <br></br>
+              </div>
+
+           <div t-attf-class="form-group col-6">
+                        <label class="col-form-label font-weight-normal label-optional"
+                               for="is_to_be_notified">Is To Be Notified*</label>
+               <input type="checkbox" data-target="#is_to_be_notified_data"
+                      name="is_to_be_notified" id="is_to_be_notified_form"
+                      autofocus="autofocus"
+                      t-attf-class="form-control col-1" t-att-title="is_to_be_notified"/>
+                </div>
+           <div class="w-100"/>
+           <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="dp_array_created_by">Created By *</label>
+               <input type="text" name="dp_array_created_by" id="dp_array_created_by_form"
+                      autofocus="autofocus" required="required" readonly="readonly"
+                      t-attf-class="form-control" t-att-title="dp_array_created_by"/>
+               <div id="dp_array_created_by_div"/>
+               <br></br>
+                </div>
+       </div>
+         </form>
+    </div>
+
+
+    <div t-name="freightbox.add_transport_eqipment_values_popup">
+        <form id="formtq" method="post" acion="">
+        <div class="form-row">
+            <div class="w-100"/>
+            <div t-attf-class="form-group col-6">
+                    <input type="hidden"
+                           name="si_container_type_is_reefer" id="si_container_type_is_reefer_form"
+                           t-attf-class="form-control"/>
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="equipment_reference_tq">Container ID*</label>
+                <input type="text" data-target="#equipment_reference_tq_data"
+                       name="equipment_reference_tq" id="equipment_reference_tq_form" readonly="readonly"
+                       required="required" autofocus="autofocus" placeholder="Maximum allowed characters 15"
+                       t-attf-class="form-control" maxlength="15" t-att-title="equipment_reference_tq"/>
+                <div id="equipment_reference_div"/>
+                <br></br>
+                </div>
+            <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="weight_unit_tq">Weight Unit*</label>
+                <input type="text" data-target="#weight_unit_tq_data"
+                       name="weight_unit_tq" id="weight_unit_tq_form" maxlength="3"
+                       required="required" autofocus="autofocus" placeholder="Maximum allowed characters 3"
+                       t-attf-class="form-control" t-att-title="weight_unit_tq"/>
+                <div id="weight_unit_div"/>
+                <br></br>
+                </div>
+            <div class="w-100"/>
+            <div t-attf-class="form-group col-6">
+                    <label class="col-form-label font-weight-normal label-optional"
+                           for="cargo_gross_weight">Cargo Gross Weight *</label>
+                <input type="number" step="any" data-target="#cargo_gross_weight_data"
+                       name="cargo_gross_weight" id="cargo_gross_weight_form"
+                       required="required" autofocus="autofocus" placeholder="Maximum allowed numbers 9" maxlength="9"
+                       oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                       onkeypress="return event.charCode >= 46" min="0"
+                       t-attf-class="form-control" t-att-title="cargo_gross_weight"/>
+                <div id="cgw_unit_div"/>
+                <br></br>
+                </div>
+            <div t-attf-class="form-group col-6">
+                        <label class="col-form-label font-weight-normal label-optional"
+                               for="is_shipper_owned">Is Shipper Owned</label>
+                <input type="checkbox" data-target="#is_shipper_owned_data"
+                       name="is_shipper_owned" id="is_shipper_owned_form"
+                       autofocus="autofocus"
+                       t-attf-class="form-control col-1" t-att-title="is_shipper_owned"/>
+                </div>
+
+
+            <div class="w-100"/>
+            <div t-attf-class="form-group col-6">
+                    <label class="col-form-label font-weight-normal label-optional"
+                           for="container_tare_weight">Container tare weight *</label>
+                <input type="number" data-target="#container_tare_weight_data"
+                       name="container_tare_weight" id="container_tare_weight_form"
+                       required="required" autofocus="autofocus" placeholder="Maximum allowed numbers 9"
+                       onkeypress="return event.charCode >= 46" min="0" maxlength="9"
+                       oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                       t-attf-class="form-control" t-att-title="container_tare_weight"/>
+                <div id="ctw_unit_div"/>
+                <br></br>
+                </div>
+            <div t-attf-class="form-group col-6">
+                    <label class="col-form-label font-weight-normal label-optional"
+                           for="iso_equipment_code">ISO equipment code  *</label>
+                <input type="text" data-target="#iso_equipment_code_data"
+                       placeholder="Maximum allowed characters 4" maxlength="4"
+                       name="iso_equipment_code" id="iso_equipment_code_form"
+                       required="required" autofocus="autofocus"
+                       t-attf-class="form-control" t-att-title="iso_equipment_code"/>
+                <div id="iso_equipment_code_div"/>
+                <br></br>
+                </div>
+
+            <div class="w-100"/>
+            <div t-attf-class="form-group col-6">
+                    <label class="col-form-label font-weight-normal label-optional"
+                           for="temperature_min">Temperature Min </label>
+                <input type="number" data-target="#temperature_min_data"
+                       name="temperature_min" id="temperature_min_form"
+                       autofocus="autofocus" value="0" placeholder="Maximum allowed numbers 9" maxlength="9"
+                       oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                       t-attf-class="form-control" t-att-title="temperature_min"/>
+                <div id="temperature_min_div"/>
+                <br></br>
+                </div>
+            <div t-attf-class="form-group col-6">
+                    <label class="col-form-label font-weight-normal label-optional"
+                           for="temperature_max">Temperature Max </label>
+                <input type="number" data-target="#temperature_max_data"
+                       name="temperature_max" id="temperature_max_form"
+                       autofocus="autofocus" value="0" placeholder="Maximum allowed numbers 9" maxlength="9"
+                       oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                       t-attf-class="form-control" t-att-title="temperature_max"/>
+                <div id="temperature_max_div"/>
+                <br></br>
+                </div>
+            <div class="w-100"/>
+            <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="temperature_unit">Temperature Unit </label>
+                <input type="text" data-target="#temperature_unit_data"
+                       placeholder="Maximum allowed characters 3 (CEL or FAH)" maxlength="3"
+                       name="temperature_unit" id="temperature_unit_form"
+                       autofocus="autofocus"
+                       t-attf-class="form-control" t-att-title="temperature_unit"/>
+                <div id="temperature_unit_div"/>
+                <br></br>
+
+            </div>
+            <div class="w-100"/>
+            <div t-attf-class="form-group col-6">
+            <label class="col-form-label font-weight-normal label-optional"
+                   for="humidity_min">Humidity Min </label>
+                <input type="number" data-target="#humidity_min_data"
+                       name="humidity_min" id="humidity_min_form" maxlength="9"
+                       oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                       autofocus="autofocus" value="0" placeholder="Maximum allowed numbers 9"
+                       t-attf-class="form-control" t-att-title="humidity_min"/>
+                <div id="humidity_min_div"/>
+                <br></br>
+            </div>
+            <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="humidity_max">Humidity Max </label>
+                <input type="number" data-target="#humidity_max_data"
+                       name="humidity_max" id="humidity_max_form" maxlength="9"
+                       oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                       autofocus="autofocus" value="0" placeholder="Maximum allowed numbers 9"
+                       t-attf-class="form-control" t-att-title="humidity_max"/>
+                <div id="humidity_max_div"/>
+                <br></br>
+            </div>
+            <div class="w-100"/>
+            <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="ventilation_min">Ventilation Min </label>
+                <input type="number" data-target="#ventilation_min_data"
+                       name="ventilation_min" id="ventilation_min_form" maxlength="9"
+                       oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                       autofocus="autofocus" value="0" placeholder="Maximum allowed numbers 9"
+                       t-attf-class="form-control" t-att-title="ventilation_min"/>
+                <div id="ventilation_min_div"/>
+                <br></br>
+            </div>
+            <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="ventilation_max">Ventilation Max </label>
+                <input type="number" data-target="#ventilation_max_data"
+                       name="ventilation_max" id="ventilation_max_form" maxlength="9"
+                       oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                       autofocus="autofocus" value="0" placeholder="Maximum allowed numbers 9"
+                       t-attf-class="form-control" t-att-title="ventilation_max"/>
+                <div id="ventilation_max_div"/>
+                <br></br>
+            </div>
+            <div class="w-100"/>
+            <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="seal_number">Seal Number*</label>
+                <input type="text" data-target="#seal_number_data"
+                       placeholder="Maximum allowed characters 15" maxlength="15"
+                       name="seal_number" id="seal_number_form"
+                       required="required" autofocus="autofocus"
+                       t-attf-class="form-control" t-att-title="seal_number"/>
+                <div id="seal_number_div"/>
+                <br></br>
+            </div>
+            <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="seal_source">Seal Source </label>
+                <input type="text" data-target="#seal_source_data"
+                       placeholder="Maximum allowed characters 5" maxlength="5"
+                       name="seal_source" id="seal_source_form"
+                       autofocus="autofocus"
+                       t-attf-class="form-control" t-att-title="seal_source"/>
+            </div>
+            <div class="w-100"/>
+            <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="seal_type">Seal Type *</label>
+                <input type="text" data-target="#seal_type_data"
+                       name="seal_type" id="seal_type_form"
+                       placeholder="Maximum allowed characters 5" maxlength="5"
+                       required="required" autofocus="autofocus"
+                       t-attf-class="form-control" t-att-title="seal_type"/>
+                <div id="seal_type_div"/>
+                <br></br>
+            </div>
+            <div class="w-100"/>
+            <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="tq_array_created_by">Created By *</label>
+                <input type="text" name="tq_array_created_by" id="tq_array_created_by_form"
+                       autofocus="autofocus" required="required" readonly="readonly"
+                       t-attf-class="form-control" t-att-title="tq_array_created_by"/>
+                <div id="tq_array_created_by_div"/>
+                <br></br>
+                </div>
+
+        </div>
+    </form>
+    </div>
+
+    <!-- Cargo Item Popup -->
+    <div t-name="freightbox.add_cargo_item_values_popup">
+        <form id="theForm" method="post" acion="">
+        <div class="form-row">
+        <div class="w-100"/>
+            <!--<span>Cargo Line Items</span>-->
+            <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="cargo_line_item_id">Cargo Line Item ID*</label>
+                <input type="text" data-target="#cargo_line_item_id_data"
+                       name="cargo_line_item_id" id="cargo_line_item_id_form"
+                       required="required" autofocus="autofocus"
+                       t-attf-class="form-control" t-att-title="cargo_line_item_id"/>
+                <div id="cargo_line_item_id_div"/>
+                <br></br>
+            </div>
+            <div t-attf-class="form-group col-6">
+
+                 <label class="col-form-label font-weight-normal label-optional"
+                        for="shipping_marks">Shipping Marks*</label>
+                <input type="text" name="shipping_marks" id="shipping_marks_form" required="required"
+                       autofocus="autofocus"
+                       t-attf-class="form-control" t-att-title="shipping_marks"/>
+                <div id="shipping_marks_div"/>
+                <br></br>
+             </div>
+            <div class="w-100"/>
+            <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="carrier_booking_reference">Carrier Booking Reference</label>
+                <input type="text" name="carrier_booking_reference" id="carrier_booking_reference_form"
+                       maxlength="35" readonly="readonly"
+                       placeholder="Maximum allowed characters 35" autofocus="autofocus"
+                       t-attf-class="form-control" t-att-title="carrier_booking_reference"/>
+            </div>
+            <div class="w-100"/>
+            <div t-attf-class="form-group col-12">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="description_of_goods">Description of goods*</label>
+                <input type="text" name="description_of_goods" id="description_of_goods_form"
+                       required="required" autofocus="autofocus" style="height:80%"
+                       t-attf-class="form-control" t-att-title="description_of_goods"/>
+                <div id="description_of_goods_div"/>
+                <br></br>
+            </div>
+            <div class="w-100"/>
+            <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="hs_code">HS Code*</label>
+                <input type="text" name="hs_code" id="hs_code_form"
+                       maxlength="10" placeholder="Maximum allowed characters 10" autofocus="autofocus"
+                       required="required" t-attf-class="form-control" t-att-title="hs_code"/>
+                <div id="hs_code_div"/>
+                <br></br>
+            </div>
+            <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="no_of_packages">Number of Packages*</label>
+                <input type="number" name="no_of_packages" id="no_of_packages_form" autofocus="autofocus"
+                       placeholder="Max allowed 9 numbers" min="0"
+                       oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                       required="required" step="1" maxlength="9" t-attf-class="form-control"
+                       t-att-title="no_of_packages"/>
+                <div id="no_of_packages_div"/>
+                <br></br>
+            </div>
+            <div class="w-100"/>
+            <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="weight">Weight*</label>
+                <input type="number" name="weight" id="weight_form" autofocus="autofocus" min="0"
+                       placeholder="Maximum allowed numbers 9"
+                       required="required" onkeypress="return event.charCode >= 46" maxlength="9"
+                       t-attf-class="form-control" t-att-title="weight"
+                       oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
+                <div id="weight_div"/>
+                <br></br>
+            </div>
+            <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="volume">Volume</label>
+                <input type="number" name="volume" id="volume_form" autofocus="autofocus"
+                       onkeypress="return event.charCode >= 46" min="0" placeholder="Maximum allowed numbers 9"
+                       maxlength="9"
+                       oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                       t-attf-class="form-control" t-att-title="volume"/>
+            </div>
+            <div class="w-100"/>
+            <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="weight_unit">Weight Unit*</label>
+                <input type="text" name="weight_unit" id="weight_unit_form"
+                       maxlength="3" placeholder="Maximum allowed characters 3" autofocus="autofocus"
+                       required="required" t-attf-class="form-control" t-att-title="weight_unit"/>
+                <div id="weight_unit_div"/>
+                <br></br>
+            </div>
+            <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="volume_unit">Volume Unit</label>
+                <input type="text" name="volume_unit" id="volume_unit_form"
+                       maxlength="3" placeholder="Maximum allowed characters 3" autofocus="autofocus"
+                       t-attf-class="form-control" t-att-title="volume_unit"/>
+            </div>
+            <div class="w-100"/>
+            <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="package_code">Package Code*</label>
+                <input type="text" name="package_code" id="package_code_form"
+                       required="required" maxlength="3" placeholder="Maximum allowed characters 3"
+                       autofocus="autofocus"
+                       t-attf-class="form-control" t-att-title="package_code"/>
+                <div id="package_code_div"/>
+                <br></br>
+            </div>
+            <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="equipment_reference">Container ID*</label>
+                <input type="text" name="equipment_reference" id="equipment_reference_form" readonly="readonly"
+                       required="required" maxlength="15" placeholder="Maximum allowed characters 15"
+                       autofocus="autofocus"
+                       t-attf-class="form-control" t-att-title="equipment_reference"/>
+                <div id="equipment_reference_div"/>
+                <br></br>
+            </div>
+
+            <div class="w-100"/>
+            <div t-attf-class="form-group col-6">
+                <label class="col-form-label font-weight-normal label-optional"
+                       for="cargo_array_created_by">Created By *</label>
+                <input type="text" name="cargo_array_created_by" id="cargo_array_created_by_form"
+                       autofocus="autofocus" required="required" readonly="readonly"
+                       t-attf-class="form-control" t-att-title="cargo_array_created_by"/>
+                <div id="cargo_array_created_by_div"/>
+                <br></br>
+                </div>
+        </div>
+</form>
+    </div>
+
+
+</templates>

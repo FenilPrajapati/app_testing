@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="report_prepare_bill_of_lading1">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <style>
+                    table, th, td {
+                        border: 1px solid black;
+                        border-collapse: collapse;
+                        border-radius: 1em;
+                        overflow: inherit;
+                        padding-left:5px;
+
+                        <!-- border-radius: 10px; -->
+                    },
+                    th,td {
+                    },
+                    <!-- .rounded-table {
+                        border-collapse: collapse;
+                        border: 1px solid black;
+                        border-radius: 20px;
+                        overflow: hidden;
+                    },
+                    .rounded-table td {
+                        border: 1px solid black;
+                        font-size:12px;
+                        border-radius: 10px;
+                    }, -->
+                </style>
+                <!-- <t t-call="web.basic_layout"> -->
+                    <div class="page">
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="width:50%;border-bottom: none;">
+                                    <h3><b><span t-esc="o.company_id.name"/></b></h3>
+                                    <span style="font-size: 14px;">
+                                        <span t-esc="o.company_id.city" />,<span t-esc="o.company_id.state_id.name"/>,<span t-esc="o.company_id.country_id.name"/>.
+                                        <br/><b>Email : </b><span t-esc="o.company_id.email" />,<b>Website : </b><span t-esc="o.company_id.website" />
+                                    </span>
+                                </td>
+                                <td style="width:25%;border-right: none;">
+                                    <span style="font-size: 18px;"><b>BILL OF LADING No.</b></span>
+                                    <br/>
+                                    <t t-if="o.state == 'draft'">
+                                        <b>DRAFT</b>
+                                    </t>
+                                    <t t-elif="o.state == 'approve'">
+                                        <b>ISSUE B/L</b>
+                                    </t>
+                                </td>
+                                <td style="width:25%;border-left: none;">
+                                    <span style="font-size: 17px;"><b><span t-esc="o.transport_document_reference"/></b></span>
+                                    <br/><span style="font-size: 10px;">"Port-To-Port" or "Combined" Transport" (see Clause 1)</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-top: none;">
+
+                                </td>
+                                <td  style="font-size: 10px;">NO. and SEQUENCE OF ORIGINAL B/L's
+                                </td>
+                                <td  style="font-size: 10px;">NO OF RIDER PAGES:
+                                    <span t-esc="o.no_of_rider_pages"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="width:50%;" colspan="6">
+                                    <span style="font-size: 12px;">SHIPPER:</span>
+                                    <b><span t-esc="o.inquiry_id.partner_id.name"/></b>
+                                    <br/><b><span t-esc="o.inquiry_id.partner_id.street"/></b>
+                                    <br/><b><span t-esc="o.inquiry_id.partner_id.city"/></b>
+                                    <br/><b><span t-esc="o.inquiry_id.partner_id.state_id.name"/>-<span t-esc="o.inquiry_id.partner_id.zip"/></b>
+                                    <br/><b><span t-esc="o.inquiry_id.partner_id.country_id.id"/></b>
+                                </td>
+                                <td style="width:50%;" rowspan="3" colspan="6">
+                                    <span style="font-size: 12px;"> <b>CARRIER'S AGENTS ENDORSEMENTS: </b>(Include Agent(s) at POD)N INCOTERM mentioned strictly without prejudice to the Terms of the contract of Carriage</span> <b>IMO No: </b> <span t-esc="o.job_id.imo_no"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td  colspan="6"><span style="font-size: 12px;">CONSIGNEE: This B/L is not negotiable unless marked "To Order" or "To Order of ..." here</span>
+                                    <b>
+                                        <span t-esc="o.job_id.po_id.party_name_id.name"/><br/>
+                                        <span t-esc="o.job_id.po_id.floor"/>,
+                                        <span t-esc="o.job_id.po_id.street"/>,
+                                        <span t-esc="o.job_id.po_id.street_number"/><br/>
+                                        <span t-esc="o.job_id.po_id.city"/>,
+                                        <span t-esc="o.job_id.po_id.state_region"/>,
+                                        <span t-esc="o.job_id.po_id.country"/>-
+                                        <span t-esc="o.job_id.po_id.post_code"/>
+                                    </b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td  colspan="6"><span style="font-size: 12px;">NOTIFY PARTIES: (No responsibility shall attach to Carrier or to his Agent for failure to notify - see Clause 20)</span>
+                                <t t-if="o.job_id.po_id.total_collect_charges > 0">
+                                    <span><strong>SAME AS CONSIGNEE</strong></span>
+                                </t>
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="width:33.33%;" >
+                                    <span style="font-size: 12px;">VESSEL AND VOYAGE NO. (see Clause 8 and 9)</span><br/>
+                                    <b>
+                                        <span t-esc="o.job_id.vessel_name"/> - 
+                                        <span t-esc="o.job_id.voyage"/>
+                                    </b>
+                                </td>
+                                <td style="width:25%" >
+                                    <span style="font-size: 12px;">PORT OF LOADING</span>
+                                    <br/><b><span t-esc="o.pol_location_name"/></b>
+                                </td>
+                                <td style="width:42%" >
+                                    <span style="font-size: 12px;">PLACE OF RECEIPT: (Combined Transport ONLY - see Clauses 1 and 5.2)</span><br/>
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="width:33.33%" >
+                                    <span style="font-size: 12px;">BOOKING REF. </span>
+                                    <br/><b><span t-esc="o.job_id.carrier_booking"/></b>
+                                </td>
+                                <td style="width:25%" >
+                                    <span style="font-size: 12px;">PORT OF DISCHARGE</span>
+                                    <br/><b><span t-esc="o.pod_location_name"/></b>
+                                </td>
+                                <td style="width:42%" >
+                                    <span style="font-size: 12px;">PLACE OF DELIVERY: (Combined Transport ONLY - see Clauses 1 and 5.2)</span><br/>
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="text-align: center;font-size: 14px;">
+                                    <strong>PARTICULARS FURNISHED BY THE SHIPPER - NOT CHECKED BY CARRIER - CARRIER NOT RESPONSIBLE (see Clause 14)</strong>
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="width:100%;">
+                            <tr>
+                                <th style="width:30%;border:1px solid black;">Container Numbers, Seal Numbers and Marks</th>
+                                <th style="width:50%;border:1px solid black;">Description of Packages and Goods (Continued on attached Bill of Lading Rider page(s), if applicable)</th>
+                                <th style="width:10%;border:1px solid black;">Gross Cargo weight</th>
+                                <th style="width:15%;border:1px solid black;">Measurement</th>
+                            </tr>
+
+                            <!-- <t t-foreach="o.order_line" t-as="item">
+
+                            </t> -->
+                            <t t-foreach="o.bol_cargo_line" t-as="l">
+                                <tr>
+                                    <td style="padding-left:3px;border-bottom:none;border-top:none;border-left:none;">
+                                        <b><span t-esc="l.equipment_reference"/></b>
+                                    </td>
+                                    <td style="padding-left:3px;border-bottom:none;border-top:none;">
+                                        <b><span t-esc="l.description_of_goods"/></b>
+                                    </td>
+                                    <td style="padding-left:3px;border-bottom:none;border-top:none;">
+                                        <br></br>
+                                    </td>
+                                    <td style="padding-left:3px;border-bottom:none;border-top:none;border-right:none;">
+                                        <br></br>
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="width:65%;font-size:12px;">
+                                    FREIGHT and CHARGES &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Cargo shall not be delivered unless Freight and Charges are paid (see Clause 16)<br/>
+                                </td>
+                                <td style="width:35%;font-size:12px;" rowspan="2" colspan="2">
+                                    RECEIVED by the Carrier in apparent good order and condition (unless otherwise stated herein) the total number or quantity of Containers or other packages or units indicated in the box entitled Carrier's Receipt for carriage subject to all the terms and conditions hereof from the Place of Receipt or Port of Loading to the Port of Discharge or Place of Delivery, whichever is applicable. IN ACCEPTING THIS BILL OF LADING THE MERCHANT EXPRESSLY ACCEPTS AND AGREES TO ALL THE TERMS AND CONDITIONS, WHETHER PRINTED, STAMPED OR OTHERWISE INCORPORATED ON THIS SIDE AND ON THE REVERSE SIDE OF THIS BILL OF LADING AND THE TERMS AND CONDITIONS OF THE CARRIER'S APPLICABLE TARIFF AS IF THEY WERE ALL SIGNED BY THE MERCHANT. If this is a negotiable (To Order / of) Bill of Lading, one original Bill of Lading, duly endorsed must be surrendered by the Merchant to the Carrier (together with outstanding Freight and charges) in exchange for the Goods or a Delivery Order. If this is a non-negotiable (straight) Bill of Lading, the Carrier shall deliver the Goods or issue a Delivery Order (after payment of outstanding Freight and charges) against the surrender of one original Bill of Lading or in accordance with the national law at the Port of Discharge or Place of Delivery whichever is applicable. IN WITNESS WHEREOF the Carrier or their Agent has signed the number of Bills of Lading stated at the top, all of this tenor and date, and wherever one original Bill of Lading has been surrendered all other Bills of Lading shall be void.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding:5px;">
+                                    <table style="width:100%;">
+                                        <tr>
+                                            <th style="width:13%;text-align: center;border:1px solid black;">FREIGHT and CHARGES</th>
+                                            <th style="width:13%;text-align: center;border:1px solid black;">BASIS</th>
+                                            <th style="width:13%;text-align: center;border:1px solid black;">RATE</th>
+                                            <th style="width:13%;text-align: center;border:1px solid black;">PREPAID</th>
+                                            <th style="width:13%;text-align: center;border:1px solid black;">COLLECT</th>
+                                        </tr>
+                                        <t t-foreach="range(17)" t-as="l">
+                                            <tr>
+                                                <td style="padding-left:3px;border:none;">
+                                                    <br></br>
+                                                </td>
+                                                <td style="padding-left:3px;border-bottom:none;border-top:none;">
+                                                    <br></br>
+                                                </td>
+                                                <td style="padding-left:3px;border-bottom:none;border-top:none;">
+                                                    <br></br>
+                                                </td>
+                                                <td style="padding-left:3px;border-bottom:none;border-top:none;">
+                                                    <br></br>
+                                                </td>
+                                                <td style="padding-left:3px;border-bottom:none;border-top:none;">
+                                                    <br></br>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                        <tr>
+                                            <td style=""></td>
+                                            <!-- <td style="border-left:0px;"></td> -->
+                                            <td style="border-left:0px;" colspan="2"></td>
+                                            <td style="border-left:0px;"></td>
+                                            <td style="border-left:0px;"></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="width:33.33%;">
+                                    <b>DECLARED VALUE</b> (Only applicable if Ad Valorem charges paid - see Clause 7.3)
+                                    <br/><b>XXXXXXXXXXXXXXXXX</b>
+                                </td>
+                                <td style="width:33.33%;">
+                                    <b>CARRIER'S RECEIPT</b> (No. of Cntrs or Pkgs rcvd by Carrier - see Clause 14.1)
+                                </td>
+                                <td style="width:33.33%;border-bottom: none;" >
+                                    <b>SIGNED</b> on behalf of the Carrier MSC Mediterranean Shipping Company S.A. by MSC BELGIUM N.V. As Agent
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>NO. and SEQUENCE OF ORIGINAL B/L's
+                                </td>
+                                <td>NO OF RIDER PAGES:
+                                    <span t-esc="o.no_of_rider_pages"/>
+                                </td>
+                                <td style="border:none;">
+
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- <table style="width:100%;border:none;">
+                            <tr>
+                                <td colspan="3" style="border:none;font-size:10px;">
+                                    Standard Edition - 02/2015
+                                </td>
+                            </tr>
+                        </table> -->
+                        <p style="page-break-after:always;"></p>
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="width:50%;border-bottom: none;">
+                                    <h2><b><span t-esc="o.company_id.name"/></b></h2>
+                                    <span style="font-size: 14px;">
+                                        <span t-esc="o.company_id.city" />,<span t-esc="o.company_id.state_id.name"/>,<span t-esc="o.company_id.country_id.name"/>.
+                                        <br/><b>Email : </b><span t-esc="o.company_id.email" />,<b>Website : </b><span t-esc="o.company_id.website" />
+                                    </span>
+                                </td>
+                                <td style="width:25%;border-right: none;">
+                                    <span style="font-size: 17px;"><b>BILL OF LADING No.</b></span>
+                                    <br/><b>RIDER PAGES
+                                    <br/>Page 1 of <span t-esc="o.no_of_rider_pages"/></b>
+                                </td>
+                                <td style="width:25%;border-left: none;">
+                                    <span style="font-size: 17px;"><span t-esc="o.transport_document_reference"/></span>
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="text-align: center;font-size: 12px;">
+                                    <strong>CONTINUATION PARTICULARS FURNISHED BY THE SHIPPER - NOT CHECKED BY CARRIER - CARRIER NOT RESPONSIBLE (see Clause 14)</strong>
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="width:100%;">
+                            <tr>
+                                <th style="width:30%;border:1px solid black;">Container Numbers, Seal Numbers and Marks</th>
+                                <th style="width:50%;border:1px solid black;">Description of Packages and Goods (Continued on attached Bill of Lading Rider page(s), if applicable)</th>
+                                <th style="width:10%;border:1px solid black;">Gross Cargo weight</th>
+                                <th style="width:15%;border:1px solid black;">Measurement</th>
+                            </tr>
+
+                            <!-- <t t-foreach="o.order_line" t-as="item">
+
+                            </t> -->
+                            <t t-foreach="range(30)" t-as="l">
+                                <tr>
+                                    <td style="padding-left:3px;">
+                                        <br></br>
+                                    </td>
+                                    <td style="padding-left:3px;">
+                                        <br></br>
+                                    </td>
+                                    <td style="padding-left:3px;">
+                                        <br></br>
+                                    </td>
+                                    <td style="padding-left:3px;">
+                                        <br></br>
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+                        <table style="width:100%;" class="footer">
+                            <tr>
+                                <td style="width:30%;">
+                                    <span style="font-size: 12px;"><b>PLACE AND DATE OF ISSUE</b></span>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                </td>
+                                <td style="width:33.33%;">
+                                    <span style="font-size: 12px;"><b>SHIPPED ON BOARD DATE</b></span>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                </td>
+                                <td style="width:36.67%;border-bottom: none;" >
+                                    <span style="font-size: 12px;"><b>SIGNED</b> on behalf of the Carrier MSC Mediterranean Shipping Company S.A. by MSC BELGIUM N.V. As Agent</span>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                <!-- </t> -->
+            </t>
+        </t>
+    </template>
+
+</odoo>

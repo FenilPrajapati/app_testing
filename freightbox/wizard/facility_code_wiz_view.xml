@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- ***************** Facility Code Wiz -->
+
+        <record id="view_facility_code_wiz_form" model="ir.ui.view">
+            <field name="name">Facility Code Wiz</field>
+            <field name="model">facility.code.wiz</field>
+            <field name="arch" type="xml">
+                <form string="Facility Code Wiz">
+                    <p class="oe_grey">
+                        Import the Facility Code List
+                    </p>
+                    <group>
+                        <field name="country_code"/>
+                        <field name="code_provider"/>
+                    </group>
+
+                    <footer>
+                        <button name="import_facility_code" string="Import Facility Code" class="oe_highlight"
+                                type="object"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="act_facility_code_wiz" model="ir.actions.act_window">
+            <field name="name">Facility Code Wiz</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">facility.code.wiz</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="view_id" ref="view_facility_code_wiz_form"/>
+        </record>
+
+    </data>
+</odoo>

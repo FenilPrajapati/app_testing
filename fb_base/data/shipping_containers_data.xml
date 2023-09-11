@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record model="shipping.container" id="sc1_dv20">
+            <field name="name">DV20</field>
+            <field name="description">20-foot dry container</field>
+        </record>
+
+        <record model="shipping.container" id="sc1_dv40">
+            <field name="name">DV40</field>
+            <field name="description">40-foot dry container</field>
+        </record>
+
+        <record model="shipping.container" id="sc1_rf20">
+            <field name="name">RF20</field>
+            <field name="description">20-foot refrigerated container</field>
+        </record>
+
+        <record model="shipping.container" id="sc1_rf40">
+            <field name="name">RF40</field>
+            <field name="description">40-foot refrigerated container</field>
+        </record>
+        
+        <record model="shipping.container" id="sc1_hc40">
+            <field name="name">HC40</field>
+            <field name="description">40-foot high cube container</field>
+        </record>
+
+        <record model="shipping.container" id="sc1_hc45">
+            <field name="name">HC45</field>
+            <field name="description">45-foot high cube container</field>
+        </record>
+
+        <record model="shipping.container" id="sc1_ot20">
+            <field name="name">OT20</field>
+            <field name="description">20-foot open-top container</field>
+        </record>
+
+        <record model="shipping.container" id="sc1_ot40">
+            <field name="name">OT40</field>
+            <field name="description">40-foot open-top container</field>
+        </record>
+
+        <record model="shipping.container" id="sc1_fr20">
+            <field name="name">FR20</field>
+            <field name="description">20-foot flat rack container</field>
+        </record>
+
+        <record model="shipping.container" id="sc1_fr40">
+            <field name="name">FR40</field>
+            <field name="description">40-foot flat rack container</field>
+        </record>
+
+        <record model="shipping.container" id="sc1_tc20">
+            <field name="name">TC20</field>
+            <field name="description">20-foot tank container</field>
+        </record>
+
+        <record model="shipping.container" id="sc1_tc">
+            <field name="name">TC40</field>
+            <field name="description">40-foot tank container</field>
+        </record>
+    </data>
+</odoo>

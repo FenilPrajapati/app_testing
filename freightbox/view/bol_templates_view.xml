@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="bol_templates_form_view" model="ir.ui.view">
+            <field name="name">BOL Template</field>
+            <field name="model">bol.templates</field>
+            <field name="arch" type="xml">
+                <form string="BOL Templates">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="transport_document_type_code" required="1"/>
+                                <field name="number_of_originals"/>
+                                <field name="is_electronic" required="1"/>
+                                <field name="is_shipped_onboard_type"/>
+                            </group>
+                            <group>
+                                <field name="carrier_booking_reference" required="1"/>
+                                <field name="number_of_copies"/>
+                                <field name="is_charges_displayed"/>
+                                <field name="is_data_template" readonly="1"/>
+                            </group>
+                        </group>
+                        <separator string="Invoice Payable At"/>
+                        <group>
+                            <group>
+                                <field name="location_name" required="1"/>
+                                <field name="un_location_code" required="1"/>
+                                <field name="country" required="1"/>
+                            </group>
+                            <group>
+                                <field name="city_name" required="1"/>
+                                <field name="state_region" required="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="shipping_instruction_ID"/>
+                                <field name="reciept_or_deliverytype_at_origin"/>
+                                <field name="shipped_onboard_date"/>
+                                <field name="cargo_movement_type_at_origin"/>
+                                <field name="terms_and_conditions"/>
+                            </group>
+                            <group>
+                                <field name="transport_document_reference"/>
+                                <field name="reciept_or_deliverytype_at_dest"/>
+                                <field name="issue_date"/>
+                                <field name="cargo_movement_type_at_dest"/>
+                            </group>
+                            <group>
+                                <field name="received_for_shipment_date"/>
+                                <field name="service_contract_reference"/>
+                                <field name="issuer_code"/>
+                            </group>
+                            <group>
+                                <field name="declared_value"/>
+                                <field name="declared_value_currency"/>
+                                <field name="issuer_code_list_provider"/>
+                            </group>
+                            <group>
+                                <field name="no_of_rider_pages"/>
+                                <field name="planned_arrival_date"/>
+                                <field name="planned_departure_date"/>
+                            </group>
+                            <group>
+                                <field name="binary_copy"/>
+                                <field name="document_hash"/>
+                                <field name="pre_carried_by"/>
+                            </group>
+                        </group>
+                        <separator string="Place Of Issue"/>
+                        <group>
+                            <group>
+                                <field name="poi_location_name"/>
+                                <field name="poi_un_location_code"/>
+                                <field name="poi_street_name"/>
+                                <field name="poi_street_number"/>
+                                <field name="poi_floor"/>
+                            </group>
+                            <group>
+                                <field name="poi_post_code"/>
+                                <field name="poi_city_name"/>
+                                <field name="poi_state_region"/>
+                                <field name="poi_country"/>
+                            </group>
+                        </group>
+                        <separator string="Place Of Reciept"/>
+                        <group>
+                            <group>
+                                <field name="por_location_name"/>
+                                <field name="por_un_location_code"/>
+                                <field name="por_street_name"/>
+                                <field name="por_street_number"/>
+                                <field name="por_floor"/>
+                            </group>
+                            <group>
+                                <field name="por_post_code"/>
+                                <field name="por_city_name"/>
+                                <field name="por_state_region"/>
+                                <field name="por_country"/>
+                            </group>
+                        </group>
+                        <separator string="Port of Loading"/>
+                        <group>
+                            <group>
+                                <field name="pol_location_name"/>
+                                <field name="pol_un_location_code"/>
+                                <field name="pol_city_name"/>
+                            </group>
+                            <group>
+                                <field name="pol_state_region"/>
+                                <field name="pol_country"/>
+                            </group>
+                        </group>
+                        <separator string="Port of Discharge"/>
+                        <group>
+                            <group>
+                                <field name="pod_location_name"/>
+                                <field name="pod_city_name"/>
+                                <field name="pod_country"/>
+                            </group>
+                            <group>
+                                <field name="pod_un_location_code"/>
+                                <field name="pod_state_region"/>
+                            </group>
+                        </group>
+                        <separator string="Place Of Delivery"/>
+                        <group>
+                            <group>
+                                <field name="plod_location_name"/>
+                                <field name="plod_street_name"/>
+                                <field name="plod_floor"/>
+                                <field name="plod_city_name"/>
+                                <field name="plod_country"/>
+                            </group>
+                            <group>
+                                <field name="plod_un_location_code"/>
+                                <field name="plod_street_number"/>
+                                <field name="plod_post_code"/>
+                                <field name="plod_state_region"/>
+                            </group>
+                        </group>
+                        <separator string="Onward Inland Routing"/>
+                        <group>
+                            <group>
+                                <field name="oir_location_name"/>
+                                <field name="oir_street_name"/>
+                                <field name="oir_floor"/>
+                                <field name="oir_city_name"/>
+                                <field name="oir_state_region"/>
+                            </group>
+                            <group>
+                                <field name="oir_un_location_code"/>
+                                <field name="oir_street_number"/>
+                                <field name="oir_post_code"/>
+                                <field name="oir_country"/>
+                            </group>
+                        </group>
+                        <separator string="Pre-Carriage under Shipper's Responsibility"/>
+                        <group>
+                            <group>
+                                <field name="pre_location_name"/>
+                                <field name="pre_latitude"/>
+                                <field name="pre_street_name"/>
+                                <field name="pre_floor"/>
+                                <field name="pre_city_name"/>
+                                <field name="pre_country"/>
+                            </group>
+                            <group>
+                                <field name="pre_un_location_code"/>
+                                <field name="pre_longitude"/>
+                                <field name="pre_street_number"/>
+                                <field name="pre_post_code"/>
+                                <field name="pre_state_region"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="bol_templates_tree_view" model="ir.ui.view">
+            <field name="name">BOL Template</field>
+            <field name="model">bol.templates</field>
+            <field name="arch" type="xml">
+                <tree string="BOL Templates">
+                    <field name="name"/>
+                    <!--<field name="transport_document_type_code" />
+                    <field name="number_of_originals" />
+                    <field name="pre_carriage_under_shippers_responsibility" />
+                    <field name="number_of_copies"/>-->
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_bol_templates" model="ir.actions.act_window">
+            <field name="name">BOL Template</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bol.templates</field>
+            <field name="view_id" ref="bol_templates_tree_view"></field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

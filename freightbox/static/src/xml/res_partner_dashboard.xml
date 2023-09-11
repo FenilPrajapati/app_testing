@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+
+    <t t-name="freightbox.PartnerDashboard">
+        <div class="o_partner_dashboard container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-sm">
+                        <tbody>
+                            <tr>
+                                <td class="o_text">
+                                    <div>All Events</div>
+                                </td>
+                                <!-- <td class="o_main o_partner_dashboard_action" title="Black List" name="freightbox.action_contacts_tree" context='{"search_default_filter_blacklist": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['black_list']"/><br/>Black List</a>
+                                </td>
+                                <td class="o_main o_partner_dashboard_action" title="Active" name="freightbox.action_contacts_tree" context='{"search_default_filter_active": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['active']"/><br/>Active</a>
+                                </td>
+                                <td class="o_main o_partner_dashboard_action" title="In Active" name="freightbox.action_contacts_tree" context='{"search_default_filter_in_active": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['in_active']"/><br/>In Active</a>
+                                </td> -->
+
+                                <td class="o_main o_partner_dashboard_action" title="Shippers" name="freightbox.action_contacts_tree" context='{"search_default_filter_shippers": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['shippers']"/><br/>Shippers</a>
+                                </td>
+                                <td class="o_main o_partner_dashboard_action" title="Consignees" name="freightbox.action_contacts_tree" context='{"search_default_filter_consignees": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['consignees']"/><br/>Consignees</a>
+                                </td>
+                                <td class="o_main o_partner_dashboard_action" title="Freight Forwarders" name="freightbox.action_contacts_tree" context='{"search_default_filter_freightforwarders": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['freightforwarders']"/><br/>Freight Forwarders</a>
+                                </td>
+                                <td class="o_main o_partner_dashboard_action" title="NVOCC" name="freightbox.action_contacts_tree" context='{"search_default_filter_NVOCC": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['NVOCC']"/><br/>NVOCC</a>
+                                </td>
+                                <td class="o_main o_partner_dashboard_action" title="Vendors Shipping Lines" name="freightbox.action_contacts_tree" context='{"search_default_filter_vendors_shipping": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['vendors_shipping_lines']"/><br/>Vendors Shipping Lines</a>
+                                </td>
+                                <td class="o_main o_partner_dashboard_action" title="Agent" name="freightbox.action_contacts_tree" context='{"search_default_filter_agent": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['agent']"/><br/>Agent</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </t>
+        
+</template>

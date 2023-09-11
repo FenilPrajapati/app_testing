@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record model="location.type" id="locationtype_1">
+            <field name="name">PRE</field>
+        </record>
+        <record model="location.type" id="locationtype_2">
+            <field name="name">PDE</field>
+        </record>
+        <record model="location.type" id="locationtype_3">
+            <field name="name">PCF</field>
+        </record>
+        <record model="location.type" id="locationtype_4">
+            <field name="name">PSR</field>
+        </record>
+        <record model="location.type" id="locationtype_5">
+            <field name="name">OIR</field>
+        </record>
+        <record model="location.type" id="locationtype_6">
+            <field name="name">POL</field>
+        </record>
+        <record model="location.type" id="locationtype_7">
+            <field name="name">POD</field>
+        </record>
+        <record model="location.type" id="locationtype_8">
+            <field name="name">ORI</field>
+        </record>
+        <record model="location.type" id="locationtype_9">
+            <field name="name">DRL</field>
+        </record>
+
+    </data>
+</odoo>

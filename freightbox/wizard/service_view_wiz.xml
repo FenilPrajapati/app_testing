@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- ***************** Service - Create Invoice Action -->
+
+        <record id="view_service_invoice" model="ir.ui.view">
+            <field name="name">Invoice Orders</field>
+            <field name="model">service.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Invoice Services">
+                    <p class="oe_grey">
+                        Invoices will be created in draft so that you can review
+                        them before validation.
+                    </p>
+
+                    <group>
+                        <field name="vendor_invoice" widget="radio"/>
+                    </group>
+
+                    <footer>
+                        <button name="create_invoices" id="create_invoice"
+                                string="Create Invoice" class="oe_highlight" type="object"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_service_wizard" model="ir.actions.act_window">
+            <field name="name">Create Vendor Invoices</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">service.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="freightbox.model_service"/>
+            <field name="binding_view_types">list</field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- ********** Tree for All Charges ******** -->
+        <record id="rate_charges_tree_view" model="ir.ui.view">
+            <field name="name">Charges</field>
+            <field name="model">charges</field>
+            <field name="arch" type="xml">
+                <tree string="Charges" create="false" delete="false" edit="false" editable="bottom" sample="1">
+
+                    <header>
+                        <button name="add_charges_rate_comparision" string="Select Charges" type="object"
+                                class="btn-primary"/>
+                        <button name="cancel_charges" string="Cancel" type="object" class="btn-primary"/>
+                    </header>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="currency_id"/>
+                    <field name="type_of_charges"/>
+                </tree>
+            </field>
+        </record>
+        <!-- ********** End ******* -->
+
+
+        <!-- ************************ RFQ  ************************** -->
+        <!-- ********** RFQ tree view ********** -->
+<!--        <record id="rfq_tree_view" model="ir.ui.view">-->
+<!--            <field name="name">Rate Comparison</field>-->
+<!--            <field name="model">request.for.quote</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <tree string="Rate Comparison" default_order="total_charge asc" decoration-danger="state == 'expired'" decoration-bf="state == 'draft'" decoration-warning="state == 'cancelled'"-->
+<!--                      decoration-success="state == 'approved'" js_class="rc_event_dashboard">-->
+<!--                    <field name="booking_id"/>-->
+<!--                    <field name="shipping_name_id"/>-->
+<!--                    <field name="no_of_expected_container"/>-->
+<!--                    <field name="valid_from"/>-->
+<!--                    <field name="valid_to"/>-->
+<!--                    <field name="total_freight_charge" widget='monetary'-->
+<!--                           options="{'currency_field': 'currency_id', 'field_digits': True}"/>-->
+<!--                    <field name="total_destination_charge" widget='monetary'-->
+<!--                           options="{'currency_field': 'currency_id', 'field_digits': True}"/>-->
+<!--                    <field name="total_origin_charge" widget='monetary'-->
+<!--                           options="{'currency_field': 'currency_id', 'field_digits': True}"/>-->
+<!--                    <field name="total_charge" widget='monetary'-->
+<!--                           options="{'currency_field': 'currency_id', 'field_digits': True}"/>-->
+
+<!--                    &lt;!&ndash; <button name="action_rfq_send" string="Send For Approval"-->
+<!--                            states="draft,rejected" type="object" class="oe_highlight"-->
+<!--                            help="Sends an email to the customer for approval of this rate comparision"/> &ndash;&gt;-->
+<!--                    &lt;!&ndash; <button name="button_approve" string="Approve" states="draft" type="object" class="oe_highlight"-->
+<!--                            confirm="Are you sure you want to Approve?"-->
+<!--                            help="Approves this Rate Comparision"/> &ndash;&gt;-->
+<!--                    <field name="state" widget="badge" decoration-danger="state == 'expired'" decoration-bf="state == 'draft'" decoration-warning="state == 'cancelled'"-->
+<!--                      decoration-success="state == 'approved'"/>-->
+<!--                    <field name="currency_id" invisible="1"/>-->
+<!--                    <field name="company_id" invisible="1" optional="show"/>-->
+<!--                </tree>-->
+<!--            </field>-->
+<!--        </record>-->
+        <!-- ********** RFQ form view ********** -->
+        <record id="rfq_form_view" model="ir.ui.view">
+            <field name="name">Rate Comparison</field>
+            <field name="model">request.for.quote</field>
+            <field name="inherit_id" ref="base_freightbox.rfq_form_view"/>
+            <field name="arch" type="xml">
+<!--                <form string="Rate Comparison">-->
+                    <xpath expr="//button[@name='button_approve']" position="after">
+                        <button name="%(freightbox.act_rc_reject_wiz)d" states="draft"
+                                string="Reject" type="action" class="oe_highlight"
+                                help="Rejects this Rate Comparision"/>
+                         <button name="%(freightbox.act_rc_correct_wiz)d" string="Correct"
+                                attrs="{'invisible': ['|', ('job_id', '!=', False), ('state', 'not in', ('approved', 'correction_done'))]}"
+                                 type="action" class="oe_highlight"
+                                help="Gives an option to make any corrections in this Rate Comparision"/>
+                        <button name="button_confirm_correction" string="Confirm Correction"
+                                states="under_correction" type="object" class="oe_highlight"
+                                confirm="Are you sure you want to confirm Correct?"
+                                help="Confirms any corrections that are made,in this Rate Comparision"/>
+                    </xpath>
+                    <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                        <button name="action_get_po"
+                                    type="object" attrs="{'invisible': [('state', 'in', ['draft'])]}"
+                                    class="oe_stat_button"
+                                    icon="fa-pencil-square-o" string="Purchase Order"
+                                    help="Shows the purchase order,related to this Rate Comparision">
+                            </button>
+                    </xpath>
+                    <xpath expr="//field[@name='company_id']" position="after">
+                        <field name="reject_bool" invisible="1"/>
+                        <field name="correct_reason_bool" invisible="1"/>
+                        <field name="amend_bool" invisible="1"/>
+                        <field name="job_id" invisible="1"/>
+                    </xpath>
+                    <xpath expr="//page[@name='rate']" position="after">
+                        <page name="reason" string="Reject Reason"
+                                  attrs="{'invisible': [('reject_bool','!=', True)]}">
+                                <group colspan="2" col="2">
+                                    <field name="reject_reason" readonly="1"/>
+                                    <field name="comment"/>
+                                </group>
+                            </page>
+                            <page name="correction" string="Correction Reason"
+                                  attrs="{'invisible': [('correct_reason_bool','!=', True)]}">
+                                <group colspan="2" col="2">
+                                    <field name="correct_reason" readonly="1"/>
+                                </group>
+                            </page>
+                        <page string="Video Tutorial">
+                                <button name="open_rfq_tutorial_video_new_tab" type="object" class="btn-primary" string="Open Full Tutorial Video in New Tab"/>
+                                <div class="app_settings_block" string="Rate Comparison Tutorial">
+                                    <div class="row mt16 o_settings_container" name="qualification_setting_container">
+                                        <div controls="true"  class="embed-responsive embed-responsive-16by9">
+                                            <iframe id="rfq_tutorial_video" width="1080px" height="720px" src=""></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </page>
+                    </xpath>
+                    <xpath expr="//page[@name='rate']" position="inside">
+                        <group>
+                                    <group>
+                                        <field name="charges_template_ids" widget="many2many_tags"
+                                               string='Charges Template'
+                                               domain="[('charges_template_line','!=', False)]"
+                                               attrs="{'readonly': [('state', 'in', ('approved', 'cancelled','expired','under_correction'))]}"/>
+                                    </group>
+                                </group>
+                                <header>
+                                    <button name="action_load_charges" type="object" string="Load Charges"
+                                            states="draft,rejected" class="btn-primary"
+                                            help="Loads the charges from the charges template selected above"/>
+                                    <button name="delete_charges" type="object" string="Delete Charges"
+                                            states="draft,rejected,under_correction" class="btn-primary"
+                                            confirm="This will delete all the charges,do you wish to proceed?"
+                                            help="Deletes all the charges below"/>
+                                    <button name="action_charges" type="object" string="Select Charges"
+                                            states="draft,under_correction,rejected" class="btn-primary"
+                                            help="Selects multiple charges from the list of charges"/>
+                                    <button name="action_create_charges_template" type="object"
+                                            string="Create/Update Charges Template" class="btn-primary"
+                                            help="Creates a charge template with the below listed charges"/>
+                                    <!--<button string="Update Charges Prepaid/Collect" type="object"
+                                            states="draft,rejected"
+                                            name="action_update_charges_prepaid_collect" class="oe_highlight"/>-->
+                                </header>
+                    </xpath>
+<!--                    <header>-->
+<!--                        &lt;!&ndash;<button name="button_currency_convertor" string="Currency Convertor"-->
+<!--                                type="object" class="oe_highlight"-->
+<!--                                />&ndash;&gt;-->
+<!--                        &lt;!&ndash; <button name="action_rfq_send" string="Send For Approval"-->
+<!--                                states="draft" type="object" class="oe_highlight"-->
+<!--                                help="Sends an email to the customer for approval of this rate comparision"/> &ndash;&gt;-->
+<!--                        &lt;!&ndash;<button name="button_approve" states="draft"-->
+<!--                                string="Approve" type="object" class="oe_highlight"-->
+<!--                                confirm="Are you sure you want to Approve?"-->
+<!--                                help="Approves this Rate Comparision"/>&ndash;&gt;-->
+<!--                        -->
+<!--                        &lt;!&ndash;<button name="button_cancel" states="approved,correction_done,under_correction"-->
+<!--                                string="Cancel" type="object" class="oe_highlight"-->
+<!--                                confirm="This will cancel the Quotation,do you wish to proceed?"-->
+<!--                                help="Cancels this Rate Comparision"/>-->
+<!--                        <button name="button_set_to_draft" string="Set To Draft"-->
+<!--                                states="cancelled,rejected" type="object" class="oe_highlight"-->
+<!--                                help="Sets this Rate Comparision to draft state"/>&ndash;&gt;-->
+<!--                       -->
+<!--                        &lt;!&ndash;<button name="%(freightbox.act_rc_amend_wiz)d" string="Amend" states="approved,amended,correction_done"-->
+<!--                                type="action" class="btn-primary"-->
+<!--                                help="Gives an option to make any Amendments to this Rate Comparision"/>-->
+<!--                        <button name="button_confirm_amendment" string="Confirm Amendment"-->
+<!--                                states="under_amendment" type="object" class="oe_highlight" confirm="Are you sure you want to confirm Amendment?"-->
+<!--                                help="Confirms any Amendments that are made,to this Rate Comparision"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <field name="state" widget="statusbar" nolabel="1"/>&ndash;&gt;-->
+<!--                    </header>-->
+<!--                    <sheet>-->
+<!--                        <group>-->
+<!--                            &lt;!&ndash;<group>-->
+<!--                                <field name="shipping_name_id" required="1"  context="{'default_supplier_rank':1}" attrs="{'readonly': [('state', 'in', ('approved', 'cancelled','expired','under_correction'))]}"/>-->
+<!--                                <field name="booking_id" required="1" options="{'no_open':0}" domain="[('stage_id.name', 'ilike', 'New')]" attrs="{'readonly': [('state', 'in', ('approved', 'cancelled','expired','under_correction'))]}" context="{'form_view_ref': 'freightbox.crm_lead_view_form_freightbox'}"/>-->
+<!--                                <field name="valid_from" required="1" attrs="{'readonly': [('state', 'in', ('approved', 'cancelled','expired'))]}"/>-->
+<!--                                <field name="valid_to" required="1" attrs="{'readonly': [('state', 'in', ('approved', 'cancelled','expired'))]}"/>-->
+<!--                            </group>&ndash;&gt;-->
+<!--                            <group>-->
+<!--                               &lt;!&ndash; <field name="currency_id"/>-->
+<!--                                <field name="create_date"/>-->
+<!--                                <field name="company_id" options="{'no_create': True}"/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                <field name="active" invisible="1"/>&ndash;&gt;-->
+<!--                            </group>-->
+<!--                        </group>-->
+                        <!-- <separator string="Will be generated, when invoice and vendor bill are created"/>
+                       <group>
+                        <group colspan="4" col="4">
+                           <field name="invoice_id" readonly="1"/>
+                           <field name="vendor_bill_id" readonly="1"/>
+                        </group>
+                       </group> -->
+<!--                        <notebook>-->
+                           <!-- <page name="cargo" string="Cargo">
+                                <group>
+                                    <group>
+                                        <field name="job_id" invisible="1"/>
+                                        <field name="booking_container_type" invisible="1"/>
+                                        <field name="cargo_name" attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}" force_save="1"/>
+                                        <field name="quantity" attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}" force_save="1"/>
+                                        &lt;!&ndash; <field name="fcl" attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}" force_save="1"/>
+                                        <field name="bb" attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}" force_save="1"/> &ndash;&gt;
+                                        <field name="weight" attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}" force_save="1"/>
+                                        <field name="weight_uom" attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}" force_save="1"/>
+                                        <field name="volume" attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}" force_save="1"/>
+                                        <field name="volume_uom" attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}" force_save="1"/>
+                                        <field name="move_type" attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}" force_save="1"/>
+                                        <field name="incoterm_id" attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}" force_save="1"/>
+                                    </group>
+                                    <group>
+                                        <field name="place_of_origin" attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}" force_save="1"/>
+                                        <field name="final_port_of_destination" attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}" force_save="1"/>
+                                        <field name="point_of_stuffing" attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}" force_save="1"/>
+                                        <field name="point_of_destuffing" attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}" force_save="1"/>
+                                        <field name="no_of_expected_container" attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}" force_save="1"/>
+                                        <field name="container_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}" domain="[('container_type_id','=',booking_container_type)]" force_save="1"/>
+                                        <field name="expected_date_of_shipment" attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}" force_save="1"/>
+                                        <field name="shipment_terms" attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}" force_save="1"/>
+                                        &lt;!&ndash; <field name="remarks" colspan="4" attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}" force_save="1"/> &ndash;&gt;
+                                        <field name="booking_user_id" readonly="1"/>
+                                        <field name="remarks" attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}" force_save="1"/>
+                                        <field name="delivery_type_id"/>
+
+                                    </group>
+                                </group>
+                            </page>
+
+                            <page name="cargo_plus" string="Cargo Plus">
+                                <separator string="Additional Cargo Details"/>
+                                <field name="cargo_plus_ids"/>
+                            </page>-->
+
+<!--                            <page name='rate' string="Rate Upload">-->
+
+<!--                             &lt;!&ndash;   <separator/>-->
+<!--                                <field name="charges_line" widget="one2many"-->
+<!--                                       attrs="{'readonly': [('state', 'in', ('approved', 'cancelled','expired'))]}">-->
+<!--                                    <tree string="Charges" editable="bottom">-->
+<!--                                        <field name="charges_id" required="1"/>-->
+<!--                                        <field name="charge_line_insert_update" invisible="1"/>-->
+<!--                                        <field name="charges_type" readonly="1" force_save="1"/>-->
+<!--                                        <field name="container_type" readonly="1" force_save="1"/>-->
+<!--                                        <field name="charge_load_bool" invisible="1"/>-->
+<!--                                        <field name="is_loaded_for_rfq" invisible="1"/>-->
+<!--                                        <field name="units" force_save="1"/>-->
+<!--                                        <field name="unit_price" required="1" widget='monetary'-->
+<!--                                            options="{'currency_field': 'currency_id', 'field_digits': True}"/>-->
+<!--                                        <field name="base_currency_id" invisible="1"/>-->
+<!--                                        <field name="taxes_id" widget="many2many_tags" style="width: 150px !important"/>-->
+<!--                                        <field name="currency_id" required="1" string="From CRR"/>-->
+<!--                                        <field name="tax_amt" readonly="1" force_save="1" widget='monetary'-->
+<!--                                               options="{'currency_field': 'currency_id', 'field_digits': True}"/>-->
+<!--                                        <field name="final_amount" widget='monetary' string="Total Cost Tax Included "-->
+<!--                                            options="{'currency_field': 'to_currency_id', 'field_digits': True}"/>-->
+<!--                                        <field name="to_currency_id" string="To CRR" required="1"/>-->
+<!--                                        <field name="today_exchange_rate"/>-->
+<!--                                        <field name="prepaid" force_save="1"/>-->
+<!--                                        <field name="collect" force_save="1"/>-->
+<!--                                        <field name="comment"/>-->
+<!--                                        <field name="company_currency_total" widget='monetary' optional="show" invisible="1"-->
+<!--                                            options="{'currency_field': 'base_currency_id', 'field_digits': True}"/>-->
+<!--                                    </tree>-->
+<!--                                </field>-->
+<!--                                <separator/>&ndash;&gt;-->
+<!--                                &lt;!&ndash;<group >-->
+
+<!--                                    <label for="total_final_amount_per_unit"/>-->
+<!--                                    <div name="amount_div" class="o_row">-->
+<!--                                        <field name="total_final_amount_per_unit" widget='monetary'-->
+<!--                                            options="{'currency_field': 'currency_id', 'field_digits': True}"/>-->
+<!--                                        <field name="currency_id"-->
+<!--                                            options="{'no_create': True, 'no_open': True}"-->
+<!--                                            groups="base.group_multi_currency"/>-->
+
+<!--                                    </div>-->
+<!--                                </group>&ndash;&gt;-->
+<!--                                &lt;!&ndash;<group>-->
+<!--                                    <group>-->
+
+<!--                                        <label for="collect_total_without_tax"/>-->
+<!--                                    <div name="amount_div" class="o_row">-->
+<!--                                        <field name="collect_total_without_tax" widget='monetary'-->
+<!--                                               options="{'currency_field': 'currency_id', 'field_digits': True}"/>-->
+<!--                                        <field name="currency_id"-->
+<!--                                               options="{'no_create': True, 'no_open': True}"-->
+<!--                                               groups="base.group_multi_currency"/>-->
+<!--                                    </div>-->
+<!--                                    </group>-->
+<!--                                    <group>-->
+
+<!--                                       <label for="collect_total_tax"/>-->
+<!--                                    <div name="amount_div" class="o_row">-->
+<!--                                        <field name="collect_total_tax" widget='monetary'-->
+<!--                                               options="{'currency_field': 'currency_id', 'field_digits': True}"/>-->
+<!--                                        <field name="currency_id"-->
+<!--                                               options="{'no_create': True, 'no_open': True}"-->
+<!--                                               groups="base.group_multi_currency"/>-->
+<!--                                    </div>-->
+<!--                                    </group>-->
+<!--                                </group>-->
+
+<!--                                <group>-->
+<!--                                    <group>-->
+
+<!--                                        <label for="prepaid_total_without_tax"/>-->
+<!--                                    <div name="amount_div" class="o_row">-->
+<!--                                        <field name="prepaid_total_without_tax" widget='monetary'-->
+<!--                                               options="{'currency_field': 'currency_id', 'field_digits': True}"/>-->
+<!--                                        <field name="currency_id"-->
+<!--                                               options="{'no_create': True, 'no_open': True}"-->
+<!--                                               groups="base.group_multi_currency"/>-->
+<!--                                    </div>-->
+<!--                                    </group>-->
+<!--                                    <group>-->
+
+<!--                                       <label for="prepaid_total_tax"/>-->
+<!--                                    <div name="amount_div" class="o_row">-->
+<!--                                        <field name="prepaid_total_tax" widget='monetary'-->
+<!--                                               options="{'currency_field': 'currency_id', 'field_digits': True}"/>-->
+<!--                                        <field name="currency_id"-->
+<!--                                               options="{'no_create': True, 'no_open': True}"-->
+<!--                                               groups="base.group_multi_currency"/>-->
+<!--                                    </div>-->
+<!--                                    </group>-->
+<!--                                </group>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                                <group>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <group>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <label for="total_prepaid_charges"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div name="amount_div" class="o_row">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <field name="total_prepaid_charges" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <field name="currency_id" options="{'no_create': True, 'no_open': True}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </group>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <group>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <label for="total_collect_charges"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div name="amount_div" class="o_row">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <field name="total_collect_charges" widget='monetary' options="{'currency_field': 'currency_id', 'field_digits': True}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <field name="currency_id" options="{'no_create': True, 'no_open': True}" />&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </group>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </group>&ndash;&gt;-->
+
+
+<!--                                <separator/>-->
+<!--&lt;!&ndash;                                <group>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <group>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <label for="total_freight_charge"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div name="amount_div" class="o_row">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <field name="total_freight_charge" widget='monetary'&ndash;&gt;-->
+<!--&lt;!&ndash;                                                options="{'currency_field': 'currency_id', 'field_digits': True}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <field name="currency_id"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                options="{'no_create': True, 'no_open': True}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                />&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <label for="total_destination_charge"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div name="amount_div" class="o_row">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <field name="total_destination_charge" widget='monetary'&ndash;&gt;-->
+<!--&lt;!&ndash;                                                options="{'currency_field': 'currency_id', 'field_digits': True}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <field name="currency_id"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                options="{'no_create': True, 'no_open': True}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                />&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </group>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <group>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    &ndash;&gt;-->
+<!--&lt;!&ndash;                                        <label for="total_origin_charge"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div name="amount_div" class="o_row">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <field name="total_origin_charge" widget='monetary'&ndash;&gt;-->
+<!--&lt;!&ndash;                                                options="{'currency_field': 'currency_id', 'field_digits': True}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <field name="currency_id"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                options="{'no_create': True, 'no_open': True}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                />&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <label for="total_charge"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <div name="amount_div" class="o_row">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <field name="total_charge" widget='monetary'&ndash;&gt;-->
+<!--&lt;!&ndash;                                                options="{'currency_field': 'currency_id', 'field_digits': True}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <field name="currency_id"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                options="{'no_create': True, 'no_open': True}"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                />&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </group>    &ndash;&gt;-->
+<!--&lt;!&ndash;                                </group>    &ndash;&gt;-->
+<!--                                &lt;!&ndash;<group colspan="4" col="4">-->
+<!--                                    <field name="total_freight_charge" widget='monetary' options="{'currency_field': 'currency_id'}"/>-->
+<!--                                    <field name="total_destination_charge" widget='monetary' options="{'currency_field': 'currency_id'}"/>-->
+<!--                                    <field name="total_origin_charge" widget='monetary' options="{'currency_field': 'currency_id'}"/>-->
+<!--                                    <field name="total_charge" widget='monetary' options="{'currency_field': 'currency_id'}"/>-->
+<!--                                </group>&ndash;&gt;-->
+<!--                            </page>-->
+<!--                            <page name='Other_information' string="Other Info" invisible="1">-->
+<!--                                <group colspan="4">-->
+<!--                                    <group>-->
+<!--                                        <field name="invoice_id" readonly="1"/>-->
+<!--                                    </group>-->
+<!--                                    <group>-->
+<!--                                        <field name="vendor_bill_id" readonly="1"/>-->
+<!--                                    </group>-->
+<!--                                </group>-->
+<!--                            </page>-->
+
+                            <!-- <page name="amendment" string="Amendment Reason" attrs="{'invisible': [('amend_bool','!=', True)]}">
+                                <group colspan="2" col="2">
+                                    <field name="amend_reason" readonly="1"/>
+                                </group>
+                            </page> -->
+
+
+                        <!--</notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>-->
+            </field>
+        </record>
+
+<!--        <record id="view_rfq_search" model="ir.ui.view">-->
+<!--            <field name="name">request.for.quote.search</field>-->
+<!--            <field name="model">request.for.quote</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <search string="Rate Comparison search">-->
+<!--                    <field name="booking_id"/>-->
+<!--                    <field name="shipping_name_id"/>-->
+<!--                    <separator/>-->
+<!--                    <filter name="rc_draft" string="Draft" domain="[('state', '=', 'draft')]"/>-->
+<!--                    <filter name="rc_approved" string="Approved" domain="[('state', '=', 'approved')]"/>-->
+<!--                    <filter name="rc_rejected" string="Rejected" domain="[('state', '=', 'rejected')]"/>-->
+<!--                    <filter name="rc_cancelled" string="Cancelled" domain="[('state', '=', 'cancelled')]"/>-->
+<!--                    <filter name="rc_expired" string="Expired" domain="[('state', '=', 'expired')]"/>-->
+<!--                    <separator/>-->
+<!--                    &lt;!&ndash; <filter string="shipping_name_id" name="Shipping id" domain="[('charges_template_ids', '=', 'Bhargavi')]"/>					 &ndash;&gt;-->
+<!--                    <group expand="1" string="Group By">-->
+<!--                        <filter string="Enquiry No." name="group_booking_id"-->
+<!--                                context="{'group_by': 'booking_id'}"/>-->
+<!--                        <filter string="Shipping Line" name="group_shipping_name_id"-->
+<!--                                context="{'group_by':'shipping_name_id'}"/>-->
+<!--                    </group>-->
+<!--                </search>-->
+<!--            </field>-->
+<!--        </record>-->
+        <!-- ********** Action RFQ ********** -->
+
+<!--        <record id="action_fb_rfq" model="ir.actions.act_window">-->
+<!--            <field name="name">Rate Comparison</field>-->
+<!--            <field name="type">ir.actions.act_window</field>-->
+<!--            <field name="res_model">request.for.quote</field>-->
+<!--            &lt;!&ndash; <field name="view_id" ref="rfq_tree_view"></field> &ndash;&gt;-->
+<!--            <field name="view_ids" eval="[(5, 0, 0),-->
+<!--            (0, 0, {'view_mode': 'tree', 'view_id': ref('rfq_tree_view')}),-->
+<!--            (0, 0, {'view_mode': 'form', 'view_id': ref('rfq_form_view')})]"/>-->
+<!--            <field name="search_view_id" ref="view_rfq_search"/>-->
+<!--            <field name="target">main</field>-->
+<!--            <field name="context">{"search_default_group_booking_id":1,"default_rc_bool":1}</field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--        </record>-->
+
+        <!--
+                <record id="model_rate_comparison" model="ir.actions.server">
+                    <field name="name">Approve</field>
+                    <field name="model_id" ref="freightbox.model_request_for_quote"/>
+                    <field name="binding_model_id" ref="freightbox.model_request_for_quote"/>
+                    <field name="binding_view_types">form,list</field>
+                    <field name="state">code</field>
+                    <field name="code">action = records.button_approve()</field>
+                </record>
+        -->
+    </data>
+</odoo>

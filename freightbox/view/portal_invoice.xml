@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="portal_my_invoices_booking" name="Booking on My Invoices" inherit_id="account.portal_my_invoices">
+        <xpath expr="//t[@t-call='portal.portal_table']/thead/tr/th[1]" position="after">
+            <th>Booking</th>
+        </xpath>
+        <xpath expr="//t[@t-foreach='invoices']/tr/td[1]" position="after">
+            <td><span t-field="invoice.booking_id"/></td>
+        </xpath>
+    </template>
+
+</odoo>

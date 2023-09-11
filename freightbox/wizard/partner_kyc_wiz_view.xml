@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="partner_kyc_form_view_wiz" model="ir.ui.view">
+        <field name="name">Partner KYC</field>
+        <field name="model">partner.kyc.wiz</field>
+        <field name="arch" type="xml">
+            <form string="Partner KYC">
+                <sheet>
+                    <!-- <group string="Identity Details">
+                        <group>
+                            <field name="pan_no"/>
+                        </group>
+                        <group>
+                            <field name="pan_atta" />
+                        </group>
+                    </group>
+                    <group string="Proof of Address (Atleast 2 required)">
+                        <group>
+                            <field name="add_passport"/>
+                            <field name="add_dl"/>
+                            <field name="add_sa"/>
+                            <field name="add_tele_bill"/>
+                            <field name="add_gas_bill"/>
+                        </group>
+                        <group>
+                            <field name="add_ration_card"/>
+                            <field name="add_voter_id_card"/>
+                            <field name="add_bank_detail"/>
+                            <field name="add_electricity_bill"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="add_attachment" widget="many2many_binary"/>
+                    </group> -->
+                    <group name="attch_id" string="Attach KYC Documents">
+                        <div>
+                            <field name="line_ids" >
+                                <tree editable="bottom">
+                                    <field name="doc_selection" />
+                                    <field name="doc_attachment" widget="many2many_binary"/>
+                                </tree>
+                            </field>
+                        </div>
+                    </group>
+                    <separator string="Declaration"/>
+                    <div class="oe_title" style="max-width: fit-content;display: flex;">
+                        <field name="declaration"/>
+                        <label for="declaration"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="f_name"/>
+                            <field name="app_sign" widget="image"/>
+                        </group>
+                        <group>
+                            <field name="l_name"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_blacklist" string="Save" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <record id="partner_kyc_wiz_action" model="ir.actions.act_window">
+        <field name="name">Partner KYC</field>
+        <field name="res_model">partner.kyc.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

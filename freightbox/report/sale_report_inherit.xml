@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sale_report_inherit" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@id='total']" position="after">
+            <table class="table table-sm o_main_table">
+                <thead style="display: table-row-group">
+                    <tr>
+                        <th name="th_charges_id">
+                            <strong>Charges</strong>
+                        </th>
+                        <th name="th_charges_type">
+                            <strong>Charges Type</strong>
+                        </th>
+                        <th name="th_container_type">
+                            <strong>Container Type</strong>
+                        </th>
+                        <th name="th_units" class="text-left">
+                            <strong>Units</strong>
+                        </th>
+                        <th name="th_new_unit_price" class="text-center">
+                            <strong>Sale Price</strong>
+                        </th>
+                        <th name="th_taxes_id" class="text-center">
+                            <strong>Taxes</strong>
+                        </th>
+                        <th name="th_sale_final_amount" class="text-center">
+                            <strong>Sale Final Amount</strong>
+                        </th>
+                        <th name="th_to_currency_id" class="text-left">
+                            <strong>Currency ID</strong>
+                        </th>
+                        <th name="th_prepaid">
+                            <strong>Prepaid</strong>
+                        </th>
+                        <th name="th_collect">
+                            <strong>Collect</strong>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="sale_tbody">
+                    <t t-foreach="doc.charges_line" t-as="rate">
+                        <tr t-att-class="'bg-200 font-weight o_line_section'">
+                            <td id="charges">
+                                <span t-field="rate.charges_id"/>
+                            </td>
+                            <td name="td_charges_type">
+                                <span t-field="rate.charges_type"/>
+                            </td>
+                            <td name="td_container_type">
+                                <span t-field="rate.container_type"/>
+                            </td>
+                            <td class="text-left">
+                                <span t-field="rate.units"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="rate.new_unit_price"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="rate.taxes_id"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="rate.sale_final_amount"/>
+                            </td>
+                            <td class="text-left">
+                                <span t-field="rate.to_currency_id"/>
+                            </td>
+                            <td name="td_prepaid">
+                                <span t-field="rate.prepaid"/>
+                            </td>
+                            <td name="td_collect">
+                                <span t-field="rate.collect"/>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+            <div id="total" class="row justify-content-end">
+                <div class="col-4">
+                    <table class="table table-sm">
+                        <tr class="border-black o_total">
+                            <td name="td_amount_total_label">
+                                <strong>Total</strong>
+                            </td>
+                            <td name="td_amount_total" class="text-right">
+                                <span t-field="doc.amount_total"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

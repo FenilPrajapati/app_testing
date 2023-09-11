@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+
+    <t t-name="freightbox.FBCRMDashboard">
+        <div class="o_crm_dashboard container">
+            <div class="row">
+                <div class="col-sm-7">
+                    <table class="table table-sm">
+                        <tbody>
+                            <tr>
+                                <td class="o_text">
+                                    <div>All Events</div>
+                                </td>
+                                <td class="o_main o_crm_dashboard_action" title="Freight Box" name="freightbox.action_fb_enquiry_management" context='{"search_default_inquiry_freight_box": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['freight_box']"/><br/>Freight Box</a>
+                                </td>
+                                <!-- <td class="o_main o_crm_dashboard_action" title="NVOCC" name="freightbox.action_fb_enquiry_management" context='{"search_default_inquiry_nvocc": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['nvocc']"/><br/>NVOCC</a>
+                                </td>
+                                <td class="o_main o_crm_dashboard_action" title="Created from PO" name="freightbox.action_fb_enquiry_management" context='{"search_default_inquiry_po": true}'>
+                                    <a href="#" style="color: white;"><t t-esc="values['po']"/><br/>Created from PO</a>
+                                </td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </t>
+        
+</template>

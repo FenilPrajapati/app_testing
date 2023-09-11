@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="inherit_res_users" model="ir.ui.view">
+        <field name="name">res.users.view.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='oe_title']" position="after">
+                <group>
+                    <field name="is_shippers" />
+                    <field name="is_consignees" />
+                    <field name="print_signature" invisible="1" />
+                </group>
+                <group string="Print Signature">
+                    <field name="allow_print_without_signature"/>
+                    <field name="print_signature" invisible="1" force_save="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+<!--    <record id="view_res_users_dashboard_kanban" model="ir.ui.view">-->
+<!--        <field name="name">res.users.dashboard.kanban</field>-->
+<!--        <field name="model">res.users</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <kanban class="o_kanban_mobile o_custom_user_dashboard">-->
+<!--                <field name="id"/>-->
+<!--                <field name="name"/>-->
+<!--                <field name="login"/>-->
+<!--                <field name="lang"/>-->
+<!--                <field name="active"/>-->
+<!--                <field name="login_date"/>-->
+<!--                <field name="sales_rights_str"/>-->
+<!--                <field name="invoicing_rights_str"/>-->
+<!--                <field name="inventory_rights_str"/>-->
+<!--                <field name="purchase_rights_str"/>-->
+<!--                <field name="website_rights_str"/>-->
+<!--                <field name="administration_rights_str"/>-->
+
+
+<!--                <templates>-->
+<!--                    <t t-name="kanban-box">-->
+<!--                        <div style="border-style: none none none none; width:100%; padding: 10px; background: transparent; border-style: none;">-->
+<!--                            <table style="width:100%">-->
+<!--                                <tr style="background-color: #71639e; height: 50px; padding: 2px; vertical-align: middle;">-->
+<!--                                    <td style="width:30%">-->
+<!--                                        <h3>-->
+<!--                                            <img-->
+<!--                                                alt="Avatar"-->
+<!--                                                t-att-src="kanban_image('res.users', 'avatar_128', record.id.raw_value)"-->
+<!--                                                style="height:40px; width:40px;"/>-->
+<!--                                            <field name="name"/>-->
+<!--                                        </h3>-->
+<!--                                    </td>-->
+<!--                                    <td style="width:30%">-->
+<!--                                        <h3>Login : <field name="login"/></h3>-->
+<!--                                    </td>-->
+<!--                                    <td style="width:30%">-->
+<!--                                        <h3>Language : <field name="lang"/></h3>-->
+<!--                                    </td>-->
+<!--                                    <td style="width:10%">-->
+<!--                                        <h2>BTN</h2>-->
+<!--&lt;!&ndash;                                        <button id="arrow_switch" t-att-name="record.id.value" style="border-style: none none none none; background-color: #71639e; heightL 40px; width: 40px;">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <i class="fa fa-chevron-down" t-att-id="record.id.value" style="display:block; font-size: 30px;"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <i class="fa fa-chevron-up" t-att-id="record.id.value" style="display:none; font-size: 30px;"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </button>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <button type="object"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                name="open_record_from_kanban"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                style="border-style: none none none none; background-color: #71639e; heightL 40px; width: 40px;"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                title="Open user form.">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <i class="fa fa-file-text-o" style="font-size: 30px; font-size: 30px;"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </button>&ndash;&gt;-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                            </table>-->
+<!--                        </div>-->
+<!--                        <div style="border-style: none none none none; width:100%; display:none; padding: 10px; padding-left: 20px; background: transparent; top: -30px; border-style: none;" class="dashboard_access_right" t-att-id="record.id.value">-->
+<!--                            <div style="background-color: #9F94C1; padding: 2px; vertical-align: middle; height: 40px;">-->
+<!--                                <h3><i class="fa fa-arrow-circle-right"/> Access Rights</h3>-->
+<!--                            </div>-->
+<!--                            <table style="width:100%;">-->
+<!--                                <tr style="background-color: #9F94C1; height: 30px; padding: 2px; vertical-align: middle;">-->
+<!--                                    <td style="width:40%">-->
+<!--                                        <h4>Sales : <field name="sales_rights_str"/></h4>-->
+<!--                                    </td>-->
+<!--                                    <td style="width:30%">-->
+<!--                                        <h4>Invoicing : <field name="invoicing_rights_str"/></h4>-->
+<!--                                    </td>-->
+<!--                                    <td style="width:30%">-->
+<!--                                        <h4>Inventory : <field name="inventory_rights_str"/></h4>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                <tr style="background-color: #9F94C1; height: 30px; padding: 2px; vertical-align: middle;">-->
+<!--                                    <td>-->
+<!--                                        <h4>Purchase : <field name="purchase_rights_str"/></h4>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <h4>Website : <field name="website_rights_str"/></h4>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                        <h4>Administration : <field name="administration_rights_str"/></h4>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                                <tr style="background-color: #9F94C1; height: 30px; padding: 2px; vertical-align: middle;">-->
+<!--                                    <td>-->
+<!--                                        <h4>ShipMyBox : <field name="ship_my_box_rights_str"/></h4>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                    </td>-->
+<!--                                    <td>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                            </table>-->
+
+<!--                        </div>-->
+<!--                    </t>-->
+<!--                </templates>-->
+<!--            </kanban>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+<!--    <record id="action_res_users_dashboard" model="ir.actions.act_window">-->
+<!--        <field name="name">Users Dashboard</field>-->
+<!--        <field name="type">ir.actions.act_window</field>-->
+<!--        <field name="res_model">res.users</field>-->
+<!--        <field name="view_mode">kanban,tree,form</field>-->
+<!--        <field name="view_id" ref="view_res_users_dashboard_kanban"/>-->
+<!--        <field name="search_view_id" ref="base.view_users_search"/>-->
+<!--        <field name="context">{'search_default_no_share': 1}</field>-->
+<!--        <field name="help">Create and manage users that will connect to the system. Users can be deactivated should there be a period of time during which they will/should not connect to the system. You can assign them groups in order to give them specific access to the applications they need to use in the system.</field>-->
+<!--    </record>-->
+
+<!--    <record id="user_dashboard_kanban_window_view" model="ir.actions.act_window.view">-->
+<!--        <field eval="1" name="sequence"/>-->
+<!--        <field name="view_mode">kanban</field>-->
+<!--        <field name="view_id" ref="view_res_users_dashboard_kanban"/>-->
+<!--        <field name="act_window_id" ref="action_res_users_dashboard"/>-->
+<!--    </record>-->
+
+<!--    <record id="user_dashboard_tree_window_view" model="ir.actions.act_window.view">-->
+<!--        <field eval="2" name="sequence"/>-->
+<!--        <field name="view_mode">tree</field>-->
+<!--        <field name="view_id" ref="base.view_users_tree"/>-->
+<!--        <field name="act_window_id" ref="action_res_users_dashboard"/>-->
+<!--    </record>-->
+
+<!--    <record id="user_dashboard_form_window_view" model="ir.actions.act_window.view">-->
+<!--        <field eval="3" name="sequence"/>-->
+<!--        <field name="view_mode">form</field>-->
+<!--        <field name="view_id" ref="base.view_users_form"/>-->
+<!--        <field name="act_window_id" ref="action_res_users_dashboard"/>-->
+<!--    </record>-->
+
+<!--    <record id="user_menu_kanban_window_view" model="ir.actions.act_window.view">-->
+<!--        <field eval="2" name="sequence"/>-->
+<!--        <field name="view_mode">kanban</field>-->
+<!--        <field name="view_id" ref="base.view_res_users_kanban"/>-->
+<!--        <field name="act_window_id" ref="base.action_res_users"/>-->
+<!--    </record>-->
+
+</odoo>

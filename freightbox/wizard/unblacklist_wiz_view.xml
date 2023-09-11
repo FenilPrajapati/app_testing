@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="unblacklist_wiz_form_view_wiz" model="ir.ui.view">
+        <field name="name">Un-Block</field>
+        <field name="model">unblacklist.wiz</field>
+        <field name="arch" type="xml">
+            <form string="Un-Block">
+                <sheet>
+                    <group>
+                        <field name="blacklist_reason" readonly="1"/>
+                    </group>
+                    <group>
+                        <separator string="Please Upload Supportive Documents to Un-Block !!"/>
+                    </group>
+                    <group>
+                        <field name="doc_attachment" widget="many2many_binary"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_unblacklist" string="Save" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <record id="unblacklist_wiz_action" model="ir.actions.act_window">
+        <field name="name">Un-Block</field>
+        <field name="res_model">unblacklist.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

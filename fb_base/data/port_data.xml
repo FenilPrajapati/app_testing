@@ -1,0 +1,2768 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!--  ********** port **********  -->
+        <record model="port" id="port_1">
+            <field name="unloc_code">AEARP</field>
+            <field name="name">Ahmed Bin Rashid Port</field>
+            <field name="state_id" ref="base.state_ae_az"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2532N</field>
+            <field name="latitude">05533E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.ae"/>
+        </record>
+        <record model="port" id="port_2">
+            <field name="unloc_code">AEJEA</field>
+            <field name="name">Jebel Ali</field>
+            <field name="status">QQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.ae"/>
+        </record>
+        <record model="port" id="port_3">
+            <field name="unloc_code">AEQWE</field>
+            <field name="name">Jebel Ali Free Zone</field>
+            <field name="state_id" ref="base.state_ae_du"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2500N</field>
+            <field name="latitude">05503E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="country_id" ref="base.ae"/>
+        </record>
+        <record model="port" id="port_4">
+            <field name="unloc_code">AEKLF</field>
+            <field name="name">Khor al Fakkan</field>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2520N</field>
+            <field name="latitude">05621E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.ae"/>
+        </record>
+        <record model="port" id="port_5">
+            <field name="unloc_code">AEKHL</field>
+            <field name="name">Mina Khalifa/Abu Dhabi</field>
+            <field name="state_id" ref="base.state_ae_az"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2450N</field>
+            <field name="latitude">05440E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.ae"/>
+        </record>
+        <record model="port" id="port_6">
+            <field name="unloc_code">AEMRP</field>
+            <field name="name">Mina Rashid Port</field>
+            <field name="state_id" ref="base.state_ae_az"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2516N</field>
+            <field name="latitude">05517E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.ae"/>
+        </record>
+        <record model="port" id="port_7">
+            <field name="unloc_code">AEMSA</field>
+            <field name="name">Mina Saqr</field>
+            <field name="state_id" ref="base.state_ae_rk"/>
+            <field name="status">RQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.ae"/>
+        </record>
+        <record model="port" id="port_8">
+            <field name="unloc_code">AEMZD</field>
+            <field name="name">Mina Zayed/Abu Dhabi</field>
+            <field name="state_id" ref="base.state_ae_az"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2431N</field>
+            <field name="latitude">05422E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.ae"/>
+        </record>
+        <record model="port" id="port_9">
+            <field name="unloc_code">AEPRA</field>
+            <field name="name">Port Rashid</field>
+            <field name="status">RQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.ae"/>
+        </record>
+        <record model="port" id="port_10">
+            <field name="unloc_code">AERWP</field>
+            <field name="name">Ruwais Port</field>
+            <field name="state_id" ref="base.state_ae_az"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2406N</field>
+            <field name="latitude">05243E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.ae"/>
+        </record>
+        <record model="port" id="port_11">
+            <field name="unloc_code">ARBUE</field>
+            <field name="name">Buenos Aires</field>
+            <field name="state_id" ref="base.state_ar_c"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3435S</field>
+            <field name="latitude">05840W</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.ar"/>
+        </record>
+        <record model="port" id="port_12">
+            <field name="unloc_code">ARCOL</field>
+            <field name="name">ColÃ³n</field>
+            <field name="state_id" ref="base.state_ar_e"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3213S</field>
+            <field name="latitude">05808W</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.ar"/>
+        </record>
+        <record model="port" id="port_13">
+            <field name="unloc_code">ARLPS</field>
+            <field name="name">Las Palmas</field>
+            <field name="state_id" ref="base.state_ar_b"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3401S</field>
+            <field name="latitude">05907W</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="country_id" ref="base.ar"/>
+        </record>
+        <record model="port" id="port_14">
+            <field name="unloc_code">ARROS</field>
+            <field name="name">Rosario</field>
+            <field name="state_id" ref="base.state_ar_s"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3257S</field>
+            <field name="latitude">06039W</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.ar"/>
+        </record>
+        <record model="port" id="port_15">
+            <field name="unloc_code">AUADL</field>
+            <field name="name">Adelaide</field>
+            <field name="state_id" ref="base.state_au_5"/>
+            <field name="status">AC</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3455S</field>
+            <field name="latitude">13835E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.au"/>
+        </record>
+        <record model="port" id="port_16">
+            <field name="unloc_code">AUBNE</field>
+            <field name="name">Brisbane</field>
+            <field name="state_id" ref="base.state_au_4"/>
+            <field name="status">AC</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2728S</field>
+            <field name="latitude">15301E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.au"/>
+        </record>
+        <record model="port" id="port_17">
+            <field name="unloc_code">AUCBR</field>
+            <field name="name">Canberra</field>
+            <field name="state_id" ref="base.state_au_1"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.au"/>
+        </record>
+        <record model="port" id="port_18">
+            <field name="unloc_code">AUDRW</field>
+            <field name="name">Darwin</field>
+            <field name="state_id" ref="base.state_au_3"/>
+            <field name="status">AC</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1227S</field>
+            <field name="latitude">13050E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.au"/>
+        </record>
+        <record model="port" id="port_19">
+            <field name="unloc_code">AUIPS</field>
+            <field name="name">Ipswich</field>
+            <field name="state_id" ref="base.state_au_4"/>
+            <field name="status">AC</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.ar"/>
+        </record>
+        <record model="port" id="port_20">
+            <field name="unloc_code">AUMEL</field>
+            <field name="name">Melbourne</field>
+            <field name="state_id" ref="base.state_au_7"/>
+            <field name="status">AC</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3749S</field>
+            <field name="latitude">14458E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.au"/>
+        </record>
+        <record model="port" id="port_21">
+            <field name="unloc_code">AUPER</field>
+            <field name="name">Perth</field>
+            <field name="state_id" ref="base.state_au_8"/>
+            <field name="status">AC</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3157S</field>
+            <field name="latitude">11551E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.au"/>
+        </record>
+        <record model="port" id="port_22">
+            <field name="unloc_code">AUPAE</field>
+            <field name="name">Port Adelaide</field>
+            <field name="state_id" ref="base.state_au_5"/>
+            <field name="status">AC</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.au"/>
+        </record>
+        <record model="port" id="port_23">
+            <field name="unloc_code">AUPAU</field>
+            <field name="name">Port Arthur</field>
+            <field name="state_id" ref="base.state_au_6"/>
+            <field name="status">AC</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.au"/>
+        </record>
+        <record model="port" id="port_24">
+            <field name="unloc_code">AUPOR</field>
+            <field name="name">Port Melbourne</field>
+            <field name="state_id" ref="base.state_au_7"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3750S</field>
+            <field name="latitude">14456E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.au"/>
+        </record>
+        <record model="port" id="port_25">
+            <field name="unloc_code">AUPBN</field>
+            <field name="name">Port of Brisbane</field>
+            <field name="state_id" ref="base.state_au_4"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2723S</field>
+            <field name="latitude">15310E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.au"/>
+        </record>
+        <record model="port" id="port_26">
+            <field name="unloc_code">AUSYD</field>
+            <field name="name">Sydney</field>
+            <field name="state_id" ref="base.state_au_2"/>
+            <field name="status">AC</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3351S</field>
+            <field name="latitude">15112E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.au"/>
+        </record>
+        <record model="port" id="port_27">
+            <field name="unloc_code">BEANR</field>
+            <field name="name">Antwerpen</field>
+            <!-- <field name="state_id" ref="base.state_be_1"/> -->
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">5113N</field>
+            <field name="latitude">00425E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.be"/>
+        </record>
+        <record model="port" id="port_28">
+            <field name="unloc_code">BEBRU</field>
+            <field name="name">Brussel(Bruxelles)</field>
+            <!-- <field name="state_id" ref="base.state_be_bru"/> -->
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">5050N</field>
+            <field name="latitude">00420E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.be"/>
+        </record>
+        <record model="port" id="port_29">
+            <field name="unloc_code">BEBRU</field>
+            <field name="name">Bruxelles(Brussel)</field>
+            <!-- <field name="state_id" ref="base.state_be_bru"/> -->
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">5050N</field>
+            <field name="latitude">00420E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.be"/>
+        </record>
+        <record model="port" id="port_30">
+            <field name="unloc_code">BECRL</field>
+            <field name="name">Charleroi</field>
+            <!-- <field name="state_id" ref="base.state_be_wht"/> -->
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">5025N</field>
+            <field name="latitude">00426E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.be"/>
+        </record>
+        <record model="port" id="port_31">
+            <field name="unloc_code">BEGNE</field>
+            <field name="name">Gent(Ghent)</field>
+            <!-- <field name="state_id" ref="base.state_be_vov"/> -->
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">5103N</field>
+            <field name="latitude">00343E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.be"/>
+        </record>
+        <record model="port" id="port_32">
+            <field name="unloc_code">BHKBS</field>
+            <field name="name">Khalifa Bin Salman Port</field>
+            <!-- <field name="state_id" ref="base.state_bh_15"/> -->
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2612N</field>
+            <field name="latitude">05037E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.bh"/>
+        </record>
+        <record model="port" id="port_33">
+            <field name="unloc_code">BMFPT</field>
+            <field name="name">Freeport</field>
+            <field name="status">QQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.bs"/>
+        </record>
+        <record model="port" id="port_34">
+            <field name="unloc_code">BRRIO</field>
+            <field name="name">Rio de Janeiro</field>
+            <field name="state_id" ref="base.state_br_rj"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2253S</field>
+            <field name="latitude">04314W</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="seven" eval="'boolean'"/>
+            <field name="country_id" ref="base.br"/>
+        </record>
+        <record model="port" id="port_35">
+            <field name="unloc_code">BRSSZ</field>
+            <field name="name">Santos</field>
+            <field name="state_id" ref="base.state_br_sp"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2257S</field>
+            <field name="latitude">04620W</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.br"/>
+        </record>
+        <record model="port" id="port_36">
+            <field name="unloc_code">CAMRE</field>
+            <field name="name">MontrÃ©al-Est</field>
+            <field name="state_id" ref="base.state_ca_qc"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">4538N</field>
+            <field name="latitude">07330W</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="country_id" ref="base.ca"/>
+        </record>
+        <record model="port" id="port_37">
+            <field name="unloc_code">CLVAP</field>
+            <field name="name">Valparaiso</field>
+            <field name="state_id" ref="base.state_cl_05"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3302S</field>
+            <field name="latitude">07138W</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.cl"/>
+        </record>
+        <record model="port" id="port_38">
+            <field name="unloc_code">CLKNA</field>
+            <field name="name">Vina del Mar</field>
+            <field name="state_id" ref="base.state_cl_05"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3259S</field>
+            <field name="latitude">07133W</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.cl"/>
+        </record>
+        <record model="port" id="port_39">
+            <field name="unloc_code">CNCQI</field>
+            <field name="name">Chongqing</field>
+            <field name="state_id" ref="base.state_cn_CQ"/>
+            <field name="status">AS</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2935N</field>
+            <field name="latitude">10633E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+        <record model="port" id="port_40">
+            <field name="unloc_code">CNGGZ</field>
+            <field name="name">Guangzhou</field>
+            <field name="state_id" ref="base.state_cn_GD"/>
+            <field name="status">AS</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2308N</field>
+            <field name="latitude">11314E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+        <record model="port" id="port_41">
+            <field name="unloc_code">CNNBO</field>
+            <field name="name">Ningbo</field>
+            <field name="state_id" ref="base.state_cn_ZJ"/>
+            <field name="status">AS</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2952N</field>
+            <field name="latitude">12133E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+        <record model="port" id="port_42">
+            <field name="unloc_code">CNNGB</field>
+            <field name="name">Ningbo Lishe International Apt</field>
+            <field name="state_id" ref="base.state_cn_ZJ"/>
+            <field name="status">AS</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+        <record model="port" id="port_43">
+            <field name="unloc_code">CNNBG</field>
+            <field name="name">Ningbo Pt</field>
+            <field name="state_id" ref="base.state_cn_ZJ"/>
+            <field name="status">AS</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2955N</field>
+            <field name="latitude">12140E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+        <record model="port" id="port_44">
+            <field name="unloc_code">CNSGH</field>
+            <field name="name">Shanghai</field>
+            <field name="state_id" ref="base.state_cn_SH"/>
+            <field name="status">AS</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3114N</field>
+            <field name="latitude">12129E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+        <record model="port" id="port_45">
+            <field name="unloc_code">CNSHA</field>
+            <field name="name">Shanghai Hongqiao International Apt</field>
+            <field name="state_id" ref="base.state_cn_SH"/>
+            <field name="status">AS</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+        <record model="port" id="port_46">
+            <field name="unloc_code">CNSHG</field>
+            <field name="name">Shanghai Pt</field>
+            <field name="state_id" ref="base.state_cn_SH"/>
+            <field name="status">AS</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+        <record model="port" id="port_47">
+            <field name="unloc_code">CNSNZ</field>
+            <field name="name">Shenzhen</field>
+            <field name="state_id" ref="base.state_cn_GD"/>
+            <field name="status">AS</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2233N</field>
+            <field name="latitude">11407E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+        <record model="port" id="port_48">
+            <field name="unloc_code">CNTNJ</field>
+            <field name="name">Tianjin</field>
+            <field name="state_id" ref="base.state_cn_TJ"/>
+            <field name="status">AS</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3902N</field>
+            <field name="latitude">11712E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+        <record model="port" id="port_49">
+            <field name="unloc_code">CNTNG</field>
+            <field name="name">Tianjin Pt</field>
+            <field name="state_id" ref="base.state_cn_TJ"/>
+            <field name="status">AS</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3859N</field>
+            <field name="latitude">11745E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+        <record model="port" id="port_50">
+            <field name="unloc_code">CNTXG</field>
+            <field name="name">Tianjin Xingang Pt</field>
+            <field name="state_id" ref="base.state_cn_TJ"/>
+            <field name="status">AS</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3859N</field>
+            <field name="latitude">11742E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+        <record model="port" id="port_51">
+            <field name="unloc_code">CNNHN</field>
+            <field name="name">Wuhan</field>
+            <field name="state_id" ref="base.state_cn_HB"/>
+            <field name="status">AS</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3035N</field>
+            <field name="latitude">11417E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+        <record model="port" id="port_52">
+            <field name="unloc_code">CNXAM</field>
+            <field name="name">Xiamen</field>
+            <field name="state_id" ref="base.state_cn_FJ"/>
+            <field name="status">AS</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2427N</field>
+            <field name="latitude">11806E</field>
+            <field name="remarks">@Fun@Sub</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+        <record model="port" id="port_53">
+            <field name="unloc_code">CNXIA</field>
+            <field name="name">Xian</field>
+            <field name="state_id" ref="base.state_cn_SN"/>
+            <field name="status">AS</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3417N</field>
+            <field name="latitude">10857E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+        <record model="port" id="port_54">
+            <field name="unloc_code">CNXIA</field>
+            <field name="name">Xianguojilugang</field>
+            <field name="state_id" ref="base.state_cn_SN"/>
+            <field name="status">AS</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3417N</field>
+            <field name="latitude">10857E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+        <record model="port" id="port_55">
+            <field name="unloc_code">CNYTN</field>
+            <field name="name">Yantian Pt</field>
+            <field name="state_id" ref="base.state_cn_GD"/>
+            <field name="status">AS</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2651N</field>
+            <field name="latitude">11952E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.cn"/>
+        </record>
+        <record model="port" id="port_56">
+            <field name="unloc_code">CRSJO</field>
+            <field name="name">San JosÃ©</field>
+            <!-- <field name="state_id" ref="base.state_cr_sj"/> -->
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">0956N</field>
+            <field name="latitude">08405W</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.cr"/>
+        </record>
+        <record model="port" id="port_57">
+            <field name="unloc_code">CUHAV</field>
+            <field name="name">La Habana</field>
+            <!-- <field name="state_id" ref="base.state_cu_3"/> -->
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2307N</field>
+            <field name="latitude">08221W</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.cu"/>
+        </record>
+        <record model="port" id="port_58">
+            <field name="unloc_code">DEBER</field>
+            <field name="name">Berlin</field>
+            <!-- <field name="state_id" ref="base.state_de_be"/> -->
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">5231N</field>
+            <field name="latitude">01323E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.de"/>
+        </record>
+        <record model="port" id="port_59">
+            <field name="unloc_code">DEBRE</field>
+            <field name="name">Bremen</field>
+            <!-- <field name="state_id" ref="base.state_de_hb"/> -->
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.de"/>
+        </record>
+        <record model="port" id="port_60">
+            <field name="unloc_code">DEBRV</field>
+            <field name="name">Bremerhaven</field>
+            <!-- <field name="state_id" ref="base.state_de_hb"/> -->
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.de"/>
+        </record>
+        <record model="port" id="port_61">
+            <field name="unloc_code">DEDTM</field>
+            <field name="name">Dortmund</field>
+            <!-- <field name="state_id" ref="base.state_de_nw"/> -->
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">5130N</field>
+            <field name="latitude">00729E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.de"/>
+        </record>
+        <record model="port" id="port_62">
+            <field name="unloc_code">DEHAM</field>
+            <field name="name">Hamburg</field>
+            <!-- <field name="state_id" ref="base.state_de_hh"/> -->
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">5331N</field>
+            <field name="latitude">00956E</field>
+            <field name="remarks">@Coo</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.de"/>
+        </record>
+        <record model="port" id="port_63">
+            <field name="unloc_code">DEHTJ</field>
+            <field name="name">Hamburg-Mitte</field>
+            <!-- <field name="state_id" ref="base.state_de_hh"/> -->
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">5333N</field>
+            <field name="latitude">01001E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="country_id" ref="base.de"/>
+        </record>
+        <record model="port" id="port_64">
+            <field name="unloc_code">DERSK</field>
+            <field name="name">Rostock</field>
+            <!-- <field name="state_id" ref="base.state_de_MV"/> -->
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">5405N</field>
+            <field name="latitude">01208E</field>
+            <field name="iata">RLG</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.de"/>
+        </record>
+        <record model="port" id="port_65">
+            <field name="unloc_code">DJJIB</field>
+            <field name="name">Djibouti</field>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.dj"/>
+        </record>
+        <record model="port" id="port_66">
+            <field name="unloc_code">DKCPH</field>
+            <field name="name">KÃ¸benhavn</field>
+            <!-- <field name="state_id" ref="base.state_dk_84"/> -->
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">5540N</field>
+            <field name="latitude">01235E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.dk"/>
+        </record>
+        <record model="port" id="port_67">
+            <field name="unloc_code">DKODE</field>
+            <field name="name">Odense</field>
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.dk"/>
+        </record>
+        <record model="port" id="port_68">
+            <field name="unloc_code">DKODE</field>
+            <field name="name">Alger(Algiers)</field>
+            <!-- <field name="state_id" ref="base.state_dz_16"/> -->
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3645N</field>
+            <field name="latitude">00303E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.dz"/>
+        </record>
+        <record model="port" id="port_69">
+            <field name="unloc_code">EGDAM</field>
+            <field name="name">Dumyat (Damietta)</field>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3125N</field>
+            <field name="latitude">03149E</field>
+            <field name="iata">QDX</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.eg"/>
+        </record>
+        <record model="port" id="port_70">
+            <field name="unloc_code">EGALY</field>
+            <field name="name">El Iskandariya (Alexandria)</field>
+            <field name="state_id" ref="base.state_eg_alx"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3111N</field>
+            <field name="latitude">02955E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.eg"/>
+        </record>
+        <record model="port" id="port_71">
+            <field name="unloc_code">EGPSE</field>
+            <field name="name">Port Said East</field>
+            <field name="state_id" ref="base.state_eg_pts"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3113N</field>
+            <field name="latitude">03221E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.eg"/>
+        </record>
+        <record model="port" id="port_72">
+            <field name="unloc_code">EGSCN</field>
+            <field name="name">Suez Canal</field>
+            <field name="state_id" ref="base.state_eg_suz"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">4218N</field>
+            <field name="latitude">03220E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.eg"/>
+        </record>
+        <record model="port" id="port_73">
+            <field name="unloc_code">ESBIO</field>
+            <field name="name">Bilbao</field>
+            <field name="state_id" ref="base.state_es_bi"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">4315N</field>
+            <field name="latitude">00258W</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.es"/>
+        </record>
+        <record model="port" id="port_74">
+            <field name="unloc_code">ESVLC</field>
+            <field name="name">Valencia</field>
+            <field name="state_id" ref="base.state_es_v"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">4315N</field>
+            <field name="latitude">00258W</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.es"/>
+        </record>
+        <record model="port" id="port_75">
+            <field name="unloc_code">FRFOS</field>
+            <field name="name">Fos-sur-Mer</field>
+            <!-- <field name="state_id" ref="base.state_fr_13"/> -->
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">4326N</field>
+            <field name="latitude">00456E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="seven" eval="'boolean'"/>
+            <field name="country_id" ref="base.fr"/>
+        </record>
+        <record model="port" id="port_76">
+            <field name="unloc_code">FRLEH</field>
+            <field name="name">Le Havre</field>
+            <!-- <field name="state_id" ref="base.state_fr_76"/> -->
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">4930N</field>
+            <field name="latitude">00006E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.fr"/>
+        </record>
+        <record model="port" id="port_77">
+            <field name="unloc_code">FRMRS</field>
+            <field name="name">Marseille</field>
+            <!-- <field name="state_id" ref="base.state_fr_13"/> -->
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">4318N</field>
+            <field name="latitude">00524E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.fr"/>
+        </record>
+        <record model="port" id="port_78">
+            <field name="unloc_code">GBBRS</field>
+            <field name="name">Bristol</field>
+            <!-- <field name="state_id" ref="base.state_uk_BST"/> -->
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.uk"/>
+        </record>
+        <record model="port" id="port_79">
+            <field name="unloc_code">GBFXT</field>
+            <field name="name">Felixstowe</field>
+            <!-- <field name="state_id" ref="base.state_uk_SFK"/> -->
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.uk"/>
+        </record>
+        <record model="port" id="port_80">
+            <field name="unloc_code">GBSOU</field>
+            <field name="name">Southampton</field>
+            <!-- <field name="state_id" ref="base.state_uk_HAM"/> -->
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.uk"/>
+        </record>
+        <record model="port" id="port_81">
+            <field name="unloc_code">HKHKG</field>
+            <field name="name">Hong Kong</field>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.hk"/>
+        </record>
+        <record model="port" id="port_82">
+            <field name="unloc_code">IDJKT</field>
+            <field name="name">Jakarta, Java</field>
+            <field name="state_id" ref="base.state_id_jk"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">0608S</field>
+            <field name="latitude">10650E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.id"/>
+        </record>
+        <record model="port" id="port_83">
+            <field name="unloc_code">IDPDG</field>
+            <field name="name">Padang</field>
+            <field name="state_id" ref="base.state_id_sb"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">0057S</field>
+            <field name="latitude">10021E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.id"/>
+        </record>
+        <record model="port" id="port_84">
+            <field name="unloc_code">INBRN</field>
+            <field name="name">Boranada, Jodhpur</field>
+            <field name="state_id" ref="base.state_in_rj"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2616N</field>
+            <field name="latitude">07310E</field>
+            <field name="three" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_85">
+            <field name="unloc_code">INNRP</field>
+            <field name="name">Aal-SEZ/Vishakhapatnam</field>
+            <field name="state_id" ref="base.state_in_ap"/>
+            <field name="status">RQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1742N</field>
+            <field name="latitude">08318E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_86">
+            <field name="unloc_code">INAPI</field>
+            <field name="name">Aap-SEZ/Ahmedabad</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+            <field name="status">RQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2302N</field>
+            <field name="latitude">07237E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_87">
+            <field name="unloc_code">INAPL</field>
+            <field name="name">Acpl Cfs/Dadri</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="status">RQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2834N</field>
+            <field name="latitude">07733E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_88">
+            <field name="unloc_code">INQRP</field>
+            <field name="name">Adani Icd/Kila Raipur</field>
+            <field name="state_id" ref="base.state_in_pb"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3045N</field>
+            <field name="latitude">07551E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_89">
+            <field name="unloc_code">INCJA</field>
+            <field name="name">AEIP SEZ/Kancheepuram</field>
+            <field name="state_id" ref="base.state_in_tn"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1250N</field>
+            <field name="latitude">07943E</field>
+            <field name="three" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_90">
+            <field name="unloc_code">INAMD</field>
+            <field name="name">Ahmedabad</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2302N</field>
+            <field name="latitude">07237E</field>
+            <field name="remarks">ICD/CFS = SBI</field>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_91">
+            <field name="unloc_code">INMUM</field>
+            <field name="name">Ahmednagar</field>
+            <field name="state_id" ref="base.state_in_mh"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1905N</field>
+            <field name="latitude">07444E</field>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_92">
+            <field name="unloc_code">INALP</field>
+            <field name="name">Alpl Cfs/Dadri</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2834N</field>
+            <field name="latitude">07733E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_93">
+            <field name="unloc_code">INARR</field>
+            <field name="name">Aroor</field>
+            <field name="state_id" ref="base.state_in_kl"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="remarks">ICD/CFS</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_94">
+            <field name="unloc_code">INPNV</field>
+            <field name="name">Arshiya International Ltd.-SEZ/Panvel</field>
+            <field name="state_id" ref="base.state_in_mh"/>
+            <field name="status">RQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1859N</field>
+            <field name="latitude">07306E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_95">
+            <field name="unloc_code">INBAH</field>
+            <field name="name">Bahadurgarh</field>
+            <field name="state_id" ref="base.state_in_hr"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2841N</field>
+            <field name="latitude">07655E</field>
+            <field name="three" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_96">
+            <field name="unloc_code">INBGH</field>
+            <field name="name">Ballabgarh</field>
+            <field name="state_id" ref="base.state_in_hr"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2841N</field>
+            <field name="latitude">07718E</field>
+            <field name="three" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_97">
+            <field name="unloc_code">INBLR</field>
+            <field name="name">Bangalore</field>
+            <field name="state_id" ref="base.state_in_ka"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1259N</field>
+            <field name="latitude">07735E</field>
+            <field name="remarks">ICD/CFS = WFD</field>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_98">
+            <field name="unloc_code">INBHU</field>
+            <field name="name">Bhavnagar</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2146N</field>
+            <field name="latitude">07208E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_99">
+            <field name="unloc_code">INBOK</field>
+            <field name="name">Borkhedi ICD/Nagpur</field>
+            <field name="state_id" ref="base.state_in_mh"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2051N</field>
+            <field name="latitude">07857E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_100">
+            <field name="unloc_code">INNGB</field>
+            <field name="name">Butibori ICD/Nagpur</field>
+            <field name="state_id" ref="base.state_in_mh"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2109N</field>
+            <field name="latitude">07906E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_101">
+            <field name="unloc_code">INCPC</field>
+            <field name="name">Cgml Cfs/Dadri</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="status">RQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2834N</field>
+            <field name="latitude">07733E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_102">
+            <field name="unloc_code">INMAA</field>
+            <field name="name">Chennai (ex Madras)</field>
+            <field name="state_id" ref="base.state_in_tn"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1305N</field>
+            <field name="latitude">08017E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_103">
+            <field name="unloc_code">INTMX</field>
+            <field name="name">CMTL ICD/Thimmapur</field>
+            <field name="state_id" ref="base.state_in_ap"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1630N</field>
+            <field name="latitude">07815E</field>
+            <field name="three" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_104">
+            <field name="unloc_code">INBLE</field>
+            <field name="name">Concor ICD/Balasore</field>
+            <field name="state_id" ref="base.state_in_or"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2129N</field>
+            <field name="latitude">08655E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_105">
+            <field name="unloc_code">INJSG</field>
+            <field name="name">Concor ICD/Jharsuguda</field>
+            <field name="state_id" ref="base.state_in_or"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2156N</field>
+            <field name="latitude">08403E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_106">
+            <field name="unloc_code">INKPK</field>
+            <field name="name">Concor Icd/Mihan</field>
+            <field name="state_id" ref="base.state_in_mh"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2103N</field>
+            <field name="latitude">07902E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_107">
+            <field name="unloc_code">INRML</field>
+            <field name="name">Concor Icd/Nayaraipur</field>
+            <field name="state_id" ref="base.state_in_cg"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2116N</field>
+            <field name="latitude">08107E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_108">
+            <field name="unloc_code">INBVC</field>
+            <field name="name">Concor-ICD/Ballabhgarh</field>
+            <field name="state_id" ref="base.state_in_hr"/>
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2821N</field>
+            <field name="latitude">07719E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_109">
+            <field name="unloc_code">INDCT</field>
+            <field name="name">Dadri Container Terminal</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2834N</field>
+            <field name="latitude">07732E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_110">
+            <field name="unloc_code">INDER</field>
+            <field name="name">Dadri ICD/Noida</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="status">RQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2834N</field>
+            <field name="latitude">07733E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_111">
+            <field name="unloc_code">INDMQ</field>
+            <field name="name">Dhamra Port</field>
+            <field name="state_id" ref="base.state_in_or"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2049N</field>
+            <field name="latitude">08657E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_112">
+            <field name="unloc_code">INGDH</field>
+            <field name="name">Gandhinagar</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2313N</field>
+            <field name="latitude">07241E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_113">
+            <field name="unloc_code">INGGV</field>
+            <field name="name">Gangavaram</field>
+            <field name="state_id" ref="base.state_in_ap"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1739N</field>
+            <field name="latitude">08315E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_114">
+            <field name="unloc_code">INGHR</field>
+            <field name="name">Garhi Harsaru</field>
+            <field name="state_id" ref="base.state_in_hr"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2827N</field>
+            <field name="latitude">07656E</field>
+            <field name="three" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_115">
+            <field name="unloc_code">INGZB</field>
+            <field name="name">Ghaziabad</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2840N</field>
+            <field name="latitude">07726E</field>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_116">
+            <field name="unloc_code">INBFR</field>
+            <field name="name">GRFL ICD/Ballabhgarh</field>
+            <field name="state_id" ref="base.state_in_hr"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2821N</field>
+            <field name="latitude">07719E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_117">
+            <field name="unloc_code">INSGF</field>
+            <field name="name">GRFL ICD/Sahnwewal</field>
+            <field name="state_id" ref="base.state_in_pb"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3049N</field>
+            <field name="latitude">07557E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_118">
+            <field name="unloc_code">INHAL</field>
+            <field name="name">Haldia</field>
+            <field name="state_id" ref="base.state_in_wb"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_119">
+            <field name="unloc_code">INHZR</field>
+            <field name="name">Hazira</field>
+            <field name="state_id" ref="base.state_in_hr"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2919N</field>
+            <field name="latitude">07505E</field>
+            <field name="three" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_120">
+            <field name="unloc_code">INHZA</field>
+            <field name="name">Hazira Port/Surat</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2105N</field>
+            <field name="latitude">07237E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_121">
+            <field name="unloc_code">INHAN</field>
+            <field name="name">Hindaun ICD/Karauli</field>
+            <field name="state_id" ref="base.state_in_rj"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2630N</field>
+            <field name="latitude">07701E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_122">
+            <field name="unloc_code">INHSU</field>
+            <field name="name">HOSUR ICD</field>
+            <field name="state_id" ref="base.state_in_tn"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1243N</field>
+            <field name="latitude">07749E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_123">
+            <field name="unloc_code">INJJK</field>
+            <field name="name">ICD JSL/JAJPUR</field>
+            <field name="state_id" ref="base.state_in_or"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2050N</field>
+            <field name="latitude">08621E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_124">
+            <field name="unloc_code">INJAI</field>
+            <field name="name">Jaipur</field>
+            <field name="state_id" ref="base.state_in_rj"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2655N</field>
+            <field name="latitude">07549E</field>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_125">
+            <field name="unloc_code">INNSA</field>
+            <field name="name">Jawaharlal Nehru (Nhava Sheva)</field>
+            <field name="state_id" ref="base.state_in_mh"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_126">
+            <field name="unloc_code">INRIC</field>
+            <field name="name">Johdpur ICD</field>
+            <field name="state_id" ref="base.state_in_rj"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2617N</field>
+            <field name="latitude">07301E</field>
+            <field name="three" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_127">
+            <field name="unloc_code">INIXY</field>
+            <field name="name">Kandla</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2302N</field>
+            <field name="latitude">07013E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_128">
+            <field name="unloc_code">INKDL</field>
+            <field name="name">Kandla-SEZ/Gandhidham</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+            <field name="status">RQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2302N</field>
+            <field name="latitude">07013E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_129">
+            <field name="unloc_code">INSNI</field>
+            <field name="name">Kanech ICD/Sahnewal</field>
+            <field name="state_id" ref="base.state_in_pb"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3051N</field>
+            <field name="latitude">07559E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_130">
+            <field name="unloc_code">INKAR</field>
+            <field name="name">Karur</field>
+            <field name="state_id" ref="base.state_in_tn"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1057N</field>
+            <field name="latitude">07805E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_131">
+            <field name="unloc_code">INKSR</field>
+            <field name="name">Kashipur</field>
+            <field name="state_id" ref="base.uk"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2913N</field>
+            <field name="latitude">07857E</field>
+            <field name="three" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_132">
+            <field name="unloc_code">INCML</field>
+            <field name="name">Kathuwas Icd/Alwar</field>
+            <field name="state_id" ref="base.state_in_rj"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2733N</field>
+            <field name="latitude">07635E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_133">
+            <field name="unloc_code">INKAT</field>
+            <field name="name">Kattupalli</field>
+            <field name="state_id" ref="base.state_in_tn"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1318N</field>
+            <field name="latitude">08021E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_134">
+            <field name="unloc_code">INKTP</field>
+            <field name="name">Kattupalli Port</field>
+            <field name="state_id" ref="base.state_in_tn"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1318N</field>
+            <field name="latitude">08023E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_135">
+            <field name="unloc_code">INPNK</field>
+            <field name="name">Klppl-ICD/Panki</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="status">RQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2628N</field>
+            <field name="latitude">08013E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_136">
+            <field name="unloc_code">INKBC</field>
+            <field name="name">Kril ICD</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2111N</field>
+            <field name="latitude">07242E</field>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_137">
+            <field name="unloc_code">INPKR</field>
+            <field name="name">KRIL ICD/Pali</field>
+            <field name="state_id" ref="base.state_in_hr"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2811N</field>
+            <field name="latitude">07637E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_138">
+            <field name="unloc_code">INKRI</field>
+            <field name="name">Krishnapatnam</field>
+            <field name="state_id" ref="base.state_in_ap"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_139">
+            <field name="unloc_code">INGNR</field>
+            <field name="name">Lipl-ICD/Marripalem</field>
+            <field name="state_id" ref="base.state_in_ap"/>
+            <field name="status">RQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1618N</field>
+            <field name="latitude">08027E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_140">
+            <field name="unloc_code">INLON</field>
+            <field name="name">Loni</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2845N</field>
+            <field name="latitude">07716E</field>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_141">
+            <field name="unloc_code">INNOI</field>
+            <field name="name">Loni-1 LCD/Ghaziabad</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2845N</field>
+            <field name="latitude">07717E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_142">
+            <field name="unloc_code">INLUH</field>
+            <field name="name">Ludhiana</field>
+            <field name="state_id" ref="base.state_in_pb"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="remarks">ICD/CFS = LDH</field>
+            <field name="four" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_143">
+            <field name="unloc_code">INMRM</field>
+            <field name="name">Marmagao (Marmugao)</field>
+            <field name="state_id" ref="base.state_in_ga"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1524N</field>
+            <field name="latitude">07347E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_144">
+            <field name="unloc_code">INBOM</field>
+            <field name="name">Mumbai (ex Bombay)</field>
+            <field name="state_id" ref="base.state_in_mh"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1858N</field>
+            <field name="latitude">07249E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_145">
+            <field name="unloc_code">INMUN</field>
+            <field name="name">Mundra</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_146">
+            <field name="unloc_code">INAJM</field>
+            <field name="name">Mundra Port SEZ</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+            <field name="status">RQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2251N</field>
+            <field name="latitude">06944E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_147">
+            <field name="unloc_code">INISK</field>
+            <field name="name">Nasik</field>
+            <field name="state_id" ref="base.state_in_mh"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1959N</field>
+            <field name="latitude">07348E</field>
+            <field name="remarks">ICD/CFS = NSK</field>
+            <field name="four" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_148">
+            <field name="unloc_code">INNMB</field>
+            <field name="name">Navi Mumbai</field>
+            <field name="state_id" ref="base.state_in_mh"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1910N</field>
+            <field name="latitude">07300E</field>
+            <field name="three" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_149">
+            <field name="unloc_code">INSAJ</field>
+            <field name="name">NAVKAR ICD/Umbergaon</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2037N</field>
+            <field name="latitude">07255E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_150">
+            <field name="unloc_code">INPWL</field>
+            <field name="name">Palwal ICD</field>
+            <field name="state_id" ref="base.state_in_hr"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2809N</field>
+            <field name="latitude">07720E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_151">
+            <field name="unloc_code">INPPT</field>
+            <field name="name">Paradip Port</field>
+            <field name="state_id" ref="base.state_in_or"/>
+            <field name="status">RQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2015N</field>
+            <field name="latitude">08635E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_152">
+            <field name="unloc_code">INPTL</field>
+            <field name="name">Patli</field>
+            <field name="state_id" ref="base.state_in_hr"/>
+            <field name="status">RQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_153">
+            <field name="unloc_code">INPPG</field>
+            <field name="name">Patparganj</field>
+            <field name="state_id" ref="base.state_in_dl"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="three" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_154">
+            <field name="unloc_code">INPAV</field>
+            <field name="name">Pipavav (Victor) Port</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2058N</field>
+            <field name="latitude">07133E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_155">
+            <field name="unloc_code">INPPV</field>
+            <field name="name">Port Pipavav</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2056N</field>
+            <field name="latitude">07131E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_156">
+            <field name="unloc_code">INPRK</field>
+            <field name="name">Powarkheda ICD/Hoshangabad</field>
+            <field name="state_id" ref="base.state_in_mp"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2245N</field>
+            <field name="latitude">07743E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_157">
+            <field name="unloc_code">INPNQ</field>
+            <field name="name">Pune</field>
+            <field name="state_id" ref="base.state_in_mh"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_158">
+            <field name="unloc_code">INPYL</field>
+            <field name="name">Pyala</field>
+            <field name="state_id" ref="base.state_in_hr"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2826N</field>
+            <field name="latitude">07731E</field>
+            <field name="three" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_159">
+            <field name="unloc_code">INLPJ</field>
+            <field name="name">Reliance SEZ/Jamnagar</field>
+            <field name="state_id" ref="base.state_in_gj"/>
+            <field name="status">RQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2228N</field>
+            <field name="latitude">07004E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_160">
+            <field name="unloc_code">INREA</field>
+            <field name="name">Rewari</field>
+            <field name="state_id" ref="base.state_in_hr"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2811N</field>
+            <field name="latitude">07637E</field>
+            <field name="three" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_161">
+            <field name="unloc_code">INDWN</field>
+            <field name="name">Panipat</field>
+            <field name="state_id" ref="base.state_in_hr"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2914N</field>
+            <field name="latitude">07701E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_162">
+            <field name="unloc_code">INHDD</field>
+            <field name="name">Sidcul Icd/Pantnagar</field>
+            <field name="state_id" ref="base.state_in_uk"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2903N</field>
+            <field name="latitude">07931E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_163">
+            <field name="unloc_code">INSTT</field>
+            <field name="name">Sttpl Cfs/Dadri</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="status">RQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2834N</field>
+            <field name="latitude">07733E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_164">
+            <field name="unloc_code">INTTP</field>
+            <field name="name">Ttpl Cfs/Dadri</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="status">RQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2834N</field>
+            <field name="latitude">07733E</field>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_165">
+            <field name="unloc_code">INTKD</field>
+            <field name="name">Tughlakabad</field>
+            <field name="state_id" ref="base.state_in_dl"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2830N</field>
+            <field name="latitude">07716E</field>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_166">
+            <field name="unloc_code">INURA</field>
+            <field name="name">Uran</field>
+            <field name="state_id" ref="base.state_in_mh"/>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1853N</field>
+            <field name="latitude">07256E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_167">
+            <field name="unloc_code">INVNS</field>
+            <field name="name">Varanasi</field>
+            <field name="state_id" ref="base.state_in_up"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2520N</field>
+            <field name="latitude">08300E</field>
+            <field name="remarks">ICD/CFS = BSBICD/CFS = BSB</field>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_168">
+            <field name="unloc_code">ITGOA</field>
+            <field name="name">Genova</field>
+            <field name="state_id" ref="base.state_it_ge"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">4425N</field>
+            <field name="latitude">00857E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.it"/>
+        </record>
+        <record model="port" id="port_169">
+            <field name="unloc_code">JPUKB</field>
+            <field name="name">Kobe</field>
+            <field name="state_id" ref="base.state_jp_jp-28"/>
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3441N</field>
+            <field name="latitude">13510E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.jp"/>
+        </record>
+        <record model="port" id="port_170">
+            <field name="unloc_code">JPTYO</field>
+            <field name="name">Tokyo</field>
+            <field name="state_id" ref="base.state_jp_jp-13"/>
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3541N</field>
+            <field name="latitude">13945E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.jp"/>
+        </record>
+        <record model="port" id="port_171">
+            <field name="unloc_code">JPYOK</field>
+            <field name="name">Yokohama</field>
+            <field name="state_id" ref="base.state_jp_jp-14"/>
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3527N</field>
+            <field name="latitude">13939E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.jp"/>
+        </record>
+        <record model="port" id="port_172">
+            <field name="unloc_code">KRPUS</field>
+            <field name="name">Busan</field>
+            <!-- <field name="state_id" ref="base.state_kr_26"/> -->
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3508N</field>
+            <field name="latitude">12903E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="six" eval="'boolean'"/>
+            <field name="seven" eval="'boolean'"/>
+            <field name="country_id" ref="base.kr"/>
+        </record>
+        <record model="port" id="port_173">
+            <field name="unloc_code">KRSEL</field>
+            <field name="name">Seoul</field>
+            <!-- <field name="state_id" ref="base.state_kr_11"/> -->
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3731N</field>
+            <field name="latitude">12656E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.kr"/>
+        </record>
+        <record model="port" id="port_174">
+            <field name="unloc_code">KRUSN</field>
+            <field name="name">Ulsan</field>
+            <!-- <field name="state_id" ref="base.state_kr_31"/> -->
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3532N</field>
+            <field name="latitude">12919E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.kr"/>
+        </record>
+        <record model="port" id="port_175">
+            <field name="unloc_code">KWKWI</field>
+            <field name="name">Kuwait</field>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.kw"/>
+        </record>
+        <record model="port" id="port_176">
+            <field name="unloc_code">LKCMB</field>
+            <field name="name">Colombo</field>
+            <!-- <field name="state_id" ref="base.state_lk_11"/> -->
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">0655N</field>
+            <field name="latitude">07951E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.lk"/>
+        </record>
+        <record model="port" id="port_177">
+            <field name="unloc_code">MXZLO</field>
+            <field name="name">Manzanillo</field>
+            <field name="state_id" ref="base.state_mx_col"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1903N</field>
+            <field name="latitude">10418W</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.mx"/>
+        </record>
+        <record model="port" id="port_178">
+            <field name="unloc_code">MYPKG</field>
+            <field name="name">Port Klang (Pelabuhan Klang)</field>
+            <!-- <field name="state_id" ref="base.state_my_pkl"/> -->
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">0300N</field>
+            <field name="latitude">10124E</field>
+            <field name="remarks">Port Klang</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.my"/>
+        </record>
+        <record model="port" id="port_179">
+            <field name="unloc_code">NLAMS</field>
+            <field name="name">Amsterdam</field>
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">5224N</field>
+            <field name="latitude">00449E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.nl"/>
+        </record>
+        <record model="port" id="port_180">
+            <field name="unloc_code">NLEIN</field>
+            <field name="name">Eindhoven</field>
+            <field name="state_id" ref="base.state_nl_nb"/>
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">5127N</field>
+            <field name="latitude">00528E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.nl"/>
+        </record>
+        <record model="port" id="port_181">
+            <field name="unloc_code">NLRTM</field>
+            <field name="name">Rotterdam</field>
+            <field name="state_id" ref="base.state_nl_zh"/>
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">5155N</field>
+            <field name="latitude">00430E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.nl"/>
+        </record>
+        <record model="port" id="port_182">
+            <field name="unloc_code">NOOSL</field>
+            <field name="name">Oslo</field>
+            <field name="state_id" ref="base.state_no_03"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">5954N</field>
+            <field name="latitude">01044E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.no"/>
+        </record>
+        <record model="port" id="port_183">
+            <field name="unloc_code">NZAKL</field>
+            <field name="name">Auckland</field>
+            <field name="state_id" ref="base.state_nz_auk"/>
+            <field name="status">AC</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3650S</field>
+            <field name="latitude">17448E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.nz"/>
+        </record>
+        <record model="port" id="port_184">
+            <field name="unloc_code">NZTRG</field>
+            <field name="name">Tauranga</field>
+            <field name="state_id" ref="base.state_nz_bop"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3741S</field>
+            <field name="latitude">17610E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.nz"/>
+        </record>
+        <record model="port" id="port_185">
+            <field name="unloc_code">NZWLG</field>
+            <field name="name">Wellington</field>
+            <field name="state_id" ref="base.state_nz_wgn"/>
+            <field name="status">AC</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">4116S</field>
+            <field name="latitude">17447E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.nz"/>
+        </record>
+        <record model="port" id="port_186">
+            <field name="unloc_code">OMSTQ</field>
+            <field name="name">Mina Sultan Qaboos, Muscat</field>
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2337N</field>
+            <field name="latitude">05833E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="country_id" ref="base.om"/>
+        </record>
+        <record model="port" id="port_187">
+            <field name="unloc_code">OMMCT</field>
+            <field name="name">Muscat</field>
+            <!-- <field name="state_id" ref="base.state_om_ma"/> -->
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2336N</field>
+            <field name="latitude">05835E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.om"/>
+        </record>
+        <record model="port" id="port_188">
+            <field name="unloc_code">OMOPQ</field>
+            <field name="name">Port Qaboos</field>
+            <field name="status">QQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.om"/>
+        </record>
+        <record model="port" id="port_189">
+            <field name="unloc_code">OMSLL</field>
+            <field name="name">Salalah</field>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.om"/>
+        </record>
+        <record model="port" id="port_190">
+            <field name="unloc_code">PAMIT</field>
+            <field name="name">Manzanillo</field>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="country_id" ref="base.pa"/>
+        </record>
+        <record model="port" id="port_191">
+            <field name="unloc_code">PKKHI</field>
+            <field name="name">Karachi</field>
+            <!-- <field name="state_id" ref="base.state_pk_sd"/> -->
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2336N</field>
+            <field name="latitude">05835E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.pk"/>
+        </record>
+        <record model="port" id="port_192">
+            <field name="unloc_code">RULED</field>
+            <field name="name">Saint Petersburg (ex Leningrad)</field>
+            <field name="state_id" ref="base.state_ru_spe"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">5953N</field>
+            <field name="latitude">03015E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.ru"/>
+        </record>
+        <record model="port" id="port_193">
+            <field name="unloc_code">SADMM</field>
+            <field name="name">Ad Dammam</field>
+            <!-- <field name="state_id" ref="base.state_sa_4"/> -->
+            <field name="status">RL</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2625N</field>
+            <field name="latitude">05006E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.sa"/>
+        </record>
+        <record model="port" id="port_194">
+            <field name="unloc_code">SAJED</field>
+            <field name="name">Jeddah</field>
+            <!-- <field name="state_id" ref="base.state_sa_2"/> -->
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2132N</field>
+            <field name="latitude">03910E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.sa"/>
+        </record>
+        <record model="port" id="port_195">
+            <field name="unloc_code">SEGOT</field>
+            <field name="name">GÃ¶teborg</field>
+            <field name="state_id" ref="base.state_se_o"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">5743N</field>
+            <field name="latitude">01158E</field>
+            <field name="iata">GSP</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.se"/>
+        </record>
+        <record model="port" id="port_196">
+            <field name="unloc_code">SESTO</field>
+            <field name="name">Stockholm</field>
+            <field name="state_id" ref="base.state_se_ab"/>
+            <field name="status">AA</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">5920N</field>
+            <field name="latitude">01803E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.se"/>
+        </record>
+        <record model="port" id="port_197">
+            <field name="unloc_code">SGSIN</field>
+            <field name="name">Singapore</field>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.sg"/>
+        </record>
+        <record model="port" id="port_198">
+            <field name="unloc_code">SGSCT</field>
+            <field name="name">Singapore Container Terminal</field>
+            <field name="status">QQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.sg"/>
+        </record>
+        <record model="port" id="port_199">
+            <field name="unloc_code">SGTPG</field>
+            <field name="name">Tanjong Pagar</field>
+            <field name="status">RQ</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="country_id" ref="base.sg"/>
+        </record>
+        <record model="port" id="port_200">
+            <field name="unloc_code">THBKK</field>
+            <field name="name">Bangkok</field>
+            <!-- <field name="state_id" ref="base.state_th_10"/> -->
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">1345N</field>
+            <field name="latitude">10031E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.th"/>
+        </record>
+        <record model="port" id="port_201">
+            <field name="unloc_code">TRIST</field>
+            <field name="name">Istanbul</field>
+            <field name="state_id" ref="base.state_tr_34"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">4101N</field>
+            <field name="latitude">02858E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.tr"/>
+        </record>
+        <record model="port" id="port_202">
+            <field name="unloc_code">TRIZM</field>
+            <field name="name">Ä°zmir</field>
+            <field name="state_id" ref="base.state_tr_35"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3825N</field>
+            <field name="latitude">02709E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.tr"/>
+        </record>
+        <record model="port" id="port_203">
+            <field name="unloc_code">TZDAR</field>
+            <field name="name">Dar es Salaam</field>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">0648S</field>
+            <field name="latitude">03917E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.tz"/>
+        </record>
+        <record model="port" id="port_204">
+            <field name="unloc_code">USCHS</field>
+            <field name="name">Charleston</field>
+            <field name="state_id" ref="base.state_us_41"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.us"/>
+        </record>
+        <record model="port" id="port_205">
+            <field name="unloc_code">USCLE</field>
+            <field name="name">Cleveland</field>
+            <field name="state_id" ref="base.state_us_30"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">4130N</field>
+            <field name="latitude">08140W</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.us"/>
+        </record>
+        <record model="port" id="port_206">
+            <field name="unloc_code">USDET</field>
+            <field name="name">Detroit</field>
+            <field name="state_id" ref="base.state_us_35"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">4219N</field>
+            <field name="latitude">08302W</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.us"/>
+        </record>
+        <record model="port" id="port_207">
+            <field name="unloc_code">USLGB</field>
+            <field name="name">Long Beach</field>
+            <field name="state_id" ref="base.state_us_5"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3346N</field>
+            <field name="latitude">11811W</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.us"/>
+        </record>
+        <record model="port" id="port_208">
+            <field name="unloc_code">USNYC</field>
+            <field name="name">New York</field>
+            <field name="state_id" ref="base.state_us_27"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">4042N</field>
+            <field name="latitude">07400W</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.us"/>
+        </record>
+        <record model="port" id="port_209">
+            <field name="unloc_code">USEWR</field>
+            <field name="name">Newark</field>
+            <field name="state_id" ref="base.state_us_25"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">4044N</field>
+            <field name="latitude">07410W</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.us"/>
+        </record>
+        <record model="port" id="port_210">
+            <field name="unloc_code">USORF</field>
+            <field name="name">Norfolk</field>
+            <field name="state_id" ref="base.state_us_47"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.us"/>
+        </record>
+        <record model="port" id="port_211">
+            <field name="unloc_code">USPAH</field>
+            <field name="name">Paducah</field>
+            <field name="state_id" ref="base.state_us_18"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">3705N</field>
+            <field name="latitude">08837W</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.us"/>
+        </record>
+        <record model="port" id="port_212">
+            <field name="unloc_code">USPHL</field>
+            <field name="name">Philadelphia</field>
+            <field name="state_id" ref="base.state_us_39"/>
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.us"/>
+        </record>
+        <record model="port" id="port_213">
+            <field name="unloc_code">ZADUR</field>
+            <field name="name">Durban</field>
+            <!-- <field name="state_id" ref="base.state_za"/> -->
+            <field name="status">AI</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude">2951S</field>
+            <field name="latitude">03101E</field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="five" eval="'boolean'"/>
+            <field name="country_id" ref="base.za"/>
+        </record>
+        <record model="port" id="port_214">
+            <field name="unloc_code">ZAELS</field>
+            <field name="name">Stockholm</field>
+            <field name="status">AF</field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="one" eval="'boolean'"/>
+            <field name="two" eval="'boolean'"/>
+            <field name="three" eval="'boolean'"/>
+            <field name="four" eval="'boolean'"/>
+            <field name="country_id" ref="base.za"/>
+        </record>
+        <record model="port" id="port_215">
+            <field name="unloc_code">DICT</field>
+            <field name="name">Delhi</field>
+            <field name="status"/>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="country_id" ref="base.in"/>
+        </record>
+        <record model="port" id="port_216">
+            <field name="unloc_code"></field>
+            <field name="name">HHLA</field>
+            <field name="status"></field>
+            <field name="date" eval="time.strftime('%Y-%m-%d')"/>
+            <field name="longitude"></field>
+            <field name="latitude"></field>
+            <field name="remarks"></field>
+            <field name="country_id" ref="base.de"/>
+        </record>
+    </data>
+</odoo> 

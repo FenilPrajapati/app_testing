@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="user_templates_form_view" model="ir.ui.view">
+			<field name="name">User Template</field>
+			<field name="model">user.templates</field>
+			<field name="arch" type="xml">
+				<form string="User Templates">
+                	<sheet>
+						<group>
+							<group>
+								<field name="name"/>
+								<field name="user_template_customer_id" widget="many2many_tags"/>
+								<field name="company_name" required="1"/>
+								<field name="address_line1" required="1" />
+								<field name="postcode" required="1"/>
+								<field name="country" required="1"/>
+								<field name="email" required="1"/>
+							</group>
+							<group>
+								<!--<field name="user_template_user_id" />-->
+								<field name="user_name" required="1"/>
+								<field name="address_line2" required="1"/>
+								<field name="state_region" required="1"/>
+                                <field name="phone" required="1"/>
+								<field name="is_data_template" readonly="1"/>
+							</group>
+						</group>
+							<separator string="Cargo"/>
+							<group>
+								<group>
+									<field name="cargo_name" required="1"/>
+									<field name="weight"/>
+									<field name="weight_uom"/>
+                                    <field name="move_type" />
+                                    <field name="place_of_origin" required="1"/>
+                                    <field name="point_of_stuffing" required="1"/>
+                                    <field name="no_of_expected_container" required="1"/>
+                                    <field name="expected_date_of_shipment" required="1"/>
+									<field name="remarks"/>
+								</group>
+								<group>
+									<field name="quantity" required="1"/>
+									<field name="volume" />
+                                    <field name="volume_uom"/>
+                                    <field name="incoterm_id" />
+                                    <field name="final_port_of_destination" required="1"/>
+                                    <field name="point_of_destuffing" required="1"/>
+                                    <field name="container_type" required="1"/>
+                                    <field name="shipment_terms" required="1"/>
+								</group>
+							</group>
+						</sheet>
+						<div class="oe_chatter">
+							<field name="message_follower_ids" widget="mail_followers"/>
+							<field name="activity_ids" widget="mail_activity"/>
+							<field name="message_ids" widget="mail_thread"/>
+						</div>
+                </form>
+            </field>
+        </record>
+
+        <record id="user_templates_tree_view" model="ir.ui.view">
+			<field name="name">User Template</field>
+			<field name="model">user.templates</field>
+			<field name="arch" type="xml">
+				<tree string="User Templates">
+					<field name="name"/>
+					<field name="company_name" />
+					<field name="user_name" />
+					<field name="email" />
+					<field name="phone"/>
+				</tree>
+			</field>
+		</record>
+
+        <record id="action_user_templates" model="ir.actions.act_window">
+			<field name="name">User Template</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">user.templates</field>
+			<field name="view_id" ref="user_templates_tree_view"></field>
+			<field name="view_mode">tree,form</field>
+		</record>
+    </data>
+</odoo>

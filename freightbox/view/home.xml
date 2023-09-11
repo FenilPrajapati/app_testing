@@ -1,0 +1,338 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- links of css and js file -->
+
+    <!--<template id="assets_home_page" inherit_id="website.assets_frontend" name="home assets">
+        <xpath expr="link[last()]" position="after">
+
+            &lt;!&ndash; <link rel="stylesheet" type="text/scss" href="/freightbox/static/src/bootstrap/css/bootstrap.min.css"/>
+            <link rel="stylesheet" type="text/scss" href="/freightbox/static/src/bootstrap/css/bootstrap.css"/> &ndash;&gt;
+            <link rel="stylesheet" type="text/scss" href="/freightbox/static/src/scss/home.scss"/>
+            &lt;!&ndash;<script src="https://kit.fontawesome.com/128ecf7e3d.js" crossorigin="anonymous"></script>
+            <script type="text/javascript" src="/freightbox/static/src/bootstrap/js/bootstrap.bundle.min.js"/>
+            <script type="text/javascript" src="/freightbox/static/src/bootstrap/js/bootstrap.bundle.js"/>&ndash;&gt;
+            &lt;!&ndash; <script type="text/javascript" src="/freightbox/static/src/bootstrap/js/popper.js"/>
+            <script type="text/javascript" src="/freightbox/static/src/bootstrap/js/jquery.js"/> &ndash;&gt;
+
+        </xpath>
+    </template>-->
+
+    <!-- <template id="assets_home_page" inherit_id="website.assets_frontend" name="home assets">
+        <xpath expr="link[last()]" position="after">
+            <link rel="stylesheet" type="text/scss" href="/freightbox/static/src/bootstrap/bootstrap.css"/>
+            <link rel="stylesheet" type="text/scss" href="/freightbox/static/src/bootstrap/bootstrap.min.css"/>
+            <link rel="stylesheet" type="text/scss" href="/freightbox/static/src/scss/home.scss"/>
+            <script src="https://kit.fontawesome.com/128ecf7e3d.js" crossorigin="anonymous"></script>
+            <script type="text/javascript" src="/freightbox/static/src/bootstrap/bootstrap.bundle.js"/>
+            <script type="text/javascript" src="/freightbox/static/src/bootstrap/bootstrap.min.js"/>
+            <script type="text/javascript" src="/freightbox/static/src/bootstrap/popper.js"/>
+            <script type="text/javascript" src="/freightbox/static/src/bootstrap/jquery.js"/>
+        </xpath>
+    </template> -->
+
+    <!-- NavBar -->
+<!--    <template id="template_header_custom" inherit_id="website.layout" name="Template Header Custom" >
+        <xpath expr="//header//nav" position="replace">
+            <nav>
+                <div class="logo">
+                    <a class="navbar-brand" href="#">
+                        <img src="/freightbox/static/src/img/logo.png" class="img-fluid" alt="logo"/>
+                    </a>
+                </div>
+                <input type="checkbox" id="click"/>
+                <label for="click" class="menu-btn">
+                    <i class="fas fa-bars icon"></i>
+                </label>
+                <ul>
+                    <li><a class="menu" href="/">Home</a></li>
+                    <li><a class="menu" href="/dashboard">Dashboard</a></li>
+                    <li><a class="menu" href="/start_booking">Start Booking</a></li>
+                    <li><a class="menu" href="/track_trace">Track Trace</a></li>
+                    <li><a class="menu" href="#">Shipment Status</a></li>
+                    <li><a class="menu" href="#">Sign in</a></li>
+                    <li><a class="menu" href="/vessel_schedule">Vessel Schedule</a></li>
+                    <li><a class="btn" href="/contactus">Contact us</a></li>
+                </ul>
+            </nav>
+        </xpath>
+    </template>-->
+    <template id="freight_customer_portal" name="Customer Portal" customize_show="True">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure">
+
+                <section class="container-title">
+                <div class="image">
+                    <img src="/freightbox/static/src/img/title.jpg" alt="top_img"/>
+                </div>
+                <div class="upper_layer"></div>
+                <div class="title">
+                    <h1>Manage your business and freight anywhere anytime</h1>
+                    <p>which comes with built-in ERP for free*</p>
+                </div>
+            </section>
+
+            <div class="info card-conatiner row my-5 g-3 justify-content-center">
+                <div class="column col-sm-6 col-md-4 col-lg-3  " >
+                    <div class="card">
+                        <img src="/freightbox/static/src/img/earth.png" class="card-img-top" alt="..."/>
+                        <div class="card-body text-center">
+                            <h5 class="card-title mb-3">Global product which is Simple</h5>
+                            <p class="card-text">Big Value delivered out of erpbox</p>
+                        </div>
+                    </div>
+                </div>
+                <div class=" column col-sm-6 col-md-4 col-lg-3 ">
+                    <div class="card">
+                        <img src="/freightbox/static/src/img/tracktrace.png" class="card-img-top" alt="..."/>
+                        <div class="card-body text-center">
+                            <h5 class="card-title mb-3">Track And Trace</h5>
+                            <p class="card-text">Using world class track and trace from, be rest assured you can track over 100 shipping lines.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="column col-sm-6 col-md-4 col-lg-3 " >
+                    <div class="card">
+                        <img src="/freightbox/static/src/img/rate.png" class="card-img-top" alt="..."/>
+                        <div class="card-body text-center">
+                            <h5 class="card-title mb-3">Rate Engine</h5>
+                            <p class="card-text">get rates without big chase and know what market is charging!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="aboutus-section">
+                <div class="container py-5 ">
+                    <div class="title mb-5">
+                        <h1 class="text-center">About Us</h1>
+                    </div>
+                    <div class="aboutus-content">
+                        <div class="row">
+                            <div class="column-1 col-lg-6 px-5 py-3">
+                                <p><b>Established in 2022, Cargo management specialist</b><br/>
+                                With freightBox you seamlessly manage your shipment within the core ERP without loosing site of your Business . Heart and Art of business management without compromising on freight visibility . Your whole organization in one place
+                                </p>
+                                <!-- <div class="img-data">
+                                    <img src="/freightbox/static/src/img/aboutus.png" alt=""/>
+                                </div> -->
+                                <a href="aboutus.html" class="btn btn-link">Read More      <i class="far fa-arrow-right"></i></a>
+                            </div>
+
+                            <div class="column-2 col-lg-6">
+                                <div class="img-box p-5">
+                                    <div class="img-data">
+                                        <img src="/freightbox/static/src/img/aboutusimg.jpg" alt=""/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slider">
+                <div id="myCarousel2" class="carousel slide" data-bs-ride="carousel">
+                    <!-- Carousel indicators -->
+                    <ol class="carousel-indicators">
+                    <li data-bs-target="#myCarousel2" data-bs-slide-to="0" class="active"></li>
+                    <li data-bs-target="#myCarousel2" data-bs-slide-to="1"></li>
+                    <li data-bs-target="#myCarousel2" data-bs-slide-to="2"></li>
+                    </ol>
+                    <!-- Wrapper for carousel items -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="block">
+                                <div class="contain">
+                                    <h1>ERP build using DCSA Standards</h1>
+                                    <p>A freight solution based on liner shipping supported new gold standards</p>
+                                </div>
+                                <div class="image">
+                                    <img src="/freightbox/static/src/img/dcsa.png" alt="dcsa_logo"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="block">
+                                <div class="contain">
+                                    <h1>FreightBox : The open-source power to your business</h1>
+                                    <p>With freightBox you seamlessly manage your shipment within the core ERP without loosing site of your Business.</p>
+                                </div>
+                                <div class="image">
+                                    <img src="/freightbox/static/src/img/odoo.png" alt="odoo"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="block">
+                                <div class="contain">
+                                    <h1>Track And Trace</h1>
+                                    <p>Using world class track and trace from , be rest assured you can track over 100 shipping lines.</p>
+                                </div>
+                                <div class="image">
+                                    <img src="/freightbox/static/src/img/track.png" alt="odoo"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Carousel controls -->
+                    <a class="carousel-control-prev" href="#myCarousel2" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#myCarousel2" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="whyus-section bg-light">
+                <div class="container py-5">
+                    <div class="title">
+                    <h1 class="text-center">Why Us ?</h1>
+                    <!-- <h5 class="text-center">Industry professional with varied experiences of managing different class of cargo, off-
+                        shore, cruise ships and hotels. We provide crew from different nationalities to manage our
+                        clients onboard requirements.</h5> -->
+                    </div>
+
+                    <div class="card-conatiner row my-5 g-3 justify-content-center">
+                        <div class=" col-sm-6 col-md-4 col-lg-3 " >
+                            <div class="card">
+                                <img src="/freightbox/static/src/img/box.png" class="card-img-top" alt="..."/>
+                                <div class="card-body text-center">
+                                    <h5 class="head card-title mb-3">Simplify Business and freight</h5>
+                                    <p class="card-text">We invest in strategic solutions tailored to your business problems and needs. Great websites at your service !</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" col-sm-6 col-md-4 col-lg-3 " >
+                            <div class="card">
+                                <img src="/freightbox/static/src/img/team.png" class="card-img-top" alt="..."/>
+                                <div class="card-body text-center">
+                                    <h5 class="head card-title mb-3">Efficient team processes</h5>
+                                    <p class="card-text">We integrate digital tools and solutions for better insights, enabling data-driven planning.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3 " >
+                            <div class="card">
+                                <img src="/freightbox/static/src/img/training.png" class="card-img-top" alt="..."/>
+                                <div class="card-body text-center">
+                                    <h5 class="head card-title mb-3">Trainings  with built in learnBox</h5>
+                                    <p class="card-text">We have great learning built in But  you may contact us for support with features. All new joiners can be trained out of erpbox* for free.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+        </t>
+    </template>
+
+     <!-- <template id="freightbox_homepage" inherit_id="website.homepage" name="Freightbox" customize_show="True">
+         <xpath expr="//div[@id='wrap']" position="replace">
+            <div id="wrap" class="oe_structure">
+
+                <section class="container-title">
+                   <div class="image">
+                       <img src="/freightbox/static/src/img/title.jpg" alt="top_img"/>
+                   </div>
+                   <div class="upper_layer"></div>
+                   <div class="title">
+                       <h1>Manage your business and freight anywhere anytime</h1>
+                       <p>which comes with built-in ERP for free*</p>
+                   </div>
+               </section>
+            </div>
+             
+         </xpath>
+
+        </template> -->
+
+    <!--Footer-->
+    <template id="template_footer_custom" inherit_id="website.footer_custom" name="Default" active="True">
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer">
+                <footer >
+                    <!-- <div class="p-md-5 p-lg-5 mb-xxl-5">&nbsp;</div> -->
+                    <div class="wave"></div>
+                    <div class="container py-3 py-md-5  text-light">
+                        <div class="row footer-contain top-section g-2 mt-5">
+
+                            <div class="column enquiry_block col-md-12 col-lg-5">
+                                <h3 class="mb-5">Enquiry</h3>
+                                <p>Email us with any questions or inquiries or use our contact data. </p>
+                                <form action="" class="row g-3">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" placeholder="First Name"/>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" placeholder="Last Name"/>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <input type="email" class="form-control" placeholder="Email Address"/>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <textarea class="form-control" rows="3" placeholder="Message"></textarea>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-primary border-0">Sign in</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="column sitemap_block col-md-4 col-lg-2">
+                                <h3 class="mb-5">Site Map</h3>
+
+                                <ul class="nav d-flex flex-column">
+                                    <li class="nav-list"><a href="#" class="btn btn-link text-white">About Us</a></li>
+                                    <li class="nav-list"><a href="#" class="btn btn-link text-white">Why Us?</a></li>
+                                    <li class="nav-list"><a href="#" class="btn btn-link text-white">Features</a></li>
+                                    <li class="nav-list"><a href="#" class="btn btn-link text-white">Contact Us</a></li>
+                                    <li class="nav-list"><a href="#" class="btn btn-link text-white">Blog</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="column contact_block col-md-8 col-lg-5">
+                                <h3 class="mb-5">Contact Us</h3>
+
+                                <ul class="nav d-flex flex-column contact-data">
+                                    <li>
+                                        <i class="fa-solid fa-location-dot"></i>
+                                        <p class="contact-contain ps-5">
+                                            <b>Powerp Box IT Solutions Pvt Ltd,</b><br/>
+                                            216, Bestech Chambers, Sushant Lok1, Sector 27 Gurgaon, Haryana 122002 India
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-envelope"></i>
+                                        <p class="contact-contain ps-5">
+                                            Email: info@powerpbox.org
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-phone-flip"></i>
+                                        <p class="contact-contain ps-5">
+                                        Tel No: +91 7506926394
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <div class=" bottom-section py-3 mt-5 border-top">
+                        <p class="text-center ">Copyright 2021 All rights reserved.</p>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

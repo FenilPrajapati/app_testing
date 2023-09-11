@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="menu_vessel_tracking_menu" model="website.menu">
+        <field name="name">Vessel Tracking</field>
+        <field name="url">/vessel_tracking</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">57</field>
+    </record>
+
+    <template id="vessel_tracking" name="Vessel Tracking">
+        <style>
+            .vessel-data{
+                overflow-x:hidden;
+                overflow-y: scroll;
+                height: 600px;
+            }
+            .vessel-map{
+                top: 500px;
+                left: 800px;
+                height: 400px;
+                width: 400px;
+                z-index: 1;
+                margin-top: 5%;
+            }
+            .vessel-track{
+                top: 750px;
+                left: 800px;
+                overflow-y: scroll;
+                height: 300px;
+                z-index: 1;
+                margin-top: 5%;
+                padding-left: 20px;
+            }
+            .tnt_details{
+                left:50px;
+                border-style: none none none solid;
+                border-color: grey;
+                border-width: medium;
+                padding: 20px;
+                padding-left: 40px;
+                font-size: 12;
+                font-weight: bold;
+                z-index: 1;
+            }
+            .icon-style{
+                size:50px;
+                border-radius: 30px;
+                padding: 4px;
+                width: 30;
+                height: 30;
+                position: relative;
+                left: -55px;
+                top: 30px;
+                background-color: #FFF;
+                z-index: 1;
+            }
+            .start-container-style{
+                size:50px;
+                border-radius: 30px;
+                padding: 4px;
+                width: 30;
+                height: 30;
+                position: relative;
+                left: -10px;
+                top: 0px;
+                background-color: #FFF;
+                z-index: 1;
+            }
+            .end-container-style{
+                size:50px;
+                border-radius: 30px;
+                padding: 4px;
+                width: 30;
+                height: 30;
+                position: relative;
+                left: -10px;
+                top: 0px;
+                background-color: #FFF;
+                z-index: 1;
+            }
+        </style>
+        <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet"/>
+        <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
+        <link href="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.css" rel="stylesheet"/>
+        <script src="https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js"></script>
+          <style>
+            body { margin: 0; padding: 0; }
+            #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+          </style>
+        <t t-call="website.layout">
+            <form action="/vessel_tracking/" method="post" enctype="multipart/form-data"
+                  data-model_name="vessel.tracking" class="s_website_form checkout_autoformat">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <t t-if="user_logged == True ">
+                    <ol class="o_portal_submenu breadcrumb mb-0 py-2 flex-grow-1 row" style="margin-top: 10px;">
+                        <li class="breadcrumb-item ml-1">
+                            <a href="/my/home" aria-label="Home" title="Home">
+                                <i class="fa fa-home"/>
+                            </a>
+                        </li>
+                       <li class="breadcrumb-item active ">
+                            Vessel Tracking
+                        </li>
+                    </ol>
+<!--                    <div class="row">-->
+<!--                        <div class='mb-4' style="height: 100px; width: 150px; text-align: center; left : 50px; position: relative;">-->
+<!--                            <div class="card border-left-primary shadow h-100 py-2">-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row no-gutters align-items-center">-->
+<!--                                        <div class="col mr-2">-->
+<!--                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">SI</div>-->
+<!--                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><span t-esc="si_count"/></div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class='mb-4' style="height: 100px; width: 150px; text-align: center; left : 100px; position: relative;">-->
+<!--                            <div class="card border-left-primary shadow h-100 py-2">-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row no-gutters align-items-center">-->
+<!--                                        <div class="col mr-2">-->
+<!--                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">MBOL</div>-->
+<!--                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><span t-esc="mbol_count"/></div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class='mb-4' style="height: 100px; width: 150px; text-align: center; left : 150px; position: relative;">-->
+<!--                            <div class="card border-left-primary shadow h-100 py-2">-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row no-gutters align-items-center">-->
+<!--                                        <div class="col mr-2">-->
+<!--                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">HBOL</div>-->
+<!--                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><span t-esc="hmbol_count"/></div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <div class="row" style="padding-top: 80px;">
+                        <div class="col-lg-8" style="width:60%;">
+                            <t t-if="vessel_track_value">
+                                
+                                <div class="mb-4">
+                                    <div class="mb-4" style="left: 30px; width: 90%; position: relative;">
+                                        <div class="table-responsive" style="overflow-y: scroll; height: 500px;">
+                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width: 5;"></th>
+                                                        <th style="width: 50px;">Booking Ref.</th>
+                                                        <th style="width: 50px;">Vessel</th>
+                                                        <th style="width: 50px;">Carrier Booking</th>
+                                                        <th style="width: 50px;">Origin</th>
+                                                        <th style="width: 50px;">Destination</th>
+                                                        <th style="width: 5;"></th>
+                                                        <th style="display: none;">POR</th>
+                                                        <th style="display: none;">POD</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <t t-set="count" t-value="1"/>
+                                                    <t t-foreach="vessel_track_value" t-as="vessel_line">
+                                                        <t t-if="count%2 == 0">
+                                                            <tr style="background-color: #F5F2F2;">
+                                                                <td><input type="checkbox" t-attf-name="#{vessel_line['js_class_id']}" id="vessel_checkbox"/></td>
+                                                                <td><t t-esc="vessel_line['booking_ref']"/></td>
+                                                                <td><t t-esc="vessel_line['vessel']"/></td>
+                                                                <td><t t-esc="vessel_line['carrier_booking']"/></td>
+                                                                <td><t t-esc="vessel_line['origin']"/></td>
+                                                                <td><t t-esc="vessel_line['destination']"/></td>
+                                                                <td>
+                                                                    <t t-if="vessel_line['status'] == 'late'">
+                                                                        <img src="/freightbox/static/src/img/red_dot.png" height="20px" width="20px" alt="This vessel is late."/>
+                                                                    </t>
+                                                                    <t t-else="">
+                                                                        <img src="/freightbox/static/src/img/green_dot.png" height="20px" width="20px" alt="This vessel is late."/>
+                                                                    </t>
+                                                                </td>
+                                                                <td style="display: none;"><input type="text" class="location_label" t-attf-name="#{vessel_line['js_class_id']}_por" t-attf-value="#{vessel_line['por']}"/></td>
+                                                                <td style="display: none;"><input type="text" class="location_label" t-attf-name="#{vessel_line['js_class_id']}_pod" t-attf-value="#{vessel_line['pod']}"/></td>
+                                                                <td style="display: none;"><input type="text" class="location_label" t-attf-name="#{vessel_line['js_class_id']}_por_lat" t-attf-value="#{vessel_line['por_lat']}"/></td>
+                                                                <td style="display: none;"><input type="text" class="location_label" t-attf-name="#{vessel_line['js_class_id']}_por_lon" t-attf-value="#{vessel_line['por_lon']}"/></td>
+                                                                <td style="display: none;"><input type="text" class="location_label" t-attf-name="#{vessel_line['js_class_id']}_pod_lat" t-attf-value="#{vessel_line['pod_lat']}"/></td>
+                                                                <td style="display: none;"><input type="text" class="location_label" t-attf-name="#{vessel_line['js_class_id']}_pod_lon" t-attf-value="#{vessel_line['pod_lon']}"/></td>
+                                                                <td style="display: none;"><input type="text" class="location_label" t-attf-name="#{vessel_line['js_class_id']}_por_text" t-attf-value="#{vessel_line['por_text']}"/></td>
+                                                                <td style="display: none;"><input type="text" class="location_label" t-attf-name="#{vessel_line['js_class_id']}_pod_text" t-attf-value="#{vessel_line['pod_text']}"/></td>
+                                                                <td style="display: none;"><input type="text" class="location_label" t-attf-name="#{vessel_line['js_class_id']}_cur_lat" t-attf-value="#{vessel_line['cur_lat']}"/></td>
+                                                                <td style="display: none;"><input type="text" class="location_label" t-attf-name="#{vessel_line['js_class_id']}_cur_lon" t-attf-value="#{vessel_line['cur_lon']}"/></td>
+                                                                <td style="display: none;"><input type="text" class="route_label" t-attf-name="#{vessel_line['js_class_id']}_route" t-attf-value="#{vessel_line['route']}"/></td>
+                                                            </tr>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <tr style="background-color: #EAEAEA;">
+                                                                <td><input type="checkbox" t-attf-name="#{vessel_line['js_class_id']}" id="vessel_checkbox"/></td>
+                                                                <td><t t-esc="vessel_line['booking_ref']"/></td>
+                                                                <td><t t-esc="vessel_line['vessel']"/></td>
+                                                                <td><t t-esc="vessel_line['carrier_booking']"/></td>
+                                                                <td><t t-esc="vessel_line['origin']"/></td>
+                                                                <td><t t-esc="vessel_line['destination']"/></td>
+                                                                <td>
+                                                                    <t t-if="vessel_line['status'] == 'late'">
+                                                                        <img src="/freightbox/static/src/img/red_dot.png" height="20px" width="20px" alt="This vessel is late."/>
+                                                                    </t>
+                                                                    <t t-else="">
+                                                                        <img src="/freightbox/static/src/img/green_dot.png" height="20px" width="20px" alt="This vessel is late."/>
+                                                                    </t>
+                                                                </td>
+                                                                <td style="display: none;"><input type="text" class="location_label" t-attf-name="#{vessel_line['js_class_id']}_por" t-attf-value="#{vessel_line['por']}"/></td>
+                                                                <td style="display: none;"><input type="text" class="location_label" t-attf-name="#{vessel_line['js_class_id']}_pod" t-attf-value="#{vessel_line['pod']}"/></td>
+                                                                <td style="display: none;"><input type="text" class="location_label" t-attf-name="#{vessel_line['js_class_id']}_por_lat" t-attf-value="#{vessel_line['por_lat']}"/></td>
+                                                                <td style="display: none;"><input type="text" class="location_label" t-attf-name="#{vessel_line['js_class_id']}_por_lon" t-attf-value="#{vessel_line['por_lon']}"/></td>
+                                                                <td style="display: none;"><input type="text" class="location_label" t-attf-name="#{vessel_line['js_class_id']}_pod_lat" t-attf-value="#{vessel_line['pod_lat']}"/></td>
+                                                                <td style="display: none;"><input type="text" class="location_label" t-attf-name="#{vessel_line['js_class_id']}_pod_lon" t-attf-value="#{vessel_line['pod_lon']}"/></td>
+                                                                <td style="display: none;"><input type="text" class="location_label" t-attf-name="#{vessel_line['js_class_id']}_por_text" t-attf-value="#{vessel_line['por_text']}"/></td>
+                                                                <td style="display: none;"><input type="text" class="location_label" t-attf-name="#{vessel_line['js_class_id']}_pod_text" t-attf-value="#{vessel_line['pod_text']}"/></td>
+                                                                <td style="display: none;"><input type="text" class="location_label" t-attf-name="#{vessel_line['js_class_id']}_cur_lat" t-attf-value="#{vessel_line['cur_lat']}"/></td>
+                                                                <td style="display: none;"><input type="text" class="location_label" t-attf-name="#{vessel_line['js_class_id']}_cur_lon" t-attf-value="#{vessel_line['cur_lon']}"/></td>
+                                                                <td style="display: none;"><input type="text" class="route_label" t-attf-name="#{vessel_line['js_class_id']}_route" t-attf-value="#{vessel_line['route']}"/></td>
+                                                            </tr>
+                                                        </t>
+                                                        <t t-set="count" t-value="count+1"/>
+                                                    </t>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                            <t t-else="">
+                                <span><center> <b>No Vessel Data Found</b> </center></span>
+                            </t>
+
+                        </div>
+                        <div class="col-lg-4" style="position: relative; left: -80px;">
+                            <div class="vessel-map">
+                                <div id="map" style="height: 400px; width: 500px;"></div>
+                            </div>
+                             <t t-foreach="vessel_track_value" t-as="vessel_line">
+                                 <div class="vessel-track" t-attf-id="#{vessel_line['js_class_id']}_tnt" style="display: none; top:100px;">
+                                     <div class="start-container-style" t-if="vessel_line['tnt_data']">
+                                        <img src="/freightbox/static/src/img/track_container.png" height="15px" width="20px" alt="Container"/>
+                                     </div>
+                                     <t t-foreach="vessel_line['tnt_data']" t-as="tnt_data">
+                                         <t t-if="tnt_data[2] == 'ACT'">
+                                             <div class="tnt_details" style="border-color: #29E50B !important;">
+                                                 <div class="icon-style">
+                                                    <t t-set="icon_flag" t-value="1"/>
+                                                    <t t-if="tnt_data[4] == 'Road'">
+                                                        <t t-set="icon_flag" t-value="0"/>
+                                                        <img src="/freightbox/static/src/img/truck.png" height="15px" width="20px" alt="True"/>
+                                                    </t>
+                                                    <t t-if="tnt_data[4] == 'Rail'">
+                                                        <t t-set="icon_flag" t-value="0"/>
+                                                        <img src="/freightbox/static/src/img/train.png" height="20px" width="30px" alt="True"/>
+                                                    </t>
+                                                    <t t-if="tnt_data[4] == 'Main Line'">
+                                                        <t t-set="icon_flag" t-value="0"/>
+                                                        <img src="/freightbox/static/src/img/ship.png" height="20px" width="30px" alt="True"/>
+                                                    </t>
+                                                    <t t-if="tnt_data[4] == 'Feeder'">
+                                                        <t t-set="icon_flag" t-value="0"/>
+                                                        <img src="/freightbox/static/src/img/ship.png" height="20px" width="30px" alt="True"/>
+                                                    </t>
+                                                    <t t-if="tnt_data[4] == 'VESSEL'">
+                                                        <t t-set="icon_flag" t-value="0"/>
+                                                        <img src="/freightbox/static/src/img/ship.png" height="20px" width="30px" alt="True"/>
+                                                    </t>
+                                                    <t t-if="icon_flag == 1">
+                                                        <img src="/freightbox/static/src/img/truck.png" height="15px" width="20px" alt="True"/>
+                                                    </t>
+                                                </div>
+                                                 <span t-esc="tnt_data[0]"/> <br/>
+                                                 <span t-esc="tnt_data[5]"/>
+                                             </div>
+                                         </t>
+                                         <t t-else="">
+                                             <div class="tnt_details">
+                                                 <div class="icon-style">
+                                                    <t t-set="icon_flag" t-value="1"/>
+                                                    <t t-if="tnt_data[4] == 'Road'">
+                                                        <t t-set="icon_flag" t-value="0"/>
+                                                        <img src="/freightbox/static/src/img/truck.png" height="15px" width="20px" alt="True"/>
+                                                    </t>
+                                                    <t t-if="tnt_data[4] == 'Rail'">
+                                                        <t t-set="icon_flag" t-value="0"/>
+                                                        <img src="/freightbox/static/src/img/train.png" height="20px" width="30px" alt="True"/>
+                                                    </t>
+                                                    <t t-if="tnt_data[4] == 'Main Line'">
+                                                        <t t-set="icon_flag" t-value="0"/>
+                                                        <img src="/freightbox/static/src/img/ship.png" height="20px" width="30px" alt="True"/>
+                                                    </t>
+                                                    <t t-if="tnt_data[4] == 'Feeder'">
+                                                        <t t-set="icon_flag" t-value="0"/>
+                                                        <img src="/freightbox/static/src/img/ship.png" height="20px" width="30px" alt="True"/>
+                                                    </t>
+                                                    <t t-if="tnt_data[4] == 'VESSEL'">
+                                                        <t t-set="icon_flag" t-value="0"/>
+                                                        <img src="/freightbox/static/src/img/ship.png" height="20px" width="30px" alt="True"/>
+                                                    </t>
+                                                    <t t-if="icon_flag == 1">
+                                                        <img src="/freightbox/static/src/img/truck.png" height="15px" width="20px" alt="True"/>
+                                                    </t>
+                                                </div>
+                                                 <span t-esc="tnt_data[0]"/> <br/>
+                                                 <span t-esc="tnt_data[5]"/>
+                                             </div>
+                                         </t>
+                                     </t>
+                                     <div class="end-container-style" t-if="vessel_line['tnt_data']">
+                                        <img src="/freightbox/static/src/img/track_container.png" height="15px" width="20px" alt="Container"/>
+                                     </div>
+                                </div>
+                             </t>
+                        </div>
+                    </div>
+                </t>
+                <t t-if="user_logged != True ">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div class="text-center">
+                        <section>
+                            <b>Please  <a class="nav-link" href="/web/login">
+                                <h2>Sign In</h2>
+                            </a> to view your Shipment Information</b>
+                        </section>
+                    </div>
+                </t>
+
+            </form>
+        </t>
+    </template>
+
+</odoo>

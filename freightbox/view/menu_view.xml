@@ -1,0 +1,115 @@
+<odoo>
+    <data>
+        <menuitem id="main_menu_freight" name="FreightBox" sequence="300"
+                  web_icon="freightbox,static/description/icon.png"/>
+        <menuitem id="sub_menu_configuration" name="Configuration" sequence="20" parent="main_menu_freight" groups="sales_team.group_sale_manager"/>
+
+        <menuitem id="freight_config_settings_menu" name="Settings" sequence="1" action="action_freight_config_settings"
+                  groups="base.group_system" parent="sub_menu_configuration"/>
+
+        <menuitem id="sub_menu_templates" name="Templates" sequence="2" parent="sub_menu_configuration"/>
+
+       <menuitem id="menu_ports_template" name="Ports Template" action="fb_base.action_ports_template_id" sequence="1"
+                  parent="sub_menu_templates"/>
+        <menuitem id="menu_route_template" name="Route Template" action="action_route_template_id" sequence="2"
+                  parent="sub_menu_templates"/>
+       <menuitem id="menu_charges_template" name="Charges Template" action="fb_base.action_charges_template_id" sequence="3"
+                  parent="sub_menu_templates"/>
+        <menuitem id="menu_si_templates" name="SI Template" action="action_si_templates" sequence="4"
+                  parent="sub_menu_templates"/>
+      <menuitem id="menu_bol_templates" name="BOL Template" action="action_bol_templates" sequence="5"
+          parent="sub_menu_templates"/>
+        <menuitem id="menu_user_templates" name="User Template" action="action_user_templates" sequence="7"
+                  parent="sub_menu_templates"/>
+        <menuitem id="menu_transport_template" name="Transport Template" action="action_transport_template" sequence="6"
+                  parent="sub_menu_templates"/>
+
+           <menuitem id="menu_api_integration" name="FreightBox API" action="action_api_integration" sequence="100"
+                  parent="sub_menu_configuration"/>
+
+        <menuitem id="sub_menu_ports" name="Ports" sequence="16"
+                  action="fb_base.action_ports" parent="sub_menu_configuration"/>
+        <!-- <menuitem cid="sub_menu_sub_template" name="Ports Template" sequence="17"
+                  ation="fb_base.action_ports_template_id" parent="sub_menu_configuration"/> -->
+
+        <!-- <menuitem id="sub_menu_ports" name="Ports" action="action_ports" sequence="4" parent="sub_menu_configuration"/> -->
+        <menuitem id="menu_sub_port" name="Sub Port" action="fb_base.action_sub_port" sequence="5"
+                  parent="sub_menu_configuration"/>
+
+        <!-- <menuitem id="menu_ports_template" name="Ports Template" action="action_ports_template_id" sequence="5"
+                  parent="sub_menu_templates"/> -->
+        <menuitem id="sub_menu_mode" name="Transport Mode" action="action_mode" sequence="6"
+                  parent="sub_menu_configuration"/>
+        <menuitem id="menu_route_template" name="Route Template" action="action_route_template_id" sequence="8"
+                  parent="sub_menu_templates"/>
+
+      <menuitem id="sub_menu_container_iso_code" name="Container ISO Code" action="fb_base.action_container_iso_code"
+                  sequence="10" parent="sub_menu_configuration"/>
+        <menuitem id="sub_menu_hs_code" name="HS Code" action="fb_base.action_hs_code" sequence="12"
+                  parent="sub_menu_configuration"/>
+        <menuitem id="sub_menu_location_type" name="Location Type" action="action_location_type" sequence="13"
+                  parent="sub_menu_configuration"/>
+        <menuitem id="sub_menu_service" name="Service" action="action_service_menu" sequence="2"
+                  parent="sub_menu_configuration"/>
+        <menuitem id="sub_menu_service_type" name="Service Type" action="action_service_type" sequence="3"
+                  parent="sub_menu_configuration"/>
+       <menuitem id="sub_menu_mrg" name="Minimum Rate Guidelines" action="fb_base.action_mrg_charges" sequence="4"
+                  parent="sub_menu_configuration"/>
+        <menuitem id="sub_menu_minimum_rates" name="Minimum Rates" action="fb_base.action_minimum_rate" sequence="5"
+                  parent="sub_menu_configuration"/>
+
+        <menuitem id="menu_shipping_containers" name="Shipping Containers" sequence="4"
+				  action="fb_base.action_freight_shipping_containers"  parent="sub_menu_configuration" />
+
+
+         <menuitem id="menu_charges" name="Charges" action="fb_base.action_charges" sequence="11"
+                  parent="sub_menu_configuration"/>
+        <menuitem id="menu_move_type" name="Move Type" action="action_move_type" sequence="21"
+                  parent="sub_menu_configuration"/>
+        <menuitem id="menu_container_product" name="Container Products" action="action_container_products" sequence="22"
+                  parent="sub_menu_configuration"/>
+          <menuitem id="menu_facility_type_code" name="facility Type Code" action="fb_base.action_facility_type_code"
+                  sequence="26" parent="sub_menu_configuration"/>
+
+        <menuitem id="menu_presales" name="Sales Desk" sequence="1" parent="main_menu_freight" groups="sales_team.group_sale_manager,sales_team.group_sale_salesman_all_leads"/>
+         <menuitem id="menu_freight_dashboard" name="FreightBox Dashboard" action="action_freight_box_dashboard"
+                  sequence="1" parent="menu_presales"/>
+         <!--<menuitem id="menu_inquiry" name="Booking Inquiry" action="freightbox.action_fb_enquiry_management"
+                  sequence="2" parent="menu_presales" />
+        <menuitem id="menu_rfq_id" name="Rate Comparison" action="action_fb_rfq" sequence="3" parent="menu_presales"/>
+          <menuitem id="menu_fb_po" action="action_fb_purchase_management" name="Purchase Order" sequence="4" parent="menu_presales"
+                  />
+       <menuitem id="menu_shipment_quote" name="Shipment Quote" action="action_shipment_quote" sequence="5"
+                  parent="menu_presales"/>
+        <menuitem id="menu_fb_so" action="action_fb_sale_management"  name="Sale Order" sequence="6"
+                  parent="menu_presales"/>-->
+         <!-- <menuitem id="menu_sale_quotations_freight" action="sale.action_quotations_with_onboarding" name="Sale Order"
+                  parent="menu_presales" sequence="6" groups="sales_team.group_sale_salesman"/> -->
+
+         <menuitem id="menu_operations" name="Operation Desk" sequence="3" parent="main_menu_freight" groups="sales_team.group_sale_manager,freightbox.group_operations"/>
+<!--        <menuitem id="menu_job" name="Job Card" action="action_job" sequence="10" parent="menu_presales"/>        -->
+        <menuitem id="menu_transport" name="Transport" action="action_transport" sequence="2" parent="menu_operations"/>
+
+
+      <menuitem id="menu_documentation" name="Documentation Desk" sequence="4" parent="main_menu_freight" groups="sales_team.group_sale_manager,freightbox.group_documentation"/>
+      <menuitem id="menu_reports" name="Report Desk" sequence="5" parent="main_menu_freight" />
+      <menuitem id="menu_shipping_instruction" name="Shipping Instruction" action="action_shipping_instruction"
+                  sequence="2" parent="menu_documentation"/>
+        <menuitem id="menu_update_shipping_instruction" name="Update Shipping Instruction"
+                  action="action_update_shipping_instruction" sequence="3" parent="menu_documentation"/>
+
+        <menuitem id="menu_master_bill_of_lading" name="Master B/L" action="action_master_bill_of_lading" sequence="4"
+                  parent="menu_documentation"/>
+        <menuitem id="menu_house_bill_of_lading" name="House B/L" action="action_house_bill_of_lading" sequence="5"
+                  parent="menu_documentation"/>
+
+        <menuitem id="menu_track_trace" name="Track &amp; Trace" sequence="2" parent="menu_operations"/>
+        <menuitem id="menu_track_trace_event" name="Track Trace Event" sequence="3" action="track_trace_event_action"
+                  parent="menu_track_trace"/>
+        <menuitem id="menu_vessel_location_track" name="Vessel Location Track" sequence="4" action="vessel_location_track_action"
+                  parent="menu_track_trace"/>
+
+<!--        <menuitem action="action_res_users_dashboard" id="base.menu_action_res_users" parent="base.menu_users" sequence="0"/>-->
+
+    </data>
+</odoo>

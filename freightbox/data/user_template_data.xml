@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--<record model="shipping.container" id="container_1">
+            <field name="name">DV45</field>
+        </record>-->
+
+        <record forcecreate="True" model="user.templates" id="user_template_1">
+            <field name="name">V2Maritime Llp</field>
+            <field name="company_name">V2Maritime Llp</field>
+            <field name="user_name">Mr. FreightBox</field>
+            <field name="address_line1">722A , Hemkunt Chambers </field>
+            <field name="address_line2">Nehru Place </field>
+            <field name="postcode">122002</field>
+            <field name="is_data_template" eval="True"/>
+            <field name="country">104</field>
+            <field name="state_region">586</field>
+            <field name="email">test@powerpbox.org</field>
+            <field name="phone">9910995103</field>
+            <field name="cargo_name">Rice in Bags 50kg each</field>
+            <field name="quantity">2500.00</field>
+            <field name="shipment_terms">fcl</field>
+            <field name="weight">125.00</field>
+            <field name="volume">165.00</field>
+            <field name="move_type" ref="base_freightbox.move_type_1"/>
+            <field name="incoterm_id" ref="account.incoterm_FOB"/>
+            <field name="place_of_origin">Panipat</field>
+            <field name="final_port_of_destination">Hamburg</field>
+            <field name="no_of_expected_container">5</field>
+            <field name="expected_date_of_shipment" eval="DateTime.now().strftime('%Y-%m-%d')"/>
+            <field name="point_of_stuffing" ref="fb_base.port_95"/>
+            <field name="point_of_destuffing" ref="fb_base.port_216"/>
+            <field name="container_type" ref="fb_base.sc1_dv40"/>
+            <field name="volume_uom" ref="uom.product_uom_cubic_meter"/>
+            <field name="weight_uom" ref="uom.product_uom_ton"/>
+            <field name="remarks">Prefer Maersk Line or MSC </field>
+        </record>
+    </data>
+</odoo> 

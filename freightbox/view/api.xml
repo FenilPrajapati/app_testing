@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- ************************ Track Event ************************** -->
+        <!-- ********** Track Event tree view ********** -->
+       <!-- <record id="track_event_tree_view" model="ir.ui.view">
+            <field name="name">Track Event</field>
+            <field name="model">track.event</field>
+            <field name="arch" type="xml">
+                <tree string="Track Event">
+                    <field name="transport_event_type_code"/>
+                    <field name="vessel_imo_number"/>
+                    <field name="carrier_service_code"/>
+                    <field name="transport_call_id"/>
+                    <field name="carrier_voyage_number"/>
+                    <field name="carrier_booking_ref"/>
+                    <field name="transport_doc_reference"/>
+                    <field name="transport_doc_code"/>
+                    <field name="shipment_event_type_code"/>
+                    <field name="equip_reference"/>
+                    <field name="equip_event_type_code"/>
+                </tree>
+            </field>
+        </record>
+
+        &lt;!&ndash; ********** Track Event form view ********** &ndash;&gt;
+        <record id="track_event_form_view" model="ir.ui.view">
+            <field name="name">Track Event</field>
+            <field name="model">track.event</field>
+            <field name="arch" type="xml">
+                <form string="Track Event">
+                    <sheet>
+                        <group>
+                            <field name="url"/>
+                            <field name="db_name"/>
+                            <field name="db_username"/>
+                            <field name="transport_event_type_code"/>
+                            <field name="vessel_imo_number"/>
+                            <field name="carrier_service_code"/>
+                            <field name="transport_call_id"/>
+                            <field name="carrier_voyage_number"/>
+                            <field name="carrier_booking_ref"/>
+                            <field name="transport_doc_reference"/>
+                            <field name="transport_doc_code"/>
+                            <field name="shipment_event_type_code"/>
+                            <field name="equip_reference"/>
+                            <field name="equip_event_type_code"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+-->
+        <!-- ********** Action Track Event ********** -->
+        <!--<record id="action_track_event" model="ir.actions.act_window">
+            <field name="name">Track Event</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">track.event</field>
+            <field name="view_id" ref="track_event_tree_view"></field>
+            <field name="view_mode">tree,form</field>
+        </record>-->
+
+        <!-- ************************ API Integration ************************** -->
+        <!-- ********** API Integration tree view ********** -->
+        <record id="api_integration_tree_view" model="ir.ui.view">
+            <field name="name">API Integration</field>
+            <field name="model">api.integration</field>
+            <field name="arch" type="xml">
+                <tree string="API Integration">
+                    <field name="username"/>
+                    <field name="password"/>
+                    <field name="url"/>
+                    <field name="key"/>
+                    <field name="host"/>
+                    <field name="last_executed_date"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- ********** API Integration form view ********** -->
+        <record id="api_integration_form_view" model="ir.ui.view">
+            <field name="name">API Integration</field>
+            <field name="model">api.integration</field>
+            <field name="arch" type="xml">
+                <form string="API Integration">
+                    <sheet>
+                        <!--<button name="get_ip" type="object" string="IP Address" class="btn-primary"/>-->
+                        <!-- <separator/>
+                            <header>
+                                <button name="%(freightbox.act_facility_code_wiz)d" type="action" string="Import Facility Code"  class="btn-primary"/>
+                            </header>
+                        <separator/> -->
+                        <group>
+                            <group>
+                                <field name="url"/>
+                                <field name="host"/>
+                                <field name="description"/>
+                                <field name="name"/>
+                                <field name="username"/>
+                                <field name="token"/>
+                            </group>
+                            <group>
+                                <field name="key"/>
+                                <field name="last_executed_date"/>
+                                <field name="model_id"/>
+                                <field name="user_id"/>
+                                <field name="ip_address"/>
+                                <field name="password"/>
+                                <field name="token_expiry_date"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- ********** Action API Integration ********** -->
+        <record id="action_api_integration" model="ir.actions.act_window">
+            <field name="name">API Integration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">api.integration</field>
+            <field name="view_id" ref="api_integration_tree_view"></field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

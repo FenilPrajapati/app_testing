@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <!-- ************************ Move Type ************************** -->
+        <!-- ********** Move Type tree view ********** -->
+        <record id="move_type_tree_view" model="ir.ui.view">
+            <field name="name">Move Type</field>
+            <field name="model">move.type</field>
+            <field name="arch" type="xml">
+                <tree string="Move Type">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <!-- ********** Move form view ********** -->
+        <record id="move_type_form_view" model="ir.ui.view">
+            <field name="name">Move Type</field>
+            <field name="model">move.type</field>
+            <field name="arch" type="xml">
+                <form string="Move Type">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- ********** Action Move Type ********** -->
+
+        <record id="action_move_type" model="ir.actions.act_window">
+            <field name="name">Move Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">move.type</field>
+            <field name="view_id" ref="move_type_tree_view"></field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>
