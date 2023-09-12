@@ -259,7 +259,7 @@
             <field name="domain">[('is_freight_box_so', '=', True)]</field>
             <field name="view_ids" eval="[(5, 0, 0),
                 (0, 0, {'view_mode': 'tree', 'view_id': ref('sale_order_tree_inherit')}),
-                (0, 0, {'view_mode': 'form', 'view_id': ref('base_freightbox.view_order_form')})]"
+                (0, 0, {'view_mode': 'form', 'view_id': ref('base_freightbox_my.view_order_form')})]"
             />
              <field name="help" type="html">
                 <p>

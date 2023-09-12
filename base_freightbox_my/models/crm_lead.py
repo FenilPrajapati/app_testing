@@ -83,7 +83,7 @@ class CrmLead(models.Model):
                     raise ValidationError(_("EXPECTED DATE OF SHIPMENT cannot be a past date"))
 
     def action_create_rate_comparision(self):
-        view_id = self.env.ref('base_freightbox.rfq_form_view').id
+        view_id = self.env.ref('base_freightbox_my.rfq_form_view').id
         port_obj = self.env['port']
         rc_obj = self.env['request.for.quote']
         cargo_plus_obj = self.env["cargo.plus"]

@@ -4,27 +4,27 @@
         <menuitem id="menu_presales" name="Sales Desk" sequence="1" parent="fb_base.main_menu_fb_base"
                   groups="sales_team.group_sale_manager,sales_team.group_sale_salesman_all_leads"/>
 
-         <menuitem id="menu_enquiry" name="Booking Inquiry" action="base_freightbox.action_freight_enquiry_management"
+         <menuitem id="menu_enquiry" name="Booking Inquiry" action="base_freightbox_my.action_freight_enquiry_management"
                   sequence="2" parent="menu_presales" />
-        <menuitem id="menu_rfq" name="Rate Comparison" action="base_freightbox.action_fb_rfq" sequence="3"
+        <menuitem id="menu_rfq" name="Rate Comparison" action="base_freightbox_my.action_fb_rfq" sequence="3"
                   parent="menu_presales"/>
-        <menuitem id="menu_fb_po" action="base_freightbox.action_fb_purchase_management" name="Purchase Order" sequence="4"
+        <menuitem id="menu_fb_po" action="base_freightbox_my.action_fb_purchase_management" name="Purchase Order" sequence="4"
                   parent="menu_presales"/>
-        <menuitem id="menu_shipment_quote" name="Shipment Quote" action="base_freightbox.action_shipment_quote" sequence="5"
+        <menuitem id="menu_shipment_quote" name="Shipment Quote" action="base_freightbox_my.action_shipment_quote" sequence="5"
                   parent="menu_presales"/>
-        <menuitem id="menu_fb_so" action="base_freightbox.action_fb_sale_menu"  name="Sale Order" sequence="6"
+        <menuitem id="menu_fb_so" action="base_freightbox_my.action_fb_sale_menu"  name="Sale Order" sequence="6"
                   parent="menu_presales"/>
-        <menuitem id="menu_fb_job" name="Job Card" action="base_freightbox.action_fb_job" sequence="10" parent="menu_presales"/>
+        <menuitem id="menu_fb_job" name="Job Card" action="base_freightbox_my.action_fb_job" sequence="10" parent="menu_presales"/>
 
         <menuitem id="menu_operations" name="Operation Desk" sequence="3" parent="fb_base.main_menu_fb_base"
                   groups="sales_team.group_sale_manager"/>
-        <menuitem id="menu_transport" name="Transport" action="base_freightbox.action_transport"
+        <menuitem id="menu_transport" name="Transport" action="base_freightbox_my.action_transport"
                   sequence="2" parent="menu_operations"/>
 
         <menuitem id="menu_documentation" name="Documentation Desk" sequence="4" parent="fb_base.main_menu_fb_base"
                   groups="sales_team.group_sale_manager"/>
         <menuitem id="menu_shipping_instruction" name="Shipping Instruction"  sequence="2" parent="menu_documentation"
-                  action="base_freightbox.action_shipping_instruction"/>
+                  action="base_freightbox_my.action_shipping_instruction"/>
 
         <!--<menuitem id="main_menu_freight" name="FreightBox" sequence="300"
                   web_icon="freightbox,static/description/icon.png"/>

@@ -31,7 +31,7 @@ class CustomerPortal(CustomerPortal, WebsiteForm):
             partner = user.partner_id
             # user_template_recs = request.env['user.templates'].sudo().search(
             #     ['|', ('is_data_template', '=', True), ('user_template_customer_id', '=', partner.ids)])
-            result = request.render('base_freightbox.fb_start_booking_form', {
+            result = request.render('base_freightbox_my.fb_start_booking_form', {
                 'partner': partner,
                 'user': user,
                 # 'user_template_recs': user_template_recs,
@@ -320,10 +320,10 @@ class CustomerPortal(CustomerPortal, WebsiteForm):
 
         # contract_rec = request.env['contract'].sudo().search([('contract_ref', '=', post['contract_ref']), ('shipping_line_name', '=', partner.id)])
 
-        return request.render('base_freightbox.thankyou_page_for_customer', vals)
+        return request.render('base_freightbox_my.thankyou_page_for_customer', vals)
 
     @http.route(['/thank-subscribe/<int:rec_id>/<int:partner_id>'], type='http', auth="public", website=True)
     def thanks_subscribe_for_inquiry(self, rec_id, partner_id, access_token=None, **kw):
         partner_rec = request.env['res.partner'].sudo().browse(partner_id)
         partner_rec.user_subscribed = True
-        return request.render('base_freightbox.fb_subsciption_accepted')
+        return request.render('base_freightbox_my.fb_subsciption_accepted')

@@ -237,10 +237,10 @@
         </field>
         <field name="domain">[('is_freight_box_crm', '=', True)]</field>
         <field name="view_ids" eval="[(5, 0, 0),
-            (0, 0, {'view_mode': 'tree', 'view_id': ref('base_freightbox.freightbox_crm_tree')}),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('base_freightbox_my.freightbox_crm_tree')}),
 
-            (0, 0, {'view_mode': 'form', 'view_id': ref('base_freightbox.crm_lead_view_form')})]"/>
-        <field name="search_view_id" ref="base_freightbox.inquiry_freightbox_filter"/>
+            (0, 0, {'view_mode': 'form', 'view_id': ref('base_freightbox_my.crm_lead_view_form')})]"/>
+        <field name="search_view_id" ref="base_freightbox_my.inquiry_freightbox_filter"/>
         <field name="help" type="html">
             <p>
                 To create employees timesheet.
