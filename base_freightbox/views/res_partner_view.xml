@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <!-- Show company name on tree. If contact, show contact name. if company, show company name - by default it shows both -->
+
+        <record model="ir.ui.view" id="view_partner_form_inquiry">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="user_subscribed"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

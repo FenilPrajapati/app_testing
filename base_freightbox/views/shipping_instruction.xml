@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="shipping_instruction_tree_view" model="ir.ui.view">
+            <field name="name">Shipping Instruction</field>
+            <field name="model">shipping.instruction</field>
+            <field name="arch" type="xml">
+                <tree string="Shipping Instruction">
+                    <field name="si_inquiry_no"/>
+                    <field name="transport_container_id"/>
+                    <field name="si_sequence_id"/>
+                    <field name="job_id"/>
+                    <field name="carrier_booking_reference"/>
+                    <field name="transport_document_type_code"/>
+                    <field name="shipper_id"/>
+                    <field name="state"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_shipping_instruction_search" model="ir.ui.view">
+            <field name="name">shipping.instruction.search</field>
+            <field name="model">shipping.instruction</field>
+            <field name="arch" type="xml">
+                <search string="Shipping Instruction">
+                    <field name="si_inquiry_no"/>
+                    <field name="carrier_booking_reference"/>
+                    <field name="shipper_id"/>
+                    <separator/>
+                    <group expand="1" string="Group By">
+                        <filter string="State" name="group_state"
+                                context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.server" id="email_to_ship_line_si">
+            <field name="name">Email to ShippingLine</field>
+            <field name="model_id" ref="model_shipping_instruction"/>
+            <field name="binding_model_id" ref="model_shipping_instruction"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = records.action_si_send()
+            </field>
+        </record>
+
+        <record model="ir.actions.server" id="email_to_shiper_si">
+            <field name="name">Email To Shipper</field>
+            <field name="model_id" ref="model_shipping_instruction"/>
+            <field name="binding_model_id" ref="model_shipping_instruction"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = records.action_shiper_send()
+            </field>
+        </record>
+
+        <!--********** Shipping Instruction form view **********-->
+        <record id="shipping_instuction_form_view" model="ir.ui.view">
+            <field name="name">Shipping Instruction</field>
+            <field name="model">shipping.instruction</field>
+            <field name="arch" type="xml">
+                <form string="Shipping Instruction">
+                    <header>
+                        <button name="button_draft" string="Set to Draft" states="open,rejected,cancelled" type="object"
+                                class="btn-primary"/>
+                        <button name="button_update" string="Allow Shipper to Update" states="si_sent,updated"
+                                type="object" class="btn-primary"/>
+                        <button name="button_confirm_update" string="Confirm Update" states="update in progress"
+                                confirm="This Shipping Instruction is being updated by shipper,do you still want to update?"
+                                type="object" class="btn-primary"/>
+                        <button name="button_accept" string="Accept" states="si_sent,updated" type="object"
+                                class="btn-primary"/>
+                        <button name="button_cancel" string="Cancel" states="draft,update in progress,updated,si_sent"
+                                type="object" class="btn-primary" confirm="This will cancel the Shipping Instruction,do you wish to proceed?"/>
+                        <field name="state" widget="statusbar" nolabel="1"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="transport_document_type_code" required="1" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                                <field name="number_of_originals" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                                <field name="pre_carriage_under_shippers_responsibility" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                                <field name="is_electronic" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                                <field name="reject_bool" invisible="1"/>
+
+                            </group>
+                            <group>
+                                <field name="is_shipped_onboard_type" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                                <field name="number_of_copies" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                                <field name="carrier_booking_reference" readonly="1"/>
+                                <field name="is_charges_displayed" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                                <field name="company_id" force_save="1"/>
+                            </group>
+                            <group>
+                                <field name="update_si" attrs="{'invisible': [('state', '=', 'open')]}"/>
+                                <field name="shipping_instruction_id" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                            </group>
+                            <group>
+                                <field name="si_uploaded_from_shipper" widget="binary"
+                                       filename="si_uploaded_from_shipper_fname" force_save="1"/>
+                                <field name="si_uploaded_from_shipper_fname" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="si_upload_shipper" widget="binary" filename="si_upload_shipper_fname"
+                                       force_save="1"/>
+                                <field name="si_uploaded_from_shipper_fname" invisible="1"/>
+                                <field name="is_bol_created"/>
+                            </group>
+
+                        </group>
+                        <separator string="Invoice Payable At"/>
+                        <group>
+                            <group>
+                                <field name="location_name" required="1" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                                <field name="un_location_code" required="1" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                                <field name="country" required="1" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                            </group>
+                            <group>
+                                <field name="city_name" required="1" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                                <field name="state_region" required="1" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name='cargo_items' string="Cargo Items">
+                                <field name="cargo_items_line"
+                                       context="{
+                                            'default_carrier_booking_reference': carrier_booking_reference,
+                                            'default_equipment_reference': transport_container_id}" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}">
+                                    <tree string="Cargo_items" editable="bottom">
+                                        <field name="cargo_line_items_row_id"/>
+                                        <field name="cargo_line_items_id" required="1"/>
+                                        <field name="shipping_marks" required="1"/>
+                                        <field name="carrier_booking_reference"/>
+                                        <field name="description_of_goods" required="1"/>
+                                        <field name="hs_code" required="1"/>
+                                        <field name="number_of_packages" required="1"/>
+                                        <field name="weight" required="1"/>
+                                        <field name="volume"/>
+                                        <field name="weight_unit" required="1"/>
+                                        <field name="volume_unit"/>
+                                        <field name="package_code" required="1"/>
+                                        <field name="equipment_reference" readonly="1" force_save="1"/>
+                                        <field name="cargo_array_created_by" required="1"/>
+                                        <button name="button_open_update_cargo_items" string="Edit" type="object"
+                                                class="fo-pencil-square "/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <page name="Transport" string="Transport Equipment">
+                                <field name="transport_equipment_line" string="Transport Equipment"
+                                    context="{'default_equipment_reference_id': transport_container_id}" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}">
+                                    <tree string="Transport_Equipment" editable="bottom">
+                                        <field name="transport_equipment_row_id"/>
+                                        <field name="equipment_reference_id" readonly="1" force_save="1"/>
+                                        <field name="weight_unit" required="1"/>
+                                        <field name="cargo_gross_weight" required="1"/>
+                                        <field name="container_tare_weight"
+                                               attrs="{'required': [('is_shipper_owned', '=', True)]}"/>
+                                        <field name="iso_equipment_code"
+                                               attrs="{'required': [('is_shipper_owned', '=', True)]}"/>
+                                        <field name="is_shipper_owned" required="1"/>
+                                        <field name="temperature_min"/>
+                                        <field name="temperature_max"/>
+                                        <field name="temperature_unit"/>
+                                        <field name="humidity_min"/>
+                                        <field name="humidity_max"/>
+                                        <field name="ventilation_min"/>
+                                        <field name="ventilation_max"/>
+                                        <field name="seal_number" required="1"/>
+                                        <field name="seal_source"/>
+                                        <field name="seal_type" required="1"/>
+                                        <field name="transport_equipment_array_created_by" required="1"/>
+                                        <button name="button_open_update_tq" string="Edit" type="object"
+                                                class="fo-pencil-square "/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <page name="Document" string="Document Parties">
+                                <field name="document_parties_line" string="Document Parties" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}">
+                                    <tree string="Document_parties" editable="bottom">
+                                        <field name="document_parties_row_id"/>
+                                        <field name="party_name_id" required="1"/>
+                                        <field name="tax_reference_1" required="1"/>
+                                        <field name="public_key" required="1"/>
+                                        <field name="street" required="1"/>
+                                        <field name="street_number" required="1"/>
+                                        <field name="floor" required="1"/>
+                                        <field name="post_code" required="1"/>
+                                        <field name="city" required="1"/>
+                                        <field name="state_region" required="1"/>
+                                        <field name="country" required="1"/>
+                                        <field name="tax_reference_2" required="1"/>
+                                        <field name="nmfta_code" required="1"/>
+                                        <field name="party_function" required="1"/>
+                                        <field name="address_line"/>
+                                        <field name="name" required="1"/>
+                                        <field name="email" required="1"/>
+                                        <field name="phone" required="1"/>
+                                        <field name="is_to_be_notified" required="1"/>
+                                        <field name="document_parties_array_created_by" required="1"/>
+                                        <button name="button_open_update_document_parties" string="Edit" type="object"
+                                                class="fo-pencil-square "/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="Shipment" string="Shipment Location">
+                                <field name="shipment_location_line" string="Shipment Location" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}">
+                                    <tree string="Shipment_location" editable="bottom">
+                                        <field name="shipment_location_row_id"/>
+                                        <field name="location_type" required="1"/>
+                                        <field name="loc_type_val" invisible="1"/>
+                                        <field name="location_name"
+                                               attrs="{'required': [('loc_type_val', '=', True)]}"/>
+                                        <field name="latitude" attrs="{'required': [('loc_type_val', '=', True)]}"/>
+                                        <field name="longitude" attrs="{'required': [('loc_type_val', '=', True)]}"/>
+                                        <field name="un_location_code"
+                                               attrs="{'required': [('loc_type_val', '=', True)]}"/>
+                                        <field name="street_name" attrs="{'required': [('loc_type_val', '=', True)]}"/>
+                                        <field name="street_number"
+                                               attrs="{'required': [('loc_type_val', '=', True)]}"/>
+                                        <field name="floor" attrs="{'required': [('loc_type_val', '=', True)]}"/>
+                                        <field name="post_code" attrs="{'required': [('loc_type_val', '=', True)]}"/>
+                                        <field name="city_name" attrs="{'required': [('loc_type_val', '=', True)]}"/>
+                                        <field name="state_region" attrs="{'required': [('loc_type_val', '=', True)]}"/>
+                                        <field name="country" attrs="{'required': [('loc_type_val', '=', True)]}"/>
+                                        <field name="displayed_name"/>
+                                        <field name="shipment_location_array_created_by"/>
+                                        <button name="button_open_update_shipment_location" string="Edit" type="object"
+                                                class="fo-pencil-square "/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="References" string="References">
+                                <field name="references_line" string="References" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}">
+                                    <tree string="References" editable="bottom">
+                                        <field name="shipping_references_row_id"/>
+                                        <field name="reference_type" required="1"/>
+                                        <field name="reference_value" required="1"/>
+                                        <field name="references_array_created_by"/>
+                                        <button name="button_open_update_shipping_references" string="Edit"
+                                                type="object" class="fo-pencil-square "/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name='other_info' string="Other Info">
+                                <group>
+                                    <group>
+                                        <field name="is_shipping_instruction" force_save="1" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                                        <!--<field name="is_shipping_instruction_ammendment" force_save="1"/>-->
+                                        <field name="si_created_by" force_save="1" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                                        <field name="si_updated_by" force_save="1"
+                                               attrs="{'invisible': [('update_si','!=', True)], 'readonly':['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                                        <field name="si_inquiry_no" force_save="1" context="{'form_view_ref': 'shipmybox.crm_lead_view_form_freightbox'}" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                                        <field name="shipper_id" options="{'no_create': True, 'no_open': True}" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="is_saved" force_save="1" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                                        <field name="saved_si_name" force_save="1" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                                        <field name="job_id" force_save="1" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                                        <field name="transport_id" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+<!--                                        <field name="bill_of_lading_id" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>-->
+                                        <field name="si_sequence_id" attrs="{'readonly': ['|',('is_bol_created', '=', True),('state', 'in', ['update in progress', 'rejected'])]}"/>
+                                        <field name="transport_container_id" readonly="1" force_save="1"/>
+                                        <field name="active" invisible="1"/>
+                                        <field name="booking_user_id" readonly="1"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="reason" string="Reject Reason"
+                                  attrs="{'invisible': [('reject_bool','!=', True)]}">
+                                <group colspan="2" col="2">
+                                    <field name="reject_reason" readonly="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <!--********** Action Shipping Instruction**********-->
+        <record id="action_shipping_instruction" model="ir.actions.act_window">
+            <field name="name">Shipping Instruction</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="context">{'default_is_shipping_instruction': True}</field>
+            <field name="domain">[('is_shipping_instruction', '=', True),('state','!=', 'update in progress')]</field>
+            <field name="res_model">shipping.instruction</field>
+            <field name="view_id" ref="shipping_instruction_tree_view"></field>
+            <field name="target">main</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--********** Update Action Shipping Instruction**********-->
+        <record id="action_update_shipping_instruction" model="ir.actions.act_window">
+            <field name="name">Update Shipping Instruction</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="context">{'default_is_shipping_instruction': True}</field>
+            <field name="domain">[('update_si', '=', True),('state','=', 'update in progress')]</field>
+            <field name="res_model">shipping.instruction</field>
+            <field name="view_id" ref="shipping_instruction_tree_view"></field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- ********** HS Code tree view ********** -->
+        <record id="hs_code_tree_view" model="ir.ui.view">
+            <field name="name">HS Code</field>
+            <field name="model">hs.code</field>
+            <field name="arch" type="xml">
+                <tree string="HS Code">
+                    <field name="hs_code_classification"/>
+                    <field name="code"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- ********** HS Code form view ********** -->
+        <record id="hs_code_form_view" model="ir.ui.view">
+            <field name="name">HS Code</field>
+            <field name="model">hs.code</field>
+            <field name="arch" type="xml">
+                <form string="HS Code">
+                    <sheet>
+                        <group colspan="4" col="4">
+                            <field name="hs_code_classification"/>
+                            <field name="code"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- ********** Action HS Code ********** -->
+        <record id="action_hs_code" model="ir.actions.act_window">
+            <field name="name">HS Code</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hs.code</field>
+            <field name="view_id" ref="hs_code_tree_view"></field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- ********** Location Type tree view ********** -->
+        <record id="location_type_tree_view" model="ir.ui.view">
+            <field name="name">Location Type</field>
+            <field name="model">location.type</field>
+            <field name="arch" type="xml">
+                <tree string="Location Type">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- ********** Location Type form view ********** -->
+        <record id="location_type_form_view" model="ir.ui.view">
+            <field name="name">Location Type</field>
+            <field name="model">location.type</field>
+            <field name="arch" type="xml">
+                <form string="Location Type">
+                    <sheet>
+                        <group colspan="4" col="4">
+                            <field name="name" required="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- ********** Location Type Action  ********** -->
+
+        <record id="action_location_type" model="ir.actions.act_window">
+            <field name="name">Location Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">location.type</field>
+            <field name="view_id" ref="location_type_tree_view"></field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <!-- ************************ Job ************************** -->
+        <!-- ********** Job tree view ********** -->
+        <record id="job_tree_view" model="ir.ui.view">
+            <field name="name">Job</field>
+            <field name="model">job</field>
+            <field name="arch" type="xml">
+                <tree string="Job" >
+                    <field name="inquiry_id"/>
+                    <field name="job_no"/>
+                    <field name="job_date"/>
+                    <field name="job_state_for_hold" invisible="1"/>
+                    <field name="carrier_booking"/>
+                    <field name="carrrier_date"/>
+                    <field name="carrrier_id"/>
+<!--                    <field name="svc_cont"/>-->
+<!--                    <field name="service_type_origin"/>-->
+<!--                    <field name="service_type_dest"/>-->
+                    <field name="shipment_terms_origin"/>
+                    <field name="shipment_terms_dest"/>
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        <record id="view_job_search" model="ir.ui.view">
+            <field name="name">job.search</field>
+            <field name="model">job</field>
+            <field name="arch" type="xml">
+                <search string="JOB">
+                    <field name="inquiry_id"/>
+                    <field name="job_no"/>
+                    <field name="carrier_booking"/>
+                    <field name="state"/>
+                    <separator/>
+                        <filter name="job_draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                        <filter name="job_si_accepted" string="SI Accepted" domain="[('state', '=', 'si_accepted')]"/>
+                        <filter name="job_draft_bol" string="Draft BoL" domain="[('state', '=', 'draft_bol')]"/>
+                        <filter name="job_hold" string="On Hold" domain="[('state', '=', 'hold')]"/>
+                        <filter name="job_cargo_released" string="Cargo Released" domain="[('state', '=', 'cargo_released')]"/>
+                        <filter name="job_done" string="Done" domain="[('state', '=', 'done')]"/>
+                </search>
+            </field>
+        </record>
+        <!-- ********** Job form view ********** -->
+        <record id="job_form_view" model="ir.ui.view">
+            <field name="name">Job</field>
+            <field name="model">job</field>
+            <field name="arch" type="xml">
+                <form string="Job">
+                    <header>
+                        <!--<button name="action_job_send" string="Send by Email" type="object" class="btn-primary" states="draft"
+                                help="Sends an email to the customer with his login credentials"/>
+                        <button name="action_send_link_consignee" string="Send Link To Consignee" type="object" class="btn-primary" states="draft"
+                                help="Sends an email to the consignee with his login credentials"/>
+                        <button name="action_create_transport" string="Create Transport" type="object"
+                                attrs="{'invisible': ['|',('stop_transport_creation', '=', True),('state', 'in', ['hold','inactive'])]}" class="btn-primary"
+                                help="Creates Transport for this job,depending on number of confirmed containers"/>
+                        <button name="action_create_house_bol" string="Create House BOL" type="object"
+                                class="btn-primary" attrs="{'invisible': ['|', '|', ('hbol_count', '&gt;', '0'), ('is_house_bol_needed', '=', False), ('state', 'in', ['hold','inactive'])]}"
+                                help="Creates House BOL for this job,if requested by the shipper"/>-->
+
+                        <button name="button_inactive" string="Inactive" type="object" class="btn-primary" invisible="1"/>
+                        <button name="button_release" string="Release" type="object" class="btn-primary" states='hold,inactive'/>
+<!--                        <button name="button_invoice" string="Create Invoice" type="object" class="btn-primary" attrs="{'invisible': ['|',('state', 'in', ['hold','inactive','done']),('total_charge', '=', 0)]}"/>-->
+                        <button name="button_container" string="Container Returned" states="cargo_released"
+                                confirm="Is all your container returned? "
+                                type="object" class="btn-primary"/>
+                        <button name="button_close_job" string="Close Job" states="container" type="object"
+                                class="btn-primary" help="Closes this Job"/>
+                        <field name="state" widget="statusbar"/>
+
+                    </header>
+                    <sheet>
+                        <group colspan="4" col="4">
+                            <div class="oe_title">
+                                <h1>
+                                    <field name="job_no" readonly="1"/>
+                                </h1>
+                            </div>
+                        </group>
+                        <separator string="Transport Leg"/>
+                        <group colspan="4" col="4">
+                            <!--<field name="state" readonly="0"/>-->
+                            
+                            <field name="vessel_name" required="1" force_save="1"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                            <field name="voyage" required="1" force_save="1"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                            <field name="rotation" required="1" force_save="1"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                            <field name="imo_no" required="1" force_save="1"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                            <!--<field name="status" force_save="1"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>-->
+                        </group>
+
+                        <separator string="Job details"/>
+                        <group colspan="4" col="4">
+                            <field name="job_no"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                            <field name="booking_id" required="1"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                            <field name="job_date"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                            <field name="job_state_for_hold" invisible="1"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                        </group>
+                        <separator string="Carrier and Service details"/>
+                        <group colspan="4" col="4">
+                            <!--<field name="booking_id" required="1"/>-->
+                            <field name="carrier_booking" required="1"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                            <field name="carrrier_date"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                            <field name="carrrier_id"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+
+                            <field name="shipment_terms_origin"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                            <field name="shipment_terms_dest"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                        </group>
+                        <separator string="Cargo details"/>
+                        <group colspan="4" col="4">
+                            <field name="cargo_gross_weight"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                            <field name="commodity_description"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                            <field name="cargo_uom_id"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                        </group>
+                        <separator string="Date and Container details"/>
+                        <group colspan="4" col="4">
+                            <field name="requested_date_time"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                            <field name="actual_date_time"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                            <field name="requested_equipment_type"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                            <field name="confirmed_equipment_type"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                            <field name="exp_no_of_container" readonly="1"/>
+                            <field name="confirmed_no_of_container" required="1"/>
+                            <field name="reference_type"
+                                   attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+
+                            <!--<field name="transport_ids" widget="many2many_tags" invisible="1"/>
+                            <field name="shipping_instruction_ids" force_save="1" invisible="1"
+                                   domain="[('carrier_booking_reference', '=', carrier_booking)]"
+                                   widget="many2many_tags"/>-->
+                            <field name="shipping_description" colspan="4" invisible="1"/>
+                            <field name="shipment_id" invisible="1"/>
+<!--                            <field name="transport_count" invisible="1"/>-->
+<!--                            <field name="stop_transport_creation" invisible="1"/>-->
+                            <field name="requested_equip_unit_id" invisible="1"/>
+                            <field name="confirmed_equip_unit_id" invisible="1"/>
+                            <field name="reference_id" invisible="1"/>
+<!--                            <field name="is_send_mail" invisible="1"/>-->
+<!--                            <field name="is_cargo_send_mail" invisible="1"/>-->
+                        </group>
+                        <notebook>
+                            <page name='Other_information' string="Other Info">
+                                <group colspan="4" col="4">
+
+                                    <field name="so_id" string="Sale order" readonly="1" force_save="1" context="{'form_view_ref': 'shipmybox.sale_order_form_view_freightbox'}"/>
+                                    <field name="po_id" string="Purchase order" readonly="1" force_save="1" context="{'form_view_ref': 'shipmybox.purchase_order_form'}"/>
+                                    <field name="shipper_id" string="Shipper" readonly="1" force_save="1"/>
+                                    <field name="inquiry_id" string="Inquiry"
+                                           options='{"no_open": False, "no_create": True}' context="{'form_view_ref': 'shipmybox.crm_lead_view_form_freightbox'}"/>
+                                    <!--<field name="shipping_instruction_ids" readonly="1" widget="many2many_tags"
+                                           string="Open SI IDs" force_save="1" invisible="0" />-->
+                                    <field name="user_id" string="User" readonly="0" invisible="0" force_save="1"
+                                            attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                                  <!--  <field name="confirmed_transport_ids" widget="many2many_tags" readonly="1"
+                                           force_save="1"
+                                           attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>-->
+                                    <field name="is_cont_released" force_save="1"/>
+                                    <field name="place_of_origin" required="1" attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                                    <field name="final_port_of_destination" required="1" attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                                    <field name="port_of_origin_id" attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                                    <field name="final_port_of_destination_id" attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                                    <field name="active" invisible="1"/>
+                                    <field name="booking_user_id" readonly="1"/>
+                                    <field name="hold_bool" invisible="1"/>
+<!--                                    <field name="lay_time"/>-->
+                                    <field name="company_id" force_save="1"/>
+                                </group>
+                            </page>
+
+                            <page name='Accounting' string="Accounting">
+                                <group>
+                                    <field name="invoice_ids" widget="many2many_tags"
+                                        attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}"/>
+                                    <field name="invoice_status"/>
+                                </group>
+                            </page>
+                            <page name="Hold Reason" string="Hold Reason"
+                                  attrs="{'invisible': [('hold_bool','!=', True)]}">
+                                <group colspan="2" col="2">
+                                    <field name="hold_reason" readonly="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- ********** Action Job ********** -->
+
+        <record id="action_fb_job" model="ir.actions.act_window">
+            <field name="name">Job</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">job</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('job_tree_view')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('job_form_view')})]"/>
+            <field name="view_mode">tree,form</field>
+            <field name="target">main</field>
+        </record>
+
+    </data>
+</odoo>

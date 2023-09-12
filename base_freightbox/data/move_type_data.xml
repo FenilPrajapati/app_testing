@@ -1,0 +1,15 @@
+<odoo>
+    <data noupdate="0">
+        <!--  ********** Move Types **********  -->
+        <record model="move.type" id="move_type_1">
+            <field name="name">Door To Door</field>
+        </record>
+        <record model="move.type" id="move_type_2">
+            <field name="name">Door To Port</field>
+        </record>
+        <record model="move.type" id="move_type_3">
+            <field name="name">Port To Port</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <!-- ************************ Shipment Quote ************************** -->
+        <!-- ********** Shipment Quote tree view ********** -->
+        <record id="shipment_quote_tree_view" model="ir.ui.view">
+            <field name="name">Shipment Quote</field>
+            <field name="model">shipment.quote</field>
+            <field name="arch" type="xml">
+                <tree string="Shipment Quote" default_order="booking_id desc" decoration-danger="state == 'rejected'" decoration-bf="state == 'draft'" decoration-warning="state == 'cancelled'"
+                      decoration-success="state == 'accepted'" decoration-primary="state == 'under_correction'" decoration-info="state == 'correction_done'" js_class="sq_event_dashboard">
+                    <field name="booking_id"/>
+                    <field name="cargo_name"/>
+                    <field name="quantity"/>
+                    <field name="shipment_terms"/>
+                    <field name="weight"/>
+                    <field name="volume"/>
+                    <field name="move_type"/>
+                    <field name="incoterm_id"/>
+                    <field name="place_of_origin"/>
+                    <field name="final_port_of_destination"/>
+                    <field name="no_of_expected_container"/>
+                    <field name="state" widget="badge" decoration-danger="state == 'rejected'" decoration-bf="state == 'draft'" decoration-warning="state == 'cancelled'"
+                      decoration-success="state == 'accepted'" decoration-primary="state == 'under_correction'" decoration-info="state == 'correction_done'"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_sq_search" model="ir.ui.view">
+            <field name="name">shipment.quote.search</field>
+            <field name="model">shipment.quote</field>
+            <field name="arch" type="xml">
+                <search string="Shipment Quote search">
+                    <field name="booking_id"/>
+                    <field name="place_of_origin"/>
+                    <field name="final_port_of_destination"/>
+                    <field name="state"/>
+                </search>
+            </field>
+        </record>
+
+        <!--<record model="ir.actions.server" id="email_sq_to_shipper">
+            <field name="name">Email to Shipper</field>
+            <field name="model_id" ref="freightbox_base.model_shipment_quote"/>
+            <field name="binding_model_id" ref="freightbox_base.model_shipment_quote"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = records.action_sq_send()
+            </field>
+        </record>-->
+
+        <!-- ********** Shipment Quote form view ********** -->
+        <record id="shipment_quote_form_view" model="ir.ui.view">
+            <field name="name">Shipment Quote</field>
+            <field name="model">shipment.quote</field>
+            <field name="arch" type="xml">
+                <form string="Shipment Quote">
+                    <header>
+                        <button name="button_allow_shipper_to_approve" string="Allow Shipper to Accept/Reject"
+                                attrs="{'invisible': [('allow_shipper_to_approve', '!=', False)]}"
+                                type="object" class="oe_highlight"/>
+                        <button name="button_cancel" string="Cancel" states="draft" type="object" class="oe_highlight"
+                                confirm="This will cancel the Shipment Quote,do you wish to proceed?"/>
+                        <field name="state" widget="statusbar" nolabel="1"/>
+                        <button name="button_set_to_draft" string="Set To Draft"
+                                states="rejected" type="object" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                             <button name="preview_sq"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-globe icon" context="{'form_view_ref': 'freightbox_base.sale_order_form_view_freightbox'}"
+                           >
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Customer</span>
+                                <span class="o_stat_text">Preview</span>
+                            </div>
+                        </button>
+                        </div>
+
+                        <group colspan="4" col="4">
+                            <field name="po_id" options="{'no_create': 1, 'no_edit': 1, 'no_open': 1}"
+                                   domain="[('state', '=', 'draft'),('rfq_id', '!=', False)]"
+                                   context="{'special_display_name': True}"
+                                   attrs="{'readonly': [('state','!=','draft')]}" required="0"/>
+                            <field name="partner_id" string="Shipper" readonly="1" force_save="1"/>
+                            <field name="booking_id" readonly="1" force_save="1"/>
+                            <field name="inquiry_id" force_save="1"/>
+                            <field name="invoice_id" readonly="1"/>
+                            <field name="company_id" force_save="1"/>
+                            <field name="currency_id" force_save="1"/>
+                            <field name="vendor_bill_id" readonly="1"/>
+                            <field name="reject_bool" invisible="1"/>
+                            <field name="email_sent_bool" invisible="1"/>
+                            <field name="allow_shipper_to_approve" readonly="1"/>
+                            <field name="vessel_name" />
+                        </group>
+                        <notebook>
+                            <page name="cargo" string="Cargo">
+                                <group invisible="1">
+                                   <!-- <group>
+                                        <field name="job_id" readonly="1" invisible="1"/>
+                                    </group>-->
+                                </group>
+                                <group colspan="4" col="4" string="Cargo">
+                                    <field name="cargo_name"
+                                           attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}"
+                                           force_save="1"/>
+                                    <field name="quantity"
+                                           attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}"
+                                           force_save="1"/>
+                                    <field name="weight"
+                                           attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}"
+                                           force_save="1"/>
+                                    <field name="weight_uom"
+                                           attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}"
+                                           force_save="1"/>
+                                    <field name="volume"
+                                           attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}"
+                                           force_save="1"/>
+                                    <field name="volume_uom"
+                                           attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}"
+                                           force_save="1"/>
+                                    <field name="move_type"
+                                           attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}"
+                                           force_save="1"/>
+                                    <field name="incoterm_id"
+                                           attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}"
+                                           force_save="1"/>
+                                    <field name="place_of_origin"
+                                           attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}"
+                                           force_save="1"/>
+                                    <field name="final_port_of_destination"
+                                           attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}"
+                                           force_save="1"/>
+                                    <field name="point_of_stuffing"
+                                           attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}"
+                                           force_save="1"/>
+                                    <field name="point_of_destuffing"
+                                           attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}"
+                                           force_save="1"/>
+                                    <field name="no_of_expected_container"
+                                           attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}"
+                                           force_save="1"/>
+                                    <field name="container_type" required="1"
+                                           attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}"
+                                           force_save="1"/>
+                                    <field name="valid_from"
+                                           attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}"
+                                           force_save="1"/>
+                                    <field name="valid_to"
+                                           attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}"
+                                           force_save="1"/>
+                                    <field name="expected_date_of_shipment"
+                                           attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}"
+                                           force_save="1"/>
+                                    <field name="shipment_terms"
+                                           attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}"
+                                           force_save="1"/>
+                                    <field name="remarks"
+                                           attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}"
+                                           force_save="1"/>
+                                    <field name="active" invisible="1"/>
+                                    <field name="booking_user_id" readonly="1"/>
+                                </group>
+                            </page>
+                            <page name='rate' string="Rate">
+                                <separator string="Charges"/>
+                                <field name="charges_line"
+                                       attrs="{'readonly': [('state', 'not in', ('draft','under_correction'))]}">
+                                    <tree string="Charges" editable="bottom">
+                                        <field name="charges_id" force_save="1"/>
+                                        <field name="charge_line_insert_update" invisible="1"/>
+                                        <field name="charges_type" readonly="1" force_save="1"/>
+                                        <field name="container_type"/>
+                                        <field name="units" required="1" force_save="1"/>
+                                        <field name="unit_price" string="Cost Price" readonly="1" force_save="1" widget='monetary'
+                                            options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                        <field name="new_unit_price" string="Sale Price" required="1" widget='monetary'
+                                            options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                        <field name="currency_id" string="Currency" required="1"/>
+                                        <field name="base_currency_id" invisible="1"/>
+                                        <field name="taxes_id" widget="many2many_tags"/>
+                                        <field name="sale_tax_amt" widget='monetary'
+                                            options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                        <field name="sale_final_amount" widget='monetary'
+                                            options="{'currency_field': 'to_currency_id', 'field_digits': True}"/>
+                                        <field name="to_currency_id" required="1"/>
+                                        <field name="today_exchange_rate"/>
+                                        <field name="prepaid" />
+                                        <field name="collect" />
+                                        <field name="comment"/>
+                                    </tree>
+                                </field>
+                               <separator/>
+                                <group>
+                                    <group>
+
+                                        <label for="total_prepaid_charges"/>
+                                    <div name="amount_div" class="o_row">
+                                        <field name="total_prepaid_charges" widget='monetary'
+                                               options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                        <field name="currency_id"
+                                               options="{'no_create': True, 'no_open': True}"
+                                               />
+                                    </div>
+                                    </group>
+                                    <group>
+
+                                       <label for="total_collect_charges"/>
+                                    <div name="amount_div" class="o_row">
+                                        <field name="total_collect_charges" widget='monetary'
+                                               options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                        <field name="currency_id"
+                                               options="{'no_create': True, 'no_open': True}"
+                                               />
+                                    </div>
+                                    </group>
+                                </group>
+                                <separator/>
+                                <group colspan="4" col="4">
+                                    <label for="total_freight_charge"/>
+                                    <div name="amount_div" class="o_row">
+                                        <field name="total_freight_charge" widget='monetary'
+                                               options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                        <field name="currency_id"
+                                               options="{'no_create': True, 'no_open': True}"
+                                               />
+                                    </div>
+                                    <label for="total_destination_charge"/>
+                                    <div name="amount_div" class="o_row">
+                                        <field name="total_destination_charge" widget='monetary'
+                                               options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                        <field name="currency_id"
+                                               options="{'no_create': True, 'no_open': True}"
+                                               />
+                                    </div>
+                                    <label for="total_origin_charge"/>
+                                    <div name="amount_div" class="o_row">
+                                        <field name="total_origin_charge" widget='monetary'
+                                               options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                        <field name="currency_id"
+                                               options="{'no_create': True, 'no_open': True}"
+                                               />
+                                    </div>
+                                    <label for="total_charge"/>
+                                    <div name="amount_div" class="o_row">
+                                        <field name="total_charge" widget='monetary'
+                                               options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                                        <field name="currency_id"
+                                               options="{'no_create': True, 'no_open': True}"
+                                               />
+                                    </div>
+                                </group>
+                            </page>
+                            <page name="reason" string="Reject Reason"
+                                  attrs="{'invisible': [('reject_bool','!=', True)]}">
+                                    <field name="sq_reject_reason">
+                                        <tree string="Reject reason" editable="bottom">
+                                            <field name="sq_id" invisible="1"/>
+                                            <field name="name"/>
+                                        </tree>
+                                    </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="shipment_quote_search" model="ir.ui.view">
+            <field name="name">shipment.quote.search</field>
+            <field name="model">shipment.quote</field>
+            <field name="arch" type="xml">
+                <search string="Shipment Quote search">
+                    <field name="booking_id" />
+                    <separator/>
+                    <filter name="sq_draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                    <filter name="sq_accepted" string="Accepted" domain="[('state', '=', 'accepted')]"/>
+                    <filter name="sq_rejected" string="Rejected" domain="[('state', '=', 'rejected')]"/>
+                    <filter name="sq_cancelled" string="Cancelled" domain="[('state', '=', 'cancelled')]"/>
+                    <separator/>
+                    
+                </search>
+            </field>
+        </record>
+
+        <!-- ********** Action Shipment Quote ********** -->
+
+        <record id="action_shipment_quote" model="ir.actions.act_window">
+            <field name="name">Shipment Quote</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shipment.quote</field>
+            <field name="target">main</field>
+            <field name="view_id" ref="shipment_quote_tree_view"/>
+            <field name="search_view_id" ref="shipment_quote_search"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>
