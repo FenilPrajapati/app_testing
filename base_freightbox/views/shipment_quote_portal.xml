@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="accept_or_reject_sq_form" name="Accept or Reject SQ">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure"/>
+                <div class="container">
+                    <t t-if="not sq_rec">
+                        <span>No Records found</span>
+                    </t>
+                    <t t-if="sq_rec">
+                        <t t-if="request.env.user.has_group('base.group_system')">
+                            <t t-set="o_portal_fullwidth_alert">
+                                <t t-call="portal.portal_back_in_edit_mode">
+                                    <t t-set="backend_url" t-value="'/web#model=%s&amp;id=%s&amp;action=%s&amp;view_type=form' % (sq_rec._name, sq_rec.id, action.id)"/>
+                                </t>
+                            </t>
+                        </t>
+                        <!--<span>Shipment Quote State: </span><t t-esc="sq_rec.state"/>-->
+                    <div class="s_website_form modal-body checkout_autoformat">
+                        <div t-if="sq_rec.state == 'accepted'" class="alert alert-success d-print-none" role="alert">
+                         <!--   <button type="button" class="close" data-dismiss="alert" aria-label="close">×</button>-->
+                            <strong>Shipment Quote Accepted</strong>
+                        </div>
+                        <div t-if="sq_rec.state == 'rejected'" class="alert alert-danger alert-dismissable d-print-none" role="alert">
+                            <!--<button type="button" class="close" data-dismiss="alert" aria-label="close">×</button>-->
+                            <strong>This quotation has been rejected.</strong>
+                        </div>
+                        <div t-if="sq_rec.state == 'cancelled'" class="alert alert-danger alert-dismissable d-print-none" role="alert">
+                            <!--<button type="button" class="close" data-dismiss="alert" aria-label="close">×</button>-->
+                            <strong>This quotation has been cancelled.</strong>
+                        </div>
+                        <div class="form-row">
+                            <div class="w-100"/>
+                            <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="booking_id">Booking ID
+                                </label>
+                                <input type="text" name="booking_id"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.booking_id"/>
+                            </div>
+
+                             <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="po_id">Purchase order
+                                </label>
+                                <input type="text" name="po_id"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.po_id.name"/>
+                            </div>
+
+                            <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="partner_id">Shipper
+                                </label>
+                                <input type="text" name="partner_id"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.partner_id.name"/>
+                            </div>
+                            <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="currency_id">Currency
+                                </label>
+                                <input type="text" name="currency_id"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.currency_id.name"/>
+                            </div>
+                            <br></br>
+                            <div class="w-100"/>
+                            <div class="col-6">
+                                <strong>CARGO DETAILS</strong>
+                            </div>
+                            <br></br>
+                            <div class="w-100"/>
+
+                            <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="cargo_name">Cargo Description
+                                </label>
+                                <input type="text" name="cargo_name"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.cargo_name"/>
+                            </div>
+
+                            <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="quantity">Quantity
+                                </label>
+                                <input type="number" name="quantity"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.quantity"/>
+                            </div>
+
+                            <div t-attf-class="col-3">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="weight">Weight
+                                </label>
+                                <input type="number" name="weight"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.weight"/>
+                            </div>
+
+                            <div t-attf-class="col-3">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="weight_uom">Weight Unit
+                                </label>
+                                <input type="text" name="weight_uom"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.weight_uom.name"/>
+                            </div>
+
+                            <div t-attf-class="col-3">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="volume">Volume
+                                </label>
+                                <input type="number" name="volume"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.volume"/>
+                            </div>
+
+                            <div t-attf-class="col-3">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="volume_uom">Volume Unit
+                                </label>
+                                <input type="text" name="volume_uom"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.volume_uom.name"/>
+                            </div>
+
+                            <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="move_type">Move Type
+                                </label>
+                                <input type="text" name="move_type"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.move_type.name"/>
+                            </div>
+
+                            <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="incoterm_id">Incoterms
+                                </label>
+                                <input type="text" name="incoterm_id"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.incoterm_id.name"/>
+                            </div>
+
+                            <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="point_of_origin">Point Of Origin
+                                </label>
+                                <input type="text" name="place_of_origin"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.place_of_origin"/>
+                            </div>
+
+                            <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="final_port_of_destination">Point Of Destination
+                                </label>
+                                <input type="text" name="final_port_of_destination"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.final_port_of_destination"/>
+                            </div>
+
+                            <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="point_of_stuffing">Point Of Stuffing
+                                </label>
+                                <input type="text" name="point_of_stuffing"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.point_of_stuffing"/>
+                            </div>
+
+                            <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="point_of_destuffing">Point Of Destuffing:
+                                </label>
+                                <input type="text" name="point_of_destuffing"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.point_of_destuffing"/>
+                            </div>
+
+                            <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="no_of_expected_container">No of Expected Containers:
+                                </label>
+                                <input type="number" name="no_of_expected_container"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.no_of_expected_container"/>
+                            </div>
+
+                            <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="container_type">Container Type:
+                                </label>
+                                <input type="text" name="container_type"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.container_type.code"/>
+                            </div>
+
+                            <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="valid_from">Valid From:
+                                </label>
+                                <input type="date" name="valid_from"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.valid_from"/>
+                            </div>
+
+                            <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="valid_to">Valid To:
+                                </label>
+                                <input type="date" name="valid_to"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.valid_to"/>
+                            </div>
+
+                            <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="expected_date_of_shipment">Expected Date of Shipment:
+                                </label>
+                                <input type="date" name="expected_date_of_shipment"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.expected_date_of_shipment"/>
+                            </div>
+
+                            <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="shipment_terms">Shipment terms:
+                                </label>
+                                <input type="text" name="shipment_terms"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.shipment_terms"/>
+                            </div>
+
+                            <div t-attf-class="col-6">
+                                <label class="col-form-label font-weight-normal label-optional"
+                                       for="remarks">Remarks:
+                                </label>
+                                <input type="text" name="remarks"
+                                       readonly="readonly" t-attf-class="form-control"
+                                       t-att-value="sq_rec.remarks"/>
+                                <br></br>
+
+                            </div>
+
+
+                            <br></br>
+
+                            <!-- Rate-->
+
+
+                <table class="table table-sm">
+                  <thead class="bg-100">
+                    <tr>
+                      <th>Charges</th>
+                      <th class="text-right d-none d-sm-table-cell">Units</th>
+                      <th class="text-right">Price</th>
+                      <th class="text-right">Taxes</th>
+                      <th class="text-right">Tax Amt.</th>
+                      <th class="text-right">Sale Amt.</th>
+                      <th class="text-right">Prepaid</th>
+                      <th class="text-right">Collect</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <t t-foreach="sq_rec.charges_line" t-as="ch">
+                      <tr t-att-class="'bg-200 font-weight-bold o_line_section'">
+                          <td>
+                            <span t-esc="ch.charges_id.name"/>
+                          </td>
+                          <td class="text-right d-none d-sm-table-cell">
+                            <span t-field="ch.units"/>
+                          </td>
+                          <td class="text-right">
+                              <span t-field="ch.new_unit_price" t-options='{"widget": "monetary", "display_currency": ch.currency_id}'/>
+                          </td>
+                          <td class="text-right">
+                              <span t-esc="', '.join(map(lambda x: (x.description or x.name), ch.taxes_id))"/>
+                          </td>
+                          <td class="text-right">
+                              <span t-field="ch.sale_tax_amt"/>
+                          <!--  <span t-field="ol.price_subtotal" t-options='{"widget": "monetary", "display_currency": order.currency_id}'/>-->
+                          </td>
+                          <td class="text-right">
+                              <span t-field="ch.sale_final_amount" t-options='{"widget": "monetary", "display_currency": ch.to_currency_id}'/>
+                          </td>
+                          <td class="text-right">
+                              <span t-field="ch.prepaid"/>
+                          </td>
+                          <td class="text-right">
+                              <span t-field="ch.collect"/>
+                          </td>
+                      </tr>
+                    </t>
+                  </tbody>
+                </table>
+              <table class="table table-sm">
+                <tbody>
+                    <tr class="is-subtotal text-right" >
+                                        <td colspan="99" style="border-top: 0;">
+                                            <strong class="mr16">Prepaid Amount</strong>
+                                            <span
+                                                t-esc="sq_rec.total_prepaid_charges"
+                                                t-options='{"widget": "monetary", "display_currency": sq_rec.currency_id}'
+                                            />
+                                        </td>
+                                    </tr>
+                    <tr class="is-subtotal text-right" style="border-top: 0;">
+                                        <td colspan="99" style="border-top: 0;">
+                                            <strong class="mr16">Collect Amount</strong>
+                                            <span
+                                                t-esc="sq_rec.total_collect_charges"
+                                                t-options='{"widget": "monetary", "display_currency": sq_rec.currency_id}'
+                                            />
+                                        </td>
+                                    </tr>
+                    <tr class="is-subtotal text-right">
+                                        <td colspan="99" style="border-top: 0;">
+                                            <strong class="mr16">Total Charges</strong>
+                                            <span
+                                                t-esc="sq_rec.total_charge"
+                                                t-options='{"widget": "monetary", "display_currency": sq_rec.currency_id}'
+                                            />
+                                        </td>
+                                    </tr>
+                </tbody>
+              </table>
+                        </div>
+                                        <div class="clearfix oe_login_buttons text-center mb-1 pt-3" t-if="sq_rec.allow_shipper_to_approve == True">
+                                                <t t-if="sq_rec.state == 'draft' or sq_rec.state == 'correction_done'">
+                                                   <a t-attf-href="/thank-accept/#{sq_rec.id}?{{ keep_query() }}">
+                                                        <button type="submit" class="btn btn-primary accept_sq col-2"
+                                                        attrs="{'invisible': [('state', 'in', ['accepted', 'rejected'])]}" >
+                                                        <span>
+                                                            Accept
+                                                        </span>
+                                                        </button>
+                                                    </a>
+                                                        <div class="clearfix oe_login_buttons text-left mb-1 pt-3">
+
+                                                      <form action="/thank-reject" method="post" enctype="multipart/form-data"
+                                                          id="thank-reject_form"
+                                                          class="thank-reject checkout_autoformat">
+                                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                                          <div class="form-row">
+                                                          <div t-attf-class="col-6">
+                                                            <label class="col-form-label font-weight-normal label-optional" for="reason_for_reject"
+                                                                   ><strong>Reason for Rejection*</strong>
+                                                            </label>
+                                                              <input type="text" name="reason_for_reject"
+                                                                   t-attf-class="form-control" required="required"
+                                                                   />
+                                                          </div>
+                                                            <div t-attf-class="col-6" style="padding-top: 3.5%">
+                                                                <input type="hidden" name="sq_id"
+                                                               readonly="readonly" t-attf-class="form-control"
+                                                               t-att-value="sq_rec.id"/>
+                                                              <button class="btn btn-primary reject_sq col-2" attrs="{'invisible': [('state', 'in', ['accepted', 'rejected'])]}" >
+                                                                <span>
+                                                                    Reject
+                                                                </span>
+                                                                </button>
+                                                        </div>
+                                                          </div>
+
+                                                      </form>
+                                                      </div>
+                                            </t>
+                                        </div>
+                    </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <record model="website.page" id="sq_accepted">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/sq_accepted</field>
+        <field name="website_published">True</field>
+        <field name="key">freightbox_base.sq_accepted</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="freightbox_base.sq_accepted">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="d-flex justify-content-center flex-column align-items-center">
+                            <h1 class="my-3">You have accepted this Shipment Quote</h1>
+                            <div class="row mb-3">
+                                <div class="col-lg-13">
+                                    <div class="alert alert-success" role="status">
+                                        You will receive the Sale Order soon
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+
+    <record model="website.page" id="sq_rejected">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">/sq_rejected</field>
+        <field name="website_published">True</field>
+        <field name="key">freightbox_base.sq_rejected</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="freightbox_base.sq_rejected">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="d-flex justify-content-center flex-column align-items-center">
+                            <h3 class="my-3">You have REJECTED this Shipment Quote</h3>
+
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+</odoo>

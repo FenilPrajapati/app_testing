@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="freightbox_company_inherit" model="ir.ui.view">
+            <field name="name">company_inherit</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <field name="favicon" position="after">
+                    <field name="sale_email" required="1"/>
+                </field>
+                <field name="sale_email" position="after">
+                    <field name="quote_email" required="1"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="crmlead_inherit" model="ir.ui.view">
+            <field name="name">crmlead_inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="crm.crm_case_tree_view_leads"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="before">
+                    <field name="booking_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="crm_oppr_inherit" model="ir.ui.view">
+            <field name="name">crm_oppr_inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="before">
+                    <field name="booking_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.actions.server" id="email_to_ship_line">
+            <field name="name">Email to Shipping Line</field>
+            <field name="model_id" ref="crm.model_crm_lead"/>
+            <field name="binding_model_id" ref="crm.model_crm_lead"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = records.action_crm_send_sl()
+            </field>
+        </record>
+
+        <record model="ir.actions.server" id="email_to_shiper">
+            <field name="name">Email to Shipper</field>
+            <field name="model_id" ref="crm.model_crm_lead"/>
+            <field name="binding_model_id" ref="crm.model_crm_lead"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = records.action_crm_send()
+            </field>
+        </record>
+
+        <record id="crm_lead_view_form" model="ir.ui.view">
+            <field name="name">FreightBox Inquiry Form</field>
+            <field name="model">crm.lead</field>
+            <field name="mode">primary</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_set_won_rainbowman']" position="before">
+                    <!-- <button name="action_crm_send_sl" string="Email to Shipping Line" type="object" class="btn-primary"
+                            attrs="{'invisible': [('is_freight_box_crm', '=', False)]}"
+                            help="Sends an email to the Shipping Line"/> -->
+                    <button name="action_create_rate_comparision" string="Create Rate Comparision" type="object"
+                            attrs="{'invisible':
+                                ['|',('type', '!=', 'opportunity'),
+                                 ('is_freight_box_crm', '=', False)]}"
+                            class="btn-primary" help="Creates Rate Comparision for this enquiry"/>
+                    <!-- <button name="action_crm_send" string="Email to Shipper" type="object" class="btn-primary"
+                            attrs="{'invisible': [('is_freight_box_crm', '=', False)]}"
+                            help="Sends an email to the customer"/> -->
+                </xpath>
+                <!--<xpath expr="//div[@class='oe_title']" position="before">
+                    <field name="is_blacklist" invisible="1" />
+                    <widget name="web_ribbon" title="BlackList-Customer" bg_color="bg-danger" attrs="{'invisible': [('is_blacklist','=',False)]}"/>
+                </xpath>-->
+                <xpath expr="//button[@name='action_sale_quotations_new']" position="replace">
+                    <button name="action_sale_quotations_new" string="New quotation" type="object" class="btn-primary"
+                            attrs="{'invisible': [('is_freight_box_crm', '=', True)]}"/>
+                </xpath>
+                <xpath expr="//button[@name='%(crm.crm_lead_lost_action)d']" position="replace">
+                    <button name="%(crm.crm_lead_lost_action)d" string="Mark Lost" stage_id.name="New,Proposition,Qualified"
+                            type="action" class="oe_highlight" context="{'default_lead_id': active_id}" attrs="{'invisible': ['|','|',('rc_count','&gt;', '0'), ('type', '=', 'lead'),('active', '=', False)]}"/>
+                    
+                </xpath>
+                <!--<xpath expr="//button[@name='action_set_won_rainbowman']" position="replace">
+                </xpath>-->
+                <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                            <button name="action_get_rc"
+                            type="object" class="oe_stat_button" attrs="{'invisible': ['|', ('rc_count','&lt;', '1'), ('is_freight_box_crm', '=', False)]}"
+                            icon="fa-pencil-square-o">
+                            <field name="rc_count" widget="statinfo" string="Rate Comparision"/>
+                            </button>
+
+                </xpath>
+
+                <xpath expr="//field[@name='name']" position="after">
+                    <group>
+                        <field name="booking_id" readonly="1"/>
+                        
+                        <field name="type" invisible="1"/>
+                        <field name="state" invisible="1"/>
+                    </group>
+
+                </xpath>
+                <xpath expr="//field[@name='lost_reason_id']" position="before">
+                    <field name="shipping_line_id" context="{'default_supplier_rank':1}" attrs="{'invisible': [('is_freight_box_crm', '=', False)],  'required':[('is_freight_box_crm', '=', True)]}"/>
+                </xpath>
+
+                <xpath expr="//page[@name='internal_notes']" position="before" >
+                    <page name='cargo_description' string="Cargo"  attrs="{'invisible': [('is_freight_box_crm', '=', False)]}">
+                        <group invisible="1">
+                            <group>
+                                <field name="job_id" invisible="1"/>
+                                <field name="sq_id" invisible="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="cargo_name" attrs="{'required': [('is_freight_box_crm', '=', True)]}"/>
+                                <field name="quantity" attrs="{'required': [('is_freight_box_crm', '=', True)]}"/>
+                                <field name="weight"/>
+                                <field name="weight_uom" domain="[('category_id.name', '=', 'Weight')]" options="{'no_create_edit': True, 'no_create':True}"/>
+                                <field name="volume"/>
+                                <field name="volume_uom" domain="[('category_id.name', '=', 'Volume')]" options="{'no_create_edit': True, 'no_create':True}"/>
+                                <field name="move_type"/>
+                                <field name="incoterm_id"/>
+                                <field name="place_of_origin" attrs="{'required': [('is_freight_box_crm', '=', True)]}"/>
+                                <field name="final_port_of_destination" attrs="{'required': [('is_freight_box_crm', '=', True)]}"/>
+                            </group>
+                            <group>
+                                <field name="point_of_stuffing" attrs="{'required': [('is_freight_box_crm', '=', True)]}"/>
+                                <field name="point_of_destuffing" attrs="{'required': [('is_freight_box_crm', '=', True)]}"/>
+                                <field name="no_of_expected_container" attrs="{'required': [('is_freight_box_crm', '=', True)]}"/>
+                                <field name="container_type" attrs="{'required': [('is_freight_box_crm', '=', True)]}"/>
+                                <field name="expected_date_of_shipment" attrs="{'required': [('is_freight_box_crm', '=', True)]}"/>
+                                <field name="shipment_terms"/>
+                                <field name="is_freight_box_crm"  readonly="1"/>
+                                <field name="booking_user_id" readonly="1"/>
+<!--                                <field name="delivery_type_id"/>-->
+                            </group>
+                        </group>
+
+                        <group colspan="4" col="4">
+                            <field name="remarks" colspan="4"/>
+                        </group>
+                    </page>
+                    <page name="container_lines" string="Container Lines">
+                        <field name="container_line_ids"/>
+                    </page>
+                </xpath>
+                <xpath expr="//notebook" position="inside" >
+                   <!--<page string="Agents">
+                        <field name="agents_line"
+                                attrs="{'readonly': ['|',('state', '=', 'hold'),('state', '=', 'inactive')]}">
+                            <tree string="Agents" editable="bottom">
+                                <field name="agent_type"/>
+                                <field name="agent_name" domain="[('contact_type','=','agent')]" context="{'order_display': True }"  />
+                                <field name="contract_id" domain="[('shipping_line_name','=',agent_name)]"/>
+                                <field name="agent_loc"/>
+                                <field name="charge"/>
+                                &lt;!&ndash;<field name="final_amount" readonly="1"/>&ndash;&gt;
+                            </tree>
+                        </field>
+                    </page>-->
+                    <!--<page string="Video Tutorial" attrs="{'invisible': [('is_freight_box_crm', '=', False)]}">
+                        <button name="open_inquiry_tutorial_video_new_tab" type="object" class="btn-primary" string="Open Full Tutorial Video in New Tab"/>
+                        <div class="app_settings_block" string="CRM Tutorial">
+                            <div class="row mt16 o_settings_container" name="qualification_setting_container">
+                                <div controls="true"  class="embed-responsive embed-responsive-16by9">
+                                    <iframe width="1080px" height="720px " id="inquiry_tutorial_video" src=""></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </page>-->
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="inquiry_freightbox_filter">
+        <field name="name">Inquiry Freight box filter</field>
+        <field name="model">crm.lead</field>
+        <field name="priority">50</field>
+        <field name="arch" type="xml">
+            <search string="Inquiries">
+                <field name="booking_id" string="Container"/>
+                <field name="email_from"/>
+                <separator/>
+                <filter name="inquiry_freight_box" string="Freight Box" domain="[('is_freight_box_crm','=',True)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="freightbox_crm_tree" model="ir.ui.view">
+        <field name="name">FreightBox Inquiry Tree</field>
+        <field name="model">crm.lead</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <tree string="Inquiries" sample="1" multi_edit="1" decoration-bf="state == 'new'" decoration-warning="state == 'proposition'"
+                  decoration-success="state == 'won'" decoration-primary="state == 'qualified'" js_class="fb_crm_event_dashboard">
+                <field name="booking_id" string="Inquiry No"/>
+                <field name="name" string="Name"/>
+<!--                <field name="team_id" invisible="1" />-->
+                <field name="no_of_expected_container" string="Containers"/>
+                <field name="container_type" string="Container Type"/>
+                <field name="expected_date_of_shipment"/>
+                <field name="place_of_origin" string="Point of Origin"/>
+                <field name="final_port_of_destination" string="Point of Destination"/>
+<!--                <field name="partner_id" optional="show"/>-->
+                <field name="phone" class="o_force_ltr"/>
+                <field name="email_from"/>
+                <field name="team_id" invisible="1"/>
+                <field name="stage_id" widget="badge" decoration-bf="state == 'new'" decoration-warning="state == 'proposition'"
+                  decoration-success="state == 'won'" decoration-primary="state == 'qualified'"/>
+                <field name="state" optional="hide"/>
+               <field name="company_id" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_freight_enquiry_management" model="ir.actions.act_window">
+        <field name="name">Booking Inquiry</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{
+            'is_freight_crm': True, 'default_is_freight_box_crm': True,
+            'default_type': 'opportunity'
+            }
+        </field>
+        <field name="domain">[('is_freight_box_crm', '=', True)]</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('base_freightbox.freightbox_crm_tree')}),
+
+            (0, 0, {'view_mode': 'form', 'view_id': ref('base_freightbox.crm_lead_view_form')})]"/>
+        <field name="search_view_id" ref="base_freightbox.inquiry_freightbox_filter"/>
+        <field name="help" type="html">
+            <p>
+                To create employees timesheet.
+            </p>
+        </field>
+    </record>
+
+    <record id="crm_stage_view_form_ext" model="ir.ui.view">
+        <field name="name">CRM Stage Form Extended</field>
+        <field name="model">crm.stage</field>
+        <field name="inherit_id" ref="crm.crm_stage_form"/>
+        <field name="arch" type="xml">
+            <field name="is_won" position="before">
+                <field name="state"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="container_line_tree_view" model="ir.ui.view">
+            <field name="name">Container Lines</field>
+            <field name="model">container.line</field>
+            <field name="arch" type="xml">
+                <tree string="Container Lines" editable="bottom">
+                    <field name="inquiry_id" invisible="1"/>
+                    <field name="no_of_expected_container"/>
+                    <field name="container_type_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="container_line_form_view" model="ir.ui.view">
+            <field name="name">Container Line</field>
+            <field name="model">container.line</field>
+            <field name="arch" type="xml">
+                <form string="Ports">
+                    <sheet>
+                        <group>
+                            <field name="inquiry_id" invisible="1"/>
+                            <field name="no_of_expected_container"/>
+                            <field name="container_type_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+      <record id="cargo_plus_tree_view" model="ir.ui.view">
+            <field name="name">Cargo Plus</field>
+            <field name="model">cargo.plus</field>
+            <field name="arch" type="xml">
+                <tree string="Cargo Plus" editable="bottom">
+                    <field name="inquiry_id" invisible="1"/>
+                    <field name="no_of_expected_container"/>
+                    <field name="no_of_confirmed_container"/>
+                    <field name="container_type_id"/>
+                    <field name="cargo_description"/>
+                    <field name="quantity"/>
+                    <field name="weight"/>
+                    <field name="volume"/>
+                    <field name="weight_uom"/>
+                    <field name="volume_uom"/>
+                    <field name="move_type"/>
+                    <field name="incoterm_id"/>
+                </tree>
+            </field>
+        </record>
+
+       <record id="cargo_plus_form_view" model="ir.ui.view">
+            <field name="name">Cargo Plus</field>
+            <field name="model">cargo.plus</field>
+            <field name="arch" type="xml">
+                <form string="Cargo Plus">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="inquiry_id" invisible="1"/>
+                                <field name="no_of_expected_container"/>
+                                <field name="no_of_confirmed_container"/>
+                                <field name="container_type_id"/>
+                                <field name="cargo_description"/>
+                                <field name="quantity"/>
+                            </group>
+                            <group>
+                                <field name="weight"/>
+                                <field name="volume"/>
+                                <field name="weight_uom"/>
+                                <field name="volume_uom"/>
+                                <field name="move_type"/>
+                                <field name="incoterm_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+</odoo>
