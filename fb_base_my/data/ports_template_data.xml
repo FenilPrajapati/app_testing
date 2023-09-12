@@ -5,7 +5,7 @@
 
          <record id="port_line_template1" model="ports.line">
             
-            <field name="port_id" ref='fb_base.port_1'/>
+            <field name="port_id" ref='fb_base_my.port_1'/>
            
         </record>
         
