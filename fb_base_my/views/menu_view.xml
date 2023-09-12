@@ -4,7 +4,7 @@
         <menuitem id="menu_ports" name="Ports" sequence="1" parent="main_menu_fb_base"/>
         <menuitem id="menu_configuration" name="Configuration" sequence="2" parent="main_menu_fb_base"/>
         <menuitem id="sub_menu_ports" name="Ports" sequence="1"
-                  action="fb_base.action_ports" parent="menu_ports"/>
+                  action="fb_base_my.action_ports" parent="menu_ports"/>
         <menuitem id="sub_menu_facility_code" name="Facility code" sequence="5"
                   action="action_facility_type_code" parent="menu_configuration"/>
         <menuitem id="sub_menu_charges" name="Charges" sequence="2"
